@@ -49,7 +49,7 @@ function StartDayPanel() {
 		createButton('wedButton', 'empty', ['dayButton', 'buttonRowOne'], 'WEDNESDAY'),
 		createButton('thurButton', 'empty', ['dayButton', 'buttonRowOne'], 'THURSDAY'),
 		createButton('friButton', 'empty', ['dayButton', 'buttonRowOne'], 'FRIDAY'),
-		createButton('satButton', 'empty', ['dayButton', 'buttonRowOne'], 'SATDAY'),
+		createButton('satButton', 'empty', ['dayButton', 'buttonRowOne'], 'SATURDAY'),
 		createButton('sunButton', 'empty', ['dayButton', 'buttonRowOne'], 'SUNDAY')
 	])
 	ContainerDiv.classList.add('buttonPanel');
