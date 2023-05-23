@@ -1,0 +1,144 @@
+:root {
+
+	/* BASIC RAINBOW COLOURS */
+		--goblinRed: #ff0000 ;
+		--goblinOrange: #ffc000;
+		--goblinYellow: #ffff00;
+		--goblinGreen: #92d050;
+		--goblinBlue: #00b0f0;
+		--goblinIndigo: #002060;
+		--goblinViolet: #7030a0;
+		--goblinPink: #b02b9a;
+
+	/* NOVA COLOURS */
+		--novaPink: #e500e5;
+		--novaPinkLight: #fe9eff;
+		--novaPinkDark: #ff9dff;
+		--novaTeal: #33cccc;
+		--novaTealLight: #85e0e0;
+		--novaTealDark: #1a6666;
+		--novaPurple: #9900cc;
+		--novaPurpleLight: #d146ff;
+		--novaPurpleDark: #4d0066;
+		--novaGreen: #92d050;
+		--novaGreenLight: #bee296;
+		--novaGreenDark: #4a721f;
+		--novaOrange: #ffc000;
+		--novaOrangeLight: #ffd966;
+		--novaOrangeDark: #bf8f00;
+		--novaBlue: #65ddfc;
+		--novaBluelight: #00cafd;
+		--novaBlueDark: #006680;
+	/* HELIX COLOURS */
+		--helixIndigo: #000088;
+		--helixBlue: #00ffff;
+		--helixTeal: #008080;
+		--helixGreen: #00ff99;
+		--helixYellow: #ffff00;
+		--helixOrange: #ff9933;
+		--helixRed: #ff5050;
+		--helixPink: #ff33cc;
+		--helixPurple: #cc00ff;
+	/* METRO COLOURS */
+		--MetroTeal: #179f8e;
+		--MetroIce: #738ac8;
+		--MetroBlue: #00addc;
+		--MetroOrange: #feb80a;
+		--MetroPink: #ea157a;
+		--MetroGreen: #7fd13b;
+		--MetroGrey: #4e5b6f;
+
+	/* JELLYFISH COLOURS */
+		--JELLYRED_FIRE_ENGINE_RED: rgb(199, 33, 39);
+		--JELLYRED_FIRE_ENGINE_RED_DARK: rgb(132, 9, 13);
+		--JELLYORANGE_SAFETY_ORANGE: rgb(243, 121, 27);
+		--JELLYORANGE_SAFETY_ORANGE_DARK: rgb(155, 74, 12);
+		--JELLYYELLOW_CANARY: rgb(255, 229, 0);
+		--JELLYYELLOW_CANARY_DARK: rgb(159, 144, 6);
+		--JELLYGREEN_GREEN: rgb(34, 255, 0);
+		--JELLYGREEN_LAWN: rgb(130,255,52);
+		--JELLYGREEN_LAWN_DARK: rgb(59, 135, 12);
+		--JELLYBLUE_ROBIN_EGG: rgb(40, 197, 212);
+		--JELLYBLUE_SKY: rgb(136,200,224);
+		--JELLYBLUE_AQUAMARINE: rgb(94,241,204);
+		--JELLYBLUE_MOONSTONE: rgb(71,161,179);
+		--JELLYBLUE_OXFORD: rgb(12, 25, 61);
+		--JELLYBLUE_ELECTRIC: rgb(125,249,255);
+		--JELLYINDIGO_ELECTRIC: rgb(100, 40, 212);
+		--JELLYINDIGO_ELECTRIC_DARK: rgb(45, 12, 107);
+		--JELLYVIOLET_PURPLE: rgb(108, 16, 134);
+		--JELLYVIOLET_VERONICA: rgb(171,45,213);
+		--JELLYVIOLET_VERONICA_DARK: rgb(87, 13, 111);
+		--JELLYPINK_MAGENTA: rgb(243, 46, 134);
+		--JELLYPINK_MAGENTA_DARK: rgb(136, 15, 69);
+		--JELLYPINK_STEEL: rgb(203,46,174);
+		--JELLYPINK_FANDANGO: rgb(177,20,143);
+
+	/* CATEGORY COLOURS */
+
+		--frogLearn: #e600e6;
+		--frogLearnLight: #ff59ff;
+
+		--frogScribble: #d146ff;
+		--frogScribbleLight: #e084ff;
+
+		--frogHulaHoop: #bee296;
+		--frogHulaHoopight: #d3ecb9;
+
+		--frogDoodles: #ffd966;
+		--frogDoodlesLight: #ffe699;
+
+		--frogSquirrels: #ff4dc5;
+		--frogSquirrelsLight: #ff88d9;
+
+		--frogBigWar: #e0a2ff;
+		--frogBigWarLight: ;
+
+		--frogMemblings: #66e0ff;
+		--frogMemblingsLight: #ccf4ff;
+
+		--frogButterscotch: #404040;
+		--frogButterscotchLight: #595959;
+
+		--frogTrue: #e600e6;
+		--frogTrueLight: #ff59ff;
+
+		--frogDinosaurs: #85e0e0;
+		--frogDinosaursLight: #adebeb;
+
+		--frogMilkshakes: #d146ff;
+		--frogMilkshakesLight: #d980f7;
+
+		--frogPaperAeroplanes: #bee296;
+		--frogPaperAeroplanesLight: #d3ecb9;
+
+		--frogChecklists: #ffd966;
+		--frogChecklistsLight: #ffe699;
+
+		--frogChest: #ff4dc5;
+		--frogChestLight: #ff88d9;
+
+		--frogAux: #85e0e0;
+		--frogAuxLight: #adebeb;
+
+	/* BACKBONE COLOURS */
+
+		--pieceTitle:#0099bf ;
+		--pieceBar: #212176;
+
+		--fragmentBar: #9b58e4;
+		--fragmentAltBar: #ba4bee;
+
+	/* SUBCATEGORIES */
+	/* learn */
+		--tabLearnLanguageDark: #e600e6;
+		--tabLearnLanguageLight: #00ccff;
+
+		--tabLearnBeadsDark: #ff4dc5;
+		--tabLearnBeadsLight: #66e0ff;
+
+		--tabLearnBlippopapaediaDark: #bee296;
+		--tabLearnBlippopapaediaLight: #ffd966;
+	/* Skills */
+}
+
