@@ -7,9 +7,7 @@ module.exports = {
           owner: 'PixeldustMA',
           name: 'MushroomStalk',
         },
-        authToken: process.env.GITHUB_TOKEN,
-        prerelease: false,
-        draft: true,
+        authToken: process.env.GITHUB_TOKEN
       },
     },
   ],
