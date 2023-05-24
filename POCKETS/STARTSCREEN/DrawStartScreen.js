@@ -3,6 +3,7 @@ import {
 	createButton, text
  } from "../../GIZMOS/KNOTS/Global.js";
 
+import { randomImage } from "../../GIZMOS/Randomiser.js";
 // -- VARIABLES-- //
 const HeaderSection = document.getElementById("START-PAGE-section-header");
 const ButtonSection = document.getElementById('START-PAGE-button-strip');
@@ -24,10 +25,12 @@ let FridgePath = "";
 function StartHeaderPanel() {
 
 	let ContainerDiv = document.createElement('div');
+	let imagePath = randomImage()
 	ContainerDiv.append(... [
 		PageTitle("WELCOME BACK GOBLIN", "header-startScreen", ["mainPageTitle"]),
-		SetImage("../../ASSETS/IMAGES/PIXIES/PixieFace.png", "image-goblin", "Empty")
+		SetImage(`../../ASSETS/IMAGES/PIXIES/${imagePath}`, "image-goblin", "Empty")
 	])
+
 	return ContainerDiv;
 }
 function StartButtonPanel() {

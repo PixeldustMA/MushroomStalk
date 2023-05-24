@@ -4,8 +4,11 @@ import {
 		createButton, text
 } from "../SKELETON/Bones.js"
 
+const fs = require('fs');
+const ipc = window.require("electron").ipcRenderer;
+
 export { 
 	addClasses, PageTitle,
 	SetImage, createButton,
-	text
+	text, fs, ipc
 }
