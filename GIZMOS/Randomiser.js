@@ -1,24 +1,11 @@
-import { fs } from '../GIZMOS/KNOTS/Global.js';
+import { fs, spinNumber } from '../GIZMOS/KNOTS/Global.js';
 
-const IMAGE_BUCKET = '../ASSETS/IMAGES/PIXIES/';
-
-
-
-// == GENERATE RANDOM NUMBER == // 
-function getRandomInt(max) {
-	let randomNumber = Math.floor(Math.random() * (max));
-	return randomNumber;
-}
-
-
-// randomise image choice
+const IMAGE_BUCKET = './ASSETS/IMAGES/PIXIES/';
 
 function randomImage() {
 
 	let RandomImage = fs.readdirSync(IMAGE_BUCKET);
-	console.log(RandomImage);
-	let Index = getRandomInt(RandomImage.length);
-	console.log(RandomImage[Index])
+	let Index = spinNumber(RandomImage.length);
 	return RandomImage[Index];
 }
 
