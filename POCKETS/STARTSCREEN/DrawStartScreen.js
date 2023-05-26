@@ -3,6 +3,7 @@ import {
 	createButton, text
  } from "../../GIZMOS/KNOTS/Global.js";
 
+ import { SetDay } from "../../GIZMOS/Calender.js";
 import { randomImage } from "../../GIZMOS/Randomiser.js";
 // -- VARIABLES-- //
 const HeaderSection = document.getElementById("START-PAGE-section-header");
@@ -25,6 +26,7 @@ let FridgePath = "";
 function StartHeaderPanel() {
 
 	let ContainerDiv = document.createElement('div');
+	console.log(__dirname)
 	let imagePath = randomImage()
 	ContainerDiv.append(... [
 		PageTitle("WELCOME BACK GOBLIN", "header-startScreen", ["mainPageTitle"]),
@@ -65,4 +67,15 @@ function StartDayLabel() {
 		text('Today is a day', 'text-day', 'empty')
 	])
 	return ContainerDiv;
+}
+
+window.addEventListener("load", (event) => {
+
+	let day = SetDay();
+	changeText(day);
+})
+
+function changeText(day) {
+	let daytext = document.getElementById("text-day");
+	daytext.innerHTML = day;
 }
