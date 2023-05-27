@@ -30,7 +30,8 @@ function StartHeaderPanel() {
 	let imagePath = randomImage()
 	ContainerDiv.append(... [
 		PageTitle("WELCOME BACK GOBLIN", "header-startScreen", ["mainPageTitle"]),
-		SetImage(`../../ASSETS/IMAGES/PIXIES/${imagePath}`, "image-goblin", "Empty")
+		SetImage(`../../ASSETS/IMAGES/PIXIES/${imagePath}`, "image-goblin", "Empty"),
+		SetImage(`../../ASSETS/IMAGES/COG.png`, "TestCog", "Empty")
 	])
 
 	return ContainerDiv;
@@ -79,3 +80,10 @@ function changeText(day) {
 	let daytext = document.getElementById("text-day");
 	daytext.innerHTML = day;
 }
+
+let settingsCog = document.getElementById('TestCog')
+settingsCog.addEventListener('click', (event) => {
+
+	console.log("Boop");
+	window.location.replace('../COGS/CogsFramework.html')
+})

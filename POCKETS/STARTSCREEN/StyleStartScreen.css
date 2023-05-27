@@ -155,3 +155,9 @@ button {
 	background-color: black;
 	color: white !important;
 }
+
+#TestCog {
+	float: right;
+	height: 50px;
+	width: 50px;
+}
