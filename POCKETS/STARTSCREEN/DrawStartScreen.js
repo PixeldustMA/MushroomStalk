@@ -1,40 +1,80 @@
 import {
 	PageTitle, SetImage,
 	createButton, text
- } from "../../GIZMOS/KNOTS/Global.js";
+} from "../../GIZMOS/KNOTS/Global.js";
+import { SetDay } from "../../GIZMOS/CLOCKS/Calender.js";
+import { randomImage } from "../../GIZMOS/RANDOM/Randomiser.js";
+import { getMessage } from "../../GIZMOS/WIDGETS/Welcome.js";
+import { getObject } from "./LoadInformation.js";
 
- import { SetDay } from "../../GIZMOS/Calender.js";
-import { randomImage } from "../../GIZMOS/Randomiser.js";
-// -- VARIABLES-- //
+// ================================= //
+//         MUSHROOM STALK            //
+// ================================= //
+//      Last Updated - v0.8          //
+//         Create Home Screen        //
+// ================================= //
+
+// PASS STATE OBJECTS
+const getstate = async () => {
+	const result = await getObject();
+	return result
+}
+const CurrentStateStartScreen = async () => {
+	const current = await getstate()
+	.then((state) => {
+		console.log("Current status -- start screen");
+		console.log(state)
+		return state
+	});
+	return current;
+}
+
+// -- SECTIONS-- //
 const HeaderSection = document.getElementById("START-PAGE-section-header");
 const ButtonSection = document.getElementById('START-PAGE-button-strip');
 const DayButtonSection = document.getElementById('START-PAGE-section-buttons-day');
 const DayLabelSection = document.getElementById('START-PAGE-section-day');
 
-// -- APPEND THE CONTAINER DIVS -- //
-HeaderSection.appendChild(StartHeaderPanel());
-ButtonSection.appendChild(StartButtonPanel());
-DayButtonSection.appendChild(StartDayPanel());
-DayLabelSection.appendChild(StartDayLabel());
+// -- PROCESSES -- //
+async function getRandomImage() {
+	try {
+		const value = await randomImage();
+		return value;
+	}
+	catch (err) {
+		console.log(err)
+	}
+}
+async function getTitleMessage () {
+	let welcomeMessage = await getMessage()
+	.then((Message) => {
+		return Message
+	});
+	console.log(welcomeMessage + " This Is Message") 
 
-let ImagePath = "../../ASSETS/IMAGES/PIXIES/PixieFace.png"
-let PanicPath = "";
-let BucketPath = "";
-let FridgePath = "";
+	let title = document.getElementById('header-startScreen');
+	title.innerHTML = welcomeMessage;
+}
+function changeText(day) {
+	let daytext = document.getElementById("text-day");
+	daytext.innerHTML = day;
+}
+// -- PANELS -- //
 
-// -- STRUCTURAL FUNCTIONS-- //
-function StartHeaderPanel() {
-
-	let ContainerDiv = document.createElement('div');
-	console.log(__dirname)
-	let imagePath = randomImage()
-	ContainerDiv.append(... [
-		PageTitle("WELCOME BACK GOBLIN", "header-startScreen", ["mainPageTitle"]),
-		SetImage(`../../ASSETS/IMAGES/PIXIES/${imagePath}`, "image-goblin", "Empty"),
-		SetImage(`../../ASSETS/IMAGES/COG.png`, "TestCog", "Empty")
-	])
-
-	return ContainerDiv;
+async function StartHeaderPanel() {
+	const pathName = await getRandomImage();
+		try {
+			let ContainerDiv = document.createElement('div');
+			ContainerDiv.append(... [
+				PageTitle("WELCOME BACK GOBLIN", "header-startScreen", ["mainPageTitle"]),
+				SetImage(`../../ASSETS/IMAGES/PIXIES/${pathName}`, "image-goblin", "Empty"),
+				SetImage(`../../ASSETS/IMAGES/COG.png`, "TestCog", "Empty")	
+			])
+		return ContainerDiv
+	} 
+		catch (err) {
+			console.log(err)
+		}	
 }
 function StartButtonPanel() {
 
@@ -67,23 +107,31 @@ function StartDayLabel() {
 	ContainerDiv.append(... [
 		text('Today is a day', 'text-day', 'empty')
 	])
+
 	return ContainerDiv;
 }
-
-window.addEventListener("load", (event) => {
-
+// Create page
+async function drawStartScreen() {
 	let day = SetDay();
+	const head = await StartHeaderPanel()
+	.then((panel) => {
+		return HeaderSection.appendChild(panel);
+	})
+	ButtonSection.appendChild(StartButtonPanel());
+	DayButtonSection.appendChild(StartDayPanel());
+	DayLabelSection.appendChild(StartDayLabel());
+	getTitleMessage()
 	changeText(day);
-})
 
-function changeText(day) {
-	let daytext = document.getElementById("text-day");
-	daytext.innerHTML = day;
+	let settingsCog = document.getElementById('TestCog')
+	settingsCog.addEventListener('click', (event) => {
+		// TODO - Better way of changing page
+		window.location.replace('../COGS/CogsFramework.html')
+	})
 }
 
-let settingsCog = document.getElementById('TestCog')
-settingsCog.addEventListener('click', (event) => {
+// Run script
+drawStartScreen();
 
-	console.log("Boop");
-	window.location.replace('../COGS/CogsFramework.html')
-})
+
+export { CurrentStateStartScreen}

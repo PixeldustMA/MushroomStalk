@@ -1,6 +1,6 @@
 {
   "name": "mushroomstalk",
-  "version": "0.0.2",
+  "version": "0.0.81",
   "description": "Life Organiser",
   "main": "./src/main.js",
   "scripts": {

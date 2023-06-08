@@ -3,15 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../STARTSCREEN/StyleStartScreen.css">
+	<link rel="stylesheet" href="StyleCogs.css">
 	<title>Mushroom Cogs</title>
 </head>
 <body>
 	<jellyfish-navigation></jellyfish-navigation>
-	<h1>
-		COGS!
-	</h1>
+	<section id = "titleSection" class = "titleSection"></section>
+	<section id = "addPhrase" class = "pathSection"></section>
+	<section id = "userName" class = "nameSection"></section>
+	<section id="viewScreen"></section>
+	
+	<section id="welcomeMessageForm"></section>
+	<form action="" id="WelcomeForm"></form>
 
-	<script type = "module" src = "../../GIZMOS/COMPONENTS/NavigationMenu.js"></script>
+	<div class = "ButtonLayout">
+		<button id = "phraseButton" class = "formButton"> 
+			SUBMIT PHRASE 
+		</button>
+		<button id="ApplyButton" class = "formButton"> 
+			APPLY 
+		</button>
+		<button id="userButton" class="formButton">
+			USER
+		</button>
+	</div>
+	<script type = "module" src = "../../GIZMOS/COMPONENTS/NavigationMenu.js" async></script>
+	<script type = "module" src = "DrawCogs.js"></script>
 </body>
 </html>

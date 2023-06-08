@@ -1,6 +1,3 @@
-import { ipc, path } from "../KNOTS/Global.js";
-
-
 
 class JellyfishNavigation extends HTMLElement {
 
@@ -10,17 +7,23 @@ class JellyfishNavigation extends HTMLElement {
 
 	connectedCallback() {
 
-		console.log(__dirname)
 		customElements.whenDefined('jellyfish-navigation').then(() => {
-			const NAVSCURRY = path.join(__dirname, '..', '..', 'POCKETS', 'STARTSCREEN', 'FrameworkStartScreen.html');
-			let x = document.getElementById('Scurrybox');
-			x.setAttribute('href', NAVSCURRY)
+			let scurryBox = document.getElementById('Scurrybox');
+			scurryBox.addEventListener("click", (event) => {
+				const NAVSCURRY =  window.ipcRender.recievePathName("../POCKETS/STARTSCREEN/FrameworkStartScreen.html")
+				.then((result) => {
+					window.location.href = result
+					return scurryBox}) 
+			})
+
 			const groupclick = document.getElementById("groupAnchor")
 			groupclick.addEventListener("click", (event) => { 
-				ipc.send('openChildWindow');  
+				window.ipcRender.send('openChildWindow');  
 			})
 
 		});
+
+		
 
 		this.innerHTML = `
 		
@@ -113,11 +116,8 @@ class JellyfishNavigation extends HTMLElement {
 		</header>
 		`
 	};
-
 } // Jellyfish Navigation Ends
 
 window.customElements.define('jellyfish-navigation', JellyfishNavigation);
-
-
 
 export { JellyfishNavigation };
