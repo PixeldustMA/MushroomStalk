@@ -1,0 +1,64 @@
+:root {
+
+	--MaizeYellow: #F2E863;
+	--Tangerine: #DE8F6E;
+	--Moonstone: #58A4B0;
+	--Indigo: #050127;
+	--Rose: #C2095A;
+}
+
+body { 
+	background-color: black;
+}
+.boxBlue {
+	background-color: var(--Indigo);
+	border-radius: 2%;
+	border-style: solid;
+	border-color: white;
+}
+
+.boxPurple {
+	background-color: var(--Moonstone);
+	width: 50%;
+	float: left;
+	height: 300px;
+}
+
+.boxPink {
+	background-color: var(--Rose);
+	width: 50%;
+	float: right;
+	height: 300px;
+}
+
+h1 {
+
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	color: white;
+	font-size: 48px;
+	text-align: center;
+	padding-top: 1%;
+}
+
+h2 {
+	color: white;
+	text-decoration: underline;
+	padding-bottom: 2%;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+}
+
+a {
+	font-size: 18px;
+	font-style: italic;
+	color: var(--Rose);
+}
+
+#welcome-section {
+	height: 100%;
+}

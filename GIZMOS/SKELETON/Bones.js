@@ -1,4 +1,12 @@
 import { addClasses } from "../KNOTS/Global.js";
+
+// ================================= //
+//         MUSHROOM STALK            //
+// ================================= //
+//      Last Updated - v0.8          //
+//       Structural Helpers          //
+// ================================= //
+
 //-- ELEMENT FUNCTIONS --//
 
 function PageTitle(title, id, styles) {

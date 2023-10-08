@@ -1,11 +1,10 @@
-import {
-	PageTitle, SetImage,
-	createButton, text
-} from "../../GIZMOS/KNOTS/Global.js";
-import { SetDay } from "../../GIZMOS/CLOCKS/Calender.js";
-import { randomImage } from "../../GIZMOS/RANDOM/Randomiser.js";
+import { SetDay } from "../../GIZMOS/WIDGETS/Calender.js";
 import { getMessage } from "../../GIZMOS/WIDGETS/Welcome.js";
-import { getObject } from "./LoadInformation.js";
+import { route } from "../../GEARS/GNOME/Routes.js"
+import { createTheme } from "../../SETTINGS/Colours/ThemeWrangler.js";
+import { randomImage } from "../../GIZMOS/UTILITY/Spinner.js";
+import { create } from "../../GIZMOS/UTILITY/Create.js";
+import { user } from "../../GIZMOS/UTILITY/LoadInformation.js";
 
 // ================================= //
 //         MUSHROOM STALK            //
@@ -14,31 +13,45 @@ import { getObject } from "./LoadInformation.js";
 //         Create Home Screen        //
 // ================================= //
 
-// PASS STATE OBJECTS
-const getstate = async () => {
-	const result = await getObject();
-	return result
-}
+const getstate = user;
+
 const CurrentStateStartScreen = async () => {
-	const current = await getstate()
-	.then((state) => {
-		console.log("Current status -- start screen");
-		console.log(state)
-		return state
-	});
-	return current;
+	console.log(getstate.User)
 }
 
+let pictureFramePath = async () => {
+	const picture = await getRandomImage()
+		.then((path) => {
+			let completePath = route('welcomeImage')
+				.then((welcomeImage) => {
+					let createPath = welcomeImage + "\\" + path;
+					return createPath});
+			return completePath;})
+	return picture;
+};
+let cogImagePath = async () => {
+	const cog = await route("ImageCog")
+	.then((cogPath) => {return cogPath})
+	return cog;
+};
+let doorImagePath = async () => {
+	const door = await route("ButtonDoor")
+	return door;
+};
+let panicPath = await route("panic")
+let archivePath = await route("archive")
+let gamePath = await route("game");
+let notebookPath = await route("notebook")
 // -- SECTIONS-- //
 const HeaderSection = document.getElementById("START-PAGE-section-header");
-const ButtonSection = document.getElementById('START-PAGE-button-strip');
 const DayButtonSection = document.getElementById('START-PAGE-section-buttons-day');
 const DayLabelSection = document.getElementById('START-PAGE-section-day');
 
 // -- PROCESSES -- //
 async function getRandomImage() {
 	try {
-		const value = await randomImage();
+		const value = await randomImage()
+			.then((x) => {return x});
 		return value;
 	}
 	catch (err) {
@@ -46,92 +59,171 @@ async function getRandomImage() {
 	}
 }
 async function getTitleMessage () {
-	let welcomeMessage = await getMessage()
-	.then((Message) => {
-		return Message
-	});
-	console.log(welcomeMessage + " This Is Message") 
-
-	let title = document.getElementById('header-startScreen');
-	title.innerHTML = welcomeMessage;
+	let messages = getstate.createMessageObject()
+		.then((mResult) => {
+			let welcomeMessage = getMessage(mResult)
+				.then((Message) => {
+					let title = document.getElementById('Header_StartScreen');
+					title.innerHTML = Message;
+					return Message});
+	})
+	return messages;
 }
-function changeText(day) {
-	let daytext = document.getElementById("text-day");
-	daytext.innerHTML = day;
-}
-// -- PANELS -- //
 
-async function StartHeaderPanel() {
-	const pathName = await getRandomImage();
-		try {
-			let ContainerDiv = document.createElement('div');
-			ContainerDiv.append(... [
-				PageTitle("WELCOME BACK GOBLIN", "header-startScreen", ["mainPageTitle"]),
-				SetImage(`../../ASSETS/IMAGES/PIXIES/${pathName}`, "image-goblin", "Empty"),
-				SetImage(`../../ASSETS/IMAGES/COG.png`, "TestCog", "Empty")	
-			])
-		return ContainerDiv
-	} 
-		catch (err) {
-			console.log(err)
-		}	
-}
-function StartButtonPanel() {
+// == DRAW == //
 
-	let ContainerDiv = document.createElement('div');
-	ContainerDiv.append(... [
-		createButton('button-goblin-bucket', "", ['stripButton'], 'GOBLIN BUCKET'),
-		createButton('button-goblin-fridge', "", ['stripButton'], 'FRIDGE'),
-		createButton('button-goblin-panic', "", ['stripButton'], 'PANIC')
+function drawHeaderPanel() {
+	let wrapper = new create({
+		tag: 'div'
+	}).init();
+	let pageTitle = new create({
+		tag: 'h1',
+		id: 'Header_StartScreen',
+		elementText: 'WELCOME BACK GOBLIN',
+		classes: ['mainPageTitle']
+	}).init();
+	let pictureFrameImage = new create({
+		tag: 'img',
+		id: 'Image_Goblin',
+		classes: ['imageWithBorder']
+	}).init();
+	let settingsImage = new create ({ 
+		tag: 'img',
+		id: 'Image_Settings'
+	}).init();
+
+	 pictureFramePath().then((result) => {
+		pictureFrameImage.src = result;
+		return result});
+	cogImagePath().then((result) => {
+		cogImagePath.src = result
+		return result});
+
+	wrapper.append(...[
+		pageTitle,
+		pictureFrameImage,
+		settingsImage
 	])
-	return ContainerDiv;
-}
-function StartDayPanel() {
+	return wrapper;
+};
+function DrawDayPanel() {
+	let wrapper = new create({
+		tag: 'div'
+	}).init();
+	let leftDoor = new create ({
+		tag: 'img',
+		classes: ['doorButtonLeft']
+	}).init();
+	let organiseButton = new create ({
+		tag: 'button',
+		elementText: 'ORGANISE'
+	}).init();
+	let rightDoor = new create ({
+		tag: 'img',
+		classes: ['doorButtonRight']
+	}).init();
+	let bookButton = new create ({
+		tag: 'button',
+		elementText: 'BOOK',
+		classes: ['rightSideLayout']
+	}).init();
 
-	let ContainerDiv = document.createElement('div');
-	ContainerDiv.append(... [
-		createButton('monButton', 'empty', ['dayButton', 'buttonRowOne'], 'MONDAY'),
-		createButton('tueButton', 'empty', ['dayButton', 'buttonRowOne'], 'TUESDAY'),
-		createButton('wedButton', 'empty', ['dayButton', 'buttonRowOne'], 'WEDNESDAY'),
-		createButton('thurButton', 'empty', ['dayButton', 'buttonRowOne'], 'THURSDAY'),
-		createButton('friButton', 'empty', ['dayButton', 'buttonRowOne'], 'FRIDAY'),
-		createButton('satButton', 'empty', ['dayButton', 'buttonRowOne'], 'SATURDAY'),
-		createButton('sunButton', 'empty', ['dayButton', 'buttonRowOne'], 'SUNDAY')
-	])
-	ContainerDiv.classList.add('buttonPanel');
-	ContainerDiv.id = 'PanelOfButton';
-	return ContainerDiv;
-}
-function StartDayLabel() {
-	let ContainerDiv = document.createElement('div');
-	ContainerDiv.append(... [
-		text('Today is a day', 'text-day', 'empty')
-	])
+	doorImagePath().then((path) => {
+		leftDoor.src = path;
+		rightDoor.src = path;
+		return path;})
 
-	return ContainerDiv;
+	leftDoor.onclick = testclick;
+	
+	wrapper.append(...[
+		leftDoor,
+		rightDoor,
+		organiseButton,
+		bookButton
+	]);
+
+	return wrapper;
+};
+function testclick() {
+	console.log("Door Clicked")
 }
-// Create page
-async function drawStartScreen() {
+function DrawDayLabel() {
 	let day = SetDay();
-	const head = await StartHeaderPanel()
-	.then((panel) => {
-		return HeaderSection.appendChild(panel);
+	let wrapper = new create({
+		tag: 'div'
+	}).init();
+	let dayText = new create({
+		tag: 'p',
+		id: 'Header_Current_Day',
+		elementText: 'Today Is A Day'
+	}).init();
+	let archiveButton = new create({
+		tag: 'button',
+		elementText: 'ARCHIVE',
+		classes: ['positionBottomLeft']
+	}).init();
+	let gizmoButton = new create({
+		tag: 'button',
+		elementText: 'GAMES AND GIZMOS',
+	}).init();
+	let panicButton = new create({
+		tag: 'button',
+		elementText: 'PANIC',
+		classes: ['positionBottomRight']
+	}).init();
+	let notebookButton = new create({
+		tag: 'button',
+		elementText: 'NOTEBOOK'
+	}).init();
+	panicButton.addEventListener('click', (panicEvent) => {
+		window.location.href = panicPath;
+	});
+	archiveButton.addEventListener('click', (archiveEvent) => {
+		window.location.href = archivePath;
+	});
+	gizmoButton.addEventListener('click', (gizmoEvent)=> {
+		window.location.href = gamePath;
+	});
+	notebookButton.addEventListener('click', (NOTEBOOKEVENT) => {
+		window.location.href = notebookPath;
 	})
-	ButtonSection.appendChild(StartButtonPanel());
-	DayButtonSection.appendChild(StartDayPanel());
-	DayLabelSection.appendChild(StartDayLabel());
-	getTitleMessage()
-	changeText(day);
+	dayText.innerHTML = day;
+	wrapper.append(...[
+		dayText,
+		archiveButton,
+		gizmoButton,
+		notebookButton,	
+		panicButton
+	]);
 
-	let settingsCog = document.getElementById('TestCog')
-	settingsCog.addEventListener('click', (event) => {
-		// TODO - Better way of changing page
-		window.location.replace('../COGS/CogsFramework.html')
-	})
+	return wrapper;
 }
 
-// Run script
-drawStartScreen();
+async function drawStartScreen() {
 
+	const cogRoute = await route("cogs")
+	.then((result) => {
+		return result;
+	})
+	const panicRoute = await route("panic")
+	.then((result) => {
+		return result;
+	})
+	HeaderSection.appendChild(drawHeaderPanel());
+	DayButtonSection.appendChild(DrawDayPanel());
+	DayLabelSection.appendChild(DrawDayLabel());
+	getTitleMessage()
+
+	let settingsCog = document.getElementById('Image_Settings')
+	settingsCog.addEventListener('click', (event) => {
+		document.location.href = cogRoute
+	})
+
+} 
+
+if (window.location.href.includes("StartScreen")) {
+	createTheme();
+	drawStartScreen();
+}
 
 export { CurrentStateStartScreen}

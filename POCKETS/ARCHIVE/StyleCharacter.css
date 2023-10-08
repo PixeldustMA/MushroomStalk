@@ -1,0 +1,39 @@
+.background {
+	background-color: aqua;
+	width: 500px;
+	height: 500px;
+}
+
+.newCharacterInput {
+	background-color: rebeccapurple;
+}
+.defaultInput {
+	background-color: rebeccapurple;
+	display: block;
+	height: 30px;
+}
+.defaultLabel {
+	color: white;
+	font-family: 'Lemon Milk';
+}
+.defaultBackground {
+	background-color: black;
+}
+.defaultTitle {
+
+	color: white;
+	font-family: 'Hello_Graduation_Sans';
+}
+.defaultButton {
+	background-color: black;
+	color: white;
+	border-style: solid;
+	border-color: white;
+	border-radius: 5%;
+	height: 50px;
+	width: 200px;
+	display: inline-block;
+	margin-right: 30px;
+	font-family: 'Nugo Sans';
+	font-size: 20px;
+}

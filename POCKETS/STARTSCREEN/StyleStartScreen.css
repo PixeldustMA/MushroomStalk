@@ -1,5 +1,8 @@
 @import "../../SETTINGS/STYLES/RootStyle.css";
 
+body { 
+	background-image: url(../../ASSETS/BACKGROUNDS/Background\ -\ Mushroom.png);
+}
 /* GRIDS */
 .mainGrid {
 	display: grid;
@@ -32,10 +35,11 @@ p {
 	font-family: "centralia";
 	font-size: 58px;
 	text-align: center;
+	color: red;
 }
 
 /* IMAGE */
-img {
+.imageWithBorder {
 	width: 200px;
 	height: 200px;
 	border-style: solid;
@@ -160,4 +164,28 @@ button {
 	float: right;
 	height: 50px;
 	width: 50px;
+}
+
+
+.doorButtonLeft {
+	float:left;
+}
+.doorButtonRight {
+	position: relative;
+	top: 20px;
+	left: 600px;
+}
+.rightSideLayout {
+	position: relative;
+	left: 650px;
+}
+
+.positionBottomLeft {
+	position: relative;
+	margin-bottom: 0px;
+}
+.positionBottomRight {
+	position: relative;
+	margin-bottom: 0px;
+	left: 650px;
 }

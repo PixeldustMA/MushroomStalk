@@ -1,5 +1,5 @@
 import { PageTitle, createButton, text } from "../../GIZMOS/SKELETON/Bones.js";
-import { ReadFile, WelcomeSave } from "../../src/RenderFunctions.js";
+import { ReadFile, WelcomeSave, createNewPath } from "../../src/RenderFunctions.js";
 import { CurrentStateStartScreen } from "../STARTSCREEN/DrawStartScreen.js";
 import { createMessageObject } from "../../SETTINGS/USER/SyncObjects.js";
 
@@ -356,13 +356,18 @@ function createFileChooser() {
 
 async function saveUserPath() {
 	let pathChosen = document.getElementById("pathChosen");
-	const FilePaths = await State()
+	const FilePaths = await createNewPath("../SETTINGS/USER/UserPixel.json")
 		.then((result) => {
+			console.log(result)
 			return result;
 		});
-	FilePaths.textFilePath = pathChosen.innerHTML;
-	console.log(FilePaths)
-	const savePaths = await WelcomeSave(FilePaths.userPath, FilePaths)
+	const getState = await State()
+	.then((result) => {
+		return result
+	})
+	getState.textFilePath = pathChosen.innerHTML;
+	getState.userPath = FilePaths;
+	const savePaths = await WelcomeSave(FilePaths, getState)
 		.then((result) => {
 			return result;
 		})

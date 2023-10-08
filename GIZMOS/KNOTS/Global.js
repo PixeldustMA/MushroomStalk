@@ -3,18 +3,18 @@ import {
 		PageTitle, SetImage, 
 		createButton, text
 } from "../SKELETON/Bones.js"
-import { spinNumber } from "../SKELETON/Feets.js";
 
-
-// const ipc = window.require("electron").ipcRenderer;
-// const path = require('path');
-
-
+// ================================= //
+//         MUSHROOM STALK            //
+// ================================= //
+//      Last Updated - v0.8          //
+//       HELPER FUNCTION             //
+//         FAIRY CIRCLE              //
+// ================================= //
 
 
 export { 
 	addClasses, PageTitle,
 	SetImage, createButton,
-	text, 
-	spinNumber
+	text
 } 

@@ -1,0 +1,33 @@
+@import "../../../../SETTINGS/STYLES/RootStyle.css";
+
+.rainbowComponentBody { font-size: 0; max-height: 80px;
+	min-width: 2000px; 
+	display: flex; flex-wrap: nowrap;}
+
+.TitleRow { color: white; font-family: 'Hello_Graduation_Sans';
+text-align: center; display: flex;
+float: left; border-color: white; 
+border-style: solid; height: 80px; width:130px;
+font-size: 32px;}
+
+.TitleCat { width: 230px !important; }
+#PlusButton {height: 55px; width: 50px; border-style: solid;
+border-color: white; font-size: 16px; border-width: 5px;}
+#PlusButton:hover {background-color: red; height: 65px; width: 65px;
+border-color: red; color: white; font-size: 30px;
+}
+.RedTitle { background-color: var(--goblinRed);}
+.OrangeTitle { background-color: var(--goblinOrange);}
+.YellowTitle { background-color: var(--goblinYellow);}
+.GreenTitle { background-color: var(--goblinGreen);}
+.BlueTitle { background-color: var(--goblinBlue);}
+.IndigoTitle { background-color: var(--goblinIndigo);}
+.VioletTitle { background-color: var(--goblinOrange);}
+.RaspberryTitle { background-color: var(--goblinPink);}
+.textBox {
+background-color: black;
+box-sizing:border-box;
+display:block;
+width:100%;
+margin:0;
+}

@@ -1,0 +1,21 @@
+{
+	"PARTONE": {
+		"DRAGONS": {
+			"DRAGONS": {
+				"1001": "Zaienna Riallero"
+				},
+			"ASTRALS": {
+				"1010": "Sebastian Hill"
+			}
+		},
+		"GUARDIANS": {
+			"SPACE": {
+				"1000": "Firefly"
+			},
+			"SECTOR": {
+				"1044": "Rejenni Amiyell",
+				"1000": "Test Test"
+			}
+		}
+	}	
+}

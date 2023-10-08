@@ -1,0 +1,28 @@
+@import "../../SETTINGS/STYLES/RootStyle.css";
+body {
+	background-color: black;
+}
+
+h1 {
+	color: white;
+	font-family: 'LEMON MILK';
+	font-size: 48px;
+}
+
+h2 {
+	color: white;
+	font-family: 'LEMON MILK';
+	font-size: 28px;
+}
+
+#container_existing {
+	display: none;
+}
+
+label {
+	color: white;
+}
+
+#container_New_Arc {
+	display: inline-block;
+}

@@ -1,3 +1,12 @@
+import { createNewWindow } from "../../GEARS/PLATYPUS/RenderFunctions.js";
+import { route } from "../../GEARS/GNOME/Routes.js";
+
+// ================================= //
+//         MUSHROOM STALK            //
+// ================================= //
+//      Last Updated - v0.8          //
+//       NAVIGATION MENU             //
+// ================================= //
 
 class JellyfishNavigation extends HTMLElement {
 
@@ -8,22 +17,34 @@ class JellyfishNavigation extends HTMLElement {
 	connectedCallback() {
 
 		customElements.whenDefined('jellyfish-navigation').then(() => {
+			console.log("NAV BAR LOADED")
 			let scurryBox = document.getElementById('Scurrybox');
 			scurryBox.addEventListener("click", (event) => {
-				const NAVSCURRY =  window.ipcRender.recievePathName("../POCKETS/STARTSCREEN/FrameworkStartScreen.html")
+				const NAVSCURRY =  route("start")
 				.then((result) => {
+					console.log("SCURRYING")
 					window.location.href = result
 					return scurryBox}) 
 			})
 
-			const groupclick = document.getElementById("groupAnchor")
+			const groupclick = document.getElementById("groupAnchor");
 			groupclick.addEventListener("click", (event) => { 
-				window.ipcRender.send('openChildWindow');  
+				createNewWindow("./POCKETS/GROUPINGS/FrameworkGroupings.html");
+			})
+			const characterclick = document.getElementById('characterAnchor');
+			characterclick.addEventListener("click", (event) => {
+				createNewWindow("./POCKETS/ARCHIVE/FrameworkArchive.html");
+			})
+			const sketchClick = document.getElementById('sketchAnchor');
+			sketchClick.addEventListener('click', (event) => {
+				createNewWindow("./POCKETS/SKETCHBOARD/FrameworkSketchboard.html")
+			})
+			const pixelPagesClick = document.getElementById('pixelPageAnchor');
+			pixelPagesClick.addEventListener('click', (e) => {
+				window.location.href = "../../POCKETS/PIXELPAGES/FrameworkPixel.html"
 			})
 
 		});
-
-		
 
 		this.innerHTML = `
 		
@@ -60,37 +81,28 @@ class JellyfishNavigation extends HTMLElement {
 			<header>
 			<nav>
 			<ul class="nav_list">
-		
 				<li class = "list_nav">
 					<a href ="" class = "scurry" id = "Scurrybox">
 						SCURRY
 					</a>
 				</li>
-
 				<li class = "list_nav">
-
 					<div class = "dropdown">
-
 						<a href="MenuFiles\\bookMenu.html">
 							BOOK
 						</a>
-
 						<div class="dropdown-content">
-
 							<div class="verticalButtons">
 								<a id = "groupAnchor">
 									Groupings
 								</a>
 							</div>
-								
 							<div class="verticalButtons">
-								<a href = "../../../PAGES/BOOK/CHARACTERS/CharacterFramework.html">
+								<a id = "characterAnchor">
 									Character
 								</a>
 							</div>
-
 						</div>
-
 					</div>
 				</li>
 		
@@ -101,15 +113,33 @@ class JellyfishNavigation extends HTMLElement {
 			</li>
 		
 			<li class = "list_nav">
-				<a href="TemplatesView.html">
-					GAMES
-				</a>
+				<div class = "dropdown">
+					<a>
+						GAMES
+					</a>
+				<div>
+				<div class="dropdown-content">
+					<div class="verticalButtons">
+						<a id = "sketchAnchor">
+							SKETCH BOARD
+						</a>
+					</div>
+				</div>
 			</li>
 		
 			<li class = "list_nav">
-			<a href="TemplatesView.html">
-				MINI
+			<div class = "dropdown">
+				<a>
+					MINI
+				</a>
+			<div>
+		<div class="dropdown-content">
+		<div class="verticalButtons">
+			<a id = "pixelPageAnchor">
+				PIXEL PAGE
 			</a>
+		</div>
+	</div>
 		</li>
 			</ul>
 			</nav>

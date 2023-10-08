@@ -1,0 +1,88 @@
+{
+	"SpaceName": "RAXXIA",
+	"SectorList": ["HALLOWED", "RINGED", "AURORAN", "INKED", "PRISMATIC", "FLYTE"],
+	"SystemList": ["RELARA", "RIOKA", "RELUMA", "REJINKA", "RELORIA", "RETARI"],
+	"GeoxList": [],
+	"Sectors": {
+		"HALLOWED": {
+			"RELARA" : ["Melara", "Mialata", "Miathi", "Miaski", "Kasalaski"]
+		},
+		"RINGED": {
+			"RIOKA": ["Maletsi", "Miyya", "Miokira"]
+		},
+		"AURORAN": {
+			"RELUMA": ["Mellumi", "Miraska", "Millumo", "Mispa"]
+		},
+		"INKED": {
+			"REJINKA": ["Miyanika", "Mianashi", "Maiava"]
+		},
+		"PRISMATIC": {
+			"RELORIA": ["Miash", "Meloria", "Maiara"]
+		},
+		"FLYTE": {
+			"RETARI": ["Matari", "Miluki", "Mieten"]
+		}
+	},
+	"Planets": {
+		"SectorHallowed": {
+			"SystemRelara": {
+				"Melara": {
+					"Identification": {
+						"Code": "ML",
+						"Name": "Melara",
+						"FullCode": "RXML"
+					},
+					"Location": {
+						"System": "Relara",
+						"Sector": "Hallowed",
+						"Space": "Raxxia"
+					},
+					"Sunflower": {
+						"UHXYear": "0",
+						"TimeZone": "UHX",
+						"SystemTime": "UHX",
+						"SectorTime": "UHX",
+						"Space": "UHX"
+					},
+					"Cultural": {
+						"LocalName": "Melara",
+						"Language": "Finnish",
+						"LocalLanguageTag": "Keyix",
+						"Element": "Fire",
+						"ElementNote": "Fire"
+					}
+				}
+			}
+		},
+		"SectorRinged": {
+			"SystemRioka": {
+				"Miokira": {
+					"Identification": {
+						"Code": "MK",
+						"Name": "Melara",
+						"FullCode": "RXML"
+					},
+					"Location": {
+						"System": "Relara",
+						"Sector": "Hallowed",
+						"Space": "Raxxia"
+					},
+					"Sunflower": {
+						"UHXYear": "0",
+						"TimeZone": "UHX",
+						"SystemTime": "UHX",
+						"SectorTime": "UHX",
+						"Space": "UHX"
+					},
+					"Cultural": {
+						"LocalName": "Melara",
+						"Language": "Finnish",
+						"LocalLanguageTag": "Keyix",
+						"Element": "Fire",
+						"ElementNote": "Fire"
+					}
+				}
+			}
+		}
+	}
+}
