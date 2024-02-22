@@ -1,0 +1,29 @@
+{
+	"Identification": {
+		"Code": "KL",
+		"Name": {
+			"General": "Kasalaski",
+			"Native": "Kasala"},
+		"FullCode": "LRKL"
+	},
+	"Location": {
+		"System": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia"						
+	},
+	"Sunflower": {
+		"UNIQUE": false,
+		"TimeZone": "KL",
+		"SystemTime": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia",
+		"Planet": "Kasalaski"
+	},
+	"Cultural": {
+		"LocalName": "Kasalaski",
+		"Language": "Finnish",
+		"LocalLanguageTag": "Lohex",
+		"Element": "Dragon",
+		"ElementNote": "Source"
+	}
+}

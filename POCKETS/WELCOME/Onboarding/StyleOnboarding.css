@@ -1,0 +1,58 @@
+@import "../../../SETTINGS/STYLES/ImageLoader.css";
+@import "../../../SETTINGS/STYLES/RootStyles.css";
+/* INPUTS */
+
+.INPUT-Layout {
+	display: block;
+}
+.INPUT-Style {
+	font-family: 'Centralia';
+	background-color: blue;
+	color: white;
+}
+
+/* TEXT */
+
+.LABEL-Layout {
+	display: inline-block;
+}
+.TEXT_DisplayPaths {
+    font-family: 'Lemon Milk';
+    font-size: 12px;
+}
+
+/* BUTTONS */
+
+button {
+	height: 20px;
+}
+.BUTTON-FilePath {
+	background-color: aqua;
+}
+.BUTTON-FilePath:hover {
+	background-color: rgb(1, 254, 30);
+}
+.BUTTON-Apply {
+	background-color: aqua;
+	border-style: none;
+	height: 50px;
+	width: 100px;
+	position: relative;
+	left: 150px;
+	top: 20px;
+	transform: rotate(10deg);
+}
+.BUTTON-Apply:hover {
+	background-color: rgb(248, 62, 25);
+}
+
+/* SECTIONS */
+
+#Onboarding_Section_Details{
+	position: fixed;
+	top: 160px;
+	left: 330px;
+	transform: rotate(-15deg);
+}
+
+

@@ -1,0 +1,14 @@
+{
+	"SpaceName": "ALLIED",
+	"SectorList": ["SUNRAY"],
+	"SystemList": ["ROSE"],
+	"GeoxList": [],
+	"Sectors": {
+		"SUNRAY": {
+			"ROSE": ["Kiamta", "Lexana", "Ekstera"],
+			"MAPLE": ["Malden"]
+		},
+		"SNOWRAY": {}
+	}
+}
+

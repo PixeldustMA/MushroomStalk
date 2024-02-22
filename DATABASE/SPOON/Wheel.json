@@ -1,0 +1,46 @@
+{
+    "MACHINERY": [
+        "COGS",
+        "GEARS",
+        "CONTROL BOX",
+        "GAUGE",
+        "LED",
+        "LIGHTBULB",
+        "MACHINE",
+        "NUTS",
+        "PIPES",
+        "ROLLER CHAIN",
+        "SCREW" ,
+        "SPROCKET",
+        "VALVE"
+    ],
+    "HOUSEHOLD": [
+        "BIRDCAGE",
+        "CLOCK",
+        "LAMP",
+        "GLOBE",
+        "HOURGLASS",
+        "POCKET WATCH",
+        "KEYS",
+        "TYPEWRITER",
+        "UMBRELLA"
+    ],
+    "CONTAINERS": [
+        "BOTTLE",
+        "FLOWERPOT"
+    ],
+    "CRAFT": [
+        "BUTTONS",
+        "CRYSTALS"
+    ],
+    "BUILDINGS": [
+        "WINDMILL"
+    ],
+    "ANATOMICAL": [
+        "HEART"
+    ],
+    "VEHICLES": [
+        "TRAIN",
+        "BLIMP"
+    ]
+}

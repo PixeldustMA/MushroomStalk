@@ -1,0 +1,201 @@
+{
+    "VEHICLES": {
+        "VEHICLE": {},
+        "TANK": {},
+        "AEROPLANE": {},
+        "UNICYCLE": {},
+        "BIKE": {},
+        "SPACECRAFT": {}
+    },
+    "HOUSEHOLD": {
+        "HAIRDRYER": {},
+        "CUP": {},
+        "TOOTHPASTE": {},
+        "TELEVISION": {},
+        "FRIDGE": {},
+        "KITCHEN CABINET": {},
+        "ROBOT DOG": {},
+        "NIGHT LIGHT": {},
+        "JUMANJI BOARD": {},
+        "HOTWHEELS TRACK": {},
+        "OBSTACLE COURSE": {},
+        "ARROWS": {},
+        "DUAL MONITER MOUNT": {},
+        "THERMOMETER": {},
+        "ARCADE": {},
+        "LIPSTICK": {},
+        "DEODERANT": {},
+        "EXERCISE MACHINE": {},
+        "BATH": {},
+        "HAMSTER CAGE": {},
+        "SANDCASTLE": {},
+        "PINWHEEL": {}
+    },
+    "CLOTHING": {
+        "TIARA": {},
+        "SCARF": {},
+        "BACKPACK": {}
+    },
+    "WEAPONRY": {
+        "LONGSWORD": {}
+    },
+    "ROOMS": {
+        "ROOM": {},
+        "KITCHEN": {}
+    },
+    "MATERIALS": {
+        "GLASS": {}
+    },
+    "ANIMALS": {
+        "VAQUITA": {},
+        "SEA OTTER": {},
+        "BEAR": {},
+        "CAT": {},
+        "PALLAS CAT": {},
+        "TIGER": {},
+        "LION": {},
+        "DOG": {},
+        "WOLF": {},
+        "FLY": {},
+        "FISH": {},
+        "SPIDER": {},
+        "DRAGON": {},
+        "ANTEATER": {}
+    },
+    "FOOD": {
+        "CUPCAKE": {},
+        "TOAST": {},
+        "BAG OF MIXED CANDY": {},
+        "PIZZA": {}
+    },
+    "JOBS": {
+        politician
+        2 	priest
+        3 	noble
+        4 	merchant
+        5 	sage
+        6 	artisan
+        7 	soldier
+        8 	widow
+        9 	criminal
+        10 	beggar 1 	a visiting dignitary
+        2 	an evil cult
+        3 	a reclusive wizard
+        4 	a band of thieves
+        5 	an arcane scholar
+        6 	a corrupt guild
+        7 	a nomadic tribe
+        8 	a fallen house
+        9 	a charismatic huckster
+        10 	a mad poet-philosopher 
+    }
+    1	A weathered book of botanical lore bound in leather with pages of vellum, 100 GP
+    3
+        2	A thick compendium of musical teachings bound in bronze with pages of vellum, 120 GP
+    4
+        3	A weathered monograph of zoological writings bound in bronze with pages of vellum, 450 GP
+    5
+        4	A slim volume of botanical notes bound in wood with pages of papyrus, 30 GP
+    6
+        5	A long, narrow manual of historical writings bound in leather with pages of vellum, 25 GP
+    7
+        6	A tiny tome of mathematical lessons bound in brass with pages of copper, 240 GP
+    8
+        7	A weighty book of historical tenets bound in silver with pages of gold, 100 GP
+    9
+        8	A weighty compendium of alchemical principles bound in linen with pages of paper, 40 GP
+    10
+        9	A long, narrow book of historical lore bound in leather with pages of vellum, 20 GP
+    11
+        10	A dusty manual of philosophical tenets bound in leather with pages of parchment, 120 GP
+    12
+        11	A thick manuscript of alchemical lore bound in leather with pages of vellum, 120 GP
+    13
+        12	A long, narrow manuscript of astronomical lore bound in leather with pages of vellum, 50 GP
+    14
+        13	A weighty book of musical wisdom bound in brass with pages of papyrus, 180 GP
+    15
+        14	A uncut codex of botanical tenets bound in linen with pages of gold, 35 GP
+    16
+        15	A tiny compendium of alchemical knowledge bound in brass with pages of brass, 35 GP
+    17
+        16	A massive volume of astronomical principles bound in wood with pages of skin, 80 GP
+    18
+        17	A worm-eaten book of zoological teachings bound in brass with pages of parchment, 120 GP
+    19
+        18	A dusty monograph of musical lessons bound in leather with pages of skin, 90 GP
+    20
+        19	A weathered monograph of philosophical tenets bound in bronze with pages of papyrus, 15 GP
+    21
+        20	A long, narrow book of alchemical lore bound in silver with pages of skin, 105 GP
+    a purse of silver
+    2 	a small chest of gold
+    3 	a magic ring
+    4 	a book of secrets
+    5 	lands and titles
+    6 	a debt of gratitude
+    7 	a favor
+    8 	a work of art
+    9 	part of a business
+    10 	a treasure map 
+
+    1 	a nearby city
+2 	a forgotten temple
+3 	a rival's household
+4 	the docks
+5 	a secret meeting place
+6 	an overstuffed warehouse
+7 	a dangerous neighborhood
+8 	a magistrate's office
+9 	an illegal market
+10 	a public square 
+
+1 	a treaty
+2 	an artifact
+3 	a mysterious box
+4 	a captive
+5 	an ancient text
+6 	a shipment of goods
+7 	a foreign bride
+8 	a family's reputation
+9 	an enchantment
+10 	a magical elixir
+}1	orb encrusted with rubies ~235GP
+4
+	2	gold buckle inlaid with fine wood in the shape of a cricket. Ghost Sound, 1 use ~290GP
+5
+	3	comb ~25GP
+6
+	4	porcelain statuette encrusted with onyx ~280GP
+7
+	5	seal with stout bands of iron encrusted with pearls decorated with growling bears. Resistance, 1 use ~280GP
+8
+	6	steel orb ~170GP
+9
+	7	orichalcum amulet inlaid with mother-of-pearl ~305GP
+10
+	8	leather comb inlaid with copper ~145GP
+11
+	9	comb encrusted with garnets ~110GP
+12
+	10	platinum arm ring inlaid with ivory encrusted with pearls ~505GP
+13
+	11	bronze ring embossed with a sleeping figure. Touch of Fatigue, 1 use ~135GP
+14
+	12	amulet ~70GP
+15
+	13	wooden arm ring wrapped in twisted steel wire encrusted with lapis lazuli ~290GP
+16
+	14	electrum statuette ~280GP
+17
+	15	ivory pendant with beads of glass ~235GP
+18
+	16	bone chalice encrusted with jade ~115GP
+19
+	17	iron seal inlaid with copper encrusted with carnelians ~385GP
+20
+	18	iron box wrapped in twisted steel wire encrusted with obsidian dotted with fireflies ~470GP
+21
+	19	iron goblet with porcelain fragments covered in swirling spirals ~215GP
+22
+	20	wooden belt inlaid with gold encrusted with pearls decorated with snowflakes. Ray of Frost, 1 use ~415GP

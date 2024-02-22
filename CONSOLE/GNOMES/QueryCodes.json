@@ -1,0 +1,83 @@
+{
+    "MUSHROOMCODES": {
+        "MUSHROOM": "\"Mushroom-Code\"",
+        "ACTIVITY": "\"Activity-Code\"",
+        "ANCESTRY": "\"Ancestry-Code\"",
+        "EDUCATION": "\"Education-Code\"",
+        "EMPLOYMENT": "\"Employment-Code\"",
+        "HALEX": "\"Halex-Code\"",
+        "ORGANISATION": "\"Organisation-Code\"",
+        "PERSONAL": "\"Personal-Code\"",
+        "LOCATION": "\"Location-Code\"",
+        "PET": "\"Pet-Code\"",
+        "RELATIONSHIP": "\"Relationship-Code\"",
+        "NUMBER": "TEN",
+        "NAME": "MUSHROOM_Codes"
+    }, 
+    "MUSHROOMTAGS": {
+        "MUSHROOM": "\"MushroomCode\"",
+        "TAGS": "\"Tag\"",
+        "NUMBER": "TWO",
+        "NAME": "MUSHROOM_Tags"
+    },
+    "MUSHROOMAREAS": {
+        "MUSHROOM": "\"MushroomCode\"",       
+        "DRAGON": "\"DragonCode\"",
+        "WAR": "\"WARCode\"",
+        "KESSYA": "\"KessyaCode\"",
+        "NIGHTMARE": "\"NightmareCode\"",
+        "FINALTIMELINECODE": "\"FinalTimelineCode\"",
+        "NUMBER": "TWO",
+        "NAME": "MUSHROOM_Areas"     
+    },
+    "PERSONALNAMES": {
+        "CODE": "\"Personal-Code\"",
+        "AREA": "\"Area-Code\"",
+        "MIDDLE": "\"Middle-Code\"",
+        "TITLE": "\"Title-Code\"",
+        "SURNAME": "\"Family-Name-Code\"",
+        "FIRST": "\"First\"",
+        "PARENTAL": "\"Parental\"",
+        "FAMILY": "\"Family\"",
+        "NAME": "PERSONAL_Names",
+        "NUMBER": "EIGHT"
+    },
+    "PERSONALBIRTH": {
+        "PERSONAL": "\"Personal-ID\"",
+        "AREA": "\"Area-Code\"",
+        "PLANET": "\"Planet\"",
+        "YEARLOCAL": "\"Year-Local\"",
+        "YEARUHX": "\"Year-UHX\"",
+        "YEARHELIAN": "\"Year-Helian\"", 
+        "NAME": "PERSONAL_Birth",
+        "NUMBER": "SIX"
+    },
+    "ACTIVITYMISC": {
+        "SECTION":"\"Section-Code\"",
+        "CODE": "\"Activity-Code\"",
+        "TASK": "\"Activity-Name\"",
+        "NAME": "ACTIVITY_Misc",
+        "NUMBER": "THREE"
+    },
+    "QUERIES": {
+        "INSERT": "INSERT INTO",
+        "VALUES": "VALUES"
+    },
+    "BITS": {
+        "COMMA": " , ",
+        "SPACE": " ",
+        "OPENPARENTHESES": "(",
+        "CLOSEPARENTHESES": ")"
+    },
+    "QUESTION": {
+        "ONE": "((?))",
+        "TWO": "((?) , (?))",
+        "THREE": "((?) , (?) , (?))",
+        "FOUR": "((?) , (?)  , (?) , (?))",
+        "FIVE": "((?) , (?)  , (?) , (?) , (?))",
+        "SIX": "((?) , (?) , (?) , (?) , (?) ,(?))",
+
+        "TEN": "((?) , (?) , (?) , (?) , (?) , (?) , (?) , (?) , (?) , (?), (?))",
+        "EIGHT":"((?) , (?) , (?) , (?) , (?) , (?) , (?) , (?))"
+    }
+}

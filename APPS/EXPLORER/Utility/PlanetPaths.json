@@ -1,0 +1,19 @@
+{
+	"ALLIED": {
+		"SUNRAY": {
+			"ROSE": {
+				"KM / Kiamta": "DATABASE/EXPLORER/PLANETS/ALLIED/SUNRAY/ROSE/Kiamta.json",
+				"LX / Lexana": "DATABASE/EXPLORER/PLANETS/ALLIED/SUNRAY/ROSE/Lexana.json",
+				"EK / Ekstera": "DATABASE/EXPLORER/PLANETS/ALLIED/SUNRAY/ROSE/Ekstera.json"
+			}
+		}
+	},
+	"DRAGON": {
+		"REGEN": {
+			"TRINITY": {
+				"KS / Kistara": "DATABASE/EXPLORER/PLANETS/DRAGON/REGEN/TRINITY/Kistara.json",
+				"KY / Kessya": "DATABASE/EXPLORER/PLANETS/DRAGON/REGEN/TRINITY/KESSYA.json"
+			}
+		}
+	}
+}

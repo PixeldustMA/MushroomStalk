@@ -1,0 +1,30 @@
+{
+	"Identification": {
+		"Code": "KS",
+		"Name": {
+			"General": "Kistara",
+			"Native": "Kistaya"},
+		"FullCode": "RTKS"
+	},
+	"Location": {
+		"System": "Trinity",
+		"Sector": "Regen",
+		"Space": "Dragon"						
+	},
+	"Sunflower": {
+		"UNIQUE": false,
+		"UHXYear": "1000",
+		"TimeZone": "KS",
+		"SystemTime": "Trinity",
+		"Sector": "Regen",
+		"Space": "Dragon",
+		"Planet": "Kistara"
+	},
+	"Cultural": {
+		"LocalName": "Kistaya",
+		"Language": "Finnish",
+		"LocalLanguageTag": "Kista",
+		"Element": "Dragon",
+		"ElementNote": "Ancient"
+	}
+}

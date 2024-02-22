@@ -1,0 +1,29 @@
+{
+	"Identification": {
+		"Code": "ML",
+		"Name": {
+			"General": "Melara",
+			"Native": "Melara"},
+		"FullCode": "LRML"
+	},
+	"Location": {
+		"System": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia"						
+	},
+	"Sunflower": {
+		"UNIQUE": false,
+		"TimeZone": "ML",
+		"SystemTime": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia",
+		"Planet": "Melara"
+	},
+	"Cultural": {
+		"LocalName": "Melara",
+		"Language": "Finnish",
+		"LocalLanguageTag": "Lohex",
+		"Element": "Fire",
+		"ElementNote": "Source"
+	}
+}

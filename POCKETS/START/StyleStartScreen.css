@@ -1,0 +1,123 @@
+@import "../../SETTINGS/STYLES/RootStyles.css";
+@import "../../SETTINGS/STYLES/ImageLoader.css";
+
+/* MAIN SECTIONS */
+
+/* TEXT */
+.mainPageTitle {
+	font-family: 'Hello_Graduation_Sans', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	text-align: center;
+}
+
+/* == WRAPPERS == */
+.setHeight {
+	height: 239px;
+}
+.WRAPPER-Layout {
+	width: 100%;
+	height: 100%;
+}
+.WRAPPER-Layout-Top-Left {
+	height: 100% !important;
+	width: 33%;
+	float: left;
+}
+.WRAPPER-Layout-Top-Middle {
+	height: 100% ;
+	float: left;
+	width: 33%;
+}
+.WRAPPER-Layout-Top-Right {
+	height: 100%;
+	float: right;
+	width: 33%;
+}
+.WRAPPER-Layout-Middle-Left {
+	height: 100% ;
+	float: left;
+	width: 33%;
+	z-index: 66;
+}
+.WRAPPER-Layout-Middle-Centre {	
+	height: 100% ;
+	float: left;
+	width: 33%;
+}
+.WRAPPER-Layout-Middle-Right {
+	height: 100% ;
+	float: left;
+	width: 33%;
+}
+.WRAPPER-Layout-Base-Left {
+	height: 100% ;
+	float: left;
+	width: 33%;
+}
+.WRAPPER-Layout-Base-Centre {
+	height: 100% ;
+	float: left;
+	width: 33%;
+}
+.WRAPPER-Layout-Base-Right {
+	height: 100% ;
+	float: left;
+	width: 33%;
+}
+.rightSideLayout {
+	position: relative;
+	left: 650px;
+}
+.positionBottomLeft {
+	position: relative;
+	margin-bottom: 0px;
+}
+.positionBottomRight {
+	position: relative;
+	margin-bottom: 0px;
+	left: 650px;
+}
+.fullPageContainer {
+	height: 100%;
+	width: 100%;
+}
+
+/* IMAGE */
+.imageWithBorder {
+	width: 200px;
+	height: 200px;
+	position: fixed;
+	left: 400px;
+}
+.IMAGE-Settings {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	left: 170px;
+	top: 40px;
+}
+.doorButtonLeft {
+	float:left;
+	height: 300px;
+	left: 0px;
+	margin: 0px;
+}
+.doorButtonRight {
+	float: right;
+	top: 10px;
+	height: 300px;
+}
+.BUTTON_Panic_Layout {
+	position: relative;
+	top: 125px;
+	left: 80px;
+}
+.BUTTON_Notebook_Layout {
+	position: relative;
+	top: 125px;
+}
+
+
+
+
+
+

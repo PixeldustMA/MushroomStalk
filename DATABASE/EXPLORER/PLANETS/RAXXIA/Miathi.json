@@ -1,0 +1,29 @@
+{
+	"Identification": {
+		"Code": "MH",
+		"Name": {
+			"General": "Miathi",
+			"Native": "Athi"},
+		"FullCode": "LRMH"
+	},
+	"Location": {
+		"System": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia"						
+	},
+	"Sunflower": {
+		"UNIQUE": false,
+		"TimeZone": "MH",
+		"SystemTime": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia",
+		"Planet": "Miathi"
+	},
+	"Cultural": {
+		"LocalName": "Miathi",
+		"Language": "Finnish",
+		"LocalLanguageTag": "Lohex",
+		"Element": "Earth",
+		"ElementNote": "Source"
+	}
+}

@@ -1,0 +1,9 @@
+{
+
+    "Scurry": "EMPTY",
+    "Map": "EMPTY",
+    "Book": ["Balloons", "Archive", "Squirrel", "Explorer", "Bundler", "Fireflies"],
+    "Gizmo": ["PixelPage", "TvTracker", "Mumblies", "SpoonWheel", "Fridge"],
+    "Sunflower": "EMPTY",
+    "Games": ["Sketch", "Pickle"]
+}

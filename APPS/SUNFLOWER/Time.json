@@ -1,0 +1,76 @@
+{
+
+    "UHX": "6647",
+
+    "SPACE": "HEADER",
+
+    "ALLIED": "3297",
+    "DRAGON": "5647",
+
+    "SECTOR": "HEADER",
+
+    "SUNRAY": "3247",
+    "LOAXI": "6647",
+    "LYTAXI": "6647",
+    "MATAXI": "6647",
+    "NAIAXI": "6647",
+    "NIXXI": "6647",
+    "RORAXI": "6647",
+    "REGEN": "5252",
+
+    "SYSTEM": "HEADER",
+
+    "ROSE": "3147",
+    "MAPLE": "2091",
+
+    "RELARA": "6647",
+    "RETARI": "6647",
+    "REKASHI": "6647",
+    "RELORIA": "6647",
+    "RIOKA": "6647",
+    "REJINKA": "6647",
+    "RELUMA": "6647",
+
+    "TRINITY": "5086",
+    "STORM": "4086",
+
+    "PLANETS": "HEADER",
+
+    "EKSTERA": ["0", "ROSE", "SUNRAY", "ALLIED"],
+    "KIAMTA": ["-546", "ROSE", "SUNRAY", "ALLIED"],
+    "LEXANA": ["3147", "ROSE", "SUNRAY", "ALLIED"],
+    "KISTARA": ["4041", "TRINITY", "REGEN", "DRAGON", "KESSITARA"],
+    "ZABI": ["4041", "TRINITY", "REGEN", "DRAGON", "KESSITARA"],
+
+    "MELARA": ["6647", "RELARA", "LOAXI", "RAXXIA"],
+    "MIALATA": ["6647", "RELARA", "LOAXI", "RAXXIA"],
+    "MIASKI": ["6647", "RELARA", "LOAXI", "RAXXIA"],
+    "KASALASKI": ["6647", "RELARA", "LOAXI", "RAXXIA"],
+    "MIATHI": ["6647", "RELARA", "LOAXI", "RAXXIA"],
+
+    "MALETSI": ["6647", "RIOKA", "LYTAXI", "RAXXIA"],
+    "MIYYA": ["6647", "RIOKA", "LYTAXI", "RAXXIA"],
+    "MIOKIRA": ["6647", "RIOKA", "LYTAXI", "RAXXIA"],
+
+    "MELLUMI": ["6647", "RELUMA", "MATAXI", "RAXXIA"],
+    "MIRASKA": ["6647", "RELUMA", "MATAXI", "RAXXIA"],
+    "MILLUMO": ["6647", "RELUMA", "MATAXI", "RAXXIA"],
+    "MISPA": ["6647", "RELUMA", "MATAXI", "RAXXIA"],
+
+    "MIYANIKA": ["6647", "REJINKA", "NAIAXI", "RAXXIA"],
+    "MIANASHI": ["6647", "REJINKA", "NAIAXI", "RAXXIA"],
+    "MAIAVA": ["6647", "REJINKA", "NAIAXI", "RAXXIA"],
+
+    "MIASH": ["6647",  "RELORIA", "NIXXI", "RAXXIA"],
+    "MELORIA": ["6647",  "RELORIA", "NIXXI", "RAXXIA"],
+    "MAIARA": ["6647",  "RELORIA", "NIXXI", "RAXXIA"],
+
+    "MATARI": ["6647", "RETARI", "RORAXI", "RAXXIA"],
+    "MILUKI": ["6647", "RETARI", "RORAXI", "RAXXIA"],
+    "MIETEN": ["6647", "RETARI", "RORAXI", "RAXXIA"],
+
+    "LAKASHI": ["6647", "REKASHI", "RORAXI", "RAXXIA"],
+    "MAHIASHI": ["6647", "REKASHI", "RORAXI", "RAXXIA"],
+    "KAIASHI": ["6647", "REKASHI", "RORAXI", "RAXXIA"]
+
+}

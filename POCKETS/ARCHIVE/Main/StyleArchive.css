@@ -1,0 +1,10 @@
+@import "../../../SETTINGS/STYLES/ImageLoader.css";
+@import "../../../SETTINGS/STYLES/RootStyles.css";
+
+/* BROAD SECTIONS */
+.background {
+	background-color: aqua;
+	width: 500px;
+	height: 500px;
+}
+

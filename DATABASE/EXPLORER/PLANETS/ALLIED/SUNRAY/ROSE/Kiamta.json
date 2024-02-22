@@ -1,0 +1,30 @@
+{
+	"Identification": {
+		"Code": "KM",
+		"Name": {
+			"General": "Kiamta",
+			"Native": "Kiamta"},
+		"FullCode": "SRKM"
+	},
+	"Location": {
+		"System": "Rose",
+		"Sector": "Sunray",
+		"Space": "Allied"						
+	},
+	"Sunflower": {
+		"UNIQUE": true,
+		"UHXYear": "6101",
+		"TimeZone": "KM",
+		"SystemTime": "Rose",
+		"Sector": "Sunray",
+		"Space": "Allied",
+		"Planet": "Kiamta"
+	},
+	"Cultural": {
+		"LocalName": "Kiamta",
+		"Language": "Hawaiian",
+		"LocalLanguageTag": "Kiamtan",
+		"Element": "Light",
+		"ElementNote": "Moonlight"
+	}
+}

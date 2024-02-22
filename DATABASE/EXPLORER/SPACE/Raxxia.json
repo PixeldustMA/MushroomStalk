@@ -1,0 +1,26 @@
+{
+    "SpaceName": "RAXXIA",
+	"SectorList": ["HALLOWED", "RINGED", "AURORAN", "INKED", "PRISMATIC", "FLYTE"],
+	"SystemList": ["RELARA", "RIOKA", "RELUMA", "REJINKA", "RELORIA", "RETARI"],
+	"GeoxList": [],
+	"Sectors": {
+		"HALLOWED": {
+			"RELARA" : ["Melara", "Mialata", "Miathi", "Miaski", "Kasalaski"]
+		},
+		"RINGED": {
+			"RIOKA": ["Maletsai", "Miyya", "Miokira"]
+		},
+		"AURORAN": {
+			"RELUMA": ["Mellumi", "Miraska", "Millumo", "Mispa"]
+		},
+		"INKED": {
+			"REJINKA": ["Miyanika", "Mianashi", "Maiava"]
+		},
+		"PRISMATIC": {
+			"RELORIA": ["Miash", "Meloria", "Maiara"]
+		},
+		"FLYTE": {
+			"RETARI": ["Matari", "Miluki", "Mieten"]
+		}
+	}
+}

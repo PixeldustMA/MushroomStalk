@@ -1,0 +1,10 @@
+{
+    "1": {
+        "NAME": "TestUser",
+        "PASSWORD": "Password"
+    },
+    "2": {
+        "NAME": "Pixel",
+        "PASSWORD": "Mushroom"
+    }
+}

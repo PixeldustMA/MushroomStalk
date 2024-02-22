@@ -1,0 +1,30 @@
+{
+	"Identification": {
+		"Code": "TR",
+		"Name": {
+			"General": "Terra",
+			"Native": "Terra"},
+		"FullCode": "SSTR"
+	},
+	"Location": {
+		"System": "Solaris",
+		"Sector": "Solari",
+		"Space": "Sacred"						
+	},
+	"Sunflower": {
+		"UNIQUE": false,
+		"UHXYear": "1000",
+		"TimeZone": "KS",
+		"SystemTime": "Solaris",
+		"Sector": "Solari",
+		"Space": "Sacred",
+		"Planet": "Terra"
+	},
+	"Cultural": {
+		"LocalName": "Terra",
+		"Language": "Multi",
+		"LocalLanguageTag": "Multi",
+		"Element": "Light",
+		"ElementNote": "Sun"
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"Identification": {
+		"Code": "LX",
+		"Name": {
+			"General": "Lexana",
+			"Native": "Lexiya"},
+		"FullCode": "SRLX"
+	},
+	"Location": {
+		"System": "Rose",
+		"Sector": "Sunray",
+		"Space": "Allied"						
+	},
+	"Sunflower": {
+		"UNIQUE": true,
+		"UHXYear": "6647",
+		"TimeZone": "LX",
+		"SystemTime": "Rose",
+		"Sector": "Sunray",
+		"Space": "Allied",
+		"Planet": "Ekstera"
+	},
+	"Cultural": {
+		"LocalName": "Lexa",
+		"Language": "Arabic",
+		"LocalLanguageTag": "Zanya",
+		"Element": "Electric",
+		"ElementNote": ""
+	}
+}

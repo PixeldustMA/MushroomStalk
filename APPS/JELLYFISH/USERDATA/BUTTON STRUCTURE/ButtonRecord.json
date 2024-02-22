@@ -1,0 +1,24 @@
+{
+
+    "SAVE": {
+        "NAME": "SAVE",
+        "ID": "SAVEBUTTON",
+        "THEME": "NOVA",
+        "ROW": "One",
+        "INDEX": "0"
+    },
+    "LOAD": {
+        "NAME": "LOAD",
+        "ID": "LOADBUTTON",
+        "THEME": "NOVA",
+        "ROW": "Two",
+        "INDEX": "0" 
+    },
+    "CLEAR": {
+        "NAME": "CLEAR",
+        "ID": "CLEARBUTTON",
+        "THEME": "NOVA",
+        "ROW": "Three",
+        "INDEX": "0" 
+    }
+}

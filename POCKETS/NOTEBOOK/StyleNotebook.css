@@ -8,14 +8,13 @@ input {
 	width: 50%;
 	color: white;
 	height: 600px;
-	background-color: black;
+
 }
 .rightPage {
 
 	float: right;
 	width: 50%;
 	height: 600px;
-	background-color: rebeccapurple;
 }
 
 .menuButton {
@@ -24,5 +23,11 @@ input {
 	height: 50px;
 	margin-bottom: 10px;
 	margin-left: 150px;
+}
+
+body {
+	background: url("../../ASSETS/BACKGROUNDS/Background\ -\ Notebook.png");
+	background-repeat: no-repeat;
+	background-size: 990px 750px;
 }
 

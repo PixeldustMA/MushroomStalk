@@ -1,0 +1,11 @@
+{
+    "SpaceName": "SACRED",
+	"SectorList": ["SOLARI"],
+	"SystemList": ["SACRED"],
+	"GeoxList": [],
+	"Sectors": {
+		"SOLARI": {
+			"SACRED" : ["Terra"]
+		}
+	}
+}

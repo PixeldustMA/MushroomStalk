@@ -1,0 +1,23 @@
+{
+    "LEARN": {
+        "DUOLINGO": {
+            "FLUENCY": {
+                "HAWAIIAN": "CRUMB"
+            },
+            "TRIO": {
+                "HUNGARIAN": "CRUMB",
+                "RUSSIAN": "CRUMB"
+            }
+        },
+        "PIXELPAEDIA": {
+            "DAILY": {
+                "PHAROAH": "CRUMB"
+            }
+        }
+    },
+    "CODE": {
+        "MUSHROOM": {
+            "JELLYFISH": "CRUMB"
+        }
+    }
+}

@@ -1,0 +1,114 @@
+{
+    "MAINPAGES": {
+
+        "STARTSCREEN": "../../POCKETS/START/FrameworkStart.html",
+        "WELCOMESCREEN": "../../POCKETS/WELCOME/Main/FrameworkWelcome.html",
+        "TITLE": "../../POCKETS/TITLE/FrameworkTitle.html",
+        "MAP": "../../POCKETS/MAP/FrameworkMap.html",
+        "COGS": "",
+        "PANIC": "../../POCKETS/PANIC/FrameworkPanic.html",
+        "ARCHIVE": "../../POCKETS/ARCHIVE/Main/FrameworkArchive.html",
+        "NOTEBOOK": "",
+        "TRACKER": "../../POCKETS/JELLYFISH/FrameworkJellyfish.html",
+        "EXPLORER": "../../POCKETS/EXPLORER/FrameworkExplorer.html",
+        "SQUIRREL": "../../POCKETS/SQUIRRELS/FrameworkSquirrel.html",
+        "FIREFLIES": "../../POCKETS/FIREFLIES/FrameworkFireflies.html",
+        "BALLOONS": "../../POCKETS/BALLOONS/FrameworkBalloons.html",
+        "PICKLE": "../../POCKETS/PICKLE/FrameworkPickle.html",
+        "SUNFLOWER": "../../POCKETS/SUNFLOWER/FrameworkSunflower.html",
+        "BUNDLER": "../../POCKETS/BUNDLER/FrameworkBundler.html",
+        "FRIDGE": "../../POCKETS/FRIDGE/FrameworkFridge.html",
+        "TREE": "../../POCKETS/TREE/FrameworkTree.html"        
+
+    },
+    "MENUS": {
+        "LIBRARY": "../../POCKETS/MENUS/Library/FrameworkLibrary.html",
+        "OFFICE": "../../POCKETS/MENUS/Office/FrameworkOffice.html",
+        "CUPBOARD": "../../POCKETS/MENUS/Cupboard/FrameworkCupboard.html"
+    },
+    "ASSETS": {
+
+        "ANIMATIONS": {
+            "VALIDATING": "../../ASSETS/ANIMATIONS/Validating.gif",
+            "INVALID": "../../ASSETS/ANIMATIONS/Invalid_User.gif"
+        },
+        "IMAGES": {
+            "COG": "../../ASSETS/IMAGES/BUTTONS/Button - Settings.png",
+            "DOORS": "../../ASSETS/IMAGES/BUTTONS/Button - Door.png",
+            "FRAME": "../../ASSETS/IMAGES/DECORATION/Picture Frame.png",
+            "BOOKPILE": "../../ASSETS/IMAGES/BUTTONS/Button - Book Pile.png",
+            "SWAMPBOOK": "../../ASSETS/IMAGES/BUTTONS/Button - Swamp Book.png",
+            "PANICBUTTON": "../../ASSETS/IMAGES/BUTTONS/Button - Panic.png",
+            "BAG": "../../ASSETS/IMAGES/BUTTONS/Button - Bag.png"
+        }
+
+    },
+
+    "FOLDERS": {
+
+        "THEMES": "../../ASSETS/PALETTES/",
+        "USERS": "../../REMEMBER/USERS/FROGS/",
+        "WELCOMEFOLDER": "../../ASSETS/IMAGES/WELCOME/",
+        "PALETTES": "../../ASSETS/PALETTES/",
+        "CONVERSION": {
+            "SPACE": "../../APPS/SUNFLOWER/CONVERSION/SPACE/",
+            "SECTOR": "../../APPS/SUNFLOWER/CONVERSION/SECTORS/"
+        }
+    },
+    "MEMORY": {
+
+        "FROGS": "../../REMEMBER/USERS/Frogs.json",
+        "RESIDENT": "../../REMEMBER/USERS/ResidentFrog.json",
+        "MESSAGES": "../../REMEMBER/TEXTS/Message.json",
+        "ALPHABET": "../../REMEMBER/DATABASE/Alphabet.json",
+        "CHARACTER": "../../REMEMBER/PANTRY/ActiveCharacter.json",
+        "PANTRY": "../../REMEMBER/PANTRY/PantryState.json",
+        "SETTINGS": "../../REMEMBER/MEMORY/AppData.json",
+        "ACTIVECHARACTER": "../../REMEMBER/DATABASE/ActiveCharacter.json"
+
+    },
+    "DATABASE": {
+        "PLANET": {
+            "KEYS": "../../APPS/EXPLORER/Utility/PlanetKeys.json",
+            "PATHS": "../../APPS/EXPLORER/Utility/PlanetPaths.json",
+            "ALLIED": "../../DATABASE/EXPLORER/SPACE/Allied.json",
+            "RAXXIA": "../../DATABASE/EXPLORER/SPACE/Raxxia.json",
+            "DRAGON": "../../DATABASE/EXPLORER/SPACE/Dragon.json",
+            "NIAMATI": "../../DATABASE/EXPLORER/SPACE/Niamati.json",
+            "SACRED": "../../DATABASE/EXPLORER/SPACE/Sacred.json",
+            "UHX": "../../APPS/SUNFLOWER/TANGLES/UHX.json",
+            "TIMES": "../../APPS/SUNFLOWER/Time.json"
+        }
+    },
+    "SECTIONS": {
+        "ARCHIVE": {
+            "NEW": "../../POCKETS/ARCHIVE/Input/FrameworkNew.html",
+            "SEARCH": "",
+            "DISPLAY": "",
+            "UPDATE": "../../POCKETS/ARCHIVE/Update/FrameworkUpdate.html"
+        },
+        "LOADING": {
+            "NEW_USER": "../../POCKETS/WELCOME/Wizard/FrameworkWizard.html",
+            "ONBOARDING": "../../POCKETS/WELCOME/Onboarding/FrameworkOnboarding.html",
+            "VALIDATION": "../../POCKETS/WELCOME/Validation/FrameworkValidation.html"
+        },
+        "GIZMOS": {
+            "SKETCH": "../../..POCKETS/SKETCH/FrameworkSketch.html",
+            "PIXELPAGE": "../../POCKETS/GIZMOS/PixelPage/FrameworkPixelPage.html",
+            "TVTRACKER": "../../POCKETS/GIZMOS/TVTracker/FrameworkTVTracker.html",
+            "MUMBLIES": "../../POCKETS/MUMBLIES/FrameworkMumblies.html",
+            "WHEEL": "../../POCKETS/SPOONS/FrameworkWheel.html"
+        }
+    },
+    "JELLYFISH": {
+        "STATE": "../../APPS/JELLYFISH/MEMORY/State.json",
+        "BUTTONS": {    
+                "LOCATION": "../../APPS/JELLYFISH/THEMES/LOCATION/",
+                "THEME": "../../APPS/JELLYFISH/THEMES/THEME/",
+                "TOPLEVEL": "../../REMEMBER/JELLYFISH/BUTTONS/THEMES/",
+                "BUTTONS": "../../APPS/JELLYFISH/BUTTONPANEL/ButtonTemplates/"
+            },
+        "TABLE": "../../REMEMBER/JELLYFISH/GRAPEFRUIT/",
+        "TRACKERSET": "../../APPS/JELLYFISH/TRACKER/CONSOLE/ActiveTracker.json"
+    }
+}

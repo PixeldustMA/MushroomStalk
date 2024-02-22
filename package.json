@@ -1,37 +1,20 @@
 {
-  "name": "mushroomstalk",
-  "version": "0.0.84",
-  "description": "Life Organiser",
-  "main": "./GEARS/GNOME/main.js",
+  "name": "sunflower",
+  "version": "0.0.1",
+  "description": "Testing Environment for Mushroom Stalk",
+  "main": "CONSOLE/GNOMES/Main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "rebuild": "electron-rebuild -f -w sqlite3"
+    "start": "electron ."
   },
   "author": "Pixeldust",
   "license": "ISC",
-  "repository": "PixeldustMA/MushroomStalk",
   "devDependencies": {
-    "@electron-forge/cli": "^6.1.1",
-    "@electron-forge/maker-deb": "^6.1.1",
-    "@electron-forge/maker-rpm": "^6.1.1",
-    "@electron-forge/maker-squirrel": "^6.1.1",
-    "@electron-forge/maker-zip": "^6.1.1",
-    "@electron-forge/publisher-github": "^6.1.1",
-    "electron": "^24.3.1",
-    "electron-rebuild": "^3.2.9"
+    "electron": "^27.1.0"
   },
   "dependencies": {
-    "@electron/rebuild": "^3.2.13",
-    "dotenv": "^16.0.3",
-    "electron-squirrel-startup": "^1.0.0",
-    "html2canvas": "^1.4.1",
+    "electron-builder": "^24.6.4",
     "python-shell": "^5.0.0",
     "sqlite3": "^5.1.6",
-    "update-electron-app": "^2.0.1",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   }
 }

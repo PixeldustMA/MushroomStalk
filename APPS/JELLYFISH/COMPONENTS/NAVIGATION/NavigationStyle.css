@@ -1,0 +1,91 @@
+.JELLYFISH_NAV-OuterWrapper { 
+    
+    list-style-type: none; 
+    position: relative; 
+    top: 0;
+    z-index: 10;
+
+    margin: 0; 
+    margin-top: 20px; 
+    padding: 0;
+
+    width: 100%; 
+    min-width: 700px;
+
+    text-align: center; 
+
+    border-bottom-width: 3px;  
+
+}
+.JELLYFISH_NAV-Outer-List { 
+    
+    display: inline-block; 
+    
+    margin-top: 3px; 
+    margin-bottom: 3px; 
+    
+    padding-bottom: 10px;
+
+    width: 17%; 
+
+    font-size: 2rem; 
+    font-family: centralia; 
+    font-weight: bold;
+    color: white; 
+
+    & a {
+
+        text-decoration: none;
+
+        padding: 8px;
+    
+        width: 20%; 
+    
+        background-color: pink;
+    
+        border-radius: 5%; 
+        border-style: solid; 
+
+        &:hover {
+
+            background-color: purple;
+
+        }
+    }
+    & a:hover {
+        background-color: purple;
+    }
+}
+.JELLYFISH_NAV-dropdown {
+
+    position: relative; 
+    display: inline-block;
+}
+.JELLYFISH_NAV-dropdown:hover .JELLYFISH_NAV-dropdownContent{
+    display: block;
+}
+.JELLYFISH_NAV-dropdownContent {
+
+    display: none; 
+    position: fixed;
+
+    min-width: 160px;
+
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+    padding: 12px 12px;
+
+}
+.JELLYFISH_NAV-scurry {
+
+    background-color: red !important;
+}
+.JELLYFISH_NAV-scurry:hover {
+    background-color: black !important;
+}
+.JELLYFISH_NAV-verticalButtons {
+
+    padding: 0px; 
+    margin: 1rem 0 2rem 0;
+
+}

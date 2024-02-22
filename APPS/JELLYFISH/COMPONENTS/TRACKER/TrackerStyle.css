@@ -1,0 +1,98 @@
+.layout {
+
+    width: 90%;
+    height: 500px;
+    background-color: rgb(1, 29, 29);
+	overflow: hidden;
+}
+
+.Container_JellyfishTable {
+
+	border-radius: 5%;
+	border-style: solid;
+	border-color: black;
+	background-color: rgb(35, 22, 48);	
+}
+
+.container {
+
+	height: 80px; 
+	font-family: 'Lemon Milk';
+	color: black;
+	font-size: 20px;
+	overflow: hidden;
+
+}
+
+.xx {
+	overflow: hidden;
+}
+.WRAPPER_Bar{
+	width: 900px;
+}
+.catCell {
+
+	/* max-width: 250px;
+	min-width: 200px; */
+	width: 20%;
+	height: 70px;
+
+	border-radius: 5%;
+	border-style: solid;
+	border-color: black;
+
+	background-color: rgb(229, 127, 211);
+
+	float: left;
+
+}
+
+.buttonCell {
+
+	/* max-width: 200px;
+	min-width: 100px; */
+	width: 10%;
+	height: 70px;
+
+	background-color: rgb(140, 140, 213);
+
+	border-radius: 5%;
+	border-style: solid;
+	border-color: black;
+
+	float: left;
+
+}
+
+.bar {
+
+	width: 67%;
+	background-color: rgb(144, 74, 95);
+	border-radius: 5%;
+	border-style: solid;
+	border-color: black;
+	float: left; 	
+	height: 70px;
+
+}
+
+.cell{
+
+	width: 10%;
+	height: 70px;
+
+	background-color: blueviolet;
+
+	float: left;
+
+	border-radius: 5%;
+	border-style: solid;
+	border-color: black;
+
+}
+
+
+
+.Selected {background-color: black;};
+.HideBars {display: none !important;}
+.ShowBars {display: block;}

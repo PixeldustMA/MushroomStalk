@@ -1,0 +1,36 @@
+{
+    "MONDAY": [
+        "HAWAIIAN1",
+        "HAWAIIAN4",
+        "RUSSIAN1",
+        "RUSSIAN2",
+        "RUSSIAN3"
+    ],
+    "TUESDAY": [
+        "HAWAIIAN0",
+        "HAWAIIAN1"
+    ],
+    "WEDNESDAY": [
+        "HAWAIIAN1"
+    ],
+    "FRIDAY": [
+        "HAWAIIAN0",
+        "RUSSIAN0",
+        "RUSSIAN1",
+        "NORWEGIAN0",
+        "NORWEGIAN1",
+        "NORWEGIAN2"
+    ],
+    "SATURDAY": [
+        "HAWAIIAN1",
+        "HAWAIIAN2",
+        "RUSSIAN3",
+        "NORWEGIAN0",
+        "NORWEGIAN2",
+        "NORWEGIAN3"
+    ],
+    "SUNDAY": [
+        "HAWAIIAN0",
+        "HAWAIIAN1"
+    ]
+}

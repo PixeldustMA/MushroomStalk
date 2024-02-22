@@ -1,0 +1,11 @@
+{
+    "SpaceName": "DRAGON",
+	"SectorList": ["REGEN"],
+	"SystemList": ["TRINITY"],
+	"GeoxList": [],
+	"Sectors": {
+		"REGEN": {
+			"TRINITY" : ["Kessya", "Kistara"]
+		}
+	}
+}

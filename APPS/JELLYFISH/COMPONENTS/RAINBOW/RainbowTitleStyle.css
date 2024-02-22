@@ -1,0 +1,63 @@
+@import "../../../../SETTINGS/STYLES/RootStyles.css";
+
+.TitleRow {
+
+	color: white; 
+	font-family: 'Hello_Graduation_Sans';
+	font-size: 32px; 
+	background-color: aqua;
+
+	text-align: center; 
+	display: flex;
+	height: 80px; 
+	width:130px;
+	
+	border-color: white; 
+	border-style: solid;
+
+}
+
+#PlusButton {
+	height: 55px; 
+	width: 50px; 
+	border-style: solid;
+	border-color: white; 
+	font-size: 16px; 
+	border-width: 5px;
+}
+#PlusButton:hover {
+	background-color: red; 
+	height: 65px; 
+	width: 65px;
+	border-color: red; 
+	color: white; 
+	font-size: 30px;
+}
+.RedTitle { 
+	background-color: red;
+	display: inline-block;
+}
+.OrangeTitle { 
+	background-color: orange;}
+.YellowTitle { 
+	background-color: yellow;
+}
+.GreenTitle { 
+	background-color: green;
+}
+.BlueTitle { background-color: blue;}
+.IndigoTitle { background-color: indigo;}
+.VioletTitle { background-color: violet;}
+.RaspberryTitle { background-color: pink;}
+.textBox {
+background-color: black;
+box-sizing:border-box;
+display:block;
+width:100%;
+margin:0;
+} 
+
+.test {
+	color: blue;
+	display: inline-block;
+}

@@ -1,0 +1,5 @@
+{
+    "Clear": {"PATH":"../../USERDATA/BUTTONS/Clear.js" , "ARGS": "false"},
+    "Load": {"PATH":"../../USERDATA/BUTTONS/Load.js", "ARGS": "false"},
+    "Save": {"PATH": "../../USERDATA/BUTTONS/Save.js", "ARGS": "true"}
+}

@@ -1,0 +1,29 @@
+{
+	"Identification": {
+		"Code": "MT",
+		"Name": {
+			"General": "Mialata",
+			"Native": "Lata"},
+		"FullCode": "LRMT"
+	},
+	"Location": {
+		"System": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia"						
+	},
+	"Sunflower": {
+		"UNIQUE": false,
+		"TimeZone": "MT",
+		"SystemTime": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia",
+		"Planet": "Mialata"
+	},
+	"Cultural": {
+		"LocalName": "Mialata",
+		"Language": "Finnish",
+		"LocalLanguageTag": "Lohex",
+		"Element": "Water",
+		"ElementNote": "Source"
+	}
+}

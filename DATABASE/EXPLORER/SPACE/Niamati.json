@@ -1,0 +1,11 @@
+{
+    "SpaceName": "NIAMATI",
+	"SectorList": ["MISSIAN"],
+	"SystemList": ["PEPPER"],
+	"GeoxList": [],
+	"Sectors": {
+		"MISSIAN": {
+			"PEPPER" : ["Pepper"]
+		}
+	}
+}

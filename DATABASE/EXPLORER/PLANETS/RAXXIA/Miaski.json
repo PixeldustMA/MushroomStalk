@@ -1,0 +1,29 @@
+{
+	"Identification": {
+		"Code": "MK",
+		"Name": {
+			"General": "Miaski",
+			"Native": "Aski"},
+		"FullCode": "LRMK"
+	},
+	"Location": {
+		"System": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia"						
+	},
+	"Sunflower": {
+		"UNIQUE": false,
+		"TimeZone": "MK",
+		"SystemTime": "Relara",
+		"Sector": "Loaxi",
+		"Space": "Raxxia",
+		"Planet": "Miaski"
+	},
+	"Cultural": {
+		"LocalName": "Miaski",
+		"Language": "Finnish",
+		"LocalLanguageTag": "Lohex",
+		"Element": "Air",
+		"ElementNote": "Source"
+	}
+}

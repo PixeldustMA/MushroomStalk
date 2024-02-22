@@ -1,0 +1,62 @@
+.MushroomBackground {
+
+    background-image: url(../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Mushroom.png);
+
+}
+.MapBackground {
+
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Map.png");
+
+}
+.SplashBackground {
+
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Splash\ Screen.png");
+    background-repeat: no-repeat;
+    background-size: 1000px 800px;
+
+}
+.SplashBackgroundEnd {
+
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Splash\ Screen\ Final.png");
+    background-repeat: no-repeat;
+    background-size: 1000px 800px;
+
+}
+.SplashBackgroundTransition {
+    background: url("../../ASSETS/ANIMATIONS/MushroomTitle.gif");
+    background-repeat: no-repeat;
+    background-size: 1000px 800px;
+}
+.WizardBackground {
+
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Wizard.png");
+
+}
+
+.OnboardingBackground {
+
+	background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Onboarding.gif");
+
+}
+
+.ValidationBackground {
+
+    background: url("../../ASSETS/ANIMATIONS/Validating.gif");
+}
+
+.StartScreenBackground {
+
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Mushroom.png");
+}
+
+.ArchiveBackround {
+
+    background:  url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Archive.png");
+}
+.welcomeBackground {
+    background:  url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Welcome.png");
+}
+
+.TitleBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Title\ Screen.png");
+}

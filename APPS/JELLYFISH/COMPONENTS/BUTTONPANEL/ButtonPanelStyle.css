@@ -1,0 +1,20 @@
+/* CONTAINERS */
+.buttonContainer {
+    width: 500px;
+    height: 200px;
+    background-color: rebeccapurple;
+}
+
+/* ELEMENTS */
+.JellyfishButton {
+    background-color: black; 
+    height: 50px; 
+    width: 200px; 
+    color: white;
+}
+
+/* ACTIONS */
+.JellyfishButton:hover {
+    background-color: rgb(74, 55, 90);
+}
+

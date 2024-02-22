@@ -1,0 +1,35 @@
+@import "../../../SETTINGS/STYLES/RootStyles.css";
+@import "../../../SETTINGS/STYLES/ImageLoader.css";
+
+input {
+
+    display: flex;
+
+    position: relative;
+	left: 300px;
+	top: 300px;
+
+    z-index: 1;
+
+}
+button {
+
+    position: relative;
+	left: 300px;
+	top: 350px;
+
+}
+img {
+
+    z-index: 0;
+
+}
+
+/* LAYOUT */
+
+.position {
+
+	position: relative;
+	top: 0px;
+
+}

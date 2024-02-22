@@ -1,0 +1,18 @@
+{
+    "1": {
+        "HOVER": "TEALY",
+        "DISPLAY": "TY"
+    },
+    "2": {
+        "DISPLAY": "TC",
+        "HOVER": "TROPICANA"
+    },
+    "3": {
+        "DISPLAY": "CX",
+        "HOVER": "CHANCEAUX"
+    },
+    "4": {
+        "DISPLAY": "TS",
+        "HOVER": "TASSLES"
+    }
+}

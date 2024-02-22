@@ -269,7 +269,7 @@ function modifyScribbleBox(tag) {
 	}
 }
 async function fetchBundle(state) {
-	let x = await Rattlesnake([state.CHAPTERNUMBER, state.DETAILS, BundlePath, state.DATE, state.TIMEZONE, "None", state.CHARACTERNAME, state.TAG, state.UHX, state.WEEKDAY ]);
+	let x = await Rattlesnake([state.PAGENUMBER, state.DETAILS, BundlePath, state.DATE, state.TIMEZONE, "None", state.CHARACTERNAME, state.TAG, state.UHX, state.WEEKDAY ]);
 	if (x === true) {
 		let container = document.getElementById('duplicateWrapper');
 		let lab = new create({
@@ -282,7 +282,7 @@ async function fetchBundle(state) {
 			id: 'duplicateButton'
 		}).init();
 		but.addEventListener('click', (event) => {
-				Rattlesnake([holdDetails.CHAPTERNUMBER, holdDetails.DETAILS, BundlePath, holdDetails.DATE, holdDetails.TIMEZONE, "Confirm", state.CHARACTERNAME, state.TAG, state.UHX ])
+				Rattlesnake([state.PAGENUMBER, state.DETAILS, BundlePath, state.DATE, state.TIMEZONE, "Confirm", state.CHARACTERNAME, state.TAG, state.UHX, state.WEEKDAY ])
 					.then((rattleResult) => {return rattleResult})
 		});
 		container.append(...[lab, but])
@@ -458,6 +458,19 @@ function bundleBox() {
 		};
 		if (pantry.ACTIVE === "Draft") {
 			console.log("Draft Option Chosen");
+
+			
+			bundleState.CHARACTERNAME = activeCharacters["DRAFT_CHARACTER"].replace(" ", "#");
+			bundleState.TAG = "Draft"
+			console.log(bundleState)
+
+			holdDetails.CHAPTERNUMBER = parseInt(pageNumberInput.value);
+			holdDetails.DETAILS = detailsInput.value;
+			holdDetails.DATE = [yearInput.value, monthInput.value, dayInput.value];
+			holdDetails.TIMEZONE = timezoneInput.value;
+
+			let spreadsheetData = fetchBundle(bundleState).then((x) => {return x});
+
 		}
 	});
 	return wrapper;
@@ -473,21 +486,78 @@ function newsBox() {
 	wrapper.append(...[ newsHeader]);
 	return wrapper;
 };
+/**
+ * CREATE A BOX TO ALLOW USER TO ADD TO DATABASE
+ */
 function characterBox() {
+
+	// == WRAPPERS == //
 	let wrapper = new create({
 		tag: 'div'
 	}).init();
+
+	// == TEXT == //
 	let newCharacterHeader = new create({
 		tag: 'h2',
 		elementText: 'NEW CHARACTER BOX'
 	}).init();
-	wrapper.append(...[ newCharacterHeader]);
+	let labelCharacterFirstName = new create({
+		tag: 'label',
+		labelFor: 'characterFirstNamInput',
+		elementText: 'FIRST NAME'
+	}).init();
+	let labelCharacterSurame = new create({
+		tag: 'label',
+		labelFor: 'characterSurnameInput',
+		elementText: 'FAMILY NAME'
+	}).init();
+	let labelBirthYear = new create({
+		tag: 'label'
+	}).init();
+	let labelBirthPlanet = new create({
+		tag: 'label'
+	}).init();
+
+	// == INPUTS == //
+	let characterFirstName = new create({
+		tag: 'input',
+		boxName: 'characterFirstNamInput'
+	}).init();
+	let characterSurname = new create({
+		tag: 'input',
+		boxName: 'characterSurnameInput'
+	}).init();
+
+	// == BUTTONS == //
+	let submitCharacterButton = new create({
+		tag: 'button',
+		elementText: 'SUBMIT'
+	}).init();
+
+	// == ACTIONS == //
+	submitCharacterToDatabase.addEventListener('click', (event) => {
+		submitCharacterToDatabase(newCharacter);
+	})
+
+	// == ATTACHMENT == //
+	wrapper.append(...[ 
+		newCharacterHeader,
+		labelCharacterFirstName,
+		characterFirstName,
+		labelCharacterSurame,
+		characterSurname,
+		submitCharacterButton
+	]);
 	return wrapper;
 };
 function activeCharacterBox() {
+
+	// == WRAPPER == //
 	let wrapper = new create({
 		tag: 'div'
 	}).init();
+
+	// == TEXT == //
 	let activeCharacterHeader = new create({
 		tag: 'h2',
 		elementText: 'UPDATE ACTIVE CHARACTER BOX'
@@ -527,4 +597,8 @@ function gotoBox() {
 	}).init();
 	wrapper.append(...[ gotoHeader]);
 	return wrapper;
+}
+
+function submitCharacterToDatabase(characterObject) {
+	
 }

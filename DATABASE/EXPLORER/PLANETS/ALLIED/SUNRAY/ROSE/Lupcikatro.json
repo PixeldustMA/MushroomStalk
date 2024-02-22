@@ -1,0 +1,30 @@
+{
+	"Identification": {
+		"Code": "LC",
+		"Name": {
+			"General": "Lupcikatro",
+			"Native": "Lupcikatro"},
+		"FullCode": "SREL"
+	},
+	"Location": {
+		"System": "Rose",
+		"Sector": "Sunray",
+		"Space": "Allied"						
+	},
+	"Sunflower": {
+		"UNIQUE": true,
+		"UHXYear": "6647",
+		"TimeZone": "EK",
+		"SystemTime": "Rose",
+		"Sector": "Sunray",
+		"Space": "Allied",
+		"Planet": "Ekstera"
+	},
+	"Cultural": {
+		"LocalName": "Lupcikatro",
+		"Language": "Multi",
+		"LocalLanguageTag": "Revelli",
+		"Element": "Light",
+		"ElementNote": "Tropical"
+	}
+}

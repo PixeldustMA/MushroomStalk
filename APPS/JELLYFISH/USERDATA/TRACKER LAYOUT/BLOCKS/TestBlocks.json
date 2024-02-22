@@ -1,0 +1,50 @@
+{
+    "1": {
+        "NAME": "LEARNING",
+        "STYLE": {
+            "BARCOLOUR": "#FFFFFF",
+            "TEXTCOLOUR": "#000000",
+            "FONT": "centralia",
+            "BORDERSIZE": "2",
+            "BORDERCOLOUR": "#000000"
+        },
+        "TYPE": "TITLE",
+        "PARENT": "NONE"
+    },
+    "2": {
+        "NAME": "DUOLINGO",
+        "STYLE": {
+            "BARCOLOUR": "#FFFFFF",
+            "TEXTCOLOUR": "#000000",
+            "FONT": "centralia",
+            "BORDERSIZE": "2",
+            "BORDERCOLOUR": "#000000"
+        },
+        "TYPE": "TITLE",
+        "PARENT": "LEARNING"
+    },
+    "3": {
+        "NAME": "HAWAIIAN",
+        "STYLE": {
+            "BARCOLOUR": "#FFFFFF",
+            "TEXTCOLOUR": "#000000",
+            "FONT": "centralia",
+            "BORDERSIZE": "2",
+            "BORDERCOLOUR": "#000000"
+        },
+        "TYPE": "CRUMB",
+        "PARENT": "DUOLINGO"
+    },
+    "4": {
+        "NAME": "RUSSIAN",
+        "STYLE": {
+            "BARCOLOUR": "#FFFFFF",
+            "TEXTCOLOUR": "#000000",
+            "FONT": "centralia",
+            "BORDERSIZE": "2",
+            "BORDERCOLOUR": "#000000"
+        },
+        "TYPE": "CRUMB",
+        "PARENT": "DUOLINGO"
+    }
+}

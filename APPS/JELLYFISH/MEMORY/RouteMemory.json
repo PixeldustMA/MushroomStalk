@@ -1,0 +1,17 @@
+{
+
+    "MEMORY": {
+        "HOLDCELLS": "../APPS/JELLYFISH/TRACKER/CONSOLE/Memory.json"
+    },
+    "COMPONENTS": {
+        "BUTTONLIST": "../../APPS/JELLYFISH/USERDATA/BUTTONS/ButtonList.json",
+        "BUTTONRECORD": "../../APPS/JELLYFISH/USERDATA/BUTTON STRUCTURE/ButtonRecord.json"
+    },
+    "STRUCTURE": {
+        "TRACKERSET": "../../APPS/JELLYFISH/MEMORY/ActiveTracker.json"
+    },
+    "USER": {
+        "CRUMBSAVE": "../../APPS/JELLYFISH/USERDATA/CRUMB PATTERNS/DaySaves.json"
+    }
+    
+} 
