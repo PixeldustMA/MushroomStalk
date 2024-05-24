@@ -1,6 +1,3 @@
-import { Stalk } from "../../CONSOLE/CONTROLLERS/StalkController.js";
-import { create } from "../../CONSOLE/PLATYPUS/create.js";
-
 // ================================= //
 //         MUSHROOM STALK            //
 // ================================= //
@@ -8,127 +5,206 @@ import { create } from "../../CONSOLE/PLATYPUS/create.js";
 //         Create Map Screen         //
 // ================================= //
 
-// == VARIABLES == //
-const Title = document.getElementById("MAP_Section-Title");
-const Belly = document.getElementById("MAP_Section-Belly");
-const Feet = document.getElementById("MAP_Section-Feet");
+import { Stalk } from "../../CONSOLE/CONTROLLERS/StalkController.js";
+import { create } from "../../CONSOLE/PLATYPUS/Create.js";
 
-// == INSTANCES == //
+class Page_Map extends Stalk {
 
-const stalk = new Stalk();
+    constructor() {
+        super();
 
-// == DRAW PANELS == //
-function DrawTitlePanel() {
+        this.SECTION_Title = document.getElementById("MAP_Section-Title");
+        this.SECTION_Belly = document.getElementById("MAP_Section-Belly");
+        this.SECTION_Feet = document.getElementById("MAP_Section-Feet");
 
-    // == WRAPPERS == //
+        this.pathArchiveUnpressed = "";
+        this.pathCupboardUnpressed = "";
+        this.pathExplorerUnpressed = "";
+        this.pathLibraryUnpressed = "";
+        this.pathOfficeUnpressed = "";
+        this.pathPlatatsyPuszUnpressed = "";
+        this.pathStalkUnpressed = "";
+        this.pathSunflowerUnpressed = "";
 
-    const wrapper = new create({
-        tag: 'div',
-        id: 'MAP_Title-Wrapper'
-    }).init();
+    }
 
-    // == TEXT == //
+    DRAW_PAGE() {
+        this.SECTION_Title.append(this.PANEL_TITLE());
+        this.SECTION_Belly.append(this.PANEL_BELLY());
+        this.SECTION_Feet.append(this.PANEL_FEET());
+    };
+    PANEL_TITLE() {
+        // == WRAPPERS == //
+        const wrapper = new create({
+            tag: 'div',
+            id: 'MAP_Title-Wrapper'
+        }).init();
 
-    let header = new create({
-        tag: 'h1',
-        id: 'MAP_Title-Header',
-        elementText: 'MAP'
-    }).init();
+        // == TEXT == //
+        let header = new create({
+            tag: 'h1',
+            id: 'MAP_Title-Header',
+            elementText: ['USEFUL', 'GENERAL', 'MAP']
+        }).init();
 
-    // == ATTACHMENT == //
-    wrapper.append(...[
-        header
-    ]);
-    return wrapper;
+        // == ATTACHMENT == //
+        wrapper.append(...[
+            header
+        ]);
+        return wrapper;
+    }
+    PANEL_BELLY() {
+
+        // == WRAPPERS == //
+        const wrapper = new create({
+            tag: 'div',
+            id: 'MAP_Title-Wrapper'
+        }).init();
+
+        // == IMAGES == //
+        const ImageArchive = new create({
+            tag: 'img',
+            source: this.pathArchiveUnpressed,
+            classes: ['ARCHIVE', 'LOCATIONS', 'SELECTED']
+        }).init();
+        const ImageExplorer = new create({
+            tag: 'img',
+            source: this.pathExplorerUnpressed,
+            classes: ['EXPLORER', 'LOCATIONS', 'SELECTED']
+        }).init();
+        const ImageLibrary = new create({
+            tag: 'img',
+            source: this.pathLibraryUnpressed,
+            classes: ['LIBRARY', 'LOCATIONS', 'SELECTED']
+        }).init();
+        const ImageOffice = new create({
+            tag: 'img',
+            source: this.pathOfficeUnpressed,
+            classes: ['OFFICE', 'LOCATIONS', 'SELECTED']
+        }).init()
+        const ImagePlatatsyPusz = new create({
+            tag: 'img',
+            source: this.pathPlatatsyPuszUnpressed,
+            classes: ['TATSY', 'LOCATIONS', 'SELECTED']
+        }).init();
+        const ImageStalk = new create({
+            tag: 'img',
+            source: this.pathStalkUnpressed,
+            classes: ['STALK', 'LOCATIONS', 'SELECTED']
+        }).init();
+        const ImageSunflower = new create({
+            tag: 'img',
+            source: this.pathSunflowerUnpressed,
+            classes: ['SUNFLOWER', 'LOCATIONS', 'SELECTED']
+        }).init();
+        const ImageCupboard = new create({
+            tag: 'img',
+            source: this.pathCupboardUnpressed,
+            classes: ['CUPBOARD', 'LOCATIONS', 'SELECTED']
+        }).init();
+
+        // == LISTENERS == //
+        ImageStalk.addEventListener('click', (MAINSTALK) => {
+            this.LOAD(['STALK', 'MAINPAGES', 'EXTERIORS'])
+        });
+        ImageLibrary.addEventListener('click', (LIBRARY) => {
+            this.LOAD(['LIBRARY', 'MAINPAGES', 'EXTERIORS' ])
+        });
+        ImageOffice.addEventListener('click', (OFFICE) => {
+            this.LOAD(['OFFICE', 'MAINPAGES', 'EXTERIORS' ])
+        });
+        ImageCupboard.addEventListener('click', (CUPBOARD) => {
+            this.LOAD(['CUPBOARD', 'MAINPAGES', 'EXTERIORS' ])
+        });
+        ImageExplorer.addEventListener('click', (event) => {
+            this.LOAD(['OBSERVATORY', 'MAINPAGES', 'EXTERIORS'])
+        })
+
+        // == ATTACHMENTS == //
+        wrapper.append(...[
+            ImageArchive,
+            ImageExplorer,
+            ImageLibrary,
+            ImageOffice,
+            ImagePlatatsyPusz,
+            ImageStalk,
+            ImageSunflower,
+            ImageCupboard
+        ]);
+        return wrapper;
+    }
+    PANEL_FEET() {
+        // == WRAPPERS == //
+        const wrapper = new create({
+            tag: 'div',
+            id: 'MAP_Title-Wrapper'
+        }).init();
+
+        // == ATTACHMENT == //
+        // wrapper.append(...[
+
+        // ]);
+        return wrapper;
+    };
+    async INITIALISE_PAGE() {
+        this.pathArchiveUnpressed = await this.INIT_ROUTE({
+            TAG: "ARCHIVE_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathCupboardUnpressed = await this.INIT_ROUTE({
+            TAG: "CUPBOARD_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathExplorerUnpressed = await this.INIT_ROUTE({
+            TAG: "EXPLORER_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathExplorerPressed = await this.INIT_ROUTE({
+            TAG: "EXPLORER_PRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathLibraryUnpressed = await this.INIT_ROUTE({
+            TAG: "LIBRARY_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathOfficeUnpressed = await this.INIT_ROUTE({
+            TAG: "OFFICE_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathPlatatsyPuszUnpressed = await this.INIT_ROUTE({
+            TAG: "PLATATSYPUSZ_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathStalkUnpressed = await this.INIT_ROUTE({
+            TAG: "STALK_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+        this.pathSunflowerUnpressed = await this.INIT_ROUTE({
+            TAG: "SUNFLOWER_UNPRESSED",
+            SECTION: "IMAGES",
+            SUBSECTION: "MAP",
+            ASSET: 1
+        });
+    };
 }
-function DrawBellyPanel() {
 
-    // == WRAPPERS == //
+const pageMap = new Page_Map();
+await pageMap.INITIALISE_PAGE();
+pageMap.DRAW_PAGE();
 
-    const wrapper = new create({
-        tag: 'div',
-        id: 'MAP_Title-Wrapper'
-    }).init();
-
-    // == BUTTONS == //
-    let mainStalkButton = new create({
-        tag: 'button',
-        id: 'MAP_Button-MainStalk',
-        elementText: 'MAIN STALK'
-    }).init();
-    // BOOK STUFF
-    let libraryButton = new create({
-        tag: 'button',
-        id: 'MAP_Button-Library',
-        elementText: 'LIBRARY'      
-    }).init();
-    // GIZMOS
-    let officeButton = new create({
-        tag: 'button',
-        id: 'MAP_Button-Office',
-        elementText: 'OFFICE'      
-    }).init();
-    // GAMES
-    let cupboardButton = new create({
-        tag: 'button',
-        id: 'MAP_Button-Game',
-        elementText: 'CUPBOARD'      
-    }).init();
-    let sunflowerButton = new create({
-        tag: 'button',
-        id: 'MAP_Button-Sunflower',
-        elementText: 'SUNFLOWER'      
-    }).init();
-
-    // == LISTENERS == //
-
-    mainStalkButton.addEventListener('click', (MAINSTALK) => {
-        stalk.load('START');
-    });
-    libraryButton.addEventListener('click', (LIBRARY) => {
-        stalk.load('LIBRARY');
-    });
-    officeButton.addEventListener('click', (OFFICE) => {
-        stalk.load('OFFICE');
-    });
-    cupboardButton.addEventListener('click', (CUPBOARD) => {
-        stalk.load('CUPBOARD');
-    });
-    sunflowerButton.addEventListener('click', (SUNFLOWER) => {
-        stalk.load('SUNFLOWER');
-    });
-
-    // == ATTACHMENT == //
-    wrapper.append(...[
-        mainStalkButton,
-        libraryButton,
-        officeButton,
-        cupboardButton,
-        sunflowerButton
-    ]);
-    return wrapper;
-};
-function DrawFeetPanel() {
-
-    // == WRAPPERS == //
-
-    const wrapper = new create({
-        tag: 'div',
-        id: 'MAP_Title-Wrapper'
-    }).init();
-
-
-    // == ATTACHMENT == //
-    // wrapper.append(...[
-
-    // ]);
-    return wrapper;
-};
-function DrawMap() {
-    Title.append(DrawTitlePanel());
-    Belly.append(DrawBellyPanel());
-    Feet.append(DrawFeetPanel());
-};
-
-// == RUN PAGE == //
-DrawMap();

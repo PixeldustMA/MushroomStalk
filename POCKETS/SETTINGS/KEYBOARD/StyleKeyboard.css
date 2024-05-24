@@ -1,0 +1,76 @@
+@import "../../../STYLE/BASE/ImageLoader.css";
+@import "../../../STYLE/BASE/RootStyles.css";
+
+body {
+    /* margin: 0px;
+    padding: 0px;
+    /* overflow: hidden; */
+    height: 100%;
+    pointer-events: none 
+}
+.BUTTONS {
+    position: absolute;
+    z-index: 20;
+}
+a {
+    height: 100%;
+    width: 100%;
+    pointer-events: auto;
+}
+section {
+    pointer-events: none
+}
+div {
+    pointer-events: none
+}
+img {
+    pointer-events: auto;
+}
+.BUTTON_USER {
+    transform: translate(45px, 234px);
+}
+    /* .ADDCONTENT {
+        height: 400px !important;
+    }  */
+.BUTTON_USER:hover {
+    color: #111;
+    background: rgba(255, 65, 236, 0.411);
+    border-radius: 30px;
+    box-shadow: 0 0 100px rgb(255, 47, 238);
+}
+.BUTTON_LANGUAGE {
+    position: absolute;
+    transform: translate(49px, -3px);
+}
+.BUTTON_LANGUAGE:hover {
+    color: #111;
+    background: rgba(255, 65, 236, 0.411);
+    border-radius: 30px;
+    box-shadow: 0 0 100px rgb(255, 47, 238);
+}
+.BACK {
+    transform: translate(36px, 445px);
+}
+.BACK:hover {
+    color: #111;
+    background: rgba(255, 65, 236, 0.411);
+    border-radius: 30px;
+    box-shadow: 0 0 100px rgb(255, 47, 238);
+}
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.RESET {
+    transform: translate(400px, 400px);
+}
+.BACKUP {
+    transform: translate(-30px, 430px);
+}

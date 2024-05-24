@@ -1,0 +1,17 @@
+@import "../../../STYLE/BASE/ImageLoader.css";
+@import "../../../STYLE/BASE/RootStyles.css";
+
+/* STYLE SPLASH SCREEN */
+
+/* CATEGORIES */
+body {
+    background-repeat: no-repeat;
+}
+
+.draggable {
+    -webkit-app-region: drag;
+    position: fixed;
+    top: 0%;
+    height: 130px;
+    background-color: black;
+}

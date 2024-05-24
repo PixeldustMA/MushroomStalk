@@ -1,5 +1,5 @@
 import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
-import { create } from "../../../CONSOLE/PLATYPUS/create.js";
+import { create } from "../../../CONSOLE/PLATYPUS/Create.js";
 
 // ================================= //
 //         MUSHROOM STALK            //
@@ -8,82 +8,75 @@ import { create } from "../../../CONSOLE/PLATYPUS/create.js";
 //         Create Office Screen     //
 // ================================= //
 
-// == SECTIONS == //
-const ButtonPanel = document.getElementById("SECTION_Office-Buttons");
+class Page_Office extends Stalk {
 
-// == INSTANCES == //
-const mushroom = new Stalk();
+    constructor() { 
+        super();
+        this.SECTION_Buttons = document.getElementById("SECTION_Office-Buttons");
+    };
 
-// == DRAW PANELS == //
-function drawButtonPanel() {
+    DRAW_PAGE() {
+        this.SECTION_Buttons.append(this.PANEL_BUTTONS());
+    };
+    PANEL_BUTTONS() {
 
-    // == WRAPPERS == //
-    const wrapper = new create({
-        tag: 'div',
-        id: 'WRAPPER_Office-Wrapper'
-    }).init();
+        // == WRAPPERS == //
+        const wrapper = new create({
+            tag: 'div',
+            id: 'WRAPPER_Office-Wrapper'
+        }).init();
 
-    // == BUTTONS == //
-    const buttonJobGenerator = new create({
-        tag: 'button',
-        id: 'BUTTON_Office-JobGenerator',
-        elementText: 'JOB GENERATOR'
-    }).init();
-    const buttonPixelPage = new create({
-        tag: 'button',
-        id: 'BUTTON_Office-PixelPage',
-        elementText: 'PIXEL PAGE'
-    }).init();
-    const buttonTvTracker = new create({
-        tag: 'button',
-        id: 'BUTTON_Office-TVTracker',
-        elementText: 'TV TRACKER'
-    }).init();
-    const buttonMumblies = new create({
-        tag: 'button',
-        id: 'BUTTON_Office-Mumblies',
-        elementText: 'MUMBLIES'
-    }).init();
-    const buttonWheel = new create({
-        tag: 'button',
-        id: 'BUTTON_Office-Wheel',
-        elementText: 'WHEEL'
-    }).init();
+        // == BUTTONS == //
+        // const buttonJobGenerator = new create({
+        //     tag: 'button',
+        //     id: 'BUTTON_Office-JobGenerator',
+		// 	elementText: ['OFFICE', 'BUTTON', 'JOB'],
+        // }).init();
+        // const buttonPixelPage = new create({
+        //     tag: 'button',
+        //     id: 'BUTTON_Office-PixelPage',
+		// 	elementText: ['OFFICE', 'BUTTON', 'PIXEL'],
+        // }).init();
+        // const buttonTvTracker = new create({
+        //     tag: 'button',
+        //     id: 'BUTTON_Office-TVTracker',
+		// 	elementText: ['OFFICE', 'BUTTON', 'TV'],
+        // }).init();
+        // const buttonMumblies = new create({
+        //     tag: 'button',
+        //     id: 'BUTTON_Office-Mumblies',
+		// 	elementText: ['OFFICE', 'BUTTON', 'MUMBLIES'],
+        // }).init();
+        // const buttonWheel = new create({
+        //     tag: 'button',
+        //     id: 'BUTTON_Office-Wheel',
+		// 	elementText: ['OFFICE', 'BUTTON', 'WHEEL'],
+        // }).init();
 
-    buttonJobGenerator.addEventListener('click', (OPEN) => {
-        console.log("JOB GENERATION UNDER CONSTRUCTION");
-        window.location.href = "../../GENERATOR/FrameworkGenerator.html";
-    })
-    buttonPixelPage.addEventListener('click', (OPEN) => {
-        mushroom.load("PIXELPAGE")
-    });
-    buttonTvTracker.addEventListener('click', (OPEN) => {
-        mushroom.load("TVTRACKER")
-    });
-    buttonMumblies.addEventListener('click', (OPEN) => {
-        mushroom.load("MUMBLIES")
-    });   
-    buttonWheel.addEventListener('click', (OPEN) => {
-        mushroom.load("WHEEL")
-    });   
+        // buttonJobGenerator.addEventListener('click', (OPEN) => {
+        // })
+        // buttonPixelPage.addEventListener('click', (OPEN) => {
+        // });
+        // buttonTvTracker.addEventListener('click', (OPEN) => {
+        // });
+        // buttonMumblies.addEventListener('click', (OPEN) => {
+        // });   
+        // buttonWheel.addEventListener('click', (OPEN) => {
+        // });   
 
-    // == ATTACHMENTS == //
-    wrapper.append(...[
-        buttonJobGenerator,
-        buttonPixelPage,
-        buttonTvTracker,
-        buttonMumblies,
-        buttonWheel
-    ])
+        // == ATTACHMENTS == //
+        wrapper.append(...[
+            buttonJobGenerator,
+            buttonPixelPage,
+            buttonTvTracker,
+            buttonMumblies,
+            buttonWheel
+        ])
 
-    return wrapper;
-}
+        return wrapper;
+    }
+};
 
-function drawOffice() {
-    ButtonPanel.append(drawButtonPanel());
-}
+const pageOffice = new Page_Office();
+pageOffice.DRAW_PAGE();
 
-
-// == RUN SCRIPT == //
-
-drawOffice();

@@ -1,0 +1,48 @@
+@import "../../../STYLE/BASE/RootStyles.css";
+@import "../../../STYLE/BASE/ImageLoader.css";
+
+.welcomeInput {
+
+    display: flex;
+
+    position: relative;
+	left: 400px;
+	top: 300px;
+
+    z-index: 1;
+
+}
+button {
+
+    position: relative;
+	left: 300px;
+	top: 350px;
+
+}
+img {
+
+    z-index: 0;
+
+}
+
+/* LAYOUT */
+
+.position {
+
+	position: relative;
+	top: 0px;
+
+}
+
+.EYES {
+	animation-name: eyeballs;
+	animation-duration: 60s;
+	position: absolute;
+	top: 190px;
+	left: 550px;
+}
+
+.NameInput{
+	top: 270px;
+	left: 440px;
+}

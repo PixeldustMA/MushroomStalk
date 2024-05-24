@@ -1,4 +1,5 @@
 import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
+import { create } from "../../../CONSOLE/PLATYPUS/Create.js";
 
 // ================================= //
 //         MUSHROOM STALK            //
@@ -9,12 +10,20 @@ import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
 
 // == ROUTES AND INSTANCES == //
 const MushroomStalk = new Stalk();
-const Route_Start = await MushroomStalk.machete("START");
-
+let frogGifPath = MushroomStalk.INIT_ROUTE({
+	TAG: 'VALIDATING', 
+	SECTION: 'ANIMATIONS', 
+	SUBSECTION: 'FROGGY',
+	ASSET: 1
+}).then((RESULT) => {
+	let imageValidation = new create({
+		tag: 'img',
+		source: RESULT
+	}).init();
+	document.body.appendChild(imageValidation);
+});
 // == RUN SCRIPT == //
-console.log("Script Attached")
 setTimeout(() => {
-	console.log("Timeout")
-	window.location.href = Route_Start;
+	MushroomStalk.LOAD(['TITLE', 'MAINPAGES', 'WELCOME'])
 }, 3000);
 

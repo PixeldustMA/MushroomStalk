@@ -44,23 +44,17 @@ contextBridge.exposeInMainWorld(
             }
         },
 
-        SaveData: (path, details) => ipcRenderer.invoke('saveNote', path, details),
-        SaveToNewFile: (path, details) => ipcRenderer.invoke('createNewFile', path, details),
-        ReadFolder: (folderPath) => ipcRenderer.invoke('folderOperations', folderPath),
-        ReadMessage: (messagePath) => ipcRenderer.invoke('readNote', messagePath),
-        RetrievePath: (pathName) => ipcRenderer.invoke('getPath', pathName),
-        SelectFolder: () => ipcRenderer.invoke('dialog:openDirectory'),
-        RemoveFile: (path) => ipcRenderer.invoke('resetFile'),
-        DrawWindow:(path) => ipcRenderer.send('draw', path),
-        Route: () => ipcRenderer.invoke('fetchRouteMemory'),
-        InsertCharacterKeys: (characterCodes) => ipcRenderer.invoke('characterKeys', characterCodes),
-        Insert: (query, params) => ipcRenderer.invoke('insertData', query, params),
-        SelectAll: (table) => ipcRenderer.invoke('selectAll', table),
-        Select: (tableName, col, dataRequest, val) => ipcRenderer.invoke('selectData', tableName, col, dataRequest, val),
-        UpdateDatabase: (data, column, table, conditionColumn, conditionValue) => ipcRenderer.invoke('updateData', data, column, table, conditionColumn, conditionValue),
+        Quit: () => ipcRenderer.invoke('close'),
+        Smallify: () => ipcRenderer.invoke('small'),
+        Bigify: () => ipcRenderer.invoke('big'),
 
-        Libra: (path) => ipcRenderer.invoke('readSpreadsheet', path),
-        Rattle: (dataObject) => ipcRenderer.invoke('rattle', dataObject)
+        SaveData: (path, details) => ipcRenderer.invoke('saveNote', path, details),
+        Route: (tag) => ipcRenderer.invoke('fetchRouteMemory', tag),
+        ReadMessage: (messagePath) => ipcRenderer.invoke('readNote', messagePath),
+        SelectFolder: () => ipcRenderer.invoke('dialog:openDirectory'),
+        ReadFolder: (folderPath) => ipcRenderer.invoke('folderOperations', folderPath),
+        RetrievePath: (pathName) => ipcRenderer.invoke('getPath', pathName),
+        RemoveFile: (path) => ipcRenderer.invoke('removeFile', path)
     }
 );
 

@@ -1,15 +1,6 @@
-// require('update-electron-app')({
-// 	repo: 'PixeldustMA/MushroomStalk',
-// 	updateInterval: '1 hour',
-// })
-
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path  = require('path');
 const fs = require('fs');
-
-const sqlite3 = require('sqlite3');
-const XLSX = require('xlsx');
-var { PythonShell } = require('python-shell');
 
 // ================================= //
 //         MUSHROOM STALK            //
@@ -19,25 +10,14 @@ var { PythonShell } = require('python-shell');
 // ================================= //
 
 // == APP VARIABLES == //
+
 let mainWindow;
-const DatabasePath = './DATABASE/ARCHIVE/Archive.sqlite';
 const PreloadPath = 'Access.js';
-const SplashScreenPath = './POCKETS/SPLASH/FrameworkSplash.html'
-const QueriesPath = "/QueryCodes.json";
-const spreadSheetPath = 'Python/Spreadsheets.py'
-const RouteMemoryPath = "../../REMEMBER/MEMORY/RouteMemory.json"
-
-// == PYTHON SHELL VARIABLES == //
-let PythonShellOptions = {
-	mode: 'text',
-	pythonOptions: ['-u'],
-	args: [] 
-};
-
-// == CREATE DATABASE == //
-const ArchiveDatabase = new sqlite3.Database(DatabasePath);
-const QUERYFile = fs.readFileSync(path.join(__dirname + QueriesPath));
-const QUERY = JSON.parse(QUERYFile);
+const SplashScreenPath = './POCKETS/WELCOME/SPLASH/FrameworkSplash.html'
+const routePath_Base = "../../CONSOLE/ROUTES/Memory.json";
+const routePath_Planets = "../../CONSOLE/ROUTES/Explorer.json";
+const routePath_Users = "../../CONSOLE/ROUTES/Users.json";
+const routePath_Assets = "../../CONSOLE/ROUTES/Assets.json"
 
 // == STRUCTURAL FUNCTIONS == //
 /**
@@ -45,16 +25,22 @@ const QUERY = JSON.parse(QUERYFile);
  */
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 1000,
-        height: 800,
+        width: 1200,
+        height: 820,
+        frame: false,
+        titleBarStyle: 'hidden',
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
         preload: path.join(__dirname, PreloadPath)
         }
     });
+    win.setBounds({
+        x: 0,
+        y: 0
+    });
     win.loadFile(SplashScreenPath);
-    win.setIcon("./ASSETS/ICON/MushroomStalk.ico")
+    win.setIcon("./ASSETS/ICONS/MushroomStalk.ico")
     win.webContents.openDevTools();
     mainWindow = win;
 }
@@ -75,14 +61,15 @@ app.on('window-all-closed', () => {
 });
 
 // == HANDLERS == // 
-
-ipcMain.handle('saveNote', WriteMessageToFile);
-ipcMain.handle('createNewFile', createFile);
-ipcMain.handle('folderOperations', FolderProcessing);
-ipcMain.handle('readNote', ReadMessageFromFile);
-ipcMain.handle('resetFile', deleteAppFile);
+ipcMain.handle('close', QuitApplication);
+ipcMain.handle('small', MinimiseApplication);
+ipcMain.handle('big', MaximiseApplication);
+ipcMain.handle('saveNote', WriteDataToFile);
+ipcMain.handle('readNote', ReadDataFromFile);
 ipcMain.handle('getPath', getFormattedPath);
-ipcMain.handle('fetchRouteMemory', RouteMemory)
+ipcMain.handle('fetchRouteMemory', RouteMemory);
+ipcMain.handle('removeFile', DeleteFile);
+ipcMain.handle('folderOperations', FolderProcessing);
 ipcMain.handle('dialog:openDirectory',  async () => {
     const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
         properties: ['openDirectory']
@@ -91,22 +78,28 @@ ipcMain.handle('dialog:openDirectory',  async () => {
         return
     } else {
         return filePaths[0]
-    }
+    };
 });
-ipcMain.on('draw', drawSquare);
-ipcMain.handle('characterKeys', insertCharacterKeys);
-ipcMain.handle('insertData', ArchiveInsert);
-ipcMain.handle('selectAll', SelectTable);
-ipcMain.handle('selectData', searchTable);
-ipcMain.handle('updateData', updateDatabaseEntry)
-ipcMain.handle('readSpreadsheet', ReadLibra);
-ipcMain.handle('rattle', RunRacoon);
+
+// == WINDOWS == //
+function QuitApplication(event) {
+    let windowActive = BrowserWindow.getFocusedWindow();
+    windowActive.close();
+};
+function MaximiseApplication(event) {
+    let windowActive = BrowserWindow.getFocusedWindow();
+    windowActive.isMaximized() ? windowActive.unmaximize() : windowActive.maximize()
+};
+function MinimiseApplication(event) {
+    let windowActive = BrowserWindow.getFocusedWindow();
+    windowActive.minimize();
+};
 
 // == WRITE == //
 /**
  * WRITE TO FILE
  */
-function WriteMessageToFile(event, path, details) {
+function WriteDataToFile(event, path, details) {
 
     console.log("MESSAGE WRITING FUNCTION ACTIVATED...");
     console.log("PATH ACCESSED IS...");
@@ -117,78 +110,36 @@ function WriteMessageToFile(event, path, details) {
         if (err) 
             console.error(err);
         else 
-            console.log('Message Successfully Written to File');
+            console.log('Data Successfully Written to File');
     });
-};
-/**
-* CREATE A NEW FILE AND WRITE TO IT
-*/
-async function createFile(event, path, details) {
-
-    console.log("FILE CREATION FUNCTION ACTIVATED...");
-    console.log("PATH ACCESSED IS...");
-    console.log(path);
-
-    const newdetails = JSON.stringify(details, null, 4);
-    fs.writeFile(path, newdetails, function (err) {
-        if (err) throw err;
-            console.log('Saved!');
-    }); 
 };
 
 // == READ == //
 /**
- * VIEW CONTENTS OF A FOLDER
- */
-function FolderProcessing(event, folderPath) {
-    console.log("FOLDER READING FUNCTION ACTIVATED...");
-    console.log("FOLDER PATH ACCESSED IS...");
-    console.log(folderPath)
-    return fs.readdirSync(folderPath);
-    }
-/**
 * READ FROM FILE
 */
-function ReadMessageFromFile(event, MessagePath) {
+function ReadDataFromFile(event, filePath) {
 
     console.log("READING FUNCTION ACTIVATED...");
     console.log("PATH ACCESSED IS...");
-    console.log(MessagePath)
+    console.log(filePath)
 
-    const Messages = fs.readFileSync(MessagePath, 'utf8', function(err, data){
+    const Messages = fs.readFileSync(filePath, 'utf8', function(err, data){
         let formattedData = JSON.parse(data);
         return formattedData;
     })
     return Messages;
 };
 
-function deleteAppFile(event, path) {
-        fs.stat(path, function (err, stats) {
-            console.log(stats);
-            if (err) {return console.error(err);}
+// == FOLDERS == //
+function FolderProcessing(event, folderPath) {
+    console.log("FOLDER READING FUNCTION ACTIVATED...");
+    console.log("FOLDER PATH ACCESSED IS...");
+    console.log(folderPath)
+    return fs.readdirSync(folderPath);
+};
 
-            fs.unlink('path',function(err){
-                if(err) return console.log(err);
-                console.log('file deleted successfully');
-            });  
-        });
-}
-/**
- * GET THE POSSIBLE ROUTES
- * @returns ROUTE OBJECT
- */
-function RouteMemory(event) {
-
-    console.log("ACCESSING ROUTE MEMORY...");
-
-    const path = getFormattedPath(event, RouteMemoryPath);
-    const RouteObject = fs.readFileSync(path, 'utf8', function(err, data){
-        let formattedData = JSON.parse(data);
-        return formattedData;
-    })
-    return RouteObject;
-
-}
+// == FILE MANIPULATION == //
 // == PATHS == //
 /**
  * CREATE A FORMATTED PATH FROM A STRING
@@ -199,6 +150,7 @@ function RouteMemory(event) {
 function getFormattedPath(event, relative) {
 
     console.log("CREATING A PATH...");
+    console.log(relative);
 
     let relativeArray = relative.split("/");
     let bucket = [__dirname];
@@ -207,272 +159,49 @@ function getFormattedPath(event, relative) {
             }
     let pathResult = path.join(...bucket);
 
-    console.log(pathResult)
+    console.log("PATH IS...");
+    console.log(pathResult);
+
     return pathResult;
 };
+function RouteMemory(event, tag) {
 
-// == WINDOWS == //
-/**
- * DRAW A NEW WINDOW
- * @param {*} event 
- * @param {string} path 
- */
-function drawSquare(event, path) {
-    childWindow = new BrowserWindow({
-        width: 1000,
-        height: 1000,
+    console.log('ACCESSING ROUTE MEMORY...');
+    console.log('TYPE REQUESTED IS...');
+    console.log(tag);
 
-        parent: mainWindow,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true
-        },
-    })
-        childWindow.loadFile(path)
-        childWindow.once("ready-to-show", () => {
-            childWindow.show();
-        });
-}
-
-// == DATABASE == //
-/**
- * CREATE A NEW CHARACTER RECORD IN THE DATABASE
- * @param {*} event 
- * @param {*string} request 
- * @param {*string} tag 
- */
-async function insertCharacterKeys(event, request, tag) {
-
-    console.log("INSERTING NEW CHARACTER INTO ARCHIVE");
-
-    ArchiveDatabase.serialize(() => {
-        var dataArray = [];
-        dataArray.push(
-            request.MUSHROOM, 
-            request.ACTIVITY, 
-            request.ANCESTRY,
-            request.EDUCATION, 
-            request.EMPLOYMENT, 
-            request.HALEX,
-            request.ORGANISATION, 
-            request.PERSONAL, 
-            request.LOCATION, 
-            request.PET, 
-            request.RELATIONSHIP
-        );
-
-    var sqlString = QUERY.QUERIES.INSERT + QUERY.BITS.SPACE + QUERY.MUSHROOMCODES.NAME + QUERY.BITS.OPENPARENTHESES
-                + QUERY.MUSHROOMCODES.MUSHROOM + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.ACTIVITY + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.ANCESTRY + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.EDUCATION + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.EMPLOYMENT + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.HALEX + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.ORGANISATION + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.PERSONAL + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.LOCATION + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.PET + QUERY.BITS.COMMA
-                + QUERY.MUSHROOMCODES.RELATIONSHIP + QUERY.BITS.SPACE
-                + QUERY.BITS.CLOSEPARENTHESES
-                + QUERY.QUERIES.VALUES
-                + QUERY.QUESTION.TEN
-
-    console.log("THE QUERY BEING RUN IS:");
-    console.log(sqlString);
-
-    ArchiveDatabase.serialize(() => {
-        var statement = ArchiveDatabase.prepare(sqlString);
-        statement.run(dataArray);
-        statement.finalize();
-        });
-    });
-};
-/**
- * INSERT DATA INTO THE DATABASE
- * @param {*} event 
- * @param {*Object} queryConfig 
- * @param {*array} params 
- */
-async function ArchiveInsert(event, queryConfig, dataArray) {
-
-    console.log("CONFIGURATION FOR THE CURRENT INSERT IS:")
-    console.log(queryConfig); 
-    console.log("DATA BEING INSERTED IS:")
-    console.log(dataArray);
-
-    const tableOptions = {
-        Tag: "MUSHROOMTAGS",
-        SectionCode: "MUSHROOMAREAS",
-        Names: "PERSONALNAMES",
-        Birth: "PERSONALBIRTH",
-        ActivityMisc: "ACTIVITYMISC"
-    };
-    const tableName = tableOptions[queryConfig.Type];
-
-    let colString = "";
-    queryConfig.Columns.forEach(cols => {
-        colString += QUERY[tableName][cols] + QUERY.BITS.COMMA;
-    });
-    let sqlColumns = colString.slice(0, -2);
-
-    let sqlString =  QUERY.QUERIES.INSERT + QUERY.BITS.SPACE + QUERY[tableName]["NAME"] + QUERY.BITS.OPENPARENTHESES
-                + sqlColumns + QUERY.BITS.CLOSEPARENTHESES
-                + QUERY.QUERIES.VALUES
-                + QUERY.QUESTION[QUERY[tableName]["NUMBER"]];
-
-    console.log("QUERY STRING BEING USED IS:")
-    console.log(sqlString);
-
-    ArchiveDatabase.serialize(() => {
-        var statement = ArchiveDatabase.prepare(sqlString);
-            statement.run(dataArray);
-            statement.finalize();
-    });
-};
-/**
- * GET ALL THE DATA FROM A TABLE
- * @param {*} event 
- * @param {string} tableName 
- * @returns {Array} Table Contents
- */
-async function SelectTable(event, tableName) {
-
-    console.log("SEARCHING FOR DATA FROM TABLE:")
-    console.log(tableName); 
-
-    let sql = `SELECT * FROM ${tableName}`
-    return new Promise((resolve) => {
-        ArchiveDatabase.all(
-
-            sql,[], (err, rows) => {
-                
-                if (err) {
-                    throw err;
-                }
-                resolve(rows);
-            }
-        )
-    })
-}
-async function searchTable(event, tableName, col, dataRequest, val) {
-    
-    console.log("SEARCHING IN THE FOLLOWING TABLE: ");
-    console.log(tableName);
-    console.log("FOR THE FOLLOWING DATA: ")
-    console.log(dataRequest);
-
-    let sql = `SELECT ${col} 
-                FROM ${tableName} 
-                WHERE ${val} = ?`
-    return new Promise((resolve) => {
-        ArchiveDatabase.all(
-
-            sql,[dataRequest], (err, rows) => {
-                
-                console.log(rows)
-                if (err) {
-                    throw err;
-                }
-                resolve(rows);
-            }
-        )
-    })
-}
-async function updateDatabaseEntry(event, data, column, table, conditionColumn, conditionValue) {
-
-    let sql = `UPDATE ${table}
-                SET ${column} = ?
-                WHERE ${conditionColumn} = ?`
-    ArchiveDatabase.serialize(() => {
-        var statement = ArchiveDatabase.prepare(sql);
-        statement.run(data, conditionValue);
-        statement.finalize();
-    });
-
-}
-// == SPREADSHEETS == // 
-/**
- * READ A SPREADSHEET
- * @param {*} event 
- * @param {*} path 
- * @returns SPREADSHEET OBJECT
- */
-function ReadLibra(event, path) {
-
-    console.log("READING A SPREADSHEET");
-    console.log("PATH ACCESSED...");
-    console.log(path);
-
-    htmlVersion = ConvertLibraToHTML(path);
-    jsonVersion = ConvertLibraToJson(path);
-
-    spreadsheetData = {
-        HTML: htmlVersion,
-        JSON: jsonVersion
+    let rootPath = "";
+    switch (tag) {
+        case "BASE":
+            rootPath = getFormattedPath(event, routePath_Base);
+            break;
+        case "PLANETS":
+            rootPath = getFormattedPath(event, routePath_Planets);
+            break;
+        case "USERS":
+            rootPath = getFormattedPath(event, routePath_Users);
+            break;
+        case "ASSETS":
+            rootPath = getFormattedPath(event, routePath_Assets);
+            break;
+        default:
+            break;
     };
 
-    return spreadsheetData;
-};
-/**
- * CONVERT SPREADSHEET DATA TO USABLE HTML
- * @param {String} path 
- * @returns 
- */
-function ConvertLibraToHTML(path) {
-
-    let workbook = XLSX.readFile(path);
-    let sheet = workbook.Sheets["RECORD"];
-    var sheet_to_html = XLSX.utils.sheet_to_html(sheet)
-    return sheet_to_html;
-
-};
-/**
- * CONVERT A SPREADSHEET OBJECT INTO A TIDY JSON OBJECT
- * @param {String} path 
- * @returns Object
- */
-function ConvertLibraToJson(path) {
-
-    var workbook = XLSX.readFile(path);
-    var sheet = workbook.Sheets["RECORD"];
-    var proccessed = XLSX.utils.sheet_to_json(sheet, {header: 1});
-    let last_year = 0;
-
-    proccessed.forEach(r => last_year = r[0] = (r[0] != null ? r[0] : last_year));
-    return proccessed;
-
-}
-/**
- * ACCESS THE RACCOON APP TO WRITE CHAPTERS TO FILES
- * @param {*} event 
- * @param {*} details
- */
-function RunRacoon(event, details) {
-
-    console.log("RACCOON APP ACTIVATED...");
-    console.log("PASSING THE FOOLLOWING DETAILS...");
-    console.log(details)
-
-    const newdetails = JSON.stringify(details, null, 4);
-    var pyshell = new PythonShell(spreadSheetPath);
-
-    pyshell.send(newdetails);
-    pyshell.on('message', function (message) {
-        let racoonMessage = JSON.parse(message);
-        console.log("RACCOON APP SAYS");
-        console.log(racoonMessage);
-
-        if (racoonMessage === "DUPLICATE CHAPTER FOUND") {
-            return "Check works!!!"
-        };
+    const RouteObject = fs.readFileSync(rootPath, 'utf8', function(err, data) {
+        let formattedData = JSON.parse(data);
+        return formattedData;
     });
-
-    pyshell.end(function (err, code, signal) {
-        console.log("Connection to Raccoon App is Closed")
-        if (err) throw err;
-            console.log(code + ' ' + signal);
-    });
-
+    return RouteObject;
 };
-
+function DeleteFile(event, path) {
+    console.log(path)
+    console.log("DELETING")
+        fs.stat(path, function (err, stats) {
+            if (err) {return console.error(err);}
+            fs.unlink(path, function(err){
+                if(err) return console.log(err);
+                console.log('file deleted successfully');
+            });  
+        });
+};

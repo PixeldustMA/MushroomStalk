@@ -1,5 +1,5 @@
 import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
-import { create } from "../../../CONSOLE/PLATYPUS/create.js";
+import { create } from "../../../CONSOLE/PLATYPUS/Create.js";
 
 // ================================= //
 //         MUSHROOM STALK            //
@@ -8,43 +8,55 @@ import { create } from "../../../CONSOLE/PLATYPUS/create.js";
 //         Create Cupboard Screen     //
 // ================================= //
 
-// == SECTIONS == //
+class Page_Cupboard extends Stalk {
 
-const ButtonPanel = document.getElementById("SECTION_Cupboard-Buttons");
-const mushroom = new Stalk();
+    constructor() { 
+        super();
+        this.SECTION_Buttons = document.getElementById("SECTION_Cupboard-Buttons");
 
-function drawButtonPanel() {
-    
+        this.pathPickleBox = "";
+    };
 
-    // == WRAPPERS == //
-    const wrapper = new create({
-        tag: 'div',
-        id: 'WRAPPER_Cupboard-Wrapper'
-    }).init();
+    DRAW_PAGE() {
+        this.SECTION_Buttons.append(this.PANEL_BUTTONS());
+    };
+    PANEL_BUTTONS() {
 
-    // == BUTTONS == //
-    const buttonPickle = new create({
-        tag: 'button',
-        id: 'BUTTON_Cupboard-Pickle',
-        elementText: 'PICKLE'
-    }).init();
+        // == WRAPPERS == //
+        const wrapper = new create({
+            tag: 'div',
+            id: 'WRAPPER_Cupboard-Wrapper'
+        }).init();
 
-    buttonPickle.addEventListener('click', (OPEN) => {
-        mushroom.load("PICKLE")
-    })
-    // == ATTACHMENTS == //
-    wrapper.append(...[
-        buttonPickle
-    ])
+        // == IMAGES == //
+        const imagePickle = new create({
+            tag: 'img',
+            id: 'IMAGE_Cupboard-Pickle',
+            source: this.pathPickleBox,
+            classes: ['PICKLE']
+        }).init();
 
-    return wrapper;
-}
+        imagePickle.addEventListener('click', (OPEN) => {
 
-function drawCupboard() {
-    ButtonPanel.append(drawButtonPanel());
-}
+        });
 
+        // == ATTACHMENTS == //
+        wrapper.append(...[
+            imagePickle
+        ]);
+        return wrapper;
+    };
+    async INITIALISE_PAGE() {
 
-// == RUN SCRIPT == //
+        this.pathPickleBox = await this.INIT_ROUTE({
+            TAG: 'PICKLE',
+            SECTION: 'IMAGES',
+            SUBSECTION: 'CUPBOARD',
+            ASSET: 1
+        })
+    }
+};
 
-drawCupboard();
+const pageCupboard = new Page_Cupboard();
+await pageCupboard.INITIALISE_PAGE();
+pageCupboard.DRAW_PAGE();

@@ -1,1 +1,31 @@
-@import "../../../SETTINGS/STYLES/ImageLoader.css"
+@import "../../../STYLE/BASE/ImageLoader.css";
+
+
+body {
+    padding: 0%;
+    margin: 0%;
+}
+.draggable {
+    -webkit-app-region: drag;
+    position: relative;
+    top: 0%;
+    height: 60px;
+    width: 100%;
+    background-color: rgb(66, 139, 166);
+    border-color: rgb(148, 204, 214);
+    border-style: outset;
+    padding: 0%;
+    margin: 0%;
+}
+
+.IMAGE_BUTTON {
+    position: absolute;
+}
+.NO {
+    top: 70px;
+    right:0px;
+}
+.YES {
+    left: 28px;
+    bottom: 380px;
+}

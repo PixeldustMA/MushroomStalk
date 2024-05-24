@@ -1,5 +1,5 @@
 import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
-import { create } from "../../../CONSOLE/PLATYPUS/create.js";
+import { create } from "../../../CONSOLE/PLATYPUS/Create.js";
 
 // ================================= //
 //         MUSHROOM STALK            //
@@ -8,64 +8,66 @@ import { create } from "../../../CONSOLE/PLATYPUS/create.js";
 //         Create Library Screen     //
 // ================================= //
 
-// == SECTIONS == //
+class Page_Library extends Stalk {
 
-const ButtonPanel = document.getElementById("SECTION_Library-Buttons");
+    constructor() { 
+        super();
+        this.SECTION_Buttons = document.getElementById("SECTION_Library-Buttons");;
+    };
 
-// == INSTANCES == //
-const mushroom = new Stalk();
+    DRAW_PAGE() {
+        this.SECTION_Buttons.append(this.PANEL_BUTTONS());
+    };
+    PANEL_BUTTONS() {
+        // == WRAPPERS == //
+        const wrapper = new create({
+            tag: 'div',
+            id: 'WRAPPER_Library-Wrapper'
+        }).init();
 
-// == DRAW PANELS == //
-function drawButtonPanel() {
+        // == BUTTONS == //
+        const buttonHotAirBalloon = new create({
+            tag: 'button',
+            id: 'BUTTON_Library-HotAirBalloon',
+			elementText: ['LIBRARY', 'BUTTON', 'BALLOON'],
+        }).init();
+        const buttonSquirrel = new create({
+            tag: 'button',
+            id: 'BUTTON_Library-Squirrel',
+			elementText: ['LIBRARY', 'BUTTON', 'SQUIRREL'],
+        }).init();
+        const buttonArchive = new create({
+            tag: 'button',
+            id: 'BUTTON_Library-Archive',
+            elementText: ['LIBRARY', 'BUTTON', 'ARCHIVE'],
+        }).init();
+        const buttonExplorer = new create({
+            tag: 'button',
+            id: 'BUTTON_Library-Archive',
+			elementText: ['LIBRARY', 'BUTTON', 'EXPLORER'],
+        }).init();
 
-    // == WRAPPERS == //
-    const wrapper = new create({
-        tag: 'div',
-        id: 'WRAPPER_Library-Wrapper'
-    }).init();
+        buttonHotAirBalloon.addEventListener('click', (OPEN) => {
+        });
+        buttonSquirrel.addEventListener('click', (OPEN) => {
+        });
+        buttonArchive.addEventListener('click', (OPEN) => {
+        });
+        buttonExplorer.addEventListener('click', (OPEN) => {
+        });
 
-    // == BUTTONS == //
-    const buttonHotAirBalloon = new create({
-        tag: 'button',
-        id: 'BUTTON_Library-HotAirBalloon',
-        elementText: 'HOT AIR BALLOON'
-    }).init();
-    const buttonSquirrel = new create({
-        tag: 'button',
-        id: 'BUTTON_Library-Squirrel',
-        elementText: 'SQUIRREL'
-    }).init();
-    const buttonArchive = new create({
-        tag: 'button',
-        id: 'BUTTON_Library-Archive',
-        elementText: 'ARCHIVE'
-    }).init();
+        // == ATTACHMENTS == //
+        wrapper.append(...[
+            buttonHotAirBalloon,
+            buttonSquirrel,
+            buttonArchive,
+            buttonExplorer
+        ])
 
-    buttonHotAirBalloon.addEventListener('click', (OPEN) => {
-        mushroom.load("BALLOONS");
-    });
-    buttonSquirrel.addEventListener('click', (OPEN) => {
-        mushroom.load("SQUIRREL");
-    });
-    buttonArchive.addEventListener('click', (OPEN) => {
-        mushroom.load("ARCHIVE");
-    });
+        return wrapper;
+    }
+};
 
-    // == ATTACHMENTS == //
-    wrapper.append(...[
-        buttonHotAirBalloon,
-        buttonSquirrel,
-        buttonArchive
-    ])
+const pageLibrary = new Page_Library();
+pageLibrary.DRAW_PAGE();
 
-    return wrapper;
-}
-
-function drawLibrary() {
-    ButtonPanel.append(drawButtonPanel());
-}
-
-
-// == RUN SCRIPT == //
-
-drawLibrary();

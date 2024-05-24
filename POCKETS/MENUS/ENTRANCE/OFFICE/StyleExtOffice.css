@@ -1,0 +1,13 @@
+@import "../../../../STYLE/BASE/RootStyles.css";
+@import "../../../../STYLE/BASE/ImageLoader.css";
+
+.SIGN {
+    position: absolute;
+    transform: translate(30px, 478px);
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}

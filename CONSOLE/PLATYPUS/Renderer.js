@@ -1,5 +1,3 @@
-import { DatabaseDuck } from "./DatabaseRenderer.js";
-
 // ================================= //
 //         MUSHROOM STALK            //
 // ================================= //
@@ -7,12 +5,10 @@ import { DatabaseDuck } from "./DatabaseRenderer.js";
 //        Access Renderer            //
 // ================================= //
 
-class Renderer extends DatabaseDuck{
+class Renderer{
 
-    constructor(
-        path = "", data = {}
-        ) {
-            super();
+    constructor ( path = "", data = {}) 
+    {
         this.path = path;
         this.data = data;
     }
@@ -21,59 +17,52 @@ class Renderer extends DatabaseDuck{
      * SAVE DATA TO GIVEN FILE
      * @returns ACTION COMPLETE
      */
-    async Save() {
+    async SAVE() {
         return await window.ipcRender.SaveData(this.path, this.data);
-    }
-    /**
-     * CREATE A NEW FILE AND SAVE DATA
-     * @returns ACTION COMPLETE
-     */
-    async NewFile() {
-        return await window.ipcRender.SaveToNewFile(this.path, this.data);
-    }
-    /**
-     * ACCESS CONTENTS OF A FOLDER
-     * @param {string} folder 
-     * @returns FOLDER DETAILS
-     */
-    async AccessFolder() {
-        return await window.ipcRender.ReadFolder(this.path);
     }
     /**
      * READ A GIVEN FILE
      * @returns FILE DETAILS
      */
-    async Read() {
+    async READ() {
         const file = await window.ipcRender.ReadMessage(this.path);
         return JSON.parse(file)
-    }
+    };
     /**
      * FORMAT A PATH
      * @returns PATH
      */
-    async fetchPath() {
+    async FETCH_PATH() {
         return await window.ipcRender.RetrievePath(this.path);
-    }
-    /**
-     * CREATE A NEW WINDOW
-     * @returns BROWSWER WINDOW
-     */
-    async drawWindow() {
-        return await window.ipcRender.DrawWindow(this.path);
     }
     /**
      * GET ALL THE AVAILABLE ROUTES FOR THE APPLICATION
      * @returns OBJECT
      */
-    async availableRoutes() {
-        return await window.ipcRender.Route();
+    async AVAILABLE_ROUTES(tag) {
+        return await window.ipcRender.Route(tag);
+    };
+    async FOLDER_SELECT() {
+        return await window.ipcRender.SelectFolder();
+    };
+    async READ_FOLDERS() {
+        return await window.ipcRender.ReadFolder(this.path);
     }
-    /**
-     * DELETE FILE
-     * @returns 
-     */
-    async removeFile() {
+    async CLOSE() {
+        return await window.ipcRender.Quit();
+    };
+    async SMALL() {
+        return await window.ipcRender.Smallify();
+    };
+    async BIG() {
+        return await window.ipcRender.Bigify();
+    }
+    async REMOVE() {
         return await window.ipcRender.RemoveFile(this.path);
+    }
+    async READ_BACKUP_FILE(requestedPath) {
+        this.path = requestedPath;
+        return await this.READ();
     }
 }
 

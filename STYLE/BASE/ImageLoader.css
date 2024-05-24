@@ -1,0 +1,99 @@
+
+.MapBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Map.png");
+}
+.SplashBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Splash\ Screen.png");
+    background-repeat: no-repeat;
+    background-size: 1250px 900px;
+}
+.SplashBackgroundEnd {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Splash\ Screen\ Final.png");
+    background-repeat: no-repeat;
+    background-size: 1250px 900px;
+}
+.SplashBackgroundTransition {
+    background: url("../../ASSETS/ANIMATIONS/MushroomTitle.gif");
+    background-repeat: no-repeat;
+    background-size: 1250px 900px;
+}
+.WizardBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Wizard.png");
+    background-repeat: no-repeat;
+    background-size: 1250px 749px;
+}
+.OnboardingBackground {
+	background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Onboarding.gif");
+}
+.ValidationBackground {
+    background: url("../../ASSETS/ANIMATIONS/Validating.gif");
+}
+.StartScreenBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Mushroom.png");
+}
+.welcomeBackground {
+    background:  url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Welcome.png");
+}
+.TitleBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Title\ Screen.png");
+}
+.SettingsBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Settings.png");
+}
+.DisplayBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Settings Display.png");
+}
+.KeyboardBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Settings Keyboard.png");
+}
+.LanguageBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Settings Language.png");
+}
+.UserBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Settings User.png");
+}
+.LeverBackground {
+    background: url("../../ASSETS/ANIMATIONS/Settings Lever Pulled.gif");
+}
+.LeverReversedBackground {
+    background: url("../../ASSETS/ANIMATIONS/Settings Lever Pulled Reverse.gif");
+}
+.KeyboardClose {
+    background: url("../../ASSETS/ANIMATIONS/Settings Keyboard Closes.gif");
+}
+.KeyboardLanguge {
+    background: url("../../ASSETS/ANIMATIONS/Settings Language Panel.gif");
+}
+.KeyboardLangugeReverse {
+    background: url("../../ASSETS/ANIMATIONS/Settings Language Panel Reversed.gif");
+}
+
+/* EXTERIORS */
+.ExtCupboardBody {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Exterior\ Cupboard.png");
+}
+.ExtLibrary {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Exterior\ Library.png");
+}
+.ExtObservatory {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Exterior\ Observatory.png");
+}
+.ExtOffice {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Exterior Office.png");
+}
+.ExtStalk {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Exterior Stalk.png");
+}
+/* MENUS */
+.CupboardBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Cupboard.png");
+}
+.LibraryBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Library.png");
+}
+.ObservatoryBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Observatory.png");
+}
+.OfficeBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Office.png");
+}

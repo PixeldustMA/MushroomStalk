@@ -1,0 +1,78 @@
+{
+    "PICKLE": {
+        "NAME": "Pickle",
+        "HEADER": "GAMES"
+    }, 
+    "MUMBLIES": {
+        "NAME": "Mumblies",
+        "HEADER": "GIZMO"
+    },
+    "TVTRACKER": {
+        "NAME": "TvTracker",
+        "HEADER": "GIZMO"
+    },
+    "PIXELPAGE": {
+        "NAME": "PixelPage",
+        "HEADER": "GIZMO"
+    },					
+    "SKETCH":{
+        "NAME": "Sketch",
+        "HEADER": "GAMES"
+    },  
+    "ARCHIVE":{
+        "NAME": "Archive", 
+        "HEADER": "BOOK"
+    },  
+    "BALLOONS":{
+        "NAME": "Balloons",
+        "HEADER": "BOOK"
+    },   
+    "SQUIRREL":{
+        "NAME": "Squirrel",
+        "HEADER": "BOOK"
+    },  
+	"EXPLORER_MENU":{
+        "NAME": "Explorer", 
+        "HEADER": "BOOK"
+    },  
+    "FIREFLIES":{
+        "NAME": "Fireflies",
+        "HEADER": "BOOK"
+    },   
+    "BUNDLER":{
+        "NAME": "Bundler", 
+        "HEADER": "BOOK"
+    },  
+    "FRIDGE":{
+        "NAME": "Fridge",
+        "HEADER": "GIZMO"
+    },
+    "SCURRY":{
+        "NAME": "SCURRY",
+        "HEADER": "NONE"
+    },
+    "MAP": {
+        "NAME": "MAP",
+        "HEADER": "NONE"       
+    },
+    "BOOK": {
+        "NAME": "BOOK",
+        "HEADER": "NONE"       
+    },
+    "GIZMO": {
+        "NAME": "GIZMO",
+        "HEADER": "NONE"       
+    },
+    "SPOONWHEEL": {
+        "NAME": "Spoon Wheel",
+        "HEADER": "GIZMO"       
+    },
+    "SUNFLOWER": {
+        "NAME": "SUNFLOWER",
+        "HEADER": "NONE"       
+    },
+    "GAMES": {
+        "NAME": "GAMES",
+        "HEADER": "NONE"       
+    }
+}

@@ -1,5 +1,10 @@
-@import "../../../SETTINGS/STYLES/ImageLoader.css";
-@import "../../../SETTINGS/STYLES/RootStyles.css";
+@import "../../../STYLE/BASE/ImageLoader.css";
+@import "../../../STYLE/BASE/RootStyles.css";
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
 /* INPUTS */
 
 .INPUT-Layout {
@@ -25,6 +30,7 @@
 
 button {
 	height: 20px;
+	color: black;
 }
 .BUTTON-FilePath {
 	background-color: aqua;
@@ -39,13 +45,17 @@ button {
 	width: 100px;
 	position: relative;
 	left: 150px;
-	top: 20px;
+	top: 50px;
 	transform: rotate(10deg);
 }
 .BUTTON-Apply:hover {
 	background-color: rgb(248, 62, 25);
 }
-
+.BACK {
+	color: white;
+	height: 50px;
+	position: relative;
+}
 /* SECTIONS */
 
 #Onboarding_Section_Details{

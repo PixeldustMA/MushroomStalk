@@ -1,0 +1,165 @@
+{
+    "USEFUL": {
+        "USER": {
+            "USERNAME": ["USERNAME"],
+            "PASSWORD": ["PASSWORD"],
+            "PATH": ["PATH"],
+            "STARS": ["****"]
+        },
+        "GENERAL": {
+            "BACK": [
+                "RETURN",
+                "SCURRY",
+                "BACK"
+            ],
+            "MAP": [
+                "MAP"
+            ]
+        }
+    },
+    "AREAS": {
+        "MENUS": {
+            "STALK": [
+                "STALK"
+            ],
+            "CUPBOARD": [
+                "CUPBOARD"
+            ], 
+            "OFFICE": [
+                "OFFICE"
+            ],
+            "LIBRARY": [
+                "LIBRARY"
+            ]
+        },
+        "SUNFLOWER": {
+            "SUNFLOWER": [
+                "SUNFLOWER"
+            ]
+        }
+    },
+    "FROG": {
+        "SWAMP": {
+            "FROG_QUESTION": [
+                "PRESENT YOUR PAPERS STRANGER",
+                "IDENTIFY YOURSELF",
+                "PAPERS",
+                "I DONT KNOW YOU, WHO ARE YOU"
+            ],
+            "RECOGNISE": [
+                "HAVE YOU BEEN HERE BEFORE STRANGER?"
+            ]
+        }
+    },
+    "ONBOARDING": {
+        "BUTTONS": {
+            "APPLY": ["APPLY FOR ENTRY"],
+            "BACK": ["BACK AWAY"]
+        },
+        "LABELS": {
+            "MESSAGE_PATH": ["Save Path For Custom Welcome Messages"],
+            "LOCATION": ["MESSAGE BOX"],
+            "BUNDLE": ["BUNDLE"],
+            "NEWS": ["NEWS"],
+            "SQUIRREL": ["SQUIRRELS"],
+            "SPIRIT": ["SPIRITS"],
+            "DOODLE": ["DOODLES"]
+        }
+    },
+    "WIZARD": {
+        "BUTTONS": {
+            "NO": ["NO, I'M TOTALLY NEW"]
+        },
+        "LABELS": {
+            "MESSAGE": ["MESSAGE BOX"],
+            "PROOF": ["Prove Identity"]
+        }
+    },
+    "WELCOME": {
+        "BUTTONS": {
+            "ANALYSE": ["ANALYSE ME"],
+            "NEW": ["NEW USER"]
+        }
+    },
+    "TITLE": {
+        "HEADER": {
+            "PAGE": ["MUSHROOM STALK"]
+        },
+        "BUTTON": {
+            "USER": ["LOGIN"],
+            "SETTINGS": ["SETTINGS"],
+            "STALK": ["ENTER THE STALK"],
+            "MAP": ["SHOW MAP"]
+        }
+    },
+    "OFFICE": {
+        "BUTTON": {
+            "JOB": ["JOB GENERATOR"],
+            "TV": ["TV TRACKER"],
+            "MUMBLIES": ["MUMBLIES"],
+            "WHEEL": ["WHEEL"],
+            "PIXEL": ["PIXEL PAGE"]
+        }
+    },
+    "CUPBOARD": {
+        "BUTTON": {
+            "PICKLE": ["PICKLE"]
+        }
+    },
+    "OBSERVATORY": {
+        "BUTTON": {
+            "TERRORISTS": ["TERRORISTS"],
+            "HEALTH": ["HEALTH"],
+            "PLANETS": ["PLANETS"],
+            "EMPLOYMENT": ["EMPLOYMENT"]
+        },
+        "HEADERS": {
+            "PAGE": ["OBSERVATORY"]
+        }
+    },
+    "LIBRARY": {
+        "BUTTON": {
+            "EXPLORER": ["EXPLORER"],
+            "ARCHIVE": ["ARCHIVE"],
+            "SQUIRREL": ["SQUIRREL"],
+            "BALLOON": ["BALLOON"]
+        }
+    },
+    "SETTINGS": {
+        "HEADERS": {
+            "PAGE": [
+                "SETTINGS!",
+                "COGS AND GEARS",
+                "MACHINERY",
+                "WIRES"
+            ],
+            "LOGGED": [
+                "ALWAYS LOGGED IN?",
+                "STAY LOGGED IN?"
+            ],
+            "NO": [
+                "NO"
+            ],
+            "YES": [
+                "YES"
+            ],
+            "RESET": [
+                "THIS WILL RESET THE APP, ARE YOU SURE?",
+                "REFRESH THE APP? REALLY?"
+            ],
+            "SURE": [
+                "I AM SURE",
+                "I WILL NOT REGRET THIS"
+            ],
+            "NOT SURE": [
+                "NO!",
+                "THIS WAS A MISTAKE",
+                "I'D LIKE TO BACK AWAY PLEASE"
+            ]
+        },
+        "BUTTONS": {
+            "KEYBOARD": ["KEYBOARD", "CLICKY CLACKS"],
+            "SCREEN": ["SCREEN", "LOOK CLOSER", "DISPLAY"]
+        }
+    }
+}
