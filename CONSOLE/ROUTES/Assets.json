@@ -79,7 +79,8 @@
             "LIBRARY_SIGN":  "../../ASSETS/IMAGES/BUTTONS/EXTERIORS/Button - Library.png",
             "OBSERVATORY_SIGN": "../../ASSETS/IMAGES/BUTTONS/EXTERIORS/Button - Observatory.png",
             "OFFICE_SIGN": "../../ASSETS/IMAGES/BUTTONS/EXTERIORS/Button - Office.png",
-            "STALK_SIGN": "../../ASSETS/IMAGES/BUTTONS/EXTERIORS/Button - Stalk.png"
+            "STALK_SIGN": "../../ASSETS/IMAGES/BUTTONS/EXTERIORS/Button - Stalk.png",
+            "ARCHIVE_SIGN": "../../ASSETS/IMAGES/BUTTONS/EXTERIORS/Button - Archive.png"
         },
         "CUPBOARD": {
             "PICKLE": "../../ASSETS/IMAGES/BUTTONS/CUPBOARD/Button - Pickle.png"

@@ -11,10 +11,11 @@
         "MENUS": {
             "CUPBOARD": "../../POCKETS/MENUS/CUPBOARD/FrameworkCupboard.html",
             "LIBRARY": "../../POCKETS/MENUS/LIBRARY/FrameworkLibrary.html",
-            "OBSERVATORY": "../../POCKETS/MENUS/OBSERVATORY/FrameworkObservatory.html",
+            "OBSERVATORY": "../../POCKETS/MENUS/OBSERVATORY/FrameworkObservatoryPortal.html",
             "OFFICE": "../../POCKETS/MENUS/OFFICE/FrameworkOffice.html",
             "START": "../../POCKETS/MENUS/START/FrameworkStart.html",
-            "MAP": "../../POCKETS/MAP/FrameworkMap.html"
+            "MAP": "../../POCKETS/MAP/FrameworkMap.html",
+            "ARCHIVE": "../../POCKETS/ARCHIVE/FOYER/FrameworkArchiveFoyer.html"
         },
         "SETTINGS": {
             "MAIN": "../../POCKETS/SETTINGS/MAIN/FrameworkSettings.html",
@@ -28,7 +29,14 @@
             "LIBRARY": "../../POCKETS/MENUS/ENTRANCE/LIBRARY/FrameworkExtLibrary.html",
             "OBSERVATORY": "../../POCKETS/MENUS/ENTRANCE/OBSERVATORY/FrameworkExtObservatory.html",
             "OFFICE": "../../POCKETS/MENUS/ENTRANCE/OFFICE/FrameworkExtOffice.html",
-            "STALK": "../../POCKETS/MENUS/ENTRANCE/STALK/FrameworkExtStalk.html"
+            "STALK": "../../POCKETS/MENUS/ENTRANCE/STALK/FrameworkExtStalk.html",
+            "ARCHIVE": "../../POCKETS/MENUS/ENTRANCE/ARCHIVE/FrameworkExtArchive.html"
+        },
+        "ARCHIVE": {
+            "ADD": "../../POCKETS/ARCHIVE/NEW/FrameworkArchiveNew.html"
+        },
+        "EXPLORER": {
+            "EXPLORER": "../../POCKETS/EXPLORER/FrameworkExplorer.html"
         }
     },
     "FOLDERS": {
@@ -38,7 +46,8 @@
     },
     "MEMORY": {
         "ROUTES": {
-            "USERS": "../../CONSOLE/ROUTES/Users.json"
+            "USERS": "../../CONSOLE/ROUTES/Users.json",
+            "EXPLORER": "../../CONSOLE/ROUTES/Explorer.json"
         },
         "USERS": {
             "USER": "../../CONSOLE/MEMORY/FROGS/USERS/",
@@ -47,6 +56,32 @@
         },
         "SETTINGS": {
             "SETTINGS": "../../SETTINGS/Mushroom_Settings.json"
+        }
+    },
+    "DATABASE": {
+        "PLANETS": {
+            "KEYS": "../../APPS/EXPLORE/MEMORY/PlanetKeys.json",
+            "PATHS": "../../APPS/EXPLORE/MEMORY/PlanetPaths.json",
+            "ALL": "../../APPS/EXPLORE/MEMORY/AllPlanets.json"
+        },
+        "ARCHIVE": {
+            "NEW_CHARACTER": "../../APPS/ARCHIVE/MEMORY/NewCharacter.json",
+            "ALPHABET": "../../APPS/ARCHIVE/MEMORY/Alphabet.json",
+            "ACTIVE_CHARACTER": "../../APPS/ARCHIVE/MEMORY/ActiveCharacter.json"
+        }
+    },
+    "SUNFLOWER": {
+        "MEMORY": {
+            "TIME": "../../APPS/SUNFLOWER/MEMORY/Time.json"
+        }
+    },
+    "RESET": {
+        "DATABASE": {
+            "DATBASE_ORIGIN": "../../CONSOLE/MEMORY/SEQUAL/Archive.sqlite",
+            "DATBASE_CLEAN": "../../CONSOLE/MEMORY/SEQUAL/CLEAN/Archive.sqlite"
+        },
+        "EXPLORER": {
+            "EXPLORER_FOLDER": "../../DATABASE/"
         }
     }
 }

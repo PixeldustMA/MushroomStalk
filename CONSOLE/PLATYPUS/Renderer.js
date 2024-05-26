@@ -18,6 +18,8 @@ class Renderer{
      * @returns ACTION COMPLETE
      */
     async SAVE() {
+        console.log(this.path);
+        console.log(this.data)
         return await window.ipcRender.SaveData(this.path, this.data);
     }
     /**
@@ -28,6 +30,9 @@ class Renderer{
         const file = await window.ipcRender.ReadMessage(this.path);
         return JSON.parse(file)
     };
+    async COPY(origin, destination) {
+        return window.ipcRender.CopyFile(origin, destination);
+    }
     /**
      * FORMAT A PATH
      * @returns PATH
@@ -47,7 +52,18 @@ class Renderer{
     };
     async READ_FOLDERS() {
         return await window.ipcRender.ReadFolder(this.path);
-    }
+    };
+    async CREATE_FOLDER() {
+        return await window.ipcRender.NewFolder(this.path);
+    };
+    async DELETE_FOLDER() {
+        return await window.ipcRender.DeleteFolder(this.path);
+    };
+    async COPY_FOLDER(destinationPath) {
+        console.log(destinationPath);
+        console.log(this.path)
+        return await window.ipcRender.CopyFolder(this.path, destinationPath)
+    };
     async CLOSE() {
         return await window.ipcRender.Quit();
     };
@@ -63,7 +79,10 @@ class Renderer{
     async READ_BACKUP_FILE(requestedPath) {
         this.path = requestedPath;
         return await this.READ();
-    }
+    };
+    async EXPORT_ARCHIVE_TO_CSV(requestedPath) {
+        return await window.ipcRender.Export(requestedPath);
+    };
 }
 
 export { Renderer }

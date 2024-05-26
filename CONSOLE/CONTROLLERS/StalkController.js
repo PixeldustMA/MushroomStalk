@@ -8,7 +8,7 @@ class Stalk extends Renderer {
 
     constructor() {
         super()
-    }
+    };
     /**
      * LOAD A NEW PAGE
      * @param {Array} tag ROUTE INITIATION TAGS
@@ -61,6 +61,17 @@ class Stalk extends Renderer {
             SUBSECTION: 'SETTINGS'
         });
         return await this.READ();
+    };
+    async REMEMBER(tag, newData) {
+        this.path = await this.INIT_ROUTE({
+            TAG: 'NEW_CHARACTER',
+            SECTION: 'DATABASE',
+            SUBSECTION: 'ARCHIVE'
+        });
+        let memory = await this.READ();
+        memory[tag] = newData;
+        this.data = memory;
+        await this.SAVE();
     };
 }
 

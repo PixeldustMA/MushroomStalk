@@ -24,13 +24,47 @@ class Page_Keyboard extends Stalk {
     }
 
     DRAW_PAGE() {
-        this.SECTION_Belly.append(this.PANEL_BUTTONS());
+        this.SECTION_Belly.append(...[this.PANEL_BUTTONS()]);
     };
-    PANEL_BUTTONS() {
+    PANEL_USER() {
+
+        // == WRAPPERS == //
+        const wrapperUserButtons = new create({
+            tag: 'div',
+            classes: ['USER_BUTTON_PANEL']
+        }).init();
+
+        // == IMAGES == //
+        const imageUser = new create({
+            tag: 'img',
+            source: this.pathUser,
+            classes: ['BUTTONS', 'BUTTON_USER']
+        }).init();
+        const animationUser = new create({
+            tag: 'img',
+            source: this.pathUserAnimation
+        }).init();
+
+        // == LISTENERS == //
+        imageUser.addEventListener('click', (event) => {
+            wrapperUserButtons.replaceChildren();
+            document.body.appendChild(animationUser);
+            setTimeout(() => {
+                console.log("END");  
+                this.LOAD(['USERS', 'MAINPAGES', 'SETTINGS']);
+            }, 2000);
+        });
+
+        // == ATTACHMENTS == //
+        wrapperUserButtons.append(imageUser);
+        return wrapperUserButtons;
+    }
+    PANEL_LANGUAGE() {
 
         // == WRAPPER == // 
         const wrapperButtons = new create({
-            tag: 'div'
+            tag: 'div',
+            classes: ['LANGUAGE_BUTTON_PANEL']
         }).init();
 
         // == IMAGES == //
@@ -39,46 +73,6 @@ class Page_Keyboard extends Stalk {
             source: this.pathLanguage,
             classes: ['BUTTONS', 'BUTTON_LANGUAGE']
         }).init();
-        const imageUser = new create({
-            tag: 'img',
-            source: this.pathUser,
-            classes: ['BUTTONS', 'BUTTON_USER']
-        }).init();
-        const imageBack = new create({
-            tag: 'img',
-            classes: ['BACK'],
-            source: this.pathBack
-        }).init();
-        const imageReset = new create({
-            tag: 'img',
-            source: this.pathResetButton,
-            classes: ['RESET']
-        }).init();
-        const imageBackUp = new create({
-            tag: 'img',
-            source: this.pathBackupButton,
-            classes: ['BACKUP']
-        }).init();
-        const animationUser = new create({
-            tag: 'img',
-            source: this.pathUserAnimation
-        }).init();
-
-        // == TEXT == //
-        const textDisplayBackup = new create({
-            tag: 'label'
-        }).init();
-
-        const testDiv = new create({
-            tag: 'div'
-        }).init();
-        const anchorTg = new create({
-            tag: 'button'
-        }).init();
-
-        // TODO THE LANGUAGE IMAGE BUTTON IS BROKEN
-        anchorTg.elementText = "LANGUAGE TEMPORARY BUTTON"
-        testDiv.append(imageLanguage, anchorTg);
 
         // == LISTENERS == //
         imageLanguage.addEventListener('click', (event) => {
@@ -89,44 +83,116 @@ class Page_Keyboard extends Stalk {
                 this.LOAD(['LANGUAGES', 'MAINPAGES', 'SETTINGS'])
             }, 2000);
         });
-        imageUser.addEventListener('click', (event) => {
-            wrapperButtons.replaceChildren();
-            document.body.appendChild(animationUser);
-            setTimeout(() => {
-                console.log("END");  
-                this.LOAD(['USERS', 'MAINPAGES', 'SETTINGS']);
-            }, 2000);
+
+        // == ATTACHMENTS == //
+        wrapperButtons.append(...[
+            imageLanguage
+        ]);
+        return wrapperButtons;
+    };
+    PANEL_RESET() {
+
+        // == WRAPPER == // 
+        const wrapperReset = new create({
+            tag: 'div',
+            classes: ['RESET_BUTTON_PANEL']
+        }).init();
+
+        // == IMAGES == //
+        const imageReset = new create({
+            tag: 'img',
+            source: this.pathResetButton,
+            classes: ['RESET']
+        }).init();
+
+        // == LISTENERS == //
+        imageReset.addEventListener('click', (event) => {
+            this.SECTION_Belly.replaceChildren();
+            this.SECTION_Belly.appendChild(this.PANEL_RESET_PANEL());
         });
+
+        // == ATTACHMENTS == //
+        wrapperReset.append(...[
+            imageReset
+        ]);
+        return wrapperReset;
+    };
+    PANEL_BACK() {
+
+         // == WRAPPER == // 
+        const wrapperButtonBack = new create({
+            tag: 'div',
+            classes: ['BACK_BUTTON_PANEL']
+        }).init();
+
+        // == IMAGES == //
+        const imageBack = new create({
+            tag: 'img',
+            classes: ['BACK'],
+            source: this.pathBack
+        }).init();
+
+        // == LISTENERS == //
         imageBack.addEventListener('click', (event) => {
             this.LOAD(['MAIN', 'MAINPAGES', 'SETTINGS']);
         });
-        imageReset.addEventListener('click', (event) => {
-            console.log('H')
-            this.SECTION_Belly.appendChild(this.PANEL_RESET());
-        });
+
+        // == ATTACHMENTS == //
+        wrapperButtonBack.append(...[imageBack]);
+        return wrapperButtonBack;
+    };
+    PANEL_BACKUP() {
+
+        // == WRAPPERS == //
+        const wrapperUserBackup = new create({
+            tag: 'div',
+            classes: ['BACKUP_BUTTON_PANEL']
+        }).init();
+
+        // == IMAGES == //
+        const imageBackUp = new create({
+            tag: 'img',
+            source: this.pathBackupButton,
+            classes: ['BACKUP']
+        }).init();
+
+        // == TEXT == //
+        const textDisplayBackup = new create({
+            tag: 'label'
+        }).init();
+
+        // == LISTENERS == //
         imageBackUp.addEventListener('click', (event) => {
             this.picking.CHOOSE_FOLDER(textDisplayBackup)
 			.then((RESULT) => {
                 this.collideInstance.SMASH(RESULT).then((SAVERESULT) => {
-                    console.log("SAVED"); 
                     return SAVERESULT
                 });
                 return RESULT
             });
         });
-
         // == ATTACHMENTS == //
-        wrapperButtons.append(...[
-            testDiv,
-            imageUser,
-            imageBack,
-            imageReset,
-            imageBackUp,
-            textDisplayBackup
-        ]);
-        return wrapperButtons;
+        wrapperUserBackup.append(imageBackUp);
+        return wrapperUserBackup;
+    }
+    PANEL_BUTTONS() {
+
+        // == WRAPPERS == //
+        const wrapperPanel = new create({
+            tag: 'div'
+        }).init();
+
+        wrapperPanel.append(...[
+            this.PANEL_USER(),
+            this.PANEL_LANGUAGE(),
+            this.PANEL_RESET(),
+            this.PANEL_BACK(),
+            this.PANEL_BACKUP()
+        ])
+        return wrapperPanel;
     };
-    PANEL_RESET() {
+
+    PANEL_RESET_PANEL() {
 
         const wrapperModal = new create({
             tag: 'div',
@@ -149,12 +215,14 @@ class Page_Keyboard extends Stalk {
         
         // == LISTENERS == //
         buttonNo.addEventListener('click', (event) => {
-            wrapperModal.remove();
+            console.log("HELLO")
+            window.location.reload();
         });
         buttonSure.addEventListener('click', (event) => {
             this.ResetInstance.EARTHQUAKE().then((RESULT) => {
-                wrapperModal.remove();
-                return RESULT
+                console.log('reset complete')
+                // wrapperModal.remove();
+                // return RESULT
             })
         });
 

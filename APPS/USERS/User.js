@@ -128,7 +128,8 @@ class User extends Stalk {
         this.path = await this.INIT_ROUTE({TAG: 'USERS', SECTION: "MEMORY", SUBSECTION: "ROUTES"});
         this.data = this.#USERMEMORY();
         return await this.SAVE();
-    }
+    };
+
     #FROGLIST(){
         return {
             "1": {
@@ -142,7 +143,7 @@ class User extends Stalk {
     };
     #USERMEMORY() {
         return {};
-    }
+    };
 }
 
 export {User};

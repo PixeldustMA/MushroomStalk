@@ -51,10 +51,17 @@ contextBridge.exposeInMainWorld(
         SaveData: (path, details) => ipcRenderer.invoke('saveNote', path, details),
         Route: (tag) => ipcRenderer.invoke('fetchRouteMemory', tag),
         ReadMessage: (messagePath) => ipcRenderer.invoke('readNote', messagePath),
+        CopyFile: (origin, destination) => ipcRenderer.invoke('copyFile', origin, destination),
         SelectFolder: () => ipcRenderer.invoke('dialog:openDirectory'),
+        NewFolder: (path) => ipcRenderer.invoke('folderCreation', path),
         ReadFolder: (folderPath) => ipcRenderer.invoke('folderOperations', folderPath),
+        DeleteFolder: (folderPath) => ipcRenderer.invoke('folderDeletion', folderPath),
+        CopyFolder: (sourcePath, destinationPath) => ipcRenderer.invoke('folderCopy', sourcePath, destinationPath),
         RetrievePath: (pathName) => ipcRenderer.invoke('getPath', pathName),
-        RemoveFile: (path) => ipcRenderer.invoke('removeFile', path)
+        RemoveFile: (path) => ipcRenderer.invoke('removeFile', path),
+
+        Archive: (mode, data ) => ipcRenderer.invoke('accessArchive', mode, data),
+        Export: (path) => ipcRenderer.invoke('exportArchive', path)
     }
 );
 

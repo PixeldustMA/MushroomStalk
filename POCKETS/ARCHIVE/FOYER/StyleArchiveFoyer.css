@@ -1,0 +1,21 @@
+@import "../../../STYLE/BASE/RootStyles.css";
+@import "../../../STYLE/BASE/ImageLoader.css";
+
+/* LAYOUT */
+.panels {
+	height: 500px;
+	width: 30%;
+    display: inline-block;
+};
+.left {
+	float: left;
+	background-color: pink;
+};
+.right {
+	float: right;
+	background-color: bisque;
+};
+.centre {
+    float: left;
+    background-color: blue;
+};

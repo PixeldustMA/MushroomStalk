@@ -14,7 +14,26 @@
             ],
             "MAP": [
                 "MAP"
-            ]
+            ],
+            "UPDATE": [
+                "UPDATE"
+            ],
+            "OPEN": [
+                "OPEN"
+            ],
+            "MORE": [
+                "ANOTHER..."
+            ],
+            "SUBMIT": [
+                "SUBMIT"
+            ],
+            "SEARCH": [
+                "SEARCH"
+            ],
+            "VIEW": ["VIEW"],
+            "NEW": ["NEW"],
+            "TYPE": ["TYPE"],
+            "NAME": ["NAME"]
         }
     },
     "AREAS": {
@@ -30,6 +49,14 @@
             ],
             "LIBRARY": [
                 "LIBRARY"
+            ],
+            "ARCHIVE": [
+                "ARCHIVE"
+            ]
+        },
+        "ARCHIVE": {
+            "ARCHIVE": [
+                "ARCHIVE"
             ]
         },
         "SUNFLOWER": {
@@ -160,6 +187,95 @@
         "BUTTONS": {
             "KEYBOARD": ["KEYBOARD", "CLICKY CLACKS"],
             "SCREEN": ["SCREEN", "LOOK CLOSER", "DISPLAY"]
+        }
+    },
+    "ARCHIVE": {
+        "HEADERS": {
+            "ACTIVE": [
+                "ACTIVE CHARACTER",
+                "CHOSEN CHARACTER"
+            ],
+            "UPDATE": [
+                "UPDATE CHARACTER",
+                "ALTER CHARACTER",
+                "EDIT CHARACTER"
+            ],
+            "UNSELECTED": [
+                "NO ACTIVE CHARACTER",
+                "NO CHARACTER SELECTED"
+            ],
+            "NEW": [
+                "ADD A NEW CHARACTER",
+                "CREATE SOMEONE NEW"
+            ],
+            "SEARCH": [
+                "SEARCH FOR A CHARACTER"
+            ],
+            "ACTIVITY": [
+                "ADD ACTIVITY"
+            ],
+            "SECTION": [
+                "SELECT A NEW SECTION"
+            ]
+        },
+        "BUTTONS": {
+            "CHANGE": [
+                "CHANGE",
+                "SWITCH"
+            ]
+        },
+        "LABELS": {
+            "FIRST": [
+                "FIRST NAME"
+            ],
+            "LAST": [
+                "LAST NAME"
+            ],
+            "PARENTAL": [
+                "PARENTAL NAME"
+            ],
+            "PLANET": [
+                "PLANET"
+            ],
+            "YEAR": [
+                "BIRTH YEAR"
+            ]
+        }
+    },
+    "EXPLORER": {
+        "HEADERS": {
+            "EXPLORE": ["EXPLORER"],
+            "PLANET": ["CHOOSE A PLANET"]
+        },
+        "LABELS": {
+            "SELECT_GEOLOGICAL": [
+                "SELECT GEOLOGICAL AREA"
+            ],
+            "SELECT_SECTOR": [
+                "SELECT SECTOR"
+            ],
+            "SELECT_SYSTEM": [
+                "SELECT SYSTEM"
+            ],
+            "SELECT_SPACE": [
+                "SELECT SPACE AREA"
+            ],
+            "SELECT_PLANET": [
+                "SELECT PLANET"
+            ],
+            "CODE": [
+                "CHOOSE A CODE"
+            ]
+        },
+        "TERMS": {
+            "GEOLOGICAL": ["GEOLOGICAL"],
+            "SECTOR": ["SECTOR"],
+            "SYSTEM": ["SYSTEM"],
+            "SPACE": ["SPACE"],
+            "PLANET": ["PLANET"],
+            "MULTI_PLANET_REGION": ["SELECT A PLANET FROM THE SAME REGION"],
+            "MULTI_PLANET": ["SELECT ANOTHER PLANET"],
+            "CODE": ["XX"]
         }
     }
 }

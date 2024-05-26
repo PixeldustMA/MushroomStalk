@@ -5,14 +5,14 @@ import { create } from "../../../../CONSOLE/PLATYPUS/Create.js";
 //         MUSHROOM STALK            //
 // ================================= //
 //      Last Updated - v0.8          //
-//         Create Library Screen     //
+//         Create Cupboard Screen     //
 // ================================= //
 
-class Page_Library_Exterior extends Stalk {
+class Page_Cupboard_Exterior extends Stalk {
 
     constructor() { 
         super();
-        this.SECTION_Buttons = document.getElementById("SECTION_Library-Sign");
+        this.SECTION_Buttons = document.getElementById("SECTION_Cupboard-Sign");
         this.pathSign = "";
     };
 
@@ -35,7 +35,7 @@ class Page_Library_Exterior extends Stalk {
         }).init();
 
         imageSign.addEventListener('click', (OPEN) => {
-            this.LOAD(['LIBRARY', 'MAINPAGES', 'MENUS'])
+            this.LOAD(['Cupboard', 'MAINPAGES', 'MENUS'])
         });
 
         // == ATTACHMENTS == //
@@ -47,7 +47,7 @@ class Page_Library_Exterior extends Stalk {
     };
     async INITIALISE_PAGE() {
         this.pathSign = await this.INIT_ROUTE({
-            TAG: 'LIBRARY_SIGN',
+            TAG: 'Cupboard_SIGN',
             SECTION: 'IMAGES',
             SUBSECTION: 'EXTERIORS',
             ASSET: 1
@@ -55,6 +55,6 @@ class Page_Library_Exterior extends Stalk {
     }
 };
 
-const pageLibrary = new Page_Library_Exterior();
-await pageLibrary.INITIALISE_PAGE();
-pageLibrary.DRAW_PAGE();
+const pageCupboard = new Page_Cupboard_Exterior();
+await pageCupboard.INITIALISE_PAGE();
+pageCupboard.DRAW_PAGE();

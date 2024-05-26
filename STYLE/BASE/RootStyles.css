@@ -27,11 +27,11 @@ input {
 	background-color: rebeccapurple;
 	display: block;
 	height: 30px;
+	-webkit-app-region: no-drag;
 }
 body {
 	background-color: black;
 	color: white;
-	-webkit-app-region: drag;
 }
 h1 {
 	color: white;
@@ -48,6 +48,7 @@ select {
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     z-index: 20; 
+	-webkit-app-region: no-drag;
 }
 
 :root {

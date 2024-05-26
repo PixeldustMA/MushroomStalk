@@ -1,7 +1,7 @@
 import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
 import { create } from "../../../CONSOLE/PLATYPUS/Create.js";
 
-class Page_Observatory extends Stalk{
+class Page_Observatory_Portal extends Stalk{
 
     constructor() {
         super()
@@ -61,6 +61,7 @@ class Page_Observatory extends Stalk{
 
         // == LISTENERS == //
         buttonPlanets.addEventListener('click', (event) => {
+            this.LOAD(['EXPLORER', 'MAINPAGES', 'EXPLORER'])
         });
         buttonEmployment.addEventListener('click', (event) => {
         });
@@ -97,6 +98,6 @@ class Page_Observatory extends Stalk{
     }
 }
 
-const pageObservatory = new Page_Observatory();
+const pageObservatory = new Page_Observatory_Portal();
 await pageObservatory.INITIALISE_PAGE();
 pageObservatory.DRAW_PAGE();

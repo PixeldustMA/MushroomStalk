@@ -88,7 +88,7 @@ class Page_Welcome extends Stalk {
 		let valid = false;
 		UserCheckLoop: for (let index = 0; index < numberofUsers.length; index++) {
 			console.log(userName)
-			if (users[numberofUsers[index]].NAME === userName.toUpperCase() && users[numberofUsers[index]].PASSWORD === userPassword) {
+			if (users[numberofUsers[index]].NAME === userName && users[numberofUsers[index]].PASSWORD === userPassword) {
 				this.memory.SET_ACTIVE_USER(userName);
 				valid = true;
 				console.log("HELLO");

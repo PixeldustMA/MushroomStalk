@@ -8,13 +8,13 @@ class Collider extends Renderer {
     };
 
     async SMASH(requestedPath) {
-        console.log(requestedPath)
         this.data = {
             USERS: await this.EXPORT_USERS()
         };
-
         this.path = requestedPath + "TEST.json";
         await this.SAVE();
+        await this.EXPORT_ARCHIVE_TO_CSV(requestedPath);
+        await this.EXPORT_EXPLORER(requestedPath);
     };
     async EXPORT_USERS() {
         let userObject = {}
@@ -32,6 +32,9 @@ class Collider extends Renderer {
         };
         return userObject;
     };
+    async EXPORT_DATABASE() {
+        await this.EXPORT_ARCHIVE_TO_CSV();
+    }
     async CREATE_OBJECT(userTag, userObject) {
         this.path = await this.COLLIDER_INIT_ROUTE({
             TAG: userTag.toUpperCase(),
@@ -46,6 +49,14 @@ class Collider extends Renderer {
         await pathway.SETUP();
         return await pathway.ROUTE();
     };
+    async EXPORT_EXPLORER(requestedPath) {
+        this.path = await this.COLLIDER_INIT_ROUTE({
+            TAG: 'EXPLORER_FOLDER',
+            SECTION: "RESET",
+            SUBSECTION: "EXPLORER"
+        });
+        await this.COPY_FOLDER(requestedPath);
+    }
 }
 
 export {Collider};

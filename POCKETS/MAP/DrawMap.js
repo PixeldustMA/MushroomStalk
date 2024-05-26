@@ -105,19 +105,23 @@ class Page_Map extends Stalk {
 
         // == LISTENERS == //
         ImageStalk.addEventListener('click', (MAINSTALK) => {
-            this.LOAD(['STALK', 'MAINPAGES', 'EXTERIORS'])
+            this.LOAD(['STALK', 'MAINPAGES', 'EXTERIORS']);
         });
         ImageLibrary.addEventListener('click', (LIBRARY) => {
-            this.LOAD(['LIBRARY', 'MAINPAGES', 'EXTERIORS' ])
+            this.LOAD(['LIBRARY', 'MAINPAGES', 'EXTERIORS' ]);
         });
         ImageOffice.addEventListener('click', (OFFICE) => {
-            this.LOAD(['OFFICE', 'MAINPAGES', 'EXTERIORS' ])
+            this.LOAD(['OFFICE', 'MAINPAGES', 'EXTERIORS' ]);
         });
         ImageCupboard.addEventListener('click', (CUPBOARD) => {
-            this.LOAD(['CUPBOARD', 'MAINPAGES', 'EXTERIORS' ])
+            this.LOAD(['CUPBOARD', 'MAINPAGES', 'EXTERIORS' ]);
         });
         ImageExplorer.addEventListener('click', (event) => {
-            this.LOAD(['OBSERVATORY', 'MAINPAGES', 'EXTERIORS'])
+            this.LOAD(['OBSERVATORY', 'MAINPAGES', 'EXTERIORS']);
+        });
+        ImageArchive.addEventListener('click', (event) => {
+            console.log("archive")
+            this.LOAD(['ARCHIVE', 'MAINPAGES', 'EXTERIORS']);
         })
 
         // == ATTACHMENTS == //

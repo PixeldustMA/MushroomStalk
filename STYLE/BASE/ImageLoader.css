@@ -84,6 +84,10 @@
 .ExtStalk {
     background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Exterior Stalk.png");
 }
+.ExtArchiveBody {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Exterior Archive.png");
+}
+
 /* MENUS */
 .CupboardBackground {
     background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Cupboard.png");
@@ -96,4 +100,9 @@
 }
 .OfficeBackground {
     background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Office.png");
+}
+
+/* ARCHIVE */
+.ArchiveNewBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Archive New.png");
 }
