@@ -200,8 +200,8 @@ class Explorer extends DatabaseController{
     async CREATE_SPACE(nameOfSpace) {
     
             // == VARIABLES == //
-            let filePath = `../../DATABASE/EXPLORER/SPACE/${nameOfSpace}.json`;
-            let folderPath = `../../DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/`;
+            let filePath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/SPACE/${nameOfSpace}.json`;
+            let folderPath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/`;
             let data = {
                 TYPE: 'SPACE',
                 SPACE: nameOfSpace
@@ -252,8 +252,8 @@ class Explorer extends DatabaseController{
     async CREATE_SECTOR(nameOfSpace, nameOfSector) {
 
             // == VARIABLES == //
-            let filePath = `../../DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector}.json`;
-            let folderPath = `../../DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/`;
+            let filePath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector}.json`;
+            let folderPath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/`;
             let data = {
                 TYPE: 'SECTOR',
                 SPACE: nameOfSpace,
@@ -303,8 +303,8 @@ class Explorer extends DatabaseController{
     };
     async CREATE_SYSTEM(nameOfSpace, nameOfSector, nameOfSystem) {
             // == VARIABLES == //
-            let filePath = `../../DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem}.json`;
-            let folderPath = `../../DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem.toUpperCase()}/`;
+            let filePath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem}.json`;
+            let folderPath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem.toUpperCase()}/`;
             let data = {
                 TYPE: 'SYSTEM',
                 SPACE: nameOfSpace,
@@ -355,7 +355,7 @@ class Explorer extends DatabaseController{
     async CREATE_PLANET(nameOfSpace, nameOfSector, nameOfSystem, nameOfPlanet, planetCode) {
 
             // == VARIABLES == //
-            let filePath = `../../DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem.toUpperCase()}/${nameOfPlanet}.json`;
+            let filePath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem.toUpperCase()}/${nameOfPlanet}.json`;
             let data = {
                 TYPE: 'PLANET',
                 SPACE: nameOfSpace,
@@ -375,7 +375,8 @@ class Explorer extends DatabaseController{
                 SUBSECTION: this.headers.FOLDER,
             });
             this.path = pathRoot + "/" + nameOfPlanet + ".json";
-            this.data = {};
+            // TODO NEEDS TO BE GENERATED BASED ON THE PRECEEDING SPACE AREAS
+            this.data = {LOCATION: {CODE: data.CODE}};
             await this.SAVE();
 
             // == Create the marker in the All Planet file
@@ -400,167 +401,167 @@ class Explorer extends DatabaseController{
 
             // -- CLIMATE -- //
             // DISASTERS
-            let filePath = `../../DATABASE/CLIMATE/DISASTERS/PLANETS/${planetName.toUpperCase()}.json`;
+            let filePath = `£££-UserMemory/EXPLORER/DATABASE/CLIMATE/DISASTERS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('DISASTERS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, "DISASTERS");
 
             // -- CULTURE -- //
             // CELEBRTITIES
-            filePath = `../../DATABASE/CULTURE/CELEBRITIES/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/CELEBRITIES/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('CELEBRITY', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'CELEBRITY');
             // ENTERTAINMENT
-            filePath = `../../DATABASE/CULTURE/ENTERTAINMENT/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/ENTERTAINMENT/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('ENTERTAINMENT', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'ENTERTAINMENT');
             // MISC ACTIVITIES
-            filePath = `../../DATABASE/CULTURE/MISC ACTIVITIES/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/MISC ACTIVITIES/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('MISC', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'MISC');
             // MUSIC 
-            filePath = `../../DATABASE/CULTURE/MUSIC/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/MUSIC/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('MUSIC', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'MUSIC');
             // SPORT
-            filePath = `../../DATABASE/CULTURE/SPORT/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/SPORT/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('SPORTS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'SPORTS');
 
             // -- EDUCATION -- //
             // SCHOOLS
-            filePath = `../../DATABASE/EDUCATION/SCHOOLS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/EDUCATION/SCHOOLS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('SCHOOLS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'SCHOOLS');
             // UNIVERSITITES
-            filePath = `../../DATABASE/EDUCATION/UNIVERSITIES/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/EDUCATION/UNIVERSITIES/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('UNIVERSITY', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'UNIVERSITY');
 
             // -- EMPLOYMENT -- //
             // EMPLOYTMENT
-            filePath = `../../DATABASE/EMPLOYMENT/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/EMPLOYMENT/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('EMPLOYMENT', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'EMPLOYMENT');
 
             // -- EVENTS -- //
             // FESTIVALS
-            filePath = `../../DATABASE/EVENTS/FESTIVALS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/EVENTS/FESTIVALS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('FESTIVALS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'FESTIVALS');
             // IMPORTANT
-            filePath = `../../DATABASE/EVENTS/IMPORTANT/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/EVENTS/IMPORTANT/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('IMPORTANT', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'IMPORTANT');
 
             // -- HALEX -- //
             // ASTRALS
-            filePath = `../../DATABASE/HALEX/ASTRALS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HALEX/ASTRALS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('ASTRALS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'ASTRALS');
             // GODS
-            filePath = `../../DATABASE/HALEX/GODS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HALEX/GODS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('GODS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'GODS');
             // GUARDIANS
-            filePath = `../../DATABASE/HALEX/GUARDIANS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HALEX/GUARDIANS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('GUARDIANS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'GUARDIANS');
             // ROYALTY
-            filePath = `../../DATABASE/HALEX/ROYALTY/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HALEX/ROYALTY/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('MONARCHY', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'MONARCHY');
 
             // -- HEALTH -- //
             // DISEASES
-            filePath = `../../DATABASE/HEALTH/DISEASE/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HEALTH/DISEASE/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('DISEASEs', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'DISEASEs');
             // HOSPITALS
-            filePath = `../../DATABASE/HEALTH/HOSPITALS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HEALTH/HOSPITALS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('HOSPITAL', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'HOSPITAL');
             // KURACIEJO
-            filePath = `../../DATABASE/HEALTH/KURACIEJO/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HEALTH/KURACIEJO/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('KURIEJO', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'KURIEJO');
             // SANCTUARIES
-            filePath = `../../DATABASE/HEALTH/SANCTUARIES/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/HEALTH/SANCTUARIES/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('SANCTUARY', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'SANCTUARY');
 
             // -- LIFE -- //
             // ANIMALS
-            filePath = `../../DATABASE/LIFE/ANIMALS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LIFE/ANIMALS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('ANIMALS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'ANIMALS');
             // DRAGONS
-            filePath = `../../DATABASE/LIFE/DRAGONS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LIFE/DRAGONS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('DRAGONS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'DRAGONS');
             // PLANTS
-            filePath = `../../DATABASE/LIFE/PLANTS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LIFE/PLANTS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('PLANTS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'PLANTS');
             // ROCKS
-            filePath = `../../DATABASE/LIFE/ROCKS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LIFE/ROCKS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('ROCKS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'ROCKS');
 
             // -- LOCATIONS -- //
             // BAD
-            filePath = `../../DATABASE/LOCATIONS/BAD/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LOCATIONS/BAD/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('BAD', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'BAD');
             // BUSINESS
-            filePath = `../../DATABASE/LOCATIONS/BUSINESS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LOCATIONS/BUSINESS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('BUSINESS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'BUSINESS');
             // LOCATION
-            filePath = `../../DATABASE/LOCATIONS/LOCATION/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LOCATIONS/LOCATION/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('LOCATION', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'LOCATION');
             // POI
-            filePath = `../../DATABASE/LOCATIONS/POI/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/LOCATIONS/POI/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('POI', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'POI');
 
             // -- NEWS -- //
             // NEWSPAPERS
-            filePath = `../../DATABASE/NEWS/PAPERS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/NEWS/PAPERS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('NEWSPAPERS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'NEWSPAPERS');
 
             // -- ORGANISATION -- //
             // BAND
-            filePath = `../../DATABASE/ORGANISATION/BAND/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/BAND/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('BAND', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'BAND');
             // CULT
-            filePath = `../../DATABASE/ORGANISATION/CULT/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/CULT/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('CULTS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'CULTS');
             // DICTATORSHIP
-            filePath = `../../DATABASE/ORGANISATION/DICTATORSHIP/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/DICTATORSHIP/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('DICTATORSHIPS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'DICTATORSHIPS');
             // HALEX_ASSISTANCE_TEAM
-            filePath = `../../DATABASE/ORGANISATION/HALEX_ASSISTANCE_TEAM/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/HALEX_ASSISTANCE_TEAM/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('HAT', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'HAT');
             // MISC
-            filePath = `../../DATABASE/ORGANISATION/MISC/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/MISC/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('MISC_ACTIVITIES', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'MISC_ACTIVITIES');
             // ORCHESTRA
-            filePath = `../../DATABASE/ORGANISATION/ORCHESTRA/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/ORCHESTRA/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('ORCHESTRA', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'ORCHESTRA');
             // SPORTS_TEAMS
-            filePath = `../../DATABASE/ORGANISATION/SPORTS_TEAMS/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/SPORTS_TEAMS/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('SPORTS_TEAMS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'SPORTS_TEAMS');
             // TERRORISM
-            filePath = `../../DATABASE/ORGANISATION/TERRORISM/PLANETS/${planetName.toUpperCase()}.json`;
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/ORGANISATION/TERRORISM/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('TERRORISM', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'TERRORISM');
     };

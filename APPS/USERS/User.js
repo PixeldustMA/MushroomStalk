@@ -4,7 +4,7 @@ class User extends Stalk {
 
     constructor() {
         super();
-        this.pathString = "../../CONSOLE/MEMORY/FROGS/USERS/";
+        this.pathString = "£££-UserMemory/USERS/FROGS/";
         this.userName = "";
         this.password = "";
         this.userData = {};
@@ -29,9 +29,7 @@ class User extends Stalk {
     async UPDATE_USER(tag, newValue, resident) {
         if (resident) {
             let residentFile = await this.GET_RESIDNT_FROG();
-            console.log(residentFile)
             this.userName = residentFile['NAME'];
-            console.log(this.userName)
             this.path = await this.INIT_ROUTE({
                 TAG: this.userName.toUpperCase(),
                 SECTION: '',
@@ -49,7 +47,10 @@ class User extends Stalk {
         return frog.LOGGED;
     }
     async GET_FROG_LIST() {
-        this.path = await this.INIT_ROUTE({TAG: 'FROGS', SECTION: 'MEMORY', SUBSECTION: 'USERS'});
+        this.path = await this.INIT_ROUTE({
+            TAG: 'FROGS',
+            SECTION: 'MEMORY', 
+            SUBSECTION: 'USERS'});
         return await this.READ();
     };
     async INSERT_FROG_LIST() {

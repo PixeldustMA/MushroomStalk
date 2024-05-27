@@ -16,18 +16,19 @@ let mainWindow;
 
 // == PATHS == //
 const PreloadPath = 'Access.js';
+const appMemoryPath = app.getPath('userData');
 const SplashScreenPath = './POCKETS/WELCOME/SPLASH/FrameworkSplash.html'
 const routePath_Base = "../../CONSOLE/ROUTES/Memory.json";
-const routePath_Planets = "../../CONSOLE/ROUTES/Explorer.json";
-const routePath_Users = "../../CONSOLE/ROUTES/Users.json";
+const routePath_Planets = appMemoryPath + "/UserMemory/ROUTES/Explorer.json";
+const routePath_Users = appMemoryPath + "/UserMemory/ROUTES/Users.json";
 const routePath_Assets = "../../CONSOLE/ROUTES/Assets.json";
 const tablePath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/TableNames.json");
 const QueriesPath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/QueryCodes.json");
-const DatabasePath = "/DATABASE/Archive.sqlite";
-console.log(__dirname + DatabasePath)
+
+const DatabasePath = appMemoryPath +  "\\DATABASE\\Archive.sqlite";
 
 // == DATABASE SET-UP == //
-const ArchiveDatabase = new sqlite3.Database(__dirname + DatabasePath);
+const ArchiveDatabase = new sqlite3.Database(DatabasePath);
 const TABLE_DATA =  JSON.parse(fs.readFileSync(tablePath));
 const QUERY = JSON.parse(fs.readFileSync(QueriesPath));
 
@@ -194,12 +195,19 @@ function getFormattedPath(event, relative) {
 
     console.log("CREATING A PATH...");
     console.log(relative);
-
+    let bucket = []
+    if(relative[0] === ('£')) {
+        console.log("FOUND")
+        bucket = [appMemoryPath];
+        relative = relative.replace("£££-", "");
+    }
+    else{
+        bucket = [__dirname];
+    };
     let relativeArray = relative.split("/");
-    let bucket = [__dirname];
     pathloop: for (let index = 0; index < relativeArray.length; index++) {
-                bucket.push(relativeArray[index])
-            };
+        bucket.push(relativeArray[index])
+    };
     let pathResult = path.join(...bucket);
 
     console.log("PATH IS...");
@@ -219,10 +227,10 @@ function RouteMemory(event, tag) {
             rootPath = getFormattedPath(event, routePath_Base);
             break;
         case "PLANETS":
-            rootPath = getFormattedPath(event, routePath_Planets);
+            rootPath = routePath_Planets
             break;
         case "USERS":
-            rootPath = getFormattedPath(event, routePath_Users);
+            rootPath = routePath_Users
             break;
         case "ASSETS":
             rootPath = getFormattedPath(event, routePath_Assets);
@@ -248,7 +256,9 @@ function DeleteFile(event, path) {
             });  
     });
 };
-
+function  CreateMemoryPath(event, path) {
+    return appMemoryPath + path;
+}
 // == DATABASE == //
 async function Archive(event, mode, queryConfig) {
 

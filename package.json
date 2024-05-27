@@ -1,6 +1,6 @@
 {
   "name": "mushroom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mushroom Stalk",
   "main": "CONSOLE/GNOMES/Main.js",
   "scripts": {

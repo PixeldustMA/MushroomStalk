@@ -41,33 +41,33 @@
     },
     "FOLDERS": {
         "MEMORY": {
-            "USERS": "../../CONSOLE/MEMORY/FROGS/USERS/"
+            "USERS": "£££-UserMemory/USERS/FROGS/USERS/"
         }
     },
     "MEMORY": {
         "ROUTES": {
-            "USERS": "../../CONSOLE/ROUTES/Users.json",
-            "EXPLORER": "../../CONSOLE/ROUTES/Explorer.json"
+            "USERS": "£££-UserMemory/ROUTES/Users.json",
+            "EXPLORER": "£££-UserMemory/ROUTES/Explorer.json"
         },
         "USERS": {
-            "USER": "../../CONSOLE/MEMORY/FROGS/USERS/",
-            "FROGS": "../../CONSOLE/MEMORY/FROGS/Frogs.json",
-            "RESIDENT": "../../CONSOLE/MEMORY/FROGS/ResidentFrog.json"
+            "USER": "£££-UserMemory/USERS/FROGS/",
+            "FROGS": "£££-UserMemory/USERS/Frogs.json",
+            "RESIDENT": "£££-UserMemory/USERS/ResidentFrog.json"
         },
         "SETTINGS": {
-            "SETTINGS": "../../SETTINGS/Mushroom_Settings.json"
+            "SETTINGS": "£££-UserMemory/SETTINGS/Mushroom_Settings.json"
         }
     },
     "DATABASE": {
         "PLANETS": {
-            "KEYS": "../../APPS/EXPLORE/MEMORY/PlanetKeys.json",
-            "PATHS": "../../APPS/EXPLORE/MEMORY/PlanetPaths.json",
-            "ALL": "../../APPS/EXPLORE/MEMORY/AllPlanets.json"
+            "KEYS": "£££-UserMemory/EXPLORER/MEMORY/PlanetKeys.json",
+            "PATHS": "£££-UserMemory/EXPLORER/MEMORY/PlanetPaths.json",
+            "ALL": "£££-UserMemory/EXPLORER/MEMORY/AllPlanets.json"
         },
         "ARCHIVE": {
-            "NEW_CHARACTER": "../../APPS/ARCHIVE/MEMORY/NewCharacter.json",
-            "ALPHABET": "../../APPS/ARCHIVE/MEMORY/Alphabet.json",
-            "ACTIVE_CHARACTER": "../../APPS/ARCHIVE/MEMORY/ActiveCharacter.json"
+            "NEW_CHARACTER": "£££-UserMemory//ARCHIVE/MEMORY/NewCharacter.json",
+            "ALPHABET": "£££-UserMemory//ARCHIVE/MEMORY/Alphabet.json",
+            "ACTIVE_CHARACTER": "£££-UserMemory//ARCHIVE/MEMORY/ActiveCharacter.json"
         }
     },
     "SUNFLOWER": {
@@ -77,11 +77,11 @@
     },
     "RESET": {
         "DATABASE": {
-            "DATBASE_ORIGIN": "../../CONSOLE/GNOMES/DATABASE/Archive.sqlite",
-            "DATBASE_CLEAN": "../../CONSOLE/MEMORY/SEQUAL/CLEAN/Archive.sqlite"
+            "DATBASE_ORIGIN": "£££-UserMemory/ARCHIVE/SQLITEArchive.sqlite",
+            "DATBASE_CLEAN": "£££-UserMemory/ARCHIVE/CLEAN/Archive.sqlite"
         },
         "EXPLORER": {
-            "EXPLORER_FOLDER": "../../DATABASE/"
+            "EXPLORER_FOLDER": "£££-UserMemory/EXPLORER/"
         }
     }
 }

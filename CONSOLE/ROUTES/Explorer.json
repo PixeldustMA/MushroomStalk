@@ -1,15 +1,15 @@
 {
     "ROOT": {
-        "ROOT": "../../CONSOLE/ROUTES/Explorer.json"
+        "ROOT": "£££-ROUTES/Explorer.json"
     },
     "CONSOLE": {
-        "KEYS": "../../APPS/EXPLORE/MEMORY/PlanetKeys.json"
+        "KEYS": "£££-EXPLORER/MEMORY/PlanetKeys.json"
     },
     "PLANET": {
         "CONSOLE": {
-            "ALL": "../../APPS/EXPLORE/MEMORY/AllPlanets.json",
-            "PATHS": "../../APPS/EXPLORE/MEMORY/PlanetPaths.json",
-            "KEYS": "../../APPS/EXPLORE/MEMORY/PlanetKeys.json"
+            "ALL": "£££-EXPLORER/MEMORY/AllPlanets.json",
+            "PATHS": "£££-EXPLORER/MEMORY/PlanetPaths.json",
+            "KEYS": "£££-EXPLORER/MEMORY/PlanetKeys.json"
         },
         "SPACE": {},
         "SECTOR": {},
