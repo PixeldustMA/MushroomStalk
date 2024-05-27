@@ -1,7 +1,3 @@
-require('update-electron-app')({
-	repo: 'PixeldustMA/MushroomStalk',
-	updateInterval: '1 hour',
-})
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path  = require('path');
 const fs = require('fs');
@@ -27,10 +23,11 @@ const routePath_Users = "../../CONSOLE/ROUTES/Users.json";
 const routePath_Assets = "../../CONSOLE/ROUTES/Assets.json";
 const tablePath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/TableNames.json");
 const QueriesPath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/QueryCodes.json");
-const DatabasePath = './CONSOLE/MEMORY/SEQUAL/Archive.sqlite';
+const DatabasePath = "/DATABASE/Archive.sqlite";
+console.log(__dirname + DatabasePath)
 
 // == DATABASE SET-UP == //
-const ArchiveDatabase = new sqlite3.Database(DatabasePath);
+const ArchiveDatabase = new sqlite3.Database(__dirname + DatabasePath);
 const TABLE_DATA =  JSON.parse(fs.readFileSync(tablePath));
 const QUERY = JSON.parse(fs.readFileSync(QueriesPath));
 

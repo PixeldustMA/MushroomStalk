@@ -1,10 +1,23 @@
 const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
+require('dotenv').config()
 
 module.exports = {
   packagerConfig: {
     asar: true,
   },
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'PixeldustMA',
+          name: 'MushroomStalk',
+        },
+        authToken: process.env.GITHUB_TOKEN
+      }
+    }
+  ],
   rebuildConfig: {},
   makers: [
     {
