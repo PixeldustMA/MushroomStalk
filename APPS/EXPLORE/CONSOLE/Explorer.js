@@ -745,6 +745,7 @@ class Explorer extends DatabaseController{
     async PATHWAYS_TYPE_FILE(section, tag, pathString) {
             return await this.EDIT_PATHWAYS(section, tag, pathString, this.headers.TYPE);
     }; 
+
     // == GENERATE PLANET OBJECT == //
     /**
          * CREATE CULTURE OBJECT
@@ -767,6 +768,7 @@ class Explorer extends DatabaseController{
         const file = await this.READ_PLANET_FILE(planetName);
         return file.LOCATION;
     }; 
+
     // == EDIT AND UPDATE FILES == //
     /**
          * ADD A TYPE FILE TO A DATABASE
@@ -910,14 +912,14 @@ class Explorer extends DatabaseController{
             });
             return await this.Read();
     };
-    // async READ_DETAILS (category, item){
-    //     this.path = await this.EXPLORER_INIT_ROUTE({
-    //         TAG: item.toUpperCase(),
-    //         SECTION: category.toUpperCase(),
-    //         SUBSECTION: this.headers.DESCRIPTION,
-    //     });
-    //     return await this.ReadText();
-    // };
+    async READ_DETAILS (category, item){
+        this.path = await this.EXPLORER_INIT_ROUTE({
+            TAG: item.toUpperCase(),
+            SECTION: category.toUpperCase(),
+            SUBSECTION: this.headers.DESCRIPTION,
+        });
+        return await this.ReadText();
+    };
 
     // == SEARCH == //
     async FETCH_TYPE_FROM_ITEM(category, item) {

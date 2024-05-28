@@ -277,5 +277,17 @@
             "MULTI_PLANET": ["SELECT ANOTHER PLANET"],
             "CODE": ["XX"]
         }
+    },
+    "FOOD": {
+        "LABELS": {
+            "NAME": ["FOOD ITEM NAME"],
+            "INGREDIENT": ["INGREDIENTS, SEPERATED BY SEMI-COLONS"],
+            "FLAVOUR": ["CHOOSE A FLAVOUR PROFILE"],
+            "TYPE": ["CHOOSE THE RECOMMENDED MEAL TIME"]
+        },
+        "PLACEHOLDER": {
+            "NAME": ["TATSY"],
+            "INGREDIENT": ["ONION"]
+        }
     }
 }
