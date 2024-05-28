@@ -51,7 +51,6 @@ class Explorer extends DatabaseController{
             for (const space in this.keys) {
                 if (Object.hasOwnProperty.call(this.keys, space)) {
                     const SPACE_NAMES = this.keys[space];
-                    console.log(space)
                     for (const sector in SPACE_NAMES) {
                         if (Object.hasOwnProperty.call(SPACE_NAMES, sector)) {
                             const SECTOR_NAMES = SPACE_NAMES[sector];
@@ -197,14 +196,15 @@ class Explorer extends DatabaseController{
             await this.EDIT_PATHWAYS(section, tag, filePath, this.headers.TYPE);
             await this.ADD_TYPE_TO_ALL_TYPE(category, newType);
     };
-    async CREATE_SPACE(nameOfSpace) {
+    async CREATE_SPACE(nameOfSpace, spaceCode) {
     
             // == VARIABLES == //
             let filePath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/SPACE/${nameOfSpace}.json`;
             let folderPath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/`;
             let data = {
                 TYPE: 'SPACE',
-                SPACE: nameOfSpace
+                SPACE: nameOfSpace,
+                CODE: spaceCode
             };
     
             // == Set the pathways marker for the file
@@ -228,7 +228,7 @@ class Explorer extends DatabaseController{
                 SUBSECTION:  this.headers.FOLDER,
             });
             this.path = pathRoot + "/" + nameOfSpace + ".json";
-            this.data = {};
+            this.data = {LOCATION: {SHORT_CODE: data.CODE}};
             await this.SAVE();
 
             // == Create the marker in the All Planet file
@@ -249,7 +249,7 @@ class Explorer extends DatabaseController{
             await this.UPDATE_PLANET_PATHS(data);
     
     };
-    async CREATE_SECTOR(nameOfSpace, nameOfSector) {
+    async CREATE_SECTOR(nameOfSpace, nameOfSector, sectorCode) {
 
             // == VARIABLES == //
             let filePath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector}.json`;
@@ -257,7 +257,8 @@ class Explorer extends DatabaseController{
             let data = {
                 TYPE: 'SECTOR',
                 SPACE: nameOfSpace,
-                SECTOR: nameOfSector
+                SECTOR: nameOfSector,
+                CODE: sectorCode
             };
 
             // == Set the pathways marker for the file
@@ -281,7 +282,7 @@ class Explorer extends DatabaseController{
                 SUBSECTION:  this.headers.FOLDER,
             });
             this.path = pathRoot + "/" + nameOfSector + ".json";
-            this.data = {};
+            this.data = {LOCATION: {SHORT_CODE: data.CODE}};
             await this.SAVE();
 
             // == Create the marker in the All Planet file
@@ -301,7 +302,7 @@ class Explorer extends DatabaseController{
             // == Create the path key
             await this.UPDATE_PLANET_PATHS(data);
     };
-    async CREATE_SYSTEM(nameOfSpace, nameOfSector, nameOfSystem) {
+    async CREATE_SYSTEM(nameOfSpace, nameOfSector, nameOfSystem, systemCode) {
             // == VARIABLES == //
             let filePath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem}.json`;
             let folderPath = `£££-UserMemory/EXPLORER/DATABASE/EXPLORER/${nameOfSpace.toUpperCase()}/${nameOfSector.toUpperCase()}/${nameOfSystem.toUpperCase()}/`;
@@ -309,7 +310,8 @@ class Explorer extends DatabaseController{
                 TYPE: 'SYSTEM',
                 SPACE: nameOfSpace,
                 SECTOR: nameOfSector,
-                SYSTEM: nameOfSystem
+                SYSTEM: nameOfSystem,
+                CODE: systemCode
             };
             // == Set the pathways marker for the file
             await this.EDIT_PATHWAYS('PLANET', nameOfSystem.toUpperCase(), filePath, "SYSTEM");
@@ -332,7 +334,7 @@ class Explorer extends DatabaseController{
                 SUBSECTION: this.headers.FOLDER,
             });
             this.path = pathRoot + "/" + nameOfSystem + ".json";
-            this.data = {};
+            this.data = {LOCATION: {SHORT_CODE: data.CODE}};
             await this.SAVE();
 
             // == Create the marker in the All Planet file
@@ -364,6 +366,7 @@ class Explorer extends DatabaseController{
                 PLANET: nameOfPlanet,
                 CODE: planetCode
             };
+            const codeResult = await this.GENERATE_PLANET_CODE(nameOfSector, nameOfSystem, planetCode)
 
             // == Set the pathways marker for the file
             await this.EDIT_PATHWAYS('PLANET', nameOfPlanet.toUpperCase(), filePath, "PLANETS");
@@ -374,9 +377,8 @@ class Explorer extends DatabaseController{
                 SECTION: "PLANET",
                 SUBSECTION: this.headers.FOLDER,
             });
+            this.data = {LOCATION: {CODE: codeResult}};
             this.path = pathRoot + "/" + nameOfPlanet + ".json";
-            // TODO NEEDS TO BE GENERATED BASED ON THE PRECEEDING SPACE AREAS
-            this.data = {LOCATION: {CODE: data.CODE}};
             await this.SAVE();
 
             // == Create the marker in the All Planet file
@@ -397,6 +399,30 @@ class Explorer extends DatabaseController{
             await this.UPDATE_PLANET_PATHS(data);
             await this.INSERT_ARCHIVE_PLANET_FILES(nameOfPlanet);
     }; 
+    async GENERATE_PLANET_CODE(sectorName, systemName, planetCode) {
+
+        let systemFile = {};
+        let sectorFile = {};
+
+        this.path = await this.EXPLORER_INIT_ROUTE({
+            TAG: systemName,
+            SECTION: 'PLANET',
+            SUBSECTION: 'SYSTEM'
+        });
+
+        systemFile = await this.READ();
+        this.path = await this.EXPLORER_INIT_ROUTE({
+            TAG: sectorName,
+            SECTION: 'PLANET',
+            SUBSECTION: 'SECTOR'
+        });
+        sectorFile = await this.READ();
+
+        let sectorCode = sectorFile.LOCATION.SHORT_CODE;
+        let systemCode = systemFile.LOCATION.SHORT_CODE;
+
+        return sectorCode + systemCode + planetCode;
+    }
     async INSERT_ARCHIVE_PLANET_FILES(planetName) {
 
             // -- CLIMATE -- //

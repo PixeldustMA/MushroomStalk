@@ -6,6 +6,9 @@ module.exports = {
   packagerConfig: {
     asar: true,
   },
+  packagerConfig: {
+    icon: '/ASSETS/ICONS/Mushroom'
+  },
   publishers: [
     {
       name: '@electron-forge/publisher-github',

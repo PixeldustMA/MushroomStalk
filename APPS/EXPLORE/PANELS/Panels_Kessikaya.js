@@ -110,7 +110,11 @@ class Panels_Kessikaya extends Stalk{
             tag: 'input',
             placeholder: ['EXPLORER', 'TERMS', 'SPACE']
         }).init();
-        
+        const inputCode = new create({
+            tag: 'input',
+            placeholder: ['EXPLORER', 'LABELS', 'CODE']
+        }).init();
+
         // == TEXT == //
         const headerSpace = new create({
             tag: 'label',
@@ -125,13 +129,14 @@ class Panels_Kessikaya extends Stalk{
 
         // == LISTENERS == //
         buttonSubmit.addEventListener('click', (event) => {
-            this.explore.CREATE_SPACE(inputSpace.value).then((RESULT) => {return RESULT});
+            this.explore.CREATE_SPACE(inputSpace.value, inputCode.value).then((RESULT) => {return RESULT});
         });
 
         // == ATTACHMENTS == //
         wrapperSpace.append(...[
             headerSpace,
-            inputSpace,
+            inputSpace,,
+            inputCode,
             buttonSubmit
         ]);
         return wrapperSpace;
@@ -148,7 +153,11 @@ class Panels_Kessikaya extends Stalk{
             tag: 'input',
             placeholder: ['EXPLORER', 'TERMS', 'SECTOR']
         }).init();
-        
+        const inputCode = new create({
+            tag: 'input',
+            placeholder: ['EXPLORER', 'LABELS', 'CODE']
+        }).init();
+
         // == TEXT == //
         const labelSector = new create({
             tag: 'label',
@@ -174,7 +183,7 @@ class Panels_Kessikaya extends Stalk{
         // == LISTENERS == //
         buttonSubmit.addEventListener('click', (event) => {
             let spaceChosen = selectSpace.options[selectSpace.selectedIndex].text;
-            this.explore.CREATE_SECTOR(spaceChosen, inputSector.value)
+            this.explore.CREATE_SECTOR(spaceChosen, inputSector.value, inputCode.value)
                 .then((RESULT) => {return RESULT});
         });
 
@@ -185,6 +194,8 @@ class Panels_Kessikaya extends Stalk{
 
             labelSector,
             inputSector,
+
+            inputCode,
 
             buttonSubmit
         ]);
@@ -202,7 +213,11 @@ class Panels_Kessikaya extends Stalk{
             tag: 'input',
             placeholder: ['EXPLORER', 'TERMS', 'SYSTEM']
         }).init();
-        
+        const inputCode = new create({
+            tag: 'input',
+            placeholder: ['EXPLORER', 'LABELS', 'CODE']
+        }).init();
+
         // == TEXT == //
         const labelSystem = new create({
             tag: 'label',
@@ -246,7 +261,7 @@ class Panels_Kessikaya extends Stalk{
         buttonSubmit.addEventListener('click', (event) => {
             let spaceChosen = selectSpace.options[selectSpace.selectedIndex].text;
             let sectorChosen = selectSector.options[selectSector.selectedIndex].text;
-            this.explore.CREATE_SYSTEM(spaceChosen, sectorChosen, inputSystem.value)
+            this.explore.CREATE_SYSTEM(spaceChosen, sectorChosen, inputSystem.value, inputCode.value)
                 .then((RESULT) => {return RESULT});
         });
 
@@ -260,6 +275,8 @@ class Panels_Kessikaya extends Stalk{
 
             labelSystem,
             inputSystem,
+
+            inputCode,
 
             buttonSubmit
         ]);

@@ -13,19 +13,27 @@ const { stringify } = require("csv-stringify");
 
 // == APP VARIABLES == //
 let mainWindow;
+let testing = true;
 
 // == PATHS == //
 const PreloadPath = 'Access.js';
 const appMemoryPath = app.getPath('userData');
 const SplashScreenPath = './POCKETS/WELCOME/SPLASH/FrameworkSplash.html'
 const routePath_Base = "../../CONSOLE/ROUTES/Memory.json";
-const routePath_Planets = appMemoryPath + "/UserMemory/ROUTES/Explorer.json";
-const routePath_Users = appMemoryPath + "/UserMemory/ROUTES/Users.json";
+let routePath_Planets = appMemoryPath + "/UserMemory/ROUTES/Explorer.json";
+let routePath_Users = appMemoryPath + "/UserMemory/ROUTES/Users.json";
+let DatabasePath = appMemoryPath +  "/UserMemory/ARCHIVE/SQLITE/Archive.sqlite";
+if (testing) {
+    routePath_Planets = appMemoryPath + "/TestMemory/ROUTES/Explorer.json";
+    routePath_Users = appMemoryPath + "/TestMemory/ROUTES/Users.json";
+    DatabasePath = appMemoryPath +  "/TestMemory/ARCHIVE/SQLITE/Archive.sqlite";
+    console.log(routePath_Planets)
+};
 const routePath_Assets = "../../CONSOLE/ROUTES/Assets.json";
 const tablePath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/TableNames.json");
 const QueriesPath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/QueryCodes.json");
 
-const DatabasePath = appMemoryPath +  "\\DATABASE\\Archive.sqlite";
+
 
 // == DATABASE SET-UP == //
 const ArchiveDatabase = new sqlite3.Database(DatabasePath);
@@ -54,7 +62,7 @@ const createWindow = () => {
     });
     win.loadFile(SplashScreenPath);
     win.setIcon("./ASSETS/ICONS/MushroomStalk.ico")
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
     mainWindow = win;
 }
 
@@ -183,6 +191,7 @@ async function CopyFolder(event, sourcePath, destinationPath) {
         }
 });
 }
+
 // == FILE MANIPULATION == //
 // == PATHS == //
 /**
@@ -196,24 +205,47 @@ function getFormattedPath(event, relative) {
     console.log("CREATING A PATH...");
     console.log(relative);
     let bucket = []
-    if(relative[0] === ('£')) {
-        console.log("FOUND")
-        bucket = [appMemoryPath];
-        relative = relative.replace("£££-", "");
+    if (!testing) {
+        if(relative[0] === ('£')) {
+            console.log("FOUND")
+            bucket = [appMemoryPath];
+            relative = relative.replace("£££-", "");
+        }
+        else{
+            bucket = [__dirname];
+        };
+        let relativeArray = relative.split("/");
+        pathloop: for (let index = 0; index < relativeArray.length; index++) {
+            bucket.push(relativeArray[index])
+        };
+        let pathResult = path.join(...bucket);
+    
+        console.log("PATH IS...");
+        console.log(pathResult);
+    
+        return pathResult;
     }
-    else{
-        bucket = [__dirname];
+    else if (testing) {
+        if(relative[0] === ('£')) {
+            console.log("FOUND")
+            bucket = [appMemoryPath];
+            relative = relative.replace("£££-", "");
+            relative = relative.replace("UserMemory", "TestMemory");
+        }
+        else{
+            bucket = [__dirname];
+        };
+        let relativeArray = relative.split("/");
+        pathloop: for (let index = 0; index < relativeArray.length; index++) {
+            bucket.push(relativeArray[index])
+        };
+        let pathResult = path.join(...bucket);
+    
+        console.log("PATH IS...");
+        console.log(pathResult);
+    
+        return pathResult;
     };
-    let relativeArray = relative.split("/");
-    pathloop: for (let index = 0; index < relativeArray.length; index++) {
-        bucket.push(relativeArray[index])
-    };
-    let pathResult = path.join(...bucket);
-
-    console.log("PATH IS...");
-    console.log(pathResult);
-
-    return pathResult;
 };
 function RouteMemory(event, tag) {
 
