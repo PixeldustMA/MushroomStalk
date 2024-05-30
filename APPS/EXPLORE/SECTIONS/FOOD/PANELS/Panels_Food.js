@@ -9,8 +9,16 @@ class Panel_Food {
         this.FlavourObject = {};
         this.TypeObject = {};
         this.foodInstance = new Food(); 
+
+        this.FoodName = "";
+        this.ingredients = "";
+        this.itemFlavour = "";
+        this.foodType = "";
+        this.foodDescription = "";
+        this.planetFood = "";
     };
 
+    // == INPUTS == //
     PANEL_INPUT_ITEM() {
 
         // == WRAPPERS == //
@@ -70,6 +78,17 @@ class Panel_Food {
             tag: 'button',
             elementText: ['USEFUL', 'GENERAL', 'SUBMIT']
         }).init();
+
+        // == LISTENERS == //
+        buttonSubmit.addEventListener('click', (event) => {
+            const foodItemName = inputName.value;
+            const foodItemFlavour = selectFlavour.options[selectFlavour.selectedIndex].text;
+            const foodItemType = selectType.options[selectType.selectedIndex].text;
+            const foodItemIngredients = inputIngredients.value.split(',');
+
+            this.foodInstance.GENERATE_FOOD(foodItemName, foodItemFlavour, foodItemType, foodItemIngredients)
+                .then((FOOD) => {return FOOD});
+        });
 
         // == ATTACHMENTS == //
         wrapperItem.append(...[
@@ -137,6 +156,13 @@ class Panel_Food {
             elementText: ['USEFUL', 'GENERAL', 'SUBMIT']
         }).init();
 
+        // == LISTENERS == //
+        buttonSubmit.addEventListener('click', (event) => {
+            const typeName = inputName.value;
+            const typeDescription = textboxDescription.value;
+            this.foodInstance.GENERATE_TYPE(typeName, typeDescription).then((RESULT) => {return RESULT});
+        });
+
         // == ATTACHMENTS == //
         listDisplay.append(lists);
         wrapperDisplay.append(listDisplay);
@@ -186,6 +212,11 @@ class Panel_Food {
             elementText: ['USEFUL', 'GENERAL', 'SUBMIT']
         }).init();
 
+        // == LISTENERS == //
+        buttonSubmit.addEventListener('click', (event) => {
+            this.foodInstance.GENERATE_FLAVOUR(inputName.value).then((RESULT) => {return RESULT});
+        });
+
         // == ATTACHMENTS == //
         listDisplay.append(lists);
         wrapperDisplay.append(listDisplay);
@@ -199,7 +230,95 @@ class Panel_Food {
         return wrapperItem;
     };
 
-    
+    // == DISPLAY == //
+    PANEL_DISPLAY_ITEM() {
+
+        // == WRAPPERS == //
+        const wrapperItem = new create({
+            tag: 'div'
+        }).init();
+
+        // == TEXT == //
+        const labelName = new create({
+            tag: 'label',
+            customText: this.FoodName
+        }).init();
+        const labelType = new create({
+            tag: 'label',
+            customText: this.foodType
+        }).init();
+        const labelFlavour = new create({
+            tag: 'label',
+            customText: this.itemFlavour
+        }).init();
+        const labelDescription = new create({
+            tag: 'p',
+            customText: this.foodDescription
+        }).init();
+        const labelPlanet = new create({
+            tag: 'label',
+            customText: this.planetFood
+        }).init();
+
+        // == LISTS == //
+        const listDisplay = new create({
+            tag: 'ul'
+        }).init();
+        let listItems = this.GENERATE_LISTS(this.ingredients, listDisplay);
+
+        // == ATTACHMENTS == //
+        listItems.append(listDisplay);
+        wrapperItem.append(...[
+            labelName,
+            labelType,
+            labelFlavour,
+            labelDescription,
+            labelPlanet,
+            listDisplay
+        ]);
+        return wrapperItem;
+    };
+    PANEL_DISPLAY_TYPE() {
+
+        // == WRAPPERS == //
+        const wrapperItem = new create({
+            tag: 'div'
+        }).init();
+
+        // == LISTS == //
+        const listDisplay = new create({
+            tag: 'dl'
+        }).init();
+        let lists = this.GENERATE_LISTS(this.TypeObject);
+
+        // == ATTACHMENTS == //
+        listDisplay.append(lists);
+        wrapperItem.append(...[
+            listDisplay
+        ]);
+    };
+    PANEL_DISPLAY_FLAVOUR() {
+
+        // == WRAPPERS == //
+        const wrapperItem = new create({
+            tag: 'div'
+        }).init();
+
+        // == LISTS == //
+        const listDisplay = new create({
+            tag: 'dl'
+        }).init();
+        let lists = this.GENERATE_LISTS(this.FlavourObject);
+
+        // == ATTACHMENTS == //
+        listDisplay.append(lists);
+        wrapperItem.append(...[
+            listDisplay
+        ]);
+        return wrapperItem;
+    };
+
+    // == GENERATION == //
     GENERATE_LISTS(tags, element) {
         let titles = Object.keys(tags);
         titles.forEach(key => {
@@ -215,26 +334,47 @@ class Panel_Food {
         });
         return element;
     };
+    GENERATE_SIMPLE_LISTS(tags, element) {
+        tags.forEach(key => {
+            let list = new create({
+                tag: 'li',
+                customText: key
+            }).init();
+            element.append(...[header])
+        });
+        return element;
+    };
+    async SET_UP_DISPLAY(itemName) {
+        if (itemName !== "NONE") {
+            let itemFile = await this.foodInstance.READ_FOOD_ITEM(itemName);
+            let descriptionFile = await this.foodInstance.READ_DESCRIPTION(itemName);
+
+            this.FoodName = itemFile.NAME;
+            this.ingredients = itemFile.INGREDIENTS;
+            this.itemFlavour = itemFile.FLAVOUR;
+            this.foodType = itemFile.TYPE;
+            this.foodDescription = descriptionFile;
+            this.planetFood = itemFile.PLANETS;
+        };
+    };
     async INITIALISE() {
-        this.Flavours = await this.foodInstance.READ_FLAVOURS();
-        this.FoodTypes = await this.foodInstance.READ_TYPES();
-
-        this.Flavours.forEach(FLAVOUR => {
-            this.foodInstance.READ_DESCRIPTION(FLAVOUR)
-                .then((RESULT) => {
-                    this.FlavourObject[FLAVOUR] = RESULT
-                    return this.FlavourObject;
-                });
-        });
-        this.FoodTypes.forEach(FLAVOUR => {
-            this.foodInstance.READ_DESCRIPTION(TYPE)
-                .then((RESULT) => {
-                    this.TypeObject[TYPE] = RESULT
-                    return this.TypeObject;
-                });
-        });
-
+        this.Flavours =  Object.keys(await this.foodInstance.READ_FLAVOURS());
+        this.FoodTypes = Object.keys(await this.foodInstance.READ_TYPES());
+        // this.Flavours.forEach(FLAVOUR => {
+        //     this.foodInstance.READ_DESCRIPTION(FLAVOUR)
+        //         .then((RESULT) => {
+        //             this.FlavourObject[FLAVOUR] = RESULT
+        //             return this.FlavourObject;
+        //         });
+        // });
+        // this.FoodTypes.forEach(TYPE => {
+        //     this.foodInstance.READ_DESCRIPTION(TYPE)
+        //         .then((RESULT) => {
+        //             this.TypeObject[TYPE] = RESULT
+        //             return this.TypeObject;
+        //         });
+        // });
     };
 }
 
-export {Food};
+export {Panel_Food};

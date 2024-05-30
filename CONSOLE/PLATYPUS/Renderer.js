@@ -30,6 +30,9 @@ class Renderer{
         const file = await window.ipcRender.ReadMessage(this.path);
         return JSON.parse(file)
     };
+    async READ_TEXT() {
+        return await window.ipcRender.ReadText(this.path);
+    }
     async COPY(origin, destination) {
         return window.ipcRender.CopyFile(origin, destination);
     }

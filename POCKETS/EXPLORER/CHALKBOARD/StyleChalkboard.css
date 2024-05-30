@@ -1,0 +1,29 @@
+@import "../../../STYLE/BASE/RootStyles.css";
+@import "../../../STYLE/BASE/ImageLoader.css";
+
+img {
+    position: absolute;
+}
+.PHOTO {
+    transform: translate(800px, 340px);
+}
+.SEARCH {
+    transform: translate(5px, 5px);
+}
+.FLAVOUR {
+    transform: translate(10px, 110px);
+}
+.TYPE {
+    transform: translate(5px, 330px);
+}
+.PLANET {
+    transform: translate(140px, 390px);
+}
+.DISPLAY {
+    height: 600px;
+    width: 700px;
+    left: 300px;
+    position: relative;
+    top: 30px;
+    transform: rotate(-5deg);
+}
