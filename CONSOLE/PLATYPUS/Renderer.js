@@ -18,8 +18,6 @@ class Renderer{
      * @returns ACTION COMPLETE
      */
     async SAVE() {
-        console.log(this.path);
-        console.log(this.data)
         return await window.ipcRender.SaveData(this.path, this.data);
     }
     /**
@@ -30,6 +28,9 @@ class Renderer{
         const file = await window.ipcRender.ReadMessage(this.path);
         return JSON.parse(file)
     };
+    async READ_TEXT() {
+        return await window.ipcRender.ReadText(this.path);
+    }
     async COPY(origin, destination) {
         return window.ipcRender.CopyFile(origin, destination);
     }

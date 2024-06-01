@@ -51,6 +51,7 @@ contextBridge.exposeInMainWorld(
         SaveData: (path, details) => ipcRenderer.invoke('saveNote', path, details),
         Route: (tag) => ipcRenderer.invoke('fetchRouteMemory', tag),
         ReadMessage: (messagePath) => ipcRenderer.invoke('readNote', messagePath),
+        ReadText: (textPath) => ipcRenderer.invoke('readText', textPath),
         CopyFile: (origin, destination) => ipcRenderer.invoke('copyFile', origin, destination),
         SelectFolder: () => ipcRenderer.invoke('dialog:openDirectory'),
         NewFolder: (path) => ipcRenderer.invoke('folderCreation', path),

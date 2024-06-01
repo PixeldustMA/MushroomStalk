@@ -36,7 +36,9 @@
             "ADD": "../../POCKETS/ARCHIVE/NEW/FrameworkArchiveNew.html"
         },
         "EXPLORER": {
-            "EXPLORER": "../../POCKETS/EXPLORER/FrameworkExplorer.html"
+            "EXPLORER": "../../POCKETS/EXPLORER/FrameworkExplorer.html",
+            "KITCHEN": "../../POCKETS/EXPLORER/KITCHEN/FrameworkKitchen.html",
+            "CHALKBOARD": "../../POCKETS/EXPLORER/CHALKBOARD/FrameworkChalkboard.html"
         }
     },
     "FOLDERS": {

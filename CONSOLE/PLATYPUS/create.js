@@ -6,7 +6,8 @@ class create extends Language{
 		{
 			tag = 0, 
 			id = 0, 
-			elementText = 0, 
+			elementText = 0,
+			customText = 0, 
 			classes = 0, 
 			options = 0, 
 			labelFor = 0, 
@@ -21,6 +22,7 @@ class create extends Language{
 		this.tag = tag;
 		this.id = id;
 		this.elementText = elementText;
+		this.customText = customText;
 		this.classes = classes;
 		this.options = options;
 		this.labelFor = labelFor;
@@ -38,6 +40,9 @@ class create extends Language{
 		};
 		if (this.#CHECK_NULL(this.elementText)) {
 			this.#TEXT();
+		}
+		if (this.#CHECK_NULL(this.customText)) {
+			this.#TEXT(true);
 		}
 		if(this.#CHECK_NULL(this.classes)) {
 			this.#CLASSES();
@@ -68,11 +73,16 @@ class create extends Language{
 	#ID() {
 		this.instance.id = this.id;
 	};
-	#TEXT() {
-		this.LOAD().then((RESULT) => {
-			let scribblings = this.SCRIBE(this.elementText);
-			this.instance.innerHTML = scribblings;
-		});
+	#TEXT(CUSTOM = false) {
+		if (!CUSTOM) {
+			this.LOAD().then((RESULT) => {
+				let scribblings = this.SCRIBE(this.elementText);
+				this.instance.innerHTML = scribblings;
+			});
+		}
+		else {
+			this.instance.innerHTML = this.customText;
+		}
 	};
 	#CLASSES() {
 		this.classes.forEach(className => {

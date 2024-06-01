@@ -88,7 +88,13 @@
         "OBSERVATORY": {
             "HEALTH": "../../ASSETS/IMAGES/BUTTONS/OBSERVATORY/Button - Health.png",
             "EMPLOYMENT": "../../ASSETS/IMAGES/BUTTONS/OBSERVATORY/Button - Employment.png",
-            "EXPLORER": "../../ASSETS/IMAGES/BUTTONS/OBSERVATORY/Button - Explorer.png"
+            "EXPLORER": "../../ASSETS/IMAGES/BUTTONS/OBSERVATORY/Button - Explorer.png",
+            "CHALKBOARD": "../../ASSETS/IMAGES/BUTTONS/KITCHEN/Button - Chalkboard.png",
+            "FLAVOUR": "../../ASSETS/IMAGES/BUTTONS/KITCHEN/Button - Flavour.png",
+            "TYPE": "../../ASSETS/IMAGES/BUTTONS/KITCHEN/Button - Type.png",
+            "SEARCH": "../../ASSETS/IMAGES/BUTTONS/KITCHEN/Button - Search.png",
+            "PHOTO": "../../ASSETS/IMAGES/BUTTONS/KITCHEN/Button - Image.png",
+            "PLANET": "../../ASSETS/IMAGES/BUTTONS/KITCHEN/Button - Planet.png"  
         },
         "STALK": {
             "BAG": "../../ASSETS/IMAGES/BUTTONS/STALK/Button - Bag.png",

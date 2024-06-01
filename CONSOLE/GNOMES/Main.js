@@ -87,6 +87,7 @@ ipcMain.handle('small', MinimiseApplication);
 ipcMain.handle('big', MaximiseApplication);
 ipcMain.handle('saveNote', WriteDataToFile);
 ipcMain.handle('readNote', ReadDataFromFile);
+ipcMain.handle('readText', readTextFile);
 ipcMain.handle('copyFile', CopyFile);
 ipcMain.handle('getPath', getFormattedPath);
 ipcMain.handle('fetchRouteMemory', RouteMemory);
@@ -160,6 +161,16 @@ function ReadDataFromFile(event, filePath) {
     })
     return Messages;
 };
+function readTextFile(event, textPath) {
+    console.log("TEXT READING FUNCTION ACTIVATED...");
+    console.log("PATH ACCESSED IS...");
+    console.log(textPath)
+
+    const Messages = fs.readFileSync(textPath, 'utf8', function(err, data){
+        return data;
+    })
+    return Messages;
+}
 
 // == FOLDERS == //
 function FolderProcessing(event, folderPath) {

@@ -5,8 +5,6 @@ require('dotenv').config()
 module.exports = {
   packagerConfig: {
     asar: true,
-  },
-  packagerConfig: {
     icon: '/ASSETS/ICONS/Mushroom'
   },
   publishers: [

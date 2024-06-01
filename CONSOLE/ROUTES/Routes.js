@@ -43,7 +43,6 @@ class pathways extends Renderer{
      */
     async ROUTE() {
         this.routePath = this.routeKey;
-        console.log(this.routePath)
         return await this.#CREATE_PATH();
     };
     /**

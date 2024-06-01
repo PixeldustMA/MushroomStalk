@@ -58,6 +58,10 @@ class Page_Observatory_Portal extends Stalk{
             source: this.pathHealth,
             classes: ['PLANET', 'HEALTH']
         }).init();
+        const buttonKitchen = new create({
+            tag: 'button',
+            elementText: ['FOOD', 'LABELS', 'KITCHEN']
+        }).init();
 
         // == LISTENERS == //
         buttonPlanets.addEventListener('click', (event) => {
@@ -67,12 +71,16 @@ class Page_Observatory_Portal extends Stalk{
         });
         buttonHealth.addEventListener('click', (event) => {
         });
+        buttonKitchen.addEventListener('click', (event) => {
+            this.LOAD(['KITCHEN', 'MAINPAGES', 'EXPLORER'])
+        });
 
         // == ATTACHMENT == //
         wrapper.append(...[
             buttonEmployment,
             buttonPlanets,
-            buttonHealth
+            buttonHealth,
+            buttonKitchen
         ]);
         return wrapper;
     };

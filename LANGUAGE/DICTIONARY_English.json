@@ -276,6 +276,28 @@
             "MULTI_PLANET_REGION": ["SELECT A PLANET FROM THE SAME REGION"],
             "MULTI_PLANET": ["SELECT ANOTHER PLANET"],
             "CODE": ["XX"]
+        },
+        "SECTIONS": {
+            "FOOD": ["FOOD", "NOMS", "SNACKIES"],
+            "FLAVOUR": ["FLAVOUR"]
+        },
+        "BUTTONS": {
+            "KESSIKAYA": ["KESSIKAYA"],
+            "FOOD": ["FOOD"]
+        }
+    },
+    "FOOD": {
+        "LABELS": {
+            "NAME": ["FOOD ITEM NAME"],
+            "INGREDIENT": ["INGREDIENTS, SEPERATED BY SEMI-COLONS"],
+            "FLAVOUR": ["CHOOSE A FLAVOUR PROFILE"],
+            "TYPE": ["CHOOSE THE RECOMMENDED MEAL TIME"],
+            "DESCRIPTION": ["DESCRIPTIOIN"],
+            "KITCHEN": ["KITCHEN"]
+        },
+        "PLACEHOLDER": {
+            "NAME": ["TATSY"],
+            "INGREDIENT": ["ONION"]
         }
     }
 }

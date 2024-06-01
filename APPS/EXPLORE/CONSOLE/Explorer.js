@@ -185,16 +185,14 @@ class Explorer extends DatabaseController{
             else {
                 this.EDIT_TYPE_FILE(categoryTag.toUpperCase(), tag, type);
             };
-            await this.EDIT_ALL_FILE(categoryTag, instrument);
+            await this.EDIT_ALL_TYPE_FILE(categoryTag, type);
             if (origin !== "NONE") {
                 await this.ENTER_ORIGIN(categoryTag, tag, origin);
             };
             await this.INSERT_LIBRARY_FILE(categoryTag, tag, pathString);
     };
     async CREATE_TYPE(section, tag, filePath) {
-            await this.NEW_TYPE_FILE(section, tag);
-            await this.EDIT_PATHWAYS(section, tag, filePath, this.headers.TYPE);
-            await this.ADD_TYPE_TO_ALL_TYPE(category, newType);
+            return await this.NEW_TYPE_FILE(section, tag, filePath);
     };
     async CREATE_SPACE(nameOfSpace, spaceCode) {
     
@@ -452,6 +450,10 @@ class Explorer extends DatabaseController{
             filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/SPORT/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('SPORTS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'SPORTS');
+            // FOOD
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/FOOD/PLANETS/${planetName.toUpperCase()}.json`;
+            await this.EDIT_PATHWAYS('FOOD', planetName.toUpperCase(), filePath, "PLANETS");
+            await this.CREATE_NEW_PLANET_FILE(planetName, 'FOOD');
 
             // -- EDUCATION -- //
             // SCHOOLS
@@ -625,16 +627,19 @@ class Explorer extends DatabaseController{
          * RETURNS -> Text file created within relevant database with a short amout of text
          */
     async NEW_TEXT_FILE(section, filename, description, pathString) {
-            const pathRoot = await this.EXPLORER_INIT_ROUTE({
+
+        let pathwayRoute = pathString + "DESCRIPTION/" + filename + ".txt";
+            let pathRoot = await this.EXPLORER_INIT_ROUTE({
                 TAG: this.headers.DESCRIPTION,
                 SECTION: section.toUpperCase(),
                 SUBSECTION: this.headers.FOLDER,
             });
             pathRoot = pathRoot + "/" + filename + ".txt";
+            console.log(pathRoot)
             this.path = pathRoot;
             this.data = description;
             await this.SAVE();
-            await this.PATHWAYS_TEXT_FILE(section, tag, pathString);
+            await this.PATHWAYS_TEXT_FILE(section, filename, pathwayRoute);
     };
     /**
          * ADD A NEW TYPE FILE TO THE DATABASE
@@ -645,17 +650,21 @@ class Explorer extends DatabaseController{
          * 
          * RETURNS -> A new file is created in the database (Section) type library
          */
-    async NEW_TYPE_FILE(section, tag) {
+    async NEW_TYPE_FILE(section, tag, pathString) {
+        let pathwayRoute = pathString + "TYPES/"  + tag + ".json";
+        console.log(pathwayRoute);
+        console.log("PATHWAYS ROUTE")
         const pathRoot = await this.EXPLORER_INIT_ROUTE({
             TAG: this.headers.TYPE,
             SECTION: section.toUpperCase(),
             SUBSECTION: this.headers.FOLDER,
         });
         this.path = pathRoot + "/" + tag + ".json";
+        console.log(this.path)
         this.data = {NAME: tag};
         await this.SAVE(); 
-        await this.EDIT_ALL_TYPE_FILE(categoryTag, type);
-        await this.PATHWAYS_TYPE_FILE(categoryTag, type, pathString);
+        await this.EDIT_ALL_TYPE_FILE(section, tag);
+        await this.PATHWAYS_TYPE_FILE(section, tag, pathwayRoute);
     };
     /**
          * INSERT A NEW FILE INTO THE LIBRARY
@@ -666,6 +675,7 @@ class Explorer extends DatabaseController{
          * RETURNS -> New library file is created
          */
     async INSERT_LIBRARY_FILE(section, tag, pathString) {
+        let newPathString = pathString + "LIBRARY/" + tag + ".json";
             const pathRoot = await this.EXPLORER_INIT_ROUTE({
                 TAG: this.headers.LIBRARY,
                 SECTION: section.toUpperCase(),
@@ -674,19 +684,22 @@ class Explorer extends DatabaseController{
             this.path = pathRoot + "/" + tag + ".json";
             this.data = {};
             await this.SAVE();
-            await this.PATHWAYS_LIBRARY_FILE(section, tag, pathString);
+            await this.PATHWAYS_LIBRARY_FILE(section, tag, newPathString );
     };
 
     // == EDIT PATHS == //
     async EDIT_PATHWAYS(section, tag, filePath, subsection) {
+        console.log(filePath);
+        console.log("CHECKING PATHWAYS BUG")
             this.path = await this.EXPLORER_INIT_ROUTE({
                 TAG: 'ROOT',
                 SECTION: "ROOT"
             });
             const routes = await this.READ();
             routes[section.toUpperCase()][subsection.toUpperCase()][tag.toUpperCase()] = filePath;
+            console.log(filePath);
             this.data = routes;
-            await this.SAVE();
+            return await this.SAVE();
     }
     async INSERT_PLANET_KEY (data) {
     
@@ -743,8 +756,11 @@ class Explorer extends DatabaseController{
             return await this.EDIT_PATHWAYS(section, tag, pathString, this.headers.DESCRIPTION);
     };
     async PATHWAYS_TYPE_FILE(section, tag, pathString) {
+            console.log(pathString)
+            console.log("PATH ==  TYPE FILE")
             return await this.EDIT_PATHWAYS(section, tag, pathString, this.headers.TYPE);
     }; 
+
     // == GENERATE PLANET OBJECT == //
     /**
          * CREATE CULTURE OBJECT
@@ -767,6 +783,7 @@ class Explorer extends DatabaseController{
         const file = await this.READ_PLANET_FILE(planetName);
         return file.LOCATION;
     }; 
+
     // == EDIT AND UPDATE FILES == //
     /**
          * ADD A TYPE FILE TO A DATABASE
@@ -779,7 +796,8 @@ class Explorer extends DatabaseController{
          * RETURNS -> Files edited and created within relevant (section) database
          */
     async EDIT_TYPE_FILE(section, tag, type) {
-            const typeFile = await this.READ_TYPE(section, type);
+            const typeFile = await this.READ_TYPE(section, tag);
+            console.log(this.path)
             typeFile[tag.toUpperCase()] = [tag.toUpperCase(), section.toUpperCase(), section.toUpperCase()];
             this.data = typeFile;
             await this.SAVE();
@@ -862,29 +880,30 @@ class Explorer extends DatabaseController{
     };
 
     // == READ == //
-    async READ_LOCATION_FILE(planetName) {
+    async READ_LOCATION_FILE(planetName, category) {
             this.path = await this.EXPLORER_INIT_ROUTE({
-                TAG: planetName.toUpperCase,
+                TAG: planetName.toUpperCase(),
                 SECTION: category.toUpperCase(),
                 SUBSECTION: this.headers.PLANET,
             });
-            return await this.Read();
+            return await this.READ();
     };
     async READ_ALL_TYPE_FILE(section) {
             this.path = await this.EXPLORER_INIT_ROUTE({
-                TAG: 'ALL',
+                TAG: 'TYPES',
                 SECTION: section.toUpperCase(),
                 SUBSECTION: this.headers.CONSOLE,
             });
-            return await this.Read();
+            return await this.READ();
     };
     async READ_TYPE(category, typeName) {
             this.path = await this.EXPLORER_INIT_ROUTE({
                 TAG: typeName.toUpperCase(),
                 SECTION: category.toUpperCase(),
-                SUBSECTION: this.headers.TYPE,
+                SUBSECTION: this.headers.TYPE
             });
-            return Object.keys(await this.Read());
+            console.log(this.path)
+            return Object.keys(await this.READ());
     };
     async READ_ALL(category) {
             this.path = await this.EXPLORER_INIT_ROUTE({
@@ -903,21 +922,22 @@ class Explorer extends DatabaseController{
             return await this.Read();
     };
     async READ_ITEN(category, item) {
+        console.log(item)
             this.path = await this.EXPLORER_INIT_ROUTE({
                 TAG: item.toUpperCase(),
                 SECTION: category.toUpperCase(),
                 SUBSECTION: this.headers.LIBRARY,
             });
-            return await this.Read();
+            return await this.READ();
     };
-    // async READ_DETAILS (category, item){
-    //     this.path = await this.EXPLORER_INIT_ROUTE({
-    //         TAG: item.toUpperCase(),
-    //         SECTION: category.toUpperCase(),
-    //         SUBSECTION: this.headers.DESCRIPTION,
-    //     });
-    //     return await this.ReadText();
-    // };
+    async READ_DETAILS (category, item){
+        this.path = await this.EXPLORER_INIT_ROUTE({
+            TAG: item.toUpperCase(),
+            SECTION: category.toUpperCase(),
+            SUBSECTION: this.headers.DESCRIPTION,
+        });
+        return await this.READ_TEXT();
+    };
 
     // == SEARCH == //
     async FETCH_TYPE_FROM_ITEM(category, item) {

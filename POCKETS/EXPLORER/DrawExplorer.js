@@ -1,4 +1,5 @@
 import { Panels_Kessikaya } from "../../APPS/EXPLORE/PANELS/Panels_Kessikaya.js";
+import { Panel_Food } from "../../APPS/EXPLORE/SECTIONS/FOOD/PANELS/Panels_Food.js";
 import { Stalk } from "../../CONSOLE/CONTROLLERS/StalkController.js";
 import { create } from "../../CONSOLE/PLATYPUS/Create.js";
 
@@ -12,7 +13,7 @@ class Page_Explorer extends Stalk{
         this.contentSection = document.getElementById('SECTION_Explorer-Content');
         
         this.panels = new Panels_Kessikaya();
-
+        this.foodPanelInstance = new Panel_Food();
         this.viewPlanet = "";
     };
 
@@ -101,17 +102,47 @@ class Page_Explorer extends Stalk{
             elementText: ['USEFUL', 'GENERAL', 'TYPE']
         }).init();
 
+        // == BUTTONS == //
+        const buttonSpace = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'BUTTONS', 'KESSIKAYA']
+        }).init();
+        const buttonFood = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'BUTTONS', 'FOOD']
+        }).init();
+
+        // == PANELS == //
+        let spacePanel = this.panels.PANEL_INPUT_ORB();
+        let foodPanel = this.foodPanelInstance.PANEL_INPUT_ITEM();
+
+        // == LISTENERS == //
+        buttonSpace.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(spacePanel);
+        });
+        buttonFood.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(foodPanel);
+        });
+        wrapperNew.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(wrapperNewButtons);
+        });
+        wrapperType.addEventListener('click', (event)=> {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(this.TYPES_PANEL());
+        });
+
+        // == ATTACHMENTS == //
         wrapperSearch.append(headerSearch);
         wrapperView.append(headerView);
         wrapperNew.append(headerNew);
         wrapperType.append(headerType);
-
-        let spacePanel = this.panels.PANEL_INPUT_ORB();
-        wrapperNew.addEventListener('click', (event) => {
-            this.contentSection.replaceChildren();
-            wrapperNewButtons.replaceChildren();
-            this.contentSection.append(spacePanel)
-        });
+        wrapperNewButtons.append(...[
+            buttonSpace,
+            buttonFood
+        ]);
         wrapperSectionTabs.append(...[
             wrapperSearch,
             wrapperView,
@@ -399,6 +430,47 @@ class Page_Explorer extends Stalk{
         ]);
         return wrapperLocation;
     };
+    TYPES_PANEL() {
+
+        // == WRAPPERS == //
+        const wrapperButton = new create({
+            tag: 'div'
+        }).init();
+        const wrapperPanel = new create({
+            tag: 'div'
+        }).init();
+
+        // == BUTTONS == //
+        const buttonFood = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'SECTIONS', 'FOOD']
+        }).init();
+        const buttonFlavour = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'SECTIONS', 'FLAVOUR']
+        }).init();
+
+        // == LISTENERS == //
+        buttonFood.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            const food = new Panel_Food();
+            food.INITIALISE().then((RESULT) => {
+                wrapperPanel.append(food.PANEL_INPUT_TYPE());
+            });
+        });
+        buttonFlavour.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            wrapperPanel.append(this.foodPanelInstance.PANEL_INPUT_FLAVOUR());
+        });
+
+        // == ATTACHMENTS == //
+        wrapperButton.append(...[
+            buttonFood,
+            buttonFlavour,
+            wrapperPanel
+        ]);
+        return wrapperButton;
+    };
     EDIT_MODE(element, textElements) {
         element.style.backgroundColor = "blue";
         textElements.forEach(words => {
@@ -415,7 +487,8 @@ class Page_Explorer extends Stalk{
     };
     async INITIALITSE() {
         await this.panels.INITIALISE();
-    }
+        await this.foodPanelInstance.INITIALISE();
+    };
 }
 
 // RUN THE PAGE
