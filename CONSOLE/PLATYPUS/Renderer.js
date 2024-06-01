@@ -18,8 +18,6 @@ class Renderer{
      * @returns ACTION COMPLETE
      */
     async SAVE() {
-        console.log(this.path);
-        console.log(this.data)
         return await window.ipcRender.SaveData(this.path, this.data);
     }
     /**

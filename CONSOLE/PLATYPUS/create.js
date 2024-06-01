@@ -42,7 +42,7 @@ class create extends Language{
 			this.#TEXT();
 		}
 		if (this.#CHECK_NULL(this.customText)) {
-			this.#TEXT(CUSTOM = true);
+			this.#TEXT(true);
 		}
 		if(this.#CHECK_NULL(this.classes)) {
 			this.#CLASSES();

@@ -37,7 +37,7 @@ class Page_Kitchen extends Stalk{
         }).init();
 
         imageChalkboard.addEventListener('click', (event) => {
-            this.LOAD(['CHALKBOARD', 'MAINPAGES', 'EXPLORER'])
+            this.LOAD(['CHALKBOARD', 'MAINPAGES', 'EXPLORER']);
         });
         wrapperTitle.append(...[imageChalkboard]);
         return wrapperTitle;

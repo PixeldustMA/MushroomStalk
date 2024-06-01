@@ -185,7 +185,7 @@ class Explorer extends DatabaseController{
             else {
                 this.EDIT_TYPE_FILE(categoryTag.toUpperCase(), tag, type);
             };
-            await this.EDIT_ALL_TYPE_FILE(categoryTag, tag);
+            await this.EDIT_ALL_TYPE_FILE(categoryTag, type);
             if (origin !== "NONE") {
                 await this.ENTER_ORIGIN(categoryTag, tag, origin);
             };
@@ -450,6 +450,10 @@ class Explorer extends DatabaseController{
             filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/SPORT/PLANETS/${planetName.toUpperCase()}.json`;
             await this.EDIT_PATHWAYS('SPORTS', planetName.toUpperCase(), filePath, "PLANETS");
             await this.CREATE_NEW_PLANET_FILE(planetName, 'SPORTS');
+            // FOOD
+            filePath = `£££-UserMemory/EXPLORER/DATABASE/CULTURE/FOOD/PLANETS/${planetName.toUpperCase()}.json`;
+            await this.EDIT_PATHWAYS('FOOD', planetName.toUpperCase(), filePath, "PLANETS");
+            await this.CREATE_NEW_PLANET_FILE(planetName, 'FOOD');
 
             // -- EDUCATION -- //
             // SCHOOLS
@@ -624,7 +628,7 @@ class Explorer extends DatabaseController{
          */
     async NEW_TEXT_FILE(section, filename, description, pathString) {
 
-        let pathwayRoute = pathString + "/" + filename + ".txt";
+        let pathwayRoute = pathString + "DESCRIPTION/" + filename + ".txt";
             let pathRoot = await this.EXPLORER_INIT_ROUTE({
                 TAG: this.headers.DESCRIPTION,
                 SECTION: section.toUpperCase(),
@@ -647,7 +651,7 @@ class Explorer extends DatabaseController{
          * RETURNS -> A new file is created in the database (Section) type library
          */
     async NEW_TYPE_FILE(section, tag, pathString) {
-        let pathwayRoute = pathString + "/"  + tag + ".json";
+        let pathwayRoute = pathString + "TYPES/"  + tag + ".json";
         console.log(pathwayRoute);
         console.log("PATHWAYS ROUTE")
         const pathRoot = await this.EXPLORER_INIT_ROUTE({
@@ -693,7 +697,7 @@ class Explorer extends DatabaseController{
             });
             const routes = await this.READ();
             routes[section.toUpperCase()][subsection.toUpperCase()][tag.toUpperCase()] = filePath;
-            console.log(routes[section.toUpperCase()]);
+            console.log(filePath);
             this.data = routes;
             return await this.SAVE();
     }
@@ -876,13 +880,13 @@ class Explorer extends DatabaseController{
     };
 
     // == READ == //
-    async READ_LOCATION_FILE(planetName) {
+    async READ_LOCATION_FILE(planetName, category) {
             this.path = await this.EXPLORER_INIT_ROUTE({
-                TAG: planetName.toUpperCase,
+                TAG: planetName.toUpperCase(),
                 SECTION: category.toUpperCase(),
                 SUBSECTION: this.headers.PLANET,
             });
-            return await this.Read();
+            return await this.READ();
     };
     async READ_ALL_TYPE_FILE(section) {
             this.path = await this.EXPLORER_INIT_ROUTE({
@@ -918,6 +922,7 @@ class Explorer extends DatabaseController{
             return await this.Read();
     };
     async READ_ITEN(category, item) {
+        console.log(item)
             this.path = await this.EXPLORER_INIT_ROUTE({
                 TAG: item.toUpperCase(),
                 SECTION: category.toUpperCase(),

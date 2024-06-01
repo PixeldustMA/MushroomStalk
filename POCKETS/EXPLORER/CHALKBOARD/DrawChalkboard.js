@@ -1,3 +1,4 @@
+import { Panel_Food } from "../../../APPS/EXPLORE/SECTIONS/FOOD/PANELS/Panels_Food.js";
 import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
 import { create } from "../../../CONSOLE/PLATYPUS/Create.js";
 
@@ -5,6 +6,7 @@ class Page_Chalkboard extends Stalk{
 
     constructor() {
         super();
+
         this.pathImage = "";
         this.pathPlanet = "";
         this.pathType = "";
@@ -67,21 +69,50 @@ class Page_Chalkboard extends Stalk{
             classes: ['SEARCH']
         }).init();
 
+        // == LISTENERS == //
+        imagePhoto.addEventListener('click', (event) => {
+            console.log("PHOTO CLICKED");
+        });
+        imagePlanet.addEventListener('click', (event) => {
+            console.log("PLANET SPICE CLICKED");
+            headerChangable.innerHTML = "PLANET";
+            wrapperDisplay.append(this.panelFoodInstance.PANEL_DISPLAY_PLANETS());
+        });
+        imageType.addEventListener('click', (event) => {
+            console.log("TYPE SPICE CLICKED");
+            headerChangable.innerHTML = "TYPE";
+            wrapperDisplay.append(this.panelFoodInstance.PANEL_DISPLAY_TYPE());
+        });
+        imageFlavour.addEventListener('click', (event) => {
+            console.log("FLAVOUR CLICKED");
+            headerChangable.innerHTML = "FLAVOUR";
+            wrapperDisplay.append(this.panelFoodInstance.PANEL_DISPLAY_FLAVOUR());
+        });
+        imageSearch.addEventListener('click', (event) => {
+            console.log("SEARCH CLICKED");
+            headerChangable.innerHTML = "SEARCH";
+            wrapperDisplay.append(this.panelFoodInstance.PANEL_SEARCH_ITEM());
+        });
+
         // == TEXT == //
         const headerTitle = new create({
             tag: 'h1'
         }).init();
-        headerTitle.innerHTML = 'FOOD!'
+        headerTitle.innerHTML = 'FOOD!';
+        const headerChangable = new create({
+            tag: 'h2',
+        }).init();
+        headerChangable.innerHTML = "CLICK A SPICE TO DISPLAY FOOD";
 
         // == ATTACHMENTS == //
-        wrapperDisplay.append(...[headerTitle]);
+        wrapperDisplay.append(...[headerTitle, headerChangable]);
         wrapperTitle.append(...[
-            imagePhoto, 
+            imagePhoto,
             imagePlanet,
             imageType,
             imageFlavour,
             imageSearch,
-            wrapperDisplay
+            wrapperDisplay,
         ]);
         return wrapperTitle;
     };
@@ -116,6 +147,9 @@ class Page_Chalkboard extends Stalk{
             SUBSECTION: 'OBSERVATORY',
             ASSET: 1
         });
+
+        this.panelFoodInstance = new Panel_Food();
+        this.panelFoodInstance.INITIALISE();
     };
 }
 
