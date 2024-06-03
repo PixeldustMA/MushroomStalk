@@ -178,7 +178,6 @@ class Explorer extends DatabaseController{
             if(description !== "NONE") {
                 await this.NEW_TEXT_FILE(categoryTag.toUpperCase(), tag, description, pathString);
             }
-            
             if (newType) {
                 await this.NEW_TYPE_FILE(categoryTag.toUpperCase(), type);
             }
@@ -683,6 +682,8 @@ class Explorer extends DatabaseController{
             });
             this.path = pathRoot + "/" + tag + ".json";
             this.data = {};
+            console.log(this.path);
+            console.log("LIBRRARR")
             await this.SAVE();
             await this.PATHWAYS_LIBRARY_FILE(section, tag, newPathString );
     };
@@ -813,10 +814,10 @@ class Explorer extends DatabaseController{
          * RETURNS -> Edited all type file in database
          */
     async EDIT_ALL_TYPE_FILE(section, type) {
-            const allTypeFile = await this.READ_ALL_TYPE_FILE(section);
-            allTypeFile[type.toUpperCase()] = [type.toUpperCase(), section.toUpperCase(), this.headers.TYPE];
-            this.data = allTypeFile;
-            await this.SAVE();
+        const allTypeFile = await this.READ_ALL_TYPE_FILE(section);
+        allTypeFile[type.toUpperCase()] = [type.toUpperCase(), section.toUpperCase(), this.headers.TYPE];
+        this.data = allTypeFile;
+        await this.SAVE();
     };
     /**
          * ENTER A NEW PLANET AS AN ORIGIN FOR A DATABASE ITEM

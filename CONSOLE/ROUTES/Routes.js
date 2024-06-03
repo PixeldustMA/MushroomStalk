@@ -79,6 +79,7 @@ class pathways extends Renderer{
             this.routeKey = this.routeObject[this.nameOfRoute];
         }
         else if (this.planet !== 0) {
+            console.log("HELLO")
             await this.#READ_PLANET();
             if (this.#CHECK_NULL(this.subsection)) {
                 this.subsection = this.subsection.toUpperCase();
@@ -130,6 +131,7 @@ class pathways extends Renderer{
     async #READ_PLANET() {
         const availablePlanetRoutes = await this.AVAILABLE_ROUTES('PLANETS');
         this.routeObject = JSON.parse(availablePlanetRoutes);
+        console.log(this.routeObject)
         return this.routeObject;
     };
     async #READ_USERS() {

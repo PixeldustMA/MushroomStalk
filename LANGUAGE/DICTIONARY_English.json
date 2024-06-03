@@ -275,15 +275,24 @@
             "PLANET": ["PLANET"],
             "MULTI_PLANET_REGION": ["SELECT A PLANET FROM THE SAME REGION"],
             "MULTI_PLANET": ["SELECT ANOTHER PLANET"],
-            "CODE": ["XX"]
+            "CODE": ["XX"],
+            "ELEMENTS": [
+                "FIRE",
+                "WATER",
+                "INK",
+                "ELECTRICITY"
+            ]
         },
         "SECTIONS": {
             "FOOD": ["FOOD", "NOMS", "SNACKIES"],
-            "FLAVOUR": ["FLAVOUR"]
+            "FLAVOUR": ["FLAVOUR"],
+            "ELEMENTS": ["ELEMENTS"],
+            "COLOURS": ["COLOURS"]
         },
         "BUTTONS": {
             "KESSIKAYA": ["KESSIKAYA"],
-            "FOOD": ["FOOD"]
+            "FOOD": ["FOOD"],
+            "ELEMENTS": ["ELEMENTS"]
         }
     },
     "FOOD": {

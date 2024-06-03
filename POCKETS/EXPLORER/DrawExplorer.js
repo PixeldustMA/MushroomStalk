@@ -1,5 +1,7 @@
 import { Panels_Kessikaya } from "../../APPS/EXPLORE/PANELS/Panels_Kessikaya.js";
+import { Panel_Colours } from "../../APPS/EXPLORE/SECTIONS/CULTURE/COLOUR/PANELS/Panels_Colours.js";
 import { Panel_Food } from "../../APPS/EXPLORE/SECTIONS/FOOD/PANELS/Panels_Food.js";
+import { Panel_Elements } from "../../APPS/EXPLORE/SECTIONS/HALEX/ELEMENTS/PANELS/Panels_Elements.js";
 import { Stalk } from "../../CONSOLE/CONTROLLERS/StalkController.js";
 import { create } from "../../CONSOLE/PLATYPUS/Create.js";
 
@@ -14,6 +16,9 @@ class Page_Explorer extends Stalk{
         
         this.panels = new Panels_Kessikaya();
         this.foodPanelInstance = new Panel_Food();
+        this.elementPanelInstance = new Panel_Elements();
+        this.colourPanelInstance = new Panel_Colours();
+
         this.viewPlanet = "";
     };
 
@@ -111,10 +116,20 @@ class Page_Explorer extends Stalk{
             tag: 'button',
             elementText: ['EXPLORER', 'BUTTONS', 'FOOD']
         }).init();
+        const buttonElements = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'BUTTONS', 'ELEMENTS']
+        }).init();
+        const buttonColours = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'BUTTONS', 'COLOURS']
+        }).init();
 
         // == PANELS == //
         let spacePanel = this.panels.PANEL_INPUT_ORB();
         let foodPanel = this.foodPanelInstance.PANEL_INPUT_ITEM();
+        let elementPanel = this.elementPanelInstance.PANEL_INPUT_ELEMENT();
+        let colourPanel = this.colourPanelInstance.PANEL_INPUT_COLOURS();
 
         // == LISTENERS == //
         buttonSpace.addEventListener('click', (event) => {
@@ -124,6 +139,14 @@ class Page_Explorer extends Stalk{
         buttonFood.addEventListener('click', (event) => {
             this.contentSection.replaceChildren();
             this.contentSection.append(foodPanel);
+        });
+        buttonElements.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(elementPanel);
+        });
+        buttonColours.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(colourPanel);
         });
         wrapperNew.addEventListener('click', (event) => {
             this.contentSection.replaceChildren();
@@ -141,7 +164,9 @@ class Page_Explorer extends Stalk{
         wrapperType.append(headerType);
         wrapperNewButtons.append(...[
             buttonSpace,
-            buttonFood
+            buttonFood,
+            buttonElements,
+            buttonColours
         ]);
         wrapperSectionTabs.append(...[
             wrapperSearch,
@@ -449,6 +474,14 @@ class Page_Explorer extends Stalk{
             tag: 'button',
             elementText: ['EXPLORER', 'SECTIONS', 'FLAVOUR']
         }).init();
+        const buttonElements = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'SECTIONS', 'ELEMENTS']
+        }).init();
+        const buttonColours = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'SECTIONS', 'COLOURS']
+        }).init();
 
         // == LISTENERS == //
         buttonFood.addEventListener('click', (event) => {
@@ -462,11 +495,25 @@ class Page_Explorer extends Stalk{
             wrapperPanel.replaceChildren();
             wrapperPanel.append(this.foodPanelInstance.PANEL_INPUT_FLAVOUR());
         });
+        buttonElements.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            this.elementPanelInstance.INITIALISE().then((RESULT) => {
+                wrapperPanel.append(this.elementPanelInstance.PANEL_INPUT_ELEMENT_TYPE());
+            });
+        });
+        buttonColours.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            this.colourPanelInstance.INITIALISE().then((RESULT) => {
+                wrapperPanel.append(this.colourPanelInstance.PANEL_INPUT_COLOUR_TYPE());
+            });
+        });
 
         // == ATTACHMENTS == //
         wrapperButton.append(...[
             buttonFood,
             buttonFlavour,
+            buttonElements,
+            buttonColours,
             wrapperPanel
         ]);
         return wrapperButton;
@@ -488,6 +535,8 @@ class Page_Explorer extends Stalk{
     async INITIALITSE() {
         await this.panels.INITIALISE();
         await this.foodPanelInstance.INITIALISE();
+        await this.elementPanelInstance.INITIALISE();
+        await this.colourPanelInstance.INITIALISE();
     };
 }
 
