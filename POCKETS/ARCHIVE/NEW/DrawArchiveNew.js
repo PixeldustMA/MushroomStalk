@@ -5,9 +5,10 @@
 //         ADD A NEW CHARACTER        //
 // ================================= //
 
-import { Submit } from "../../../APPS/ARCHIVE/CONSOLE/Submit.js";
+import { Panels_Activity } from "../../../APPS/ARCHIVE/ACTIVITY/Panels_Activity.js";
 import { Panel_Archive } from "../../../APPS/ARCHIVE/PANELS/Panels_Archive.js";
 import { Collapsible } from "../../../APPS/JELLYFISH/COLLAPSIBLE/Collapsible.js";
+import { Submit } from "../../../APPS/ARCHIVE/CONSOLE/Submit.js";
 import { Stalk } from "../../../CONSOLE/CONTROLLERS/StalkController.js";
 import { create } from "../../../CONSOLE/PLATYPUS/Create.js";
 
@@ -17,15 +18,20 @@ class Page_Archive_New extends Stalk {
 
         super();
 
+        // == SECTIONS == //
         this.SECTION_Title = document.getElementById('SECTION_Archive-New-Title');
         this.SECTION_Submit = document.getElementById('SECTION_Archive-New-Submit');
         this.SECTION_Button = document.getElementById('SECTION_Archive-New-Buttons');
         this.SECTION_Form = document.getElementById('SECTION_Archive-New-Form');
 
+        // == INSTANCES == //
         this.submitInstance = new Submit();
 
+        // == PANELS == //
         this.NewCharacterPanel = "";
         this.activityPanel = "";
+
+        // == FLAGS == //
         this.sticky = 0;
     };
 
@@ -56,7 +62,6 @@ class Page_Archive_New extends Stalk {
         wrapper.append(...[
             headerArchiveNew
         ]);
-
         return wrapper;
     };
     PANEL_FORM() {
@@ -76,10 +81,10 @@ class Page_Archive_New extends Stalk {
         wrapper.append(...[
             requiredCharacterPanel
         ]);
-
         return wrapper;
     };
     PANEL_BUTTONS() {
+
         // == WRAPPERS == //
         const wrapper = new create({
             tag: 'div',
@@ -87,7 +92,17 @@ class Page_Archive_New extends Stalk {
             classes: ['LEFT_PANEL']
         }).init();
 
+        // == BUTTONS == //
+        const activityButton = new create({
+            tag: 'button',
+            id: 'BUTTON_New-Character-Activity',
+            classes: ['menuButton']
+        }).init();
+
+        // == ATTACHMENTS == //
+        this.#BUTTON_ADD(activityButton, this.activityPanel)
         wrapper.append(...[
+            activityButton
         ]);
         return wrapper;
     };
@@ -152,6 +167,21 @@ class Page_Archive_New extends Stalk {
         ]);
         return wrapper;
     }
+    async PANEL_SELECT_ACTIVITY() {
+
+        // == WRAPPERS == //
+        let wrapperActivity = new create({
+            tag: 'div'
+        }).init();
+
+        // == PANELS == //
+        const instanceActivity = new Panels_Activity();
+        const collapseActivity = new Collapsible(instanceActivity.DRAW(wrapperActivity), "ACTIVITY", "ACTIVITY");
+        const activityPanel = collapseActivity.DRAW();
+
+        // == ATTACHMENTS == //
+        return activityPanel;
+    };
     async RESET_MEMORY() {
         this.path = await this.INIT_ROUTE({
             TAG: 'NEW_CHARACTER',
@@ -170,100 +200,18 @@ class Page_Archive_New extends Stalk {
         this.data = memory;
         await this.SAVE();
     };
-    // //     let wrapperActivity = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const Activity = new activity();
-    // //     const collapseActivity = new collapsible(await Activity.build(wrapperActivity), "ACTIVITY", "ACTIVITY");
-    // //     const activityPanel = collapseActivity.draw();
-    // //     return activityPanel;
-    // // };
-    // // sections are all here but hidden
-    // // == FUNCTIONALITY == //
-    // // async CreatePersonalPanel() {
-    // //     let wrapperPersonal = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const Personal = new personal
-    // //     const collapsePersonal = new collapsible(await Personal.build(wrapperPersonal), "PERSONAL", "PERSONAL");
-    // //     const personalPanel = collapsePersonal.draw();
-    // //     return personalPanel
-    // // };
-    // // async CreateAncestryPanel() {
-    // //     let wrapperAncestry = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const Ancestry = new ancestry();
-    // //     const collapseAncestry = new collapsible(await Ancestry.build(wrapperAncestry), "ANCESTRY", "ANCESTRY");
-    // //     const ancestryPanel = collapseAncestry.draw();
-    // //     return ancestryPanel;
-    // // };
-    // // async CreateEducationPanel() {
-    // //     let wrapperEducation = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const education = new Education();
-    // //     const collapseEducation = new collapsible(await education.build(wrapperEducation), "EDUCATION", "EDUCATION");
-    // //     const educationPanel = collapseEducation.draw();
-    // //     return educationPanel;
-    // // };
-    // // async CreateHalexPanel() {
-    // //     let wrapperHalex = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const halex = new Halex();
-    // //     const collapseHalex = new collapsible(await halex.build(wrapperHalex), "HALEX", "HALEX");
-    // //     const halexPanel = collapseHalex.draw();
-    // //     return halexPanel;
-    // // };
-    // // async CreateLocationPanel() {
-    // //     let wrapperLocation = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const Location = new location();
-    // //     const collapseLocation = new collapsible(await Location.build(wrapperLocation), "LOCATION", "LOCATION");
-    // //     const locationPanel = collapseLocation.draw();
-    // //     return locationPanel;
-    // // };
-    // // async CreateEmploymentPanel() {
-    // //     let wrapperEmployment = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const employment = new Employment();
-    // //     const collapseEmployment = new collapsible(await employment.build(wrapperEmployment), "EMPLOYMENT", "EMPLOYMENT");
-    // //     const employmentPanel = collapseEmployment.draw();
-    // //     return employmentPanel;
-    // // }
-    // // async CreateOrganisationPanel() {
-    // //     let wrapperOrganisation = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const Organisation = new organisation();
-    // //     const collapseOrganisation = new collapsible(await Organisation.build(wrapperOrganisation), "ORGANISATION", "ORGANISATION");
-    // //     const organisationPanel = collapseOrganisation.draw();
-    // //     return organisationPanel;
-    // // }
-    // // async CreateRelationshipPanel() {
-    // //     let wrapperRelationship = new create({
-    // //         tag: 'div'
-    // //     }).init();
-    // //     const relationship = new Relationship();
-    // //     const collapseRelationship = new collapsible(await relationship.build(wrapperRelationship), "RELATIONSHIP", "RELATIONSHIP");
-    // //     const RelationshipPanel = collapseRelationship.draw();
-    // //     return RelationshipPanel;
-    // // };
-    // #BUTTON_ADD(button, panel) {
-    //     button.addEventListener('click', (event) => {
-    //         sectionForm.append(panel);
-    //     });
-    //     return button;
-    // };
     STICK_HEADER() {
         if (window.scrollY > this.sticky) {
             this.SECTION_Submit.classList.add("sticky");
         } else {
             this.SECTION_Submit.classList.remove("sticky");
-        }
+        };
+    };
+    #BUTTON_ADD(button, panel) {
+        button.addEventListener('click', (event) => {
+            this.SECTION_Form.append(panel);
+        });
+        return button;
     };
     async INITIALISE_PAGE() {
         await this.RESET_MEMORY();
@@ -271,9 +219,12 @@ class Page_Archive_New extends Stalk {
         await panelArchive.INITIALISE_PAGE();
         this.NewCharacterPanel = panelArchive.CHARACTER();
         this.sticky = this.SECTION_Submit.offsetTop;
+
+        this.activityPanel = await this.PANEL_SELECT_ACTIVITY();
     }
 };
 
+// == RUN PAGE == //
 const pageArchiveNew = new Page_Archive_New();
 await pageArchiveNew.INITIALISE_PAGE();
 pageArchiveNew.DRAW_PAGE();

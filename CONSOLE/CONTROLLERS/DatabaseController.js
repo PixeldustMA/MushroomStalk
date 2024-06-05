@@ -41,6 +41,7 @@ class DatabaseController extends DatabaseRenderer {
     async EXPLORER_INIT_ROUTE({ TAG, SECTION = "", SUBSECTION = "", CUSTOM = 0, PLANET = 1, ASSET = 0, USER = 0}) {
         const pathway = new pathways({TAG, SECTION, SUBSECTION, CUSTOM, PLANET, ASSET, USER });
         await pathway.SETUP();
+        console.log(TAG, SECTION, SUBSECTION)
         return await pathway.ROUTE();
     };
 }

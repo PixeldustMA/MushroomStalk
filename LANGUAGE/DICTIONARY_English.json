@@ -275,15 +275,27 @@
             "PLANET": ["PLANET"],
             "MULTI_PLANET_REGION": ["SELECT A PLANET FROM THE SAME REGION"],
             "MULTI_PLANET": ["SELECT ANOTHER PLANET"],
-            "CODE": ["XX"]
+            "CODE": ["XX"],
+            "ELEMENTS": [
+                "FIRE",
+                "WATER",
+                "INK",
+                "ELECTRICITY"
+            ]
         },
         "SECTIONS": {
             "FOOD": ["FOOD", "NOMS", "SNACKIES"],
-            "FLAVOUR": ["FLAVOUR"]
+            "FLAVOUR": ["FLAVOUR"],
+            "ELEMENTS": ["ELEMENTS"],
+            "COLOURS": ["COLOURS"],
+            "GEOLOGICAL": ["GEOLOGICAL"]
         },
         "BUTTONS": {
             "KESSIKAYA": ["KESSIKAYA"],
-            "FOOD": ["FOOD"]
+            "FOOD": ["FOOD"],
+            "ELEMENTS": ["ELEMENTS"],
+            "COLOURS": ["COLOURS"],
+            "GEOLOGICAL": ["GEOLOGICAL"]
         }
     },
     "FOOD": {
@@ -298,6 +310,24 @@
         "PLACEHOLDER": {
             "NAME": ["TATSY"],
             "INGREDIENT": ["ONION"]
+        }
+    },
+    "CULTURE": {
+        "ACTIVITY_MISC": {
+            "MISC": ["MISC", "ODDS AND ENDS", "BITS AND PIECES"],
+            "ACTIVITY_NAMES": ["DRAMA", "PAINTING", "BOOK CLUB"],
+            "NAME_OF_ACTIVITY": [
+                "NAME THE ACTIVITY", 
+                "PLEASE ADD THE NAME OF THE ACTIVITY",
+                "GIVE THE ACTIVITY A NAME"
+            ],
+            "SUBMIT": ["SUBMIT ACTIVITY"]
+        },
+        "ACTIVITY_MUSIC": {
+            "PROFESSIONAL": ["CHECK IF THIS MUSICAL INSTRUMENT IS THE CHARACTER'S JOB"],
+            "SELECT_INSTRUMENT": ["CHOOSE INSTRUMENT, SELECT AN INSTRUMENT"],
+            "MUSIC": ["MUSIC"],
+            "TYPE": ["INSTRUMENT TYPE", "TYPE!"]
         }
     }
 }

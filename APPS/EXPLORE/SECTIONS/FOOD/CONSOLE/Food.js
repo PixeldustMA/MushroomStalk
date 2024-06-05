@@ -131,7 +131,7 @@ class Food extends Explorer{
 
     // == READ == //
     async READ_FOOD_ITEM(itemName) {
-        return await this.READ_ITEN(this.categoryName, itemName)
+        return await this.READ_ITEN(this.categoryName, itemName);
     };
     async READ_FLAVOURS() {
         this.path = await this.EXPLORER_INIT_ROUTE({
@@ -168,7 +168,6 @@ class Food extends Explorer{
             SECTION: this.categoryName,
             SUBSECTION: 'CONSOLE'
         });
-        console.log(this.path)
         return await this.READ();
     };
 
@@ -201,7 +200,7 @@ class Food extends Explorer{
             };
 
         };
-        return typeList
+        return typeList;
     };
     async SEARCH_FOOD_ALPHABETICAL_PLANET(letter) {
 

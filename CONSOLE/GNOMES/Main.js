@@ -33,8 +33,6 @@ const routePath_Assets = "../../CONSOLE/ROUTES/Assets.json";
 const tablePath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/TableNames.json");
 const QueriesPath = getFormattedPath(Event, "../MEMORY/SEQUAL/TABLES/QueryCodes.json");
 
-
-
 // == DATABASE SET-UP == //
 const ArchiveDatabase = new sqlite3.Database(DatabasePath);
 const TABLE_DATA =  JSON.parse(fs.readFileSync(tablePath));
@@ -271,6 +269,7 @@ function RouteMemory(event, tag) {
             break;
         case "PLANETS":
             rootPath = routePath_Planets
+            console.log(rootPath)
             break;
         case "USERS":
             rootPath = routePath_Users
@@ -284,6 +283,7 @@ function RouteMemory(event, tag) {
 
     const RouteObject = fs.readFileSync(rootPath, 'utf8', function(err, data) {
         let formattedData = JSON.parse(data);
+        console.log(formattedData)
         return formattedData;
     });
     return RouteObject;

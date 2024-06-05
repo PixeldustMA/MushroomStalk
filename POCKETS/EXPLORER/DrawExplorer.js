@@ -1,5 +1,10 @@
 import { Panels_Kessikaya } from "../../APPS/EXPLORE/PANELS/Panels_Kessikaya.js";
+import { Panels_Misc } from "../../APPS/EXPLORE/SECTIONS/CULTURE/ACTIVITY/MISC/PANELS/Panels_Misc.js";
+import { Panels_Music } from "../../APPS/EXPLORE/SECTIONS/CULTURE/ACTIVITY/MUSIC/PANELS/Panels_Music.js";
+import { Panel_Colours } from "../../APPS/EXPLORE/SECTIONS/CULTURE/COLOUR/PANELS/Panels_Colours.js";
 import { Panel_Food } from "../../APPS/EXPLORE/SECTIONS/FOOD/PANELS/Panels_Food.js";
+import { Panel_Elements } from "../../APPS/EXPLORE/SECTIONS/HALEX/ELEMENTS/PANELS/Panels_Elements.js";
+import { Panel_Geological } from "../../APPS/EXPLORE/SECTIONS/LOCATIONS/GEOLOGICAL/PANELS/Panels_Geological.js";
 import { Stalk } from "../../CONSOLE/CONTROLLERS/StalkController.js";
 import { create } from "../../CONSOLE/PLATYPUS/Create.js";
 
@@ -14,6 +19,11 @@ class Page_Explorer extends Stalk{
         
         this.panels = new Panels_Kessikaya();
         this.foodPanelInstance = new Panel_Food();
+        this.elementPanelInstance = new Panel_Elements();
+        this.colourPanelInstance = new Panel_Colours();
+        this.geologicalPanelInstance = new Panel_Geological();
+        this.musicPanelInstance = new Panels_Music();
+        this.miscPanelInstance = new Panels_Misc();
         this.viewPlanet = "";
     };
 
@@ -111,10 +121,35 @@ class Page_Explorer extends Stalk{
             tag: 'button',
             elementText: ['EXPLORER', 'BUTTONS', 'FOOD']
         }).init();
+        const buttonElements = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'BUTTONS', 'ELEMENTS']
+        }).init();
+        const buttonColours = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'BUTTONS', 'COLOURS']
+        }).init();
+        const buttonGeological = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'BUTTONS', 'GEOLOGICAL']
+        }).init();
+        const buttonMusic = new create({
+            tag: 'button',
+            elementText: ['CULTURE', 'ACTIVITY_MUSIC', 'MUSIC']
+        }).init();
+        const buttonMisc = new create({
+            tag: 'button',
+            elementText: ['CULTURE', 'ACTIVITY_MISC', 'MISC']
+        }).init();
 
         // == PANELS == //
         let spacePanel = this.panels.PANEL_INPUT_ORB();
         let foodPanel = this.foodPanelInstance.PANEL_INPUT_ITEM();
+        let elementPanel = this.elementPanelInstance.PANEL_INPUT_ELEMENT();
+        let colourPanel = this.colourPanelInstance.PANEL_INPUT_COLOURS();
+        let geologicalPanel = this.geologicalPanelInstance.PANEL_INPUT_LOCATION();
+        let musicPanel = this.musicPanelInstance.PANEL_INPUT_ACTIVITY_MUSIC();
+        let miscPanel = this.miscPanelInstance.PANEL_INPUT_ACTIVITY_MISC();
 
         // == LISTENERS == //
         buttonSpace.addEventListener('click', (event) => {
@@ -124,6 +159,26 @@ class Page_Explorer extends Stalk{
         buttonFood.addEventListener('click', (event) => {
             this.contentSection.replaceChildren();
             this.contentSection.append(foodPanel);
+        });
+        buttonElements.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(elementPanel);
+        });
+        buttonColours.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(colourPanel);
+        });
+        buttonGeological.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(geologicalPanel);
+        });
+        buttonMusic.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(musicPanel);
+        });
+        buttonMisc.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(miscPanel);
         });
         wrapperNew.addEventListener('click', (event) => {
             this.contentSection.replaceChildren();
@@ -141,7 +196,12 @@ class Page_Explorer extends Stalk{
         wrapperType.append(headerType);
         wrapperNewButtons.append(...[
             buttonSpace,
-            buttonFood
+            buttonFood,
+            buttonElements,
+            buttonColours,
+            buttonGeological,
+            buttonMusic,
+            buttonMisc
         ]);
         wrapperSectionTabs.append(...[
             wrapperSearch,
@@ -449,6 +509,22 @@ class Page_Explorer extends Stalk{
             tag: 'button',
             elementText: ['EXPLORER', 'SECTIONS', 'FLAVOUR']
         }).init();
+        const buttonElements = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'SECTIONS', 'ELEMENTS']
+        }).init();
+        const buttonColours = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'SECTIONS', 'COLOURS']
+        }).init();
+        const buttonGeological = new create({
+            tag: 'button',
+            elementText: ['EXPLORER', 'SECTIONS', 'GEOLOGICAL']
+        }).init();
+        const buttonMusic = new create({
+            tag: 'button',
+            elementText: ['CULTURE', 'ACTIVITY_MUSIC', 'MUSIC']
+        }).init();
 
         // == LISTENERS == //
         buttonFood.addEventListener('click', (event) => {
@@ -462,11 +538,33 @@ class Page_Explorer extends Stalk{
             wrapperPanel.replaceChildren();
             wrapperPanel.append(this.foodPanelInstance.PANEL_INPUT_FLAVOUR());
         });
+        buttonElements.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            this.elementPanelInstance.INITIALISE().then((RESULT) => {
+                wrapperPanel.append(this.elementPanelInstance.PANEL_INPUT_ELEMENT_TYPE());
+            });
+        });
+        buttonColours.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            wrapperPanel.append(this.colourPanelInstance.PANEL_INPUT_COLOUR_TYPE());
+        });
+        buttonGeological.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            wrapperPanel.append(this.geologicalPanelInstance.PANEL_INPUT_TYPE())
+        });
+        buttonMusic.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            wrapperPanel.append(this.musicPanelInstance.PANEL_INPUT_MUSIC_TYPE())
+        });
 
         // == ATTACHMENTS == //
         wrapperButton.append(...[
             buttonFood,
             buttonFlavour,
+            buttonElements,
+            buttonColours,
+            buttonGeological,
+            buttonMusic,
             wrapperPanel
         ]);
         return wrapperButton;
@@ -488,6 +586,11 @@ class Page_Explorer extends Stalk{
     async INITIALITSE() {
         await this.panels.INITIALISE();
         await this.foodPanelInstance.INITIALISE();
+        await this.elementPanelInstance.INITIALISE();
+        await this.colourPanelInstance.INITIALISE();
+        await this.geologicalPanelInstance.INITIALISE();
+        await this.musicPanelInstance.INITIALISE();
+        await this.miscPanelInstance.INITIALISE();
     };
 }
 

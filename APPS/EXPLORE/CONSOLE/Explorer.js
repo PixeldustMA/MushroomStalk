@@ -178,7 +178,6 @@ class Explorer extends DatabaseController{
             if(description !== "NONE") {
                 await this.NEW_TEXT_FILE(categoryTag.toUpperCase(), tag, description, pathString);
             }
-            
             if (newType) {
                 await this.NEW_TYPE_FILE(categoryTag.toUpperCase(), type);
             }
@@ -187,7 +186,7 @@ class Explorer extends DatabaseController{
             };
             await this.EDIT_ALL_TYPE_FILE(categoryTag, type);
             if (origin !== "NONE") {
-                await this.ENTER_ORIGIN(categoryTag, tag, origin);
+                // await this.ENTER_ORIGIN(categoryTag, tag, origin);
             };
             await this.INSERT_LIBRARY_FILE(categoryTag, tag, pathString);
     };
@@ -651,17 +650,16 @@ class Explorer extends DatabaseController{
          * RETURNS -> A new file is created in the database (Section) type library
          */
     async NEW_TYPE_FILE(section, tag, pathString) {
+        console.log(tag);
         let pathwayRoute = pathString + "TYPES/"  + tag + ".json";
-        console.log(pathwayRoute);
-        console.log("PATHWAYS ROUTE")
         const pathRoot = await this.EXPLORER_INIT_ROUTE({
             TAG: this.headers.TYPE,
             SECTION: section.toUpperCase(),
-            SUBSECTION: this.headers.FOLDER,
+            SUBSECTION: this.headers.FOLDER
         });
         this.path = pathRoot + "/" + tag + ".json";
-        console.log(this.path)
         this.data = {NAME: tag};
+        console.log(this.path)
         await this.SAVE(); 
         await this.EDIT_ALL_TYPE_FILE(section, tag);
         await this.PATHWAYS_TYPE_FILE(section, tag, pathwayRoute);
@@ -681,8 +679,11 @@ class Explorer extends DatabaseController{
                 SECTION: section.toUpperCase(),
                 SUBSECTION: this.headers.FOLDER,
             });
+            console.log(pathRoot)
             this.path = pathRoot + "/" + tag + ".json";
             this.data = {};
+            console.log(this.path);
+            console.log("LIBRRARR")
             await this.SAVE();
             await this.PATHWAYS_LIBRARY_FILE(section, tag, newPathString );
     };
@@ -691,15 +692,14 @@ class Explorer extends DatabaseController{
     async EDIT_PATHWAYS(section, tag, filePath, subsection) {
         console.log(filePath);
         console.log("CHECKING PATHWAYS BUG")
-            this.path = await this.EXPLORER_INIT_ROUTE({
-                TAG: 'ROOT',
-                SECTION: "ROOT"
-            });
-            const routes = await this.READ();
-            routes[section.toUpperCase()][subsection.toUpperCase()][tag.toUpperCase()] = filePath;
-            console.log(filePath);
-            this.data = routes;
-            return await this.SAVE();
+        this.path = await this.EXPLORER_INIT_ROUTE({
+            TAG: 'ROOT',
+            SECTION: "ROOT"
+        });
+        const routes = await this.READ();
+        routes[section.toUpperCase()][subsection.toUpperCase()][tag.toUpperCase()] = filePath;
+        this.data = routes;
+        return await this.SAVE();
     }
     async INSERT_PLANET_KEY (data) {
     
@@ -813,10 +813,11 @@ class Explorer extends DatabaseController{
          * RETURNS -> Edited all type file in database
          */
     async EDIT_ALL_TYPE_FILE(section, type) {
-            const allTypeFile = await this.READ_ALL_TYPE_FILE(section);
-            allTypeFile[type.toUpperCase()] = [type.toUpperCase(), section.toUpperCase(), this.headers.TYPE];
-            this.data = allTypeFile;
-            await this.SAVE();
+        const allTypeFile = await this.READ_ALL_TYPE_FILE(section);
+        allTypeFile[type.toUpperCase()] = [type.toUpperCase(), section.toUpperCase(), this.headers.TYPE];
+        this.data = allTypeFile;
+        console.log(allTypeFile)
+        await this.SAVE();
     };
     /**
          * ENTER A NEW PLANET AS AN ORIGIN FOR A DATABASE ITEM
