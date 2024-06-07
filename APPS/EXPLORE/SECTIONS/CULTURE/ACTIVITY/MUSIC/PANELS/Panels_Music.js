@@ -6,6 +6,7 @@ class Panels_Music {
 
     constructor(){
         this.instanceMusic = new Music();
+        this.dataMusic = {};
     };
 
     PANEL_INPUT_ACTIVITY_MUSIC() {
@@ -126,6 +127,54 @@ class Panels_Music {
         ]);
         return wrapper;
     };
+    PABEL_INPUT_CHARACTER_MUSUC() {
+
+        // == WRAPPER == //
+        const wrapperMusic = new create({
+            tag: 'div'
+        }).init();
+
+        // == TEXT == //
+        const headerMusic = new create({
+            tag: 'h2',
+            elementText: ['CULTURE', 'ACTIVITY_MUSIC', 'MUSIC']
+        }).init();
+
+        // == SELECT == //
+        const selectType = new create({
+            tag: 'select',
+            options: this.optionsInstrumentType
+        }).init();
+        const selectInstrument = new create({
+            tag: 'select'
+        }).init();
+
+        // == BUTTONS == //
+        const buttonSubmit = new create({
+            tag: 'button',
+            elementText: ['USEFUL', 'GENERAL', 'SUBMIT']
+        }).init();
+
+        // == LISTENERS == //
+        selectType.addEventListener('change', (event) => {
+            this.instanceMusic.SEARCH_INSTRUMENT_BY_TYPE(selectType.options[selectType.selectedIndex].text)
+                .then((INSTRUMENTS) => {
+                    let hold = new create({tag: 'div'})
+                    hold.changeOptions(selectInstrument, INSTRUMENTS);
+                });
+        });
+        buttonSubmit.addEventListener('click', (event) => {
+            this.dataMusic['INSTRUMENT'] = selectInstrument.options[selectInstrument.selectedIndex].text;
+            this.dataMusic['BAND_NAME'] = 'NONE';
+            this.dataMusic['ORCHESTRA_NAME'] = 'NONE';
+            this.dataMusic['MUSIC_PRO'] = false;
+            buttonSubmit.innerHTML = 'SUBMITTED';
+        });
+
+        // == ATTACHMENTS == //
+        wrapperMusic.append(...[headerMusic, selectType, selectInstrument, buttonSubmit]);
+        return wrapperMusic;
+    }
     async INITIALISE() {
         this.optionsInstruments = await this.instanceMusic.READ_MUSIC_ALL();
         this.optionsInstrumentType = Object.keys(await this.instanceMusic.READ_INSTRUMENT_TYPES());

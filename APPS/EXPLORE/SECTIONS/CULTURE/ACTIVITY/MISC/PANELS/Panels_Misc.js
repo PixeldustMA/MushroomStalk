@@ -5,6 +5,8 @@ class Panels_Misc {
 
     constructor(){
         this.instanceMisc = new Misc();
+        this.optionsMisc = [];
+        this.dataMisc = {};
     };
 
     PANEL_INPUT_ACTIVITY_MISC() {
@@ -66,9 +68,48 @@ class Panels_Misc {
         ]);
         return wrapper;
     };
-    async INITIALISE(){
-    };
+    PANEL_INPUT_CHARACTER_MISC() {
 
+        // == WRAPPER == //
+        const wrapper = new create({
+            tag: 'div'
+        }).init();
+
+        // == TEXT == //
+        const headerMisc = new create({
+            tag: 'h2',
+            elementText: ['CULTURE', 'ACTIVITY_MISC', 'MISC']
+        }).init();
+
+        // == SELECT == //
+        const selectMisc = new create({
+            tag: 'select',
+            options: this.optionsMisc
+        }).init();
+
+        // == BUTTONS == //
+        const buttonSubmit = new create({
+            tag: 'button',
+            elementText: ['USEFUL', 'GENERAL', 'SUBMIT']
+        }).init();
+
+        // == LISTENERS == //
+        buttonSubmit.addEventListener('click', (event) => {
+            this.dataMisc['ACTIVITY'] = selectMisc.options[selectMisc.selectedIndex].text;
+            buttonSubmit.innerHTML = 'SUBMITTED';
+        });
+
+        // == ATTACHMENTS == //
+        wrapper.append(...[
+            headerMisc,
+            selectMisc,
+            buttonSubmit
+        ]);
+        return wrapper;
+    };
+    async INITIALISE(){
+        this.optionsMisc = Object.keys(await this.instanceMisc.READ_MISC_ALL());
+    };
 }
 
 export {Panels_Misc}

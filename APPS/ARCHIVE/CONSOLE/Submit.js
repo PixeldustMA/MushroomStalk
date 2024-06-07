@@ -1,4 +1,5 @@
 import { DatabaseController } from "../../../CONSOLE/CONTROLLERS/DatabaseController.js";
+import { Activity } from "../ACTIVITY/Activity_Archive.js";
 import { CodeCreator } from "../CODES/CodeCreator.js";
 import { Personal } from "../PERSONAL/Personal_Archive.js";
 import { Section } from "../SECTION/Section.js";
@@ -9,6 +10,7 @@ class Submit {
     constructor() {
         this.codes = new CodeCreator("TEST", "TEST", 0, "KIAMTA");
         this.databaseInfo = new DatabaseController();
+        this.characterCodeList = {};
     };
 
     async READ_MEMORY() {
@@ -20,11 +22,12 @@ class Submit {
     };
     async SUBMIT_NEW_CHARACTER(REQUEST) {
         let memory = await this.READ_MEMORY();
-        console.log(memory)
         let dataToSubmit = memory.REQUIRED;
         dataToSubmit.SECTION = memory.SECTION;
-        console.log(dataToSubmit);
         await this.CHARACTER_CODES(dataToSubmit);
+        if (memory.ACTIVITY !== "NONE") {
+            await this.ACTIVITY_DATA(memory.ACTIVITY);
+        }
     };
     async CHARACTER_CODES(values) {
 
@@ -92,7 +95,37 @@ class Submit {
             YEAR: values.YEAR,
             PLANET: values.PLANET
         }, 'RACE');
-    }
+    };
+    async ACTIVITY_DATA(data) {
+        console.log(data)
+        const activityInstance = new Activity();
+        if (data.hasOwnProperty('MISC')) {
+            await activityInstance.addValues({
+                ACTIVITY: this.characterCodeList.ACTIVITY,
+                SECTION: this.characterCodeList.SECTION,
+                MISC_TASK: data.MISC.ACTIVITY
+            }, 'MISC');
+        }
+        if (data.hasOwnProperty('SPORT')) {
+            await activityInstance.addValues({
+                ACTIVITY: this.characterCodeList.ACTIVITY,
+                SECTION: this.characterCodeList.SECTION,
+                SPORT: data.SPORT.SPORT,
+                ORGANISATION: data.SPORT.TEAM,
+                SPORT_PRO: data.SPORT.SPORT_PRO
+            }, 'SPORTS');
+        }
+        if (data.hasOwnProperty('MUSIC')) {
+            await activityInstance.addValues({
+                ACTIVITY: this.characterCodeList.ACTIVITY,
+                SECTION: this.characterCodeList.SECTION,
+                INSTRUMENT: data.MUSIC.INSTRUMENT,
+                BAND_NAME: data.MUSIC.BAND_NAME,
+                ORCHESTRA_NAME: data.MUSIC.ORCHESTRA_NAME,
+                MUSIC_PRO: data.MUSIC.MUSIC_PRO
+            }, 'MUSIC');
+        }
+    };
 }
 
 export {Submit};

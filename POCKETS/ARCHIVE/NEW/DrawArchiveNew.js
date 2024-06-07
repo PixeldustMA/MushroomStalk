@@ -29,7 +29,7 @@ class Page_Archive_New extends Stalk {
 
         // == PANELS == //
         this.NewCharacterPanel = "";
-        this.activityPanel = "";
+        this.activityPanel = new Panels_Activity();
 
         // == FLAGS == //
         this.sticky = 0;
@@ -175,8 +175,7 @@ class Page_Archive_New extends Stalk {
         }).init();
 
         // == PANELS == //
-        const instanceActivity = new Panels_Activity();
-        const collapseActivity = new Collapsible(instanceActivity.DRAW(wrapperActivity), "ACTIVITY", "ACTIVITY");
+        const collapseActivity = new Collapsible(this.activityPanel.DRAW(wrapperActivity), "ACTIVITY", "ACTIVITY");
         const activityPanel = collapseActivity.DRAW();
 
         // == ATTACHMENTS == //
@@ -220,6 +219,7 @@ class Page_Archive_New extends Stalk {
         this.NewCharacterPanel = panelArchive.CHARACTER();
         this.sticky = this.SECTION_Submit.offsetTop;
 
+        await this.activityPanel.INITIALISE();
         this.activityPanel = await this.PANEL_SELECT_ACTIVITY();
     }
 };

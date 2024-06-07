@@ -71,6 +71,7 @@ class Stalk extends Renderer {
         let memory = await this.READ();
         memory[tag] = newData;
         this.data = memory;
+        console.log(this.data)
         await this.SAVE();
     };
 }

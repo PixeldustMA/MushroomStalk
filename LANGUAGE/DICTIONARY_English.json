@@ -328,6 +328,11 @@
             "SELECT_INSTRUMENT": ["CHOOSE INSTRUMENT, SELECT AN INSTRUMENT"],
             "MUSIC": ["MUSIC"],
             "TYPE": ["INSTRUMENT TYPE", "TYPE!"]
+        },
+        "ACCTIVITY_SPORTS": {
+            "TYPE": ["SPORT TYPE"],
+            "SPORT": ["SPORT"],
+            "SELECT_SPORT": ["'CHECK IF THIS SPORT IS THE CHARACTER'S JOB'"]
         }
     }
 }

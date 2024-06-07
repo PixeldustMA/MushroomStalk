@@ -1,6 +1,7 @@
 import { Panels_Kessikaya } from "../../APPS/EXPLORE/PANELS/Panels_Kessikaya.js";
 import { Panels_Misc } from "../../APPS/EXPLORE/SECTIONS/CULTURE/ACTIVITY/MISC/PANELS/Panels_Misc.js";
 import { Panels_Music } from "../../APPS/EXPLORE/SECTIONS/CULTURE/ACTIVITY/MUSIC/PANELS/Panels_Music.js";
+import { Panels_Sports } from "../../APPS/EXPLORE/SECTIONS/CULTURE/ACTIVITY/SPORTS/PANELS/Panels_Sports.js";
 import { Panel_Colours } from "../../APPS/EXPLORE/SECTIONS/CULTURE/COLOUR/PANELS/Panels_Colours.js";
 import { Panel_Food } from "../../APPS/EXPLORE/SECTIONS/FOOD/PANELS/Panels_Food.js";
 import { Panel_Elements } from "../../APPS/EXPLORE/SECTIONS/HALEX/ELEMENTS/PANELS/Panels_Elements.js";
@@ -24,6 +25,8 @@ class Page_Explorer extends Stalk{
         this.geologicalPanelInstance = new Panel_Geological();
         this.musicPanelInstance = new Panels_Music();
         this.miscPanelInstance = new Panels_Misc();
+        this.sportPanelInstance = new Panels_Sports();
+
         this.viewPlanet = "";
     };
 
@@ -141,6 +144,10 @@ class Page_Explorer extends Stalk{
             tag: 'button',
             elementText: ['CULTURE', 'ACTIVITY_MISC', 'MISC']
         }).init();
+        const buttonSports = new create({
+            tag: 'button',
+            elementText: ['CULTURE', 'ACTIVITY_SPORTS', 'SPORT']
+        }).init();
 
         // == PANELS == //
         let spacePanel = this.panels.PANEL_INPUT_ORB();
@@ -150,6 +157,7 @@ class Page_Explorer extends Stalk{
         let geologicalPanel = this.geologicalPanelInstance.PANEL_INPUT_LOCATION();
         let musicPanel = this.musicPanelInstance.PANEL_INPUT_ACTIVITY_MUSIC();
         let miscPanel = this.miscPanelInstance.PANEL_INPUT_ACTIVITY_MISC();
+        let sportPanel = this.sportPanelInstance.PANEL_INPUT_ACTIVITY_SPORTS();
 
         // == LISTENERS == //
         buttonSpace.addEventListener('click', (event) => {
@@ -180,6 +188,11 @@ class Page_Explorer extends Stalk{
             this.contentSection.replaceChildren();
             this.contentSection.append(miscPanel);
         });
+        buttonSports.addEventListener('click', (event) => {
+            this.contentSection.replaceChildren();
+            this.contentSection.append(sportPanel);
+        });
+
         wrapperNew.addEventListener('click', (event) => {
             this.contentSection.replaceChildren();
             this.contentSection.append(wrapperNewButtons);
@@ -201,7 +214,8 @@ class Page_Explorer extends Stalk{
             buttonColours,
             buttonGeological,
             buttonMusic,
-            buttonMisc
+            buttonMisc,
+            buttonSports
         ]);
         wrapperSectionTabs.append(...[
             wrapperSearch,
@@ -525,6 +539,11 @@ class Page_Explorer extends Stalk{
             tag: 'button',
             elementText: ['CULTURE', 'ACTIVITY_MUSIC', 'MUSIC']
         }).init();
+        const buttonSports = new create({
+            tag: 'button',
+            elementText: ['CULTURE', 'ACTIVITY_SPORTS', 'SPORT']
+        }).init();
+
 
         // == LISTENERS == //
         buttonFood.addEventListener('click', (event) => {
@@ -556,6 +575,10 @@ class Page_Explorer extends Stalk{
             wrapperPanel.replaceChildren();
             wrapperPanel.append(this.musicPanelInstance.PANEL_INPUT_MUSIC_TYPE())
         });
+        buttonSports.addEventListener('click', (event) => {
+            wrapperPanel.replaceChildren();
+            wrapperPanel.append(this.sportPanelInstance.PANEL_INPUT_SPORT_TYPE());
+        });
 
         // == ATTACHMENTS == //
         wrapperButton.append(...[
@@ -565,6 +588,7 @@ class Page_Explorer extends Stalk{
             buttonColours,
             buttonGeological,
             buttonMusic,
+            buttonSports,
             wrapperPanel
         ]);
         return wrapperButton;
@@ -591,6 +615,7 @@ class Page_Explorer extends Stalk{
         await this.geologicalPanelInstance.INITIALISE();
         await this.musicPanelInstance.INITIALISE();
         await this.miscPanelInstance.INITIALISE();
+        await this.sportPanelInstance.INITIALISE();
     };
 }
 

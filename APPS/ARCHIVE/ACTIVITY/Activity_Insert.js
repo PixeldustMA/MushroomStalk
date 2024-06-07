@@ -41,6 +41,7 @@ class Activity_Insert {
     }
 
     async ACTIVITY_MISC_INSERT() {
+        console.log(this.ACTIVITY_MISC_DATA)
         const inserting = new Insert({
             TABLE_NAME: "ACC_MISC",
             COLUMN_LIST: [
