@@ -1,16 +1,49 @@
 @import "../../../STYLE/BASE/RootStyles.css";
 @import "../../../STYLE/BASE/ImageLoader.css";
 
-  /* PAGE */
-.INPUT_LAYOUTS {
-    display: block;
-}
+/* ========================= */
+/* ## STYLE TITLE SCREEN ## */
+/* ========================= */
+
+/* ## GENERAL ## */
 body {
     margin: 0%;
     padding: 0%;
 }
 
-/* SPECIFIC */
+/* ## LAYOUT ## */
+.INPUT_LAYOUTS {
+    display: block;
+}
+.BOARD {
+    position: absolute;
+    left: 0px;
+}
+.STALK_BUTTON {
+    top: 270px;
+    left: 228px;
+}
+.SETTINGS_BUTTON {
+    top: 490px;
+    left: 300px;
+}
+.MAP_BUTTON {
+    top: 392px;
+    left: 260px;
+}
+.LOGIN_BUTTON {
+    top: 180px;
+    left: 240px;
+}
+.PICTURE_FRAME {
+    position: absolute;
+    height: 250px;
+    width: 300px;
+    right: 100px;
+    top: 130px;
+}
+
+/* ## SPECIFIC ## */
 .DEFAULT_SELECT{
 
     background-color: rgb(116, 4, 75);
@@ -44,34 +77,8 @@ body {
     font-family: 'Hello_Graduation_Sans';
     font-size: 24px;
 }
-.BOARD {
-    position: absolute;
-    left: 0px;
-}
-.STALK_BUTTON {
-    top: 270px;
-    left: 228px;
-}
-.SETTINGS_BUTTON {
-    top: 490px;
-    left: 300px;
-}
-.MAP_BUTTON {
-    top: 392px;
-    left: 260px;
-}
-.LOGIN_BUTTON {
-    top: 180px;
-    left: 240px;
-}
-.PICTURE_FRAME {
-    position: absolute;
-    height: 250px;
-    width: 300px;
-    right: 100px;
-    top: 130px;
-}
-  /* EFFECTS */
+
+/* ## EFFECTS ## */
 .checkmark:after {
     content: "";
     position: absolute;

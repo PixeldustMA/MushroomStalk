@@ -1,9 +1,0 @@
-@import "../../../STYLE/BASE/RootStyles.css";
-@import "../../../STYLE/BASE/ImageLoader.css";
-
-body {
-    background-color: black;
-}
-.ANIMATION {
-    transform: translate(-10px, -120px);
-}
