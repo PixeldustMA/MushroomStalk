@@ -1,0 +1,6 @@
+# BASE JSON FILE
+---
+```
+"USERNAME": "ADMIN",
+"TAG": "FOLDER/FILE.JSON"
+```

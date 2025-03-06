@@ -1,0 +1,27 @@
+# MEMOY
+---
+### [[SESSION MEMORY]]
+
+# PANTRY
+---
+### [[FILES]]
+### [[SESSION]]
+### [[TREE]]
+
+# ROUTES
+---
+### [[USER]]
+# TEXT
+---
+## WELCOME
+### [[WELCOME BUTTON ANALYSE]]
+### [[WELCOME BUTTON NEW]]
+### [[WELCOME INPUT NAME]]
+### [[WELCOME INPUT PASSWORD]]
+# USERS
+---
+### [[RESIDENT FROG]]
+## LILYPAD
+### [[FROGS]]
+### [[FROG LIST]]
+

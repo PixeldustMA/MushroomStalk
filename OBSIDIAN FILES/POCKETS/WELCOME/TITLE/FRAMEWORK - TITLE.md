@@ -1,0 +1,12 @@
+# DEPENDENCIES
+---
+- [ ] [[CONNECTOR - BEETLE | BEETLE]]
+# THEME
+---
+# FUNCTION
+---
+*Main menu*
+# FUTURE FEATURES
+---
+# NOTES
+---

@@ -1,0 +1,6 @@
+# BASE JSON FILE
+---
+```
+"USERNAME": "ADMIN",
+"PATH_NEWS": "FOLDER/FILE.JSON"
+```
