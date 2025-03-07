@@ -6,5 +6,9 @@
         "TITLE": "../../POCKETS/WELCOME/TITLE/FrameworkTitle.html",
         "ONBOARDING": "../../POCKETS/WELCOME/ONBOARDING/FrameworkOnboarding.html",
         "WIZARD": "../../POCKETS/WELCOME/WIZARD/FrameworkWizard.html"
+    },
+    "PROFILE": {
+        "ONBOARDING": "../../../POCKETS/PROFILES/ONBOARDING/FrameworkOnboarding.html",
+        "WIZARD": "../../../POCKETS/PROFILES/WIZARD/FrameworkWizard.html"
     }
 }

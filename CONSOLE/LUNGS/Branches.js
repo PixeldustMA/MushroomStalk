@@ -44,14 +44,15 @@ export default class Branches extends Mushroom_Cap {
             PARAMTER_BRANCH_MODE = 'UNSET',
             PARAMETER_SUB_MODE = 'UNSET',
             PARAMETER_TAG_POCKET = 'UNSET',
-            PARAMETER_SETTINGS_ROUTE = 'UNSET'
+            PARAMETER_SETTINGS_ROUTE = 'UNSET',
+            PARAMETER_CATEGORY_POCKET = 'UNSET'
         }){
     
         await this.REMEMBER();
 
         switch (PARAMTER_BRANCH_MODE) {
             case 'WINDOW':
-                return await this.#MODE_WINDOW(PARAMETER_SUB_MODE, PARAMETER_TAG_POCKET);
+                return await this.#MODE_WINDOW(PARAMETER_SUB_MODE, PARAMETER_TAG_POCKET, PARAMETER_CATEGORY_POCKET);
             case 'ROUTE':
                 return await this.#MODE_ROUTE(PARAMETER_SETTINGS_ROUTE);
             default:
@@ -70,9 +71,9 @@ export default class Branches extends Mushroom_Cap {
      * 
      * Request window specfic functions
      */
-    async #MODE_WINDOW(PARAMETER_REQUEST, PARAMETER_TAG) {
+    async #MODE_WINDOW(PARAMETER_REQUEST, PARAMETER_TAG, PARAMETER_CATEGORY) {
 
-        if (PARAMETER_REQUEST === 'LOAD') {return await this.LOAD(PARAMETER_TAG)};
+        if (PARAMETER_REQUEST === 'LOAD') {return await this.LOAD(PARAMETER_TAG, PARAMETER_CATEGORY)};
         if (PARAMETER_REQUEST === 'CHECK') {return await this.INSTANCE_WINDOW.CHECK_LOGIN();}
     };
     /**
@@ -116,11 +117,11 @@ export default class Branches extends Mushroom_Cap {
      * 
      * Page must exist in the app memory for this function to work 
      */
-    async LOAD(PARAMETER_PAGE_TAG) {  
+    async LOAD(PARAMETER_PAGE_TAG, PARAMETER_PAGE_CATEGORY) {  
 
         await this.REMEMBER();
         await this.SAVE_SESSION();
-        window.location.href = this.SESSION.POCKETS[PARAMETER_PAGE_TAG];
+        window.location.href = this.SESSION.POCKETS[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
     };
 
     // ==================== //

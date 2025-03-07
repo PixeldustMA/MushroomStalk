@@ -128,21 +128,27 @@ class JELLYFISH_DebugMenu extends HTMLElement{
      * 
      * Load the requested page in the current window, bypassing all other requirements
      */
-    LOAD_PAGE(PARAMETER_POCKET_TAG){
-        return this.INSTANCE_BRANCH.LOAD(PARAMETER_POCKET_TAG).then((RESULT) => {return RESULT});
+    LOAD_PAGE(PARAMETER_POCKET_TAG, PARAMETER_POCKET_CATEGORY){
+        return this.INSTANCE_BRANCH.LOAD(PARAMETER_POCKET_TAG, PARAMETER_POCKET_CATEGORY).then((RESULT) => {return RESULT});
     };
     BUTTONS() {
         this.shadowRoot.getElementById('BUTTON_Splash').addEventListener('click', (event) => {
-            this.LOAD_PAGE('SPLASH');
+            this.LOAD_PAGE('SPLASH', 'WELCOME');
         });
         this.shadowRoot.getElementById('BUTTON_Welcome').addEventListener('click', (event) => {
-            this.LOAD_PAGE('WELCOME');
+            this.LOAD_PAGE('WELCOME', 'WELCOME');
         });
         this.shadowRoot.getElementById('BUTTON_Title').addEventListener('click', (event) => {
-            this.LOAD_PAGE('TITLE');
+            this.LOAD_PAGE('TITLE', 'WELCOME');
         });
         this.shadowRoot.getElementById('BUTTON_Map').addEventListener('click', (event) => {
-            this.LOAD_PAGE('MAP');
+            this.LOAD_PAGE('MAP', 'WELCOME');
+        });
+        this.shadowRoot.getElementById('BUTTON_Onboarding').addEventListener('click', (event) => {
+            this.LOAD_PAGE('ONBOARDING', 'WELCOME');
+        });
+        this.shadowRoot.getElementById('BUTTON_Wizard').addEventListener('click', (event) => {
+            this.LOAD_PAGE('WIZARD', 'WELCOME');
         });
     }
     /**
@@ -220,6 +226,8 @@ class JELLYFISH_DebugMenu extends HTMLElement{
                 <a id = "BUTTON_Welcome">WELCOME</a>
                 <a id = "BUTTON_Title">TITLE</a>
                 <a id = "BUTTON_Map">MAP</a>
+                <a id = "BUTTON_Wizard">WIZARD</a>
+                <a id = "BUTTON_Onboarding">ONNBOARDING</a>
             </div>
         </div>
         `
