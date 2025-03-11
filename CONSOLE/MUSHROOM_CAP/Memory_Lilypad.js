@@ -40,7 +40,7 @@ export default class M_Lilypad extends Renderer{
     };
     async #LOAD_FROG_LIST(){
         this.RENDERER_PATH = this.PATH_FILE_FROG_LIST;
-        this.LILYPAD.FROG_LIST = await this.READ();
+        this.LILYPAD.FROG_LIST = JSON.parse(await this.READ());
     };
     async #LOAD_ALL_FROGS(){
         this.RENDERER_PATH = this.PATH_FOLDER_FROG;

@@ -72,7 +72,7 @@ export default class Stalk extends Mushroom_Cap {
      * #### --> RETURNS NEW PAGE {ONBOARDING}
 	 */
     async ONBOARDING(){
-        await this.LOAD('ONBOARDING');
+        await this.LOAD('ONBOARDING', 'PROFILE');
     };
     /**
 	 * ## CHECK FOR FIRST TIME
@@ -113,16 +113,24 @@ export default class Stalk extends Mushroom_Cap {
     async CHECK_LOGIN() {
 
         let STATUS_Logged = false;
-        // this.path = await this.INSTANCE_PATHS.INIT_ROUTE({TAG: 'RESIDENT', SECTION: 'MEMORY', SUBSECTION:'USERS'});
-        // const DATA_Resident = await this.READ();
 
-        // if (Object.keys(DATA_Resident).length >= 1) {
-        //     if (DATA_Resident.Logged) {STATUS_Logged = true;};         
-        //     if (STATUS_Logged) {await this.LOAD("TITLE");}
-        //     else {await this.LOAD("WELCOME");}
-        // }
-        // else {await this.LOAD('WIZARD');};
-        await this.LOAD('WELCOME');
+        // << GRAB USER LIST >> //
+
+        await this.REMEMBER();
+        const COUNT_USERS = Object.keys(this.SESSION.USERS.FROG_LIST).length;
+
+        // << CHECK THE USER LIST >> //
+        if (COUNT_USERS >= 2) {
+            // << IF THERE ARE USERS... >> //
+            // << CHECK LOGIN STATUS >> //
+
+            await this.LOAD('WELCOME', 'WELCOME');
+        }
+        else {
+            // << IF NO USERS >> //
+
+            await this.LOAD('WIZARD', 'PROFILE');
+        };
     };   
 
     // ===================== //
@@ -148,11 +156,11 @@ export default class Stalk extends Mushroom_Cap {
      * 
      * Page must exist in the app memory for this function to work 
      */
-    async LOAD(PARAMETER_PAGE_TAG) {  
+    async LOAD(PARAMETER_PAGE_TAG, PARAMETER_PAGE_CATEGORY) {  
 
         await this.SAVE_SESSION();
         console.log(PARAMETER_PAGE_TAG)
-        window.location.href = this.SESSION.ROUTES.MEMORY.WELCOME[PARAMETER_PAGE_TAG];
+        window.location.href = this.SESSION.ROUTES.MEMORY[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
     };
     
 }

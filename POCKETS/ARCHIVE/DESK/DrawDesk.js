@@ -1,7 +1,7 @@
 import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
 import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 
-export default class Page_Toadstool {
+export default class Page_Desk {
 
     constructor(){
 
@@ -16,16 +16,16 @@ export default class Page_Toadstool {
             BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
             BEETLE_CONFIG_TYPE: 'STANDARD',
             BEETLE_CONFIG_CATEGORY: 'WELCOME',
-            BEETLE_CONFIG_LOCATION: 'DrawToadstool.js',
-            BEETLE_CONFIG_SCRIPT: 'TOADSTOOL',
-            BEETLE_CONFIG_TEXT: 'LOADING TOADSTOOL PAGE'
+            BEETLE_CONFIG_LOCATION: 'DrawDesk.js',
+            BEETLE_CONFIG_SCRIPT: 'DESK',
+            BEETLE_CONFIG_TEXT: 'LOADING DESK PAGE'
         });
 
         // ============= //
         // << SECTION >> //
         // ============= //
 
-        this.SECTION_Title = document.getElementById('SECTION_Toadstool-Section-Title');
+        this.SECTION_Title = document.getElementById('SECTION_Desk-Section-Title');
 
         // ========== //
         // << TEXT >> //
@@ -62,7 +62,7 @@ export default class Page_Toadstool {
      */
     async DRAW_PAGE() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING SANDBOX PAGE';
+        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING DESK PAGE';
         await this.INSTANCE_BEETLE.READ_MODE();
 
         await this.REMEMBER();
@@ -107,7 +107,7 @@ export default class Page_Toadstool {
     // ============ //
 
     /**
-     * ## INITIALISE THE SANDBOX PAGE
+     * ## INITIALISE THE DESK PAGE
      * 
      * -------------------
      * 
@@ -119,7 +119,7 @@ export default class Page_Toadstool {
      */
     async INITIALISE() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING SANDBOX PAGE';
+        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING DESK PAGE';
         this.INSTANCE_BEETLE.READ_MODE();
 
         await this.TEXT();
@@ -128,11 +128,11 @@ export default class Page_Toadstool {
     async TEXT () {
         this.HEADER_PAGE = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'h1',
-            CREATE_CONFIG_PERSONALITY_ID: 'HEADER_Sandbox-Title-Present',
+            CREATE_CONFIG_PERSONALITY_ID: 'HEADER_Desk-Title-Present',
         }).INIT();
     };
 };
 
-const Page = new Page_Toadstool();
+const Page = new Page_Desk();
 await Page.INITIALISE();
 await Page.DRAW_PAGE();

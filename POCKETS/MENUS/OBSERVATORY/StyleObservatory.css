@@ -1,0 +1,19 @@
+@import "../../../STYLE/BASE/RootStyles.css";
+@import "../../../STYLE/BASE/ImageLoader.css";
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+.PLANET {
+    position: absolute;
+}
+.EMPLOYMENT {
+    transform: translate(180px, -40px);
+}
+.EXPLORE {
+    transform: translate(340px, 280px);
+}
+.HEALTH {
+    transform: translate(50px, 300px);
+}

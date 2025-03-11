@@ -1,7 +1,7 @@
 import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
 import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 
-export default class Page_Foyer {
+export default class Page_Cupboard {
 
     constructor(){
 
@@ -16,16 +16,16 @@ export default class Page_Foyer {
             BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
             BEETLE_CONFIG_TYPE: 'STANDARD',
             BEETLE_CONFIG_CATEGORY: 'WELCOME',
-            BEETLE_CONFIG_LOCATION: 'DrawFoyer.js',
-            BEETLE_CONFIG_SCRIPT: 'FOYER',
-            BEETLE_CONFIG_TEXT: 'LOADING FOYER PAGE'
+            BEETLE_CONFIG_LOCATION: 'DrawCupboard.js',
+            BEETLE_CONFIG_SCRIPT: 'CUPBOARD',
+            BEETLE_CONFIG_TEXT: 'LOADING CUPBOARD PAGE'
         });
 
         // ============= //
         // << SECTION >> //
         // ============= //
 
-        this.SECTION_Title = document.getElementById('SECTION_Foyer-Section-Title');
+        this.SECTION_Title = document.getElementById('SECTION_Cupboard-Section-Title');
 
         // ========== //
         // << TEXT >> //
@@ -62,7 +62,7 @@ export default class Page_Foyer {
      */
     async DRAW_PAGE() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING FOYER PAGE';
+        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING CUPBOARD PAGE';
         await this.INSTANCE_BEETLE.READ_MODE();
 
         await this.REMEMBER();
@@ -107,7 +107,7 @@ export default class Page_Foyer {
     // ============ //
 
     /**
-     * ## INITIALISE THE SANDBOX PAGE
+     * ## INITIALISE THE CUPBOARD PAGE
      * 
      * -------------------
      * 
@@ -119,7 +119,7 @@ export default class Page_Foyer {
      */
     async INITIALISE() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING SANDBOX PAGE';
+        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING CUPBOARD PAGE';
         this.INSTANCE_BEETLE.READ_MODE();
 
         await this.TEXT();
@@ -128,11 +128,11 @@ export default class Page_Foyer {
     async TEXT () {
         this.HEADER_PAGE = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'h1',
-            CREATE_CONFIG_PERSONALITY_ID: 'HEADER_Foyer-Title-Present',
+            CREATE_CONFIG_PERSONALITY_ID: 'HEADER_Cupboard-Title-Present',
         }).INIT();
     };
 };
 
-const Page = new Page_Foyer();
+const Page = new Page_Cupboard();
 await Page.INITIALISE();
 await Page.DRAW_PAGE();

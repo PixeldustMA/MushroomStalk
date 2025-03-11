@@ -145,10 +145,10 @@ class JELLYFISH_DebugMenu extends HTMLElement{
             this.LOAD_PAGE('MAP', 'WELCOME');
         });
         this.shadowRoot.getElementById('BUTTON_Onboarding').addEventListener('click', (event) => {
-            this.LOAD_PAGE('ONBOARDING', 'WELCOME');
+            this.LOAD_PAGE('ONBOARDING', 'PROFILE');
         });
         this.shadowRoot.getElementById('BUTTON_Wizard').addEventListener('click', (event) => {
-            this.LOAD_PAGE('WIZARD', 'WELCOME');
+            this.LOAD_PAGE('WIZARD', 'PROFILE');
         });
     }
     /**

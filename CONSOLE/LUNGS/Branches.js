@@ -121,7 +121,7 @@ export default class Branches extends Mushroom_Cap {
 
         await this.REMEMBER();
         await this.SAVE_SESSION();
-        window.location.href = this.SESSION.POCKETS[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
+        window.location.href = this.SESSION.ROUTES.MEMORY[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
     };
 
     // ==================== //
