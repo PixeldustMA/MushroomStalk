@@ -150,6 +150,12 @@ class JELLYFISH_DebugMenu extends HTMLElement{
         this.shadowRoot.getElementById('BUTTON_Wizard').addEventListener('click', (event) => {
             this.LOAD_PAGE('WIZARD', 'PROFILE');
         });
+        this.shadowRoot.getElementById('BUTTON_PenPot').addEventListener('click', (event) => {
+            this.LOAD_PAGE('PENPOT', 'MAT');
+        });
+        this.shadowRoot.getElementById('BUTTON_Plushie').addEventListener('click', (event) => {
+            this.LOAD_PAGE('PLUSHIE', 'MAT');
+        });
     }
     /**
      * 
@@ -228,6 +234,8 @@ class JELLYFISH_DebugMenu extends HTMLElement{
                 <a id = "BUTTON_Map">MAP</a>
                 <a id = "BUTTON_Wizard">WIZARD</a>
                 <a id = "BUTTON_Onboarding">ONNBOARDING</a>
+                <a id = "BUTTON_PenPot">PENPOT</a>
+                <a id = "BUTTON_Plushie">PLUSHIE</a>
             </div>
         </div>
         `

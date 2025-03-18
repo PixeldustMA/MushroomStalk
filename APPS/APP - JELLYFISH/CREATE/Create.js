@@ -166,6 +166,7 @@ export default class Create{
 
         this.JELLYFISH = document.createElement('input');
         this.JELLYFISH.type = this.JELLYFISH_TAG.toLowerCase();
+        console.log(this.JELLYFISH_TAG)
         if(this.JELLYFISH_TAG === 'NUMBER') {
             this.JELLYFISH.max = this.NUMBER_MAX;
             this.JELLYFISH.min = this.NUMBER_MIN;

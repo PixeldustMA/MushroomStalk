@@ -14,13 +14,15 @@ export default class M_Paths extends Renderer{
         // ====================== //
 
         this.AGGREGATION_CUPBOARD_PATHS = {FILES: {}};
+        this.AGGREGATION_NOVA_PATHS = {FILES: {}};
 
         // ===================== //
         // << TOP LEVEL PATHS >> //
         // ===================== //
         this.MAIN_PATHS = {
             MUSHROOM: 'UNSET',
-            CUPBOARD: 'UNSET'
+            CUPBOARD: 'UNSET',
+            NOVA: 'UNSET'
         };
 
         // ============== //
@@ -36,6 +38,7 @@ export default class M_Paths extends Renderer{
         // ============ //
 
         this.CUPBOARD = {};
+        this.NOVA = {};
     };
 
     // ======================== //
@@ -69,10 +72,12 @@ export default class M_Paths extends Renderer{
         // =================== //
 
         await this.INITIALISE_CUPBOARD(this.#CUPBOARD_TEMPLATE());
+        await this.INITIALISE_NOVA(this.#NOVA_TEMPLATE());
 
         return {
             TOP: this.MAIN_PATHS,
-            CUPBOARD: this.CUPBOARD
+            CUPBOARD: this.CUPBOARD,
+            NOVA: this.NOVA
         };
     };
 
@@ -82,6 +87,7 @@ export default class M_Paths extends Renderer{
 
     async TOP_LEVEL() {
         this.MAIN_PATHS.CUPBOARD = `${this.MAIN_PATHS.MUSHROOM}/CUPBOARD`;
+        this.MAIN_PATHS.NOVA = `${this.MAIN_PATHS.MUSHROOM}/NOVA`;
     };
     async LEVEL_ONE(FOLDER_DATA, AGGREGATOR, PATH) {
         for (let index = 0; index < FOLDER_DATA.length; index++) {
@@ -122,7 +128,7 @@ export default class M_Paths extends Renderer{
             const OBJECT_Category = TEXT_DATA[KEYS_Category[INDEX_CATEGORY]];
             await this.STYLE_LOOP(OBJECT_Category, KEYS_Category[INDEX_CATEGORY]);
         };
-    }
+    };
     async STYLE_LOOP(CATEGORY_DATA, CATEGORY_NAME) {
         const KEYS_Style = Object.keys(CATEGORY_DATA);
         for (let INDEX_STYLE = 0; INDEX_STYLE < KEYS_Style.length; INDEX_STYLE++) {
@@ -149,6 +155,15 @@ export default class M_Paths extends Renderer{
         await this.FILES(DATA.FILES, this.AGGREGATION_CUPBOARD_PATHS.FILES, this.MAIN_PATHS.CUPBOARD);
         await this.SUB_FOLDERS(DATA, this.AGGREGATION_CUPBOARD_PATHS, this.MAIN_PATHS.CUPBOARD);
         this.CUPBOARD = this.AGGREGATION_CUPBOARD_PATHS;
+    };
+    /**
+     * ## INITIALISE PATHS FOR NOVA
+     */
+    async INITIALISE_NOVA(DATA) {
+        await this.LEVEL_ONE(DATA.FOLDERS, this.AGGREGATION_NOVA_PATHS, this.MAIN_PATHS.NOVA);
+        await this.FILES(DATA.FILES, this.AGGREGATION_NOVA_PATHS.FILES, this.MAIN_PATHS.NOVA);
+        await this.SUB_FOLDERS(DATA, this.AGGREGATION_NOVA_PATHS, this.MAIN_PATHS.NOVA);
+        this.NOVA = this.AGGREGATION_NOVA_PATHS;
     };
 
     // ========== //
@@ -180,6 +195,19 @@ export default class M_Paths extends Renderer{
             }
         }
     };
-}// READ TEMPLATE
-// HAVE A TEMPLATE CONVERSION SCRIPT
-
+    /**
+     * ## NOVA TEMPLATE
+     */
+    #NOVA_TEMPLATE() {
+        return {
+            "FOLDERS": ["GAMES"],
+            "GAMES": ["POKEMON"],
+            "FILES": {
+                "Pokemon_Party.json": "GAMES",
+                "Pokemon_Database.json": "GAMES",
+                "Pokemon_Elements.json": "GAMES"
+            },
+            "TEXT_FILES": {}
+        }
+    };
+};

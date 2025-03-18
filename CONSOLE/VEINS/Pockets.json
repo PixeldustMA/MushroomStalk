@@ -8,5 +8,9 @@
     "PROFILE": {
         "ONBOARDING": "../../../POCKETS/PROFILES/ONBOARDING/FrameworkOnboarding.html",
         "WIZARD": "../../../POCKETS/PROFILES/WIZARD/FrameworkWizard.html"
+    },
+    "MAT": {
+        "PENPOT": "../../../POCKETS/MAT/PENPOT/FrameworkPenPot.html",
+        "PLUSHIE": "../../../POCKETS/MAT/PLUSHIE/FrameworkPlushie.html"
     }
 }

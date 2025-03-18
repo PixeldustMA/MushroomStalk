@@ -1,3 +1,4 @@
+import M_Chunk from "../MUSHROOM_CAP/Memory_Chunk.js";
 import M_Lilypad from "../MUSHROOM_CAP/Memory_Lilypad.js";
 import M_Paths from "../MUSHROOM_CAP/Memory_Paths.js";
 import M_Pockets from "../MUSHROOM_CAP/Memory_Pockets.js";
@@ -39,6 +40,7 @@ export default class Mushroom_Cap extends Renderer{
         this.INSTANCE_M_TEMPLATES = new M_Templates();
         this.INSTANCE_M_POCKETS = new M_Pockets();
         this.INSTANCE_M_LILYPAD = new M_Lilypad();
+        this.INSTANCE_M_CHUNK = '';
 
         // =========== //
         // << FLAGS >> //
@@ -61,17 +63,21 @@ export default class Mushroom_Cap extends Renderer{
         await this.SET_SESSION_PATH();
         try {
             this.DATA_LOADED = JSON.parse(await this.#LOAD_SESSION());
-            console.log(this.DATA_LOADED)
             if (Object.keys(this.DATA_LOADED).length <= 2) {
                 console.log('EMPTY SESSION FILE FOUND')
                 await this.#GENERATE_SESSION();
             }
-            else {this.SESSION = this.DATA_LOADED}
+            else {
+                this.SESSION = this.DATA_LOADED
+                this.INSTANCE_M_CHUNK = new M_Chunk({
+                    CHUNK_CONFIG_PARTY_PATH: this.SESSION.PATHS.NOVA.FILES.POKEMON_PARTY,
+                    CHUNK_CONFIG_DATABASE_PATH: this.SESSION.PATHS.NOVA.FILES.POKEMON_DATABASE
+                });
+                await this.INSTANCE_M_CHUNK.INITIALISE_SESSION()
+            }
         } catch (error) {
             await this.#GENERATE_SESSION();
         };
-        console.log('ACTIVE SESSION IS...');
-        console.log(this.SESSION)
     };
     /**
      * ## GENERATING NEW SESSION
@@ -87,8 +93,10 @@ export default class Mushroom_Cap extends Renderer{
             ROUTES: {},
             TEMPLATES: {},
             POCKETS: {},
-            USERS: {}
+            USERS: {},
+            CHUNK: {}
         };
+        console.log(this.SESSION);
         this.SESSION.PATHS = await this.INSTANCE_M_PATHS.INITIALISE();
         this.SESSION.ROUTES = await this.INSTANCE_M_ROUTES.INITIALISE();
         this.SESSION.TEMPLATES = await this.INSTANCE_M_TEMPLATES.RUN_MEMORY_TEMPLATES();
@@ -98,7 +106,18 @@ export default class Mushroom_Cap extends Renderer{
             this.SESSION.PATHS.CUPBOARD.FILES.FROGS,
             this.SESSION.PATHS.CUPBOARD.LILYPAD
         );
+        console.log(this.SESSION.PATHS)
+        this.INSTANCE_M_CHUNK = new M_Chunk({
+            CHUNK_CONFIG_PARTY_PATH: this.SESSION.PATHS.NOVA.FILES.POKEMON_PARTY,
+            CHUNK_CONFIG_DATABASE_PATH: this.SESSION.PATHS.NOVA.FILES.POKEMON_DATABASE,
+            CHUNK_CONFIG_ELEMENTS_PATH: this.SESSION.PATHS.NOVA.FILES.POKEMON_ELEMENTS
+        });
+        this.SESSION.CHUNK = await this.INSTANCE_M_CHUNK.INITIALISE_SESSION();
+        console.log(this.SESSION.CHUNK)
         await this.SAVE_SESSION();
+    };
+    async GENERATE_CHUNK({PARAMETER_VALUE_NAME, PARAMETER_PEN}) {
+        this.INSTANCE_M_CHUNK.SET_VALUE(PARAMETER_VALUE_NAME, PARAMETER_PEN);
     };
 
     // ===================== //
