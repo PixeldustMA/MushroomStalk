@@ -1,0 +1,70 @@
+{
+    "LIL_BOOKCASE": {
+        "SHELF_ONE": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": []
+        },
+        "SHELF_TWO": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": []
+        },
+        "SHELF_THREE": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": []
+        }
+    },
+    "TRUNDLY": {
+        "SHELF_ONE": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": []
+        },
+        "SHELF_TWO": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": []
+        }
+    },
+    "BOOKCASE_LEFT": {
+        "SHELF_ONE": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        },
+        "SHELF_TWO": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        },
+        "SHELF_THREE": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        },
+        "SHELF_FOUR": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        }
+    },
+    "BOOKCASE_RIGHT": {
+        "SHELF_ONE": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        },
+        "SHELF_TWO": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        },
+        "SHELF_THREE": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        },
+        "SHELF_FOUR": {
+            "SLOT_ONE": [],
+            "SLOT_TWO": [],
+            "SLOT_THREE": []
+        }
+    }
+}
