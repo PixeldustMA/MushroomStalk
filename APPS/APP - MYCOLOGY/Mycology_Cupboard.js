@@ -35,7 +35,7 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         // << DATA >> //
         // ========== //
 
-        this.DATA_TEMPLATES = CUPBOARD_CONFIG_TEMPLATES;
+        this.DATA_TEMPLATES = CUPBOARD_CONFIG_TEMPLATES.CUPBOARD;
     };
 
     /**
@@ -47,6 +47,7 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         this.INSTANCE_BEETLE.DAISY_TEXT = 'RUN CUPBOARD VALIDATION';
         await this.INSTANCE_BEETLE.READ_MODE();
 
+        console.log(this.PATH_FILES)
         // ================= //
         // << MAIN FOLDER >> //
         // ================= //
@@ -61,9 +62,8 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         // ================ //
         // << JSON FILES >> //
         // ================ //
-        console.log(this.PATH_FILES)
-        console.log(this.DATA_TEMPLATES)
-        // await this.#FROGS();
+
+        await this.#FROGS();
         await this.#RESIDENT();
         await this.#USER();
 
@@ -82,7 +82,6 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING CUPBOARD FOLDERS';
         await this.INSTANCE_BEETLE.READ_MODE();
 
-        console.log(this.PATH_FOLDERS)
         for (let INDEX_Folders = 0; INDEX_Folders < this.PATH_FOLDERS.length; INDEX_Folders++) {
             const PATH_Folder = this.PATH_FOLDERS[INDEX_Folders];
             console.log(PATH_Folder)
@@ -103,9 +102,8 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
 
         this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING FROG JSON FILE';
         await this.INSTANCE_BEETLE.READ_MODE();
-
-
-        await this.EXISTANCE_FILE(this.PATH_FILES.FROGS, this.DATA_TEMPLATES.FROGS);
+        console.log(this.DATA_TEMPLATES)
+        await this.EXISTANCE_FILE(this.PATH_FILES.FROGS, this.DATA_TEMPLATES.USERS_FROGS);
     };
     /**
      * ## VALIDATE RESIDENT FILE
@@ -142,5 +140,5 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING INPUT FILE';
         await this.INSTANCE_BEETLE.READ_MODE();
         await this.EXISTANCE_FILE(this.PATH_FILES.WELCOME.INPUT, {})
-    }
+    };
 };

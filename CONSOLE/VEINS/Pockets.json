@@ -2,8 +2,8 @@
     "WELCOME": {
         "SPLASH": "../../POCKETS/WELCOME/SPLASH/FrameworkSplash.html",
         "WELCOME": "../../../POCKETS/WELCOME/WELCOME/FrameworkWelcome.html",
-        "MAP": "../../POCKETS/WELCOME/MAP/FrameworkMap.html",
-        "TITLE": "../../POCKETS/WELCOME/TITLE/FrameworkTitle.html"
+        "MAP": "../../../POCKETS/WELCOME/MAP/FrameworkMap.html",
+        "TITLE": "../../../POCKETS/WELCOME/TITLE/FrameworkTitle.html"
     },
     "PROFILE": {
         "ONBOARDING": "../../../POCKETS/PROFILES/ONBOARDING/FrameworkOnboarding.html",

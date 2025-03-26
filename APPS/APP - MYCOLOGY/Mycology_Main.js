@@ -1,4 +1,5 @@
 import Branches from "../../CONSOLE/LUNGS/Branches.js";
+// import Myco_Cupboard from "./Mycology_Cupboard.js";
 
 export default class MYCOLOGY_Main extends Branches{
 
@@ -14,7 +15,14 @@ export default class MYCOLOGY_Main extends Branches{
         await this.INSTANCE_BEETLE.READ_MODE();
 
         await this.REMEMBER();
-        await this.CUPBOARD_CHECK();
+        console.log(this.SESSION)
+        // const INSTANCE_Cupboard = new Myco_Cupboard({
+        //     CUPBOARD_CONFIG_TEMPLATES: this.SESSION.TEMPLATES.MYCOLOGY,
+        //     CUPBOARD_CONFIG_FILES: this.SESSION.PATHS.CUPBOARD.FILES,
+        //     CUPBOARD_CONFIG_FOLDERS: this.SESSION.PATHS.CUPBOARD,
+        //     CUPBOARD_CONFIG_TOP: this.SESSION.PATHS.TOP.CUPBOARD
+        // });
+        // await INSTANCE_Cupboard.CUPBOARD_CHECK();
     };
 
     // =============== //
@@ -41,5 +49,11 @@ export default class MYCOLOGY_Main extends Branches{
             await this.SAVE();
         };
     };
-
+    async EXISTANCE_ARCHIVE(PARAMETER_PATHWAY, PARAMETER_ARCHIVE_TEMPLATE) {
+        if(!await this.FOLDER_EXISTANCE(PARAMETER_PATHWAY)) {
+            this.RENDERER_PATH_ORIGIN = PARAMETER_ARCHIVE_TEMPLATE;
+            this.RENDERER_PATH_DESTINATION = PARAMETER_PATHWAY;
+            await this.COPY();
+        }
+    }
 };

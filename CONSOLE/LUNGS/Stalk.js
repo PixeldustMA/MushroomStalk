@@ -26,10 +26,12 @@ export default class Stalk extends Mushroom_Cap {
      * #### --> RETURNS NEW PAGE {VALIDATION || NO PROFILE}
 	 */
     async VALIDATE(PARAMETER_USERNAME, PARAMETER_PASSWORD) {
-        await this.REMEMBER();
-        console.log(this.SESSION);
-        console.log('VALIDATION CHECK')
-        const NUMBER_Users = Object.keys(this.SESSION.ROUTES.USERS).length;
+        // await this.REMEMBER();
+        // console.log(this.SESSION);
+        // console.log('VALIDATION CHECK')
+        await this.REQUEST_SESSION_PATHS();
+        console.log(this.SESSION)
+        const NUMBER_Users = Object.keys(this.SESSION.PATHS.CUPBOARD.FILES.FROGS).length;
         let valid = false;
 
         UserCheckLoop: for (let index = 0; index < NUMBER_Users.length; index++) {
@@ -56,7 +58,7 @@ export default class Stalk extends Mushroom_Cap {
 
 			setTimeout(() => {
                 console.log('ERROR')
-				// window.location.reload();				
+				window.location.reload();				
 			}, 2000);
 
 		};
@@ -116,11 +118,12 @@ export default class Stalk extends Mushroom_Cap {
 
         // << GRAB USER LIST >> //
 
-        await this.REMEMBER();
+        await this.REQUEST_SESSION_USERS();
+        console.log(this.SESSION)
         const COUNT_USERS = Object.keys(this.SESSION.USERS.FROG_LIST).length;
 
         // << CHECK THE USER LIST >> //
-        if (COUNT_USERS >= 2) {
+        if (COUNT_USERS >= 1) {
             // << IF THERE ARE USERS... >> //
             // << CHECK LOGIN STATUS >> //
 
@@ -157,9 +160,7 @@ export default class Stalk extends Mushroom_Cap {
      * Page must exist in the app memory for this function to work 
      */
     async LOAD(PARAMETER_PAGE_TAG, PARAMETER_PAGE_CATEGORY) {  
-
-        await this.SAVE_SESSION();
-        console.log(PARAMETER_PAGE_TAG)
+        await this.REQUEST_SESSION_ROUTES();
         window.location.href = this.SESSION.ROUTES.MEMORY[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
     };
     

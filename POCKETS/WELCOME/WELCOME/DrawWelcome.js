@@ -114,9 +114,9 @@ class Page_Welcome extends Stalk {
         this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING WELCOME PAGE';
         await this.INSTANCE_BEETLE.READ_MODE();
 
-        await this.REMEMBER();
-        const INSTANCE_MYCOLOGY = new Connector_Mycology(this.SESSION);
-        await INSTANCE_MYCOLOGY.NO_USERNAME_MYCOLOGY()
+        // await this.REMEMBER();
+        // const INSTANCE_MYCOLOGY = new Connector_Mycology(this.SESSION);
+        // await INSTANCE_MYCOLOGY.NO_USERNAME_MYCOLOGY()
 
         this.SECTION_Form.append(await this.PANEL_Welcome());	
     };

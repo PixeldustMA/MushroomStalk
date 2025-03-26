@@ -1,6 +1,7 @@
 import Branches from "../../CONSOLE/LUNGS/Branches.js";
 import Frog from "./MEMORY/Frog.js";
 import Frog_List from "./MEMORY/Frog_List.js";
+import Profiles from "./MEMORY/Profile.js";
 import Resident_Frog from "./MEMORY/Resident_Frog.js";
 
 export default class Lilypad extends Branches{
@@ -13,6 +14,8 @@ export default class Lilypad extends Branches{
         LILYPAD_CONFIG_LOGIN = false,
         LILYPAD_CONFIG_PATH_NEWS = 0
     }){
+
+        super();
 
         // =============== //
         // ## USER DATA ## //
@@ -38,7 +41,6 @@ export default class Lilypad extends Branches{
 
     async RUN_LILYPAD(PARAMETER_MODE) {
 
-        await this.REMEMBER();
         switch (PARAMETER_MODE) {
             case 'NEW':
                 return this.#ADD_NEW_FROG();
@@ -68,17 +70,25 @@ export default class Lilypad extends Branches{
      */
     async #ADD_NEW_FROG(){
 
+        await this.REQUEST_SESSION_PATHS();
+        await this.REQUEST_SESSION_ROUTES();
+        await this.REQUEST_SESSION_TEMPLATES();
+        await this.REQUEST_SESSION_USERS();
+
         // << SET USER AS RESIDENT >> //
         await this.LOAD_RESIDENT();
-        await this.INSTANCE_RESIDENT.INITIALISE_RESIDENT('ADD');
+        await this.INSTANCE_RESIDENT.INITIALISE_RESIDENT_FROG('UPDATE');
 
         // << CREATE A NEW USER FILE FROM THE OBJECT >> //
         await this.LOAD_FROG();
-        await this.INSTANCE_FROG.INITIALISE_FROG('UPDATE');
+        await this.INSTANCE_FROG.INITIALISE_FROG('ADD');
 
         // << ADD USER TO THE LIST >> //
-        await this.LOAD_FROG_LIST();
-        await this.INSTANCE_FROG_LIST.INITIALISE_FROG_LIST('ADD');
+        await new Profiles({
+            PROFILE_CONFIG_PATH:this.SESSION.PATHS.CUPBOARD.LILYPAD,
+            PROFILE_CONFIG_USERNAME: this.USERNAME,
+            PROFILE_CONFIG_DATA: {USERNAME: this.USERNAME, PASSWORD: this.PASSWORD}
+        }).ADD_PROFILE();
 
     };
     async #UPDATE_USER(){
@@ -115,8 +125,9 @@ export default class Lilypad extends Branches{
         };
 
         // << LOAD MEMORY INSTANCE >> //
+        console.log(this.SESSION)
         this.INSTANCE_RESIDENT = new Resident_Frog({
-            RESIDENT_CONFIG_DATA: this.SESSION.LILYPAD.RESIDENTFROG,
+            RESIDENT_CONFIG_DATA: this.SESSION.USERS.RESIDENT,
             RESIDENT_CONFIG_PATH: this.SESSION.PATHS.CUPBOARD.FILES.RESIDENTFROG,
             RESIDENT_CONFIG_UPDATES: DATA_UPDATE
         });
@@ -130,7 +141,7 @@ export default class Lilypad extends Branches{
         let DATA_UPDATE = {
             USERNAME: this.USERNAME,
             PASSWORD: this.PASSWORD
-        }
+        };
 
         // << GENERATE PROPERTIES >> //
         if (this.PATH_USER_NEWS !== 0) {
@@ -139,9 +150,9 @@ export default class Lilypad extends Branches{
 
         // << LOAD MEMORY INSTANCE >> //
         this.INSTANCE_FROG = new Frog({
-            FROG_CONFIG_DATA: this.SESSION.LILYPAD.FROG,
+            FROG_CONFIG_DATA: this.SESSION.USERS.FROGS,
             FROG_CONFIG_FILE_TAG: this.USERNAME,
-            FROG_CONFIG_PATH: this.SESSION.PATHS.CUPBOARD.FILES.FROG,
+            FROG_CONFIG_PATH: this.SESSION.PATHS.CUPBOARD.FILES.FROGS,
             FROG_CONFIG_UPDATES: DATA_UPDATE
         });
 

@@ -6,7 +6,8 @@ export default class M_Paths extends Renderer{
         super();
 
         this.MEMORY = {
-            CUPBOARD: {}
+            CUPBOARD: {},
+            ARCHIVE: {}
         };
 
         // ====================== //
@@ -14,14 +15,17 @@ export default class M_Paths extends Renderer{
         // ====================== //
 
         this.AGGREGATION_CUPBOARD_PATHS = {FILES: {}};
+        this.AGGREGATION_ARCHIVE_PATHS = {FILES: {}};
         this.AGGREGATION_NOVA_PATHS = {FILES: {}};
 
         // ===================== //
         // << TOP LEVEL PATHS >> //
         // ===================== //
+
         this.MAIN_PATHS = {
             MUSHROOM: 'UNSET',
             CUPBOARD: 'UNSET',
+            ARCHIVE: 'UNSET',
             NOVA: 'UNSET'
         };
 
@@ -38,6 +42,7 @@ export default class M_Paths extends Renderer{
         // ============ //
 
         this.CUPBOARD = {};
+        this.ARCHIVE = {};
         this.NOVA = {};
     };
 
@@ -72,11 +77,13 @@ export default class M_Paths extends Renderer{
         // =================== //
 
         await this.INITIALISE_CUPBOARD(this.#CUPBOARD_TEMPLATE());
+        await this.INITIALISE_ARCHIVE(this.#ARCHIVE_TEMPLATE());
         await this.INITIALISE_NOVA(this.#NOVA_TEMPLATE());
 
         return {
             TOP: this.MAIN_PATHS,
             CUPBOARD: this.CUPBOARD,
+            ARCHIVE: this.ARCHIVE,
             NOVA: this.NOVA
         };
     };
@@ -87,6 +94,7 @@ export default class M_Paths extends Renderer{
 
     async TOP_LEVEL() {
         this.MAIN_PATHS.CUPBOARD = `${this.MAIN_PATHS.MUSHROOM}/CUPBOARD`;
+        this.MAIN_PATHS.ARCHIVE = `${this.MAIN_PATHS.MUSHROOM}/Username/ARCHIVE`;
         this.MAIN_PATHS.NOVA = `${this.MAIN_PATHS.MUSHROOM}/NOVA`;
     };
     async LEVEL_ONE(FOLDER_DATA, AGGREGATOR, PATH) {
@@ -165,6 +173,15 @@ export default class M_Paths extends Renderer{
         await this.SUB_FOLDERS(DATA, this.AGGREGATION_NOVA_PATHS, this.MAIN_PATHS.NOVA);
         this.NOVA = this.AGGREGATION_NOVA_PATHS;
     };
+    /**
+     * ## INITIALISE PATHS FOR THE ARCHIVE
+     */
+    async INITIALISE_ARCHIVE(DATA) {
+        await this.LEVEL_ONE(DATA.FOLDERS, this.AGGREGATION_ARCHIVE_PATHS, this.MAIN_PATHS.ARCHIVE);
+        await this.FILES(DATA.FILES, this.AGGREGATION_ARCHIVE_PATHS.FILES, this.MAIN_PATHS.ARCHIVE);
+        await this.SUB_FOLDERS(DATA, this.AGGREGATION_ARCHIVE_PATHS, this.MAIN_PATHS.ARCHIVE);
+        this.ARCHIVE = this.AGGREGATION_ARCHIVE_PATHS;
+    };
 
     // ========== //
     // ## FILE ## //
@@ -193,6 +210,13 @@ export default class M_Paths extends Renderer{
                     "INPUT": ["NAME", "PASSWORD"]
                 }
             }
+        }
+    };
+    #ARCHIVE_TEMPLATE() {
+        return {
+            "FOLDERS": ["MEMORY", "SQLITE"],
+            "FILES": {},
+            "TEXT_FILES": {}
         }
     };
     /**

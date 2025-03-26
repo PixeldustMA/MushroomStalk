@@ -48,7 +48,7 @@ export default class Branches extends Mushroom_Cap {
             PARAMETER_CATEGORY_POCKET = 'UNSET'
         }){
     
-        await this.REMEMBER();
+        await this.REQUEST_SESSION_ROUTES();
 
         switch (PARAMTER_BRANCH_MODE) {
             case 'WINDOW':
@@ -119,8 +119,8 @@ export default class Branches extends Mushroom_Cap {
      */
     async LOAD(PARAMETER_PAGE_TAG, PARAMETER_PAGE_CATEGORY) {  
 
-        await this.REMEMBER();
-        await this.SAVE_SESSION();
+        await this.REQUEST_SESSION_PATHS();
+        await this.REQUEST_SESSION_ROUTES();
         window.location.href = this.SESSION.ROUTES.MEMORY[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
     };
 

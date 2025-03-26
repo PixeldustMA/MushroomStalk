@@ -67,12 +67,11 @@ export default class Page_Wizard extends Stalk{
         this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING WIZARD PAGE';
         await this.INSTANCE_BEETLE.READ_MODE();
 
-        await this.REMEMBER();
+        await this.REQUEST_SESSION_ROUTES();
 
         this.SECTION_Title.append(this.PANEL_Title());
         this.SECTION_Question.append(this.PANEL_QUESTION());
     };
-
     PANEL_Title() {
 
         // ================ //
@@ -100,8 +99,14 @@ export default class Page_Wizard extends Stalk{
         const WRAPPERLeft = new Connector_Jellyfish().INITIALISE_WRAPPER();
         const WRAPPERRight = new Connector_Jellyfish().INITIALISE_WRAPPER();
 
+        // =============== //
+        // << LISTENERS >> //
+        // =============== //
+
+        this.ACTIVATE_LISTENER_LOAD_ONBOARDING(this.BUTTON_TEMP_NO);
+
         // ================== //
-        // ## ATTATCHMENTS ## //
+        // << ATTATCHMENTS >> //
         // ================== //
 
         WRAPPERLeft.append(...[this.BUTTON_TEMP_YES]);
@@ -114,6 +119,21 @@ export default class Page_Wizard extends Stalk{
             ]);
             return WRAPPER_Belly;
     };
+
+    // =============== //
+    // ## LISTENERS ## //
+    // =============== //
+
+    ACTIVATE_LISTENER_LOAD_ONBOARDING(PARAMETER_BUTTON){
+        PARAMETER_BUTTON.addEventListener('click', (event) => {
+            this.LOAD('ONBOARDING', 'PROFILE')
+        });
+    };
+
+    // ============= //
+    // ## LOADING ## //
+    // ============= //
+
     /**
      * ## INITIALISE THE WIZARD PAGE
      * 

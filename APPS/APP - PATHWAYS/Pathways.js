@@ -69,7 +69,8 @@ export default class Pathways extends Mushroom_Cap{
     async INIT() {
 
         await this.INSTANCE_BEETLE.READ_MODE();
-        await this.REMEMBER();
+        await this.REQUEST_SESSION_PATHS();
+        await this.REQUEST_SESSION_ROUTES();
 
         await this.LOAD_SET();
         if (!this.#CHECK_NULL(this.KEY_SUBSECTION)) {

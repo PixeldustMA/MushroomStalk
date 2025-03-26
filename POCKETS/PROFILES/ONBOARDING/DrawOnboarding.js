@@ -1,5 +1,8 @@
 import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
+import Lilypad from "../../../APPS/APP - LILYPAD/Lilypad.js";
 import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
+import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
+import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 
 // ================================================ //
 // ================================================ //
@@ -24,7 +27,7 @@ import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
  * 
  * It should allow the user to set up save paths and personal information
  */
-export default class Page_Onboarding {
+export default class Page_Onboarding extends Stalk{
 
     /**
 	 * ## ONBOARDING CONSTRUCTOR
@@ -101,7 +104,7 @@ export default class Page_Onboarding {
         this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING ONBOARDING PAGE';
         await this.INSTANCE_BEETLE.READ_MODE();
 
-        await this.REMEMBER();
+        // await this.REMEMBER();
 
         this.SECTION_Title.append(this.PANEL_TITLE());
 		this.SECTION_Form.append(this.PANEL_FORM());
@@ -122,7 +125,7 @@ export default class Page_Onboarding {
 	 * -------------------
      * #### --> RETURNS WRAPPER
 	 */
-    PANEL_Title() {
+    PANEL_TITLE() {
 
         // ================ //
         // << CONTAINERS >> //
@@ -165,7 +168,7 @@ export default class Page_Onboarding {
         // << LISTENERS >> //
         // =============== //
 
-
+        this.ACTIVATE_LISTENER_APPLY(this.BUTTON_APPLY);
 
         // ================= //
         // << ATTACHMENTS >> //
@@ -176,7 +179,7 @@ export default class Page_Onboarding {
 			this.INPUT_USERNAME,
 
 			this.LABEL_PASSWORD,
-			this.LABEL_PASSWORD,
+			this.INPUT_PASSWORD,
 
 			this.BUTTON_NEWS,
 			this.LABEL_NEWS,
@@ -185,6 +188,45 @@ export default class Page_Onboarding {
 			this.BUTTON_BACK
         ]);
         return WRAPPER_Form;
+    };
+
+    // =============== //
+    // ## LISTENERS ## //
+    // =============== //
+
+    ACTIVATE_LISTENER_APPLY(PARAMETER_BUTTON) {
+        PARAMETER_BUTTON.addEventListener('click', (event) => {
+            new Lilypad({
+                LILYPAD_CONFIG_USERNAME: this.INPUT_USERNAME.value,
+                LILYPAD_CONFIG_PASSWORD: this.INPUT_PASSWORD.value
+            }).RUN_LILYPAD('NEW').then((RESULT) => {
+
+                //TODO HERE NEEDS TO BE THE REST OF THE MEMORY BUILDING 
+                //? NO BUILD FULL MEMORY
+                //? RUN CHECKS ON ENTERING NEW AREA?
+                //? NEED TO BUILD MYSELF A LITTLE SYSTEM FOR THIS WITHOUT HAVING TO MAKE A WHOLE THING
+
+                // TODO CREATE A FULL SESSION AND SAVE
+
+                this.CREATE_SESSION_FILE().then((RESULT) => {return RESULT});
+
+                // << BASIC SESSION >> //
+                this.REQUEST_SESSION_PATHS().then((RESULT) => {return RESULT});
+                this.REQUEST_SESSION_ROUTES().then((RESULT) => {return RESULT});
+                this.REQUEST_SESSION_TEMPLATES().then((RESULT) => {return RESULT});
+                this.REQUEST_SESSION_USERS().then((RESULT) => {return RESULT});
+
+
+                // << CREATE USERNAME FOLDER AND IMPORTANT SUBFOLDERS >> //
+                //? This will need to activate mycology and run various sections
+
+                // << SAVE THE SESSION >> //
+
+                // << CHANGE THE PAGE >> //
+                this.LOAD('TITLE', 'WELCOME')
+                return RESULT
+            })
+        });
     };
     // ============ //
     // ## SET UP ## //
@@ -233,6 +275,9 @@ export default class Page_Onboarding {
             CREATE_CONFIG_PERSONALITY_ID: 'LABEL_Onboarding-News-Label',
             CREATE_CONFIG_PERSONALITY_CLASSES: ["TEXT_DisplayPaths"]
         }).INIT();
+        this.LABEL_USERNAME.innerHTML = 'USERNAME';
+        this.LABEL_PASSWORD.innerHTML = 'PASSWORD';
+        this.LABEL_NEWS.innerHTML = 'NEWS';
     };
     async INPUTS () {
         this.INPUT_USERNAME = await new Create({
@@ -264,6 +309,10 @@ export default class Page_Onboarding {
             CREATE_CONFIG_PERSONALITY_ID: 'BUTTON_Onboarding-Button-Back',
             CREATE_CONFIG_PERSONALITY_CLASSES: ['BUTTON-Back']
         }).INIT();
+
+        this.BUTTON_NEWS.innerHTML = 'NEWS';
+        this.BUTTON_APPLY.innerHTML = 'APPLY';
+        this.BUTTON_BACK.innerHTML = 'BACK';
     };
 
 };

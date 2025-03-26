@@ -1,3 +1,4 @@
+import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Branches from "../../../CONSOLE/LUNGS/Branches.js";
 
 export default class Resident_Frog extends Branches{
@@ -11,11 +12,13 @@ export default class Resident_Frog extends Branches{
         RESIDENT_CONFIG_UPDATES = 0
     }){
 
+        super();
+
         // =============== //
         // ## DEBUGGING ## //
         // =============== //
 
-        this.INSTANCE_BEETLE = new 
+        this.INSTANCE_BEETLE = new Connector_Beetle({});
 
         // =========== //
         // ## PATHS ## //
@@ -104,11 +107,11 @@ export default class Resident_Frog extends Branches{
     async #UPDATE_RESIDENT_FROG(){
 
         // << READ THE CURRENT RESIDENT DATA >> //
-        this.DATA_RESIDENT_FROG = await this.READ();
+        this.DATA_RESIDENT_FROG = await this.#READ_RESIDENT_FROG();
 
         // << UPDATE THE EXISTING RESIDENT DATA >> //
-        //. RFU1
         await this.#UPDATE_PROPERTY('USERNAME');
+        await this.#UPDATE_PROPERTY('PASSWORD');
 
         // << SAVE UPDATED DATA TO THE GIVEN PATH >> //
         return await this.#SAVE_RESIDENT_FROG();
@@ -123,8 +126,9 @@ export default class Resident_Frog extends Branches{
     async #READ_RESIDENT_FROG(){
 
         // << READ DATA AT PATH >> //
-        this.DATA_RESIDENT_FROG = await this.READ();
-
+        this.DATA_RESIDENT_FROG = JSON.parse(await this.READ());
+        console.log(this.DATA_RESIDENT_FROG)
+        return this.DATA_RESIDENT_FROG;
     };
     /**
      * ## SAVE RESIDENT FROG
@@ -135,11 +139,12 @@ export default class Resident_Frog extends Branches{
      */
     async #SAVE_RESIDENT_FROG(){
 
-        // << AQUIRE PATH TO RESIDENT FROG FILE >> //
-
-        // << AQUIRE CURRENT VERSION OF RESIDENT FROG >> //
+        // << AQUIRE CURRENT VERSION OF FROG >> //
+        this.RENDERER_DATA = this.DATA_RESIDENT_FROG;
+        this.RENDERER_PATH = this.PATH_RESIDENT_FROG;
 
         // << WRITE CURRENT DATA TO PATH >> //
+        await this.SAVE();
 
     };
 

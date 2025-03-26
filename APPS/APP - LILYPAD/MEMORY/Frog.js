@@ -1,3 +1,4 @@
+import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Branches from "../../../CONSOLE/LUNGS/Branches.js";
 
 export default class Frog extends Branches{
@@ -14,18 +15,20 @@ export default class Frog extends Branches{
         FROG_CONFIG_LIST_PATH = 0
     }){
 
+        super();
+
         // =============== //
         // ## DEBUGGING ## //
         // =============== //
 
-        this.INSTANCE_BEETLE = new 
+        this.INSTANCE_BEETLE = new Connector_Beetle({});
 
         // =========== //
         // ## PATHS ## //
         // =========== //
 
         this.PATH_FROG = FROG_CONFIG_PATH;
-        this.PATH_FROG_FILE = 'UNSET'
+        this.PATH_FROG_FILE = FROG_CONFIG_PATH
         this.PATH_TAG = FROG_CONFIG_FILE_TAG;
         this.PATH_FROG_LIST = FROG_CONFIG_LIST_PATH;
 
@@ -95,11 +98,19 @@ export default class Frog extends Branches{
     async #ADD_FROG(){
 
         // << GENERATE A NEW TEMPLATE >> //
-        this.NEW_FROG = this.TEMPLATE_FILE;
+        this.NEW_FROG = {
+            USERNAME: this.DATA_UPDATES.USERNAME,
+            PASSWORD: this.DATA_UPDATES.PASSWORD
+        };
 
         // << FILL IN THE DETAILS >> //
-        await this.#UPDATE_FROG_PROPERTY('USERNAME');
-
+        let origin = await this.#READ_FROG();
+        console.log(origin)
+        let numbers = Object.keys(origin);
+        let newkey = numbers += 1;
+        origin[newkey.toString()] = this.NEW_FROG
+        console.log(this.NEW_FROG)
+        this.DATA_FROG = origin;
         // << SAVE FROG >> // 
         await this.#SAVE_FROG();
 
@@ -160,8 +171,10 @@ export default class Frog extends Branches{
 
         // << READ DATA AT PATH >> //
         this.RENDERER_PATH = this.PATH_FROG_FILE;
-        this.DATA_FROG = await this.READ();
-
+        this.DATA_FROG = JSON.parse(await this.READ());
+        console.log(this.DATA_FROG);
+        console.log('DATA FROG')
+        return this.DATA_FROG
     };
     /**
      * ## SAVE FROG

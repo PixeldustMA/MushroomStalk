@@ -21,7 +21,7 @@ export default class M_Lilypad extends Renderer{
         this.PATH_FILE_FROG_LIST = PARAMETER_FROG_LIST;
         this.PATH_FOLDER_FROG = PARAMETER_FROG_FOLDER;
 
-        console.log(this.PATH_FILE_RESIDENT)
+        console.log(this.PATH_FILE_FROG_LIST)
         await this.#LOAD_RESIDENT();
         await this.#LOAD_FROG_LIST();
         await this.#LOAD_ALL_FROGS();

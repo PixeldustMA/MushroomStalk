@@ -1,4 +1,5 @@
 import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
+import Connector_Mycology from "../../../CONSOLE/ARTERIES/Connector_Mycology.js";
 import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 
 // ================================================ //
@@ -19,7 +20,10 @@ import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 // =============== //
 
 const INSTANCE_Stalk = new Stalk();
-await INSTANCE_Stalk.REMEMBER();
+await INSTANCE_Stalk.REQUEST_SESSION_PATHS();
+await INSTANCE_Stalk.REQUEST_SESSION_ROUTES();
+await INSTANCE_Stalk.REQUEST_SESSION_TEMPLATES();
+console.log(INSTANCE_Stalk.SESSION)
 const INSTANCE_Beetle = new Connector_Beetle({
     BEETLE_CONFIG_MODE: 'DEBUG',
     BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
@@ -67,7 +71,8 @@ setTimeout(() => {
         INSTANCE_Beetle.DAISY_TIME = TIME_Five;
         INSTANCE_Beetle.DAISY_TEXT = 'EMPTY INTERVAL';
         INSTANCE_Beetle.READ_MODE().then((BEETLE_RESULT) => {BEETLE_RESULT});
-
+        const MYCO = new Connector_Mycology(INSTANCE_Stalk.SESSION);
+        MYCO.MYCOLOGY_CUPBOARD().then((RESULT)=> {return RESULT})
         INSTANCE_Stalk.CHECK_LOGIN();
     }, TIME_Five);
 }, TIME_Five_Eight);

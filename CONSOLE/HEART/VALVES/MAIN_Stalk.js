@@ -1,3 +1,4 @@
+const { Console } = require('console');
 const fs = require('fs');
 
 module.exports = class STALK {
@@ -45,6 +46,8 @@ module.exports = class STALK {
         return await fs.readdirSync(PARAMETER_PATH)
     };
     async GENERATE_FOLDER(PARAMETER_PATH) {
+        console.log('<<>><<>><<>> LOOK HERE!!!!!!!!! <><><><><><><><><>');
+        console.log(PARAMETER_PATH)
         return await fs.promises.mkdir(PARAMETER_PATH, { recursive: true });
     }
     async DELETE_FOLDER(PARAMETER_PATH) {
