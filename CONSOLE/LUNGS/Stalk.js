@@ -41,7 +41,6 @@ export default class Stalk extends Mushroom_Cap {
 			if (this.SESSION.USERS[BLOCK_Frog].NAME === PARAMETER_USERNAME && this.SESSION.USERS[BLOCK_Frog].PASSWORD === PARAMETER_PASSWORD) {
 
                 console.log('USERNAME AND PASSWoRD MATCH')
-				// this.INSTANCE_MEMORY.SET_ACTIVE_USER(userName);
 				valid = true;
 				// await this.INSTANCE_Mycology.RUN(false);
 				// await this.LOGIN();

@@ -9,8 +9,8 @@
         "ONBOARDING": "../../../POCKETS/PROFILES/ONBOARDING/FrameworkOnboarding.html",
         "WIZARD": "../../../POCKETS/PROFILES/WIZARD/FrameworkWizard.html"
     },
-    "MAT": {
-        "PENPOT": "../../../POCKETS/MAT/PENPOT/FrameworkPenPot.html",
-        "PLUSHIE": "../../../POCKETS/MAT/PLUSHIE/FrameworkPlushie.html"
+    "NOVA": {
+        "PENPOT": "../../../POCKETS/NOVA/PENPOT/FrameworkPenPot.html",
+        "PLUSHIE": "../../../POCKETS/NOVA/PLUSHIE/FrameworkPlushie.html"
     }
 }

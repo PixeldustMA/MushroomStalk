@@ -151,10 +151,10 @@ class JELLYFISH_DebugMenu extends HTMLElement{
             this.LOAD_PAGE('WIZARD', 'PROFILE');
         });
         this.shadowRoot.getElementById('BUTTON_PenPot').addEventListener('click', (event) => {
-            this.LOAD_PAGE('PENPOT', 'MAT');
+            this.LOAD_PAGE('PENPOT', 'NOVA');
         });
         this.shadowRoot.getElementById('BUTTON_Plushie').addEventListener('click', (event) => {
-            this.LOAD_PAGE('PLUSHIE', 'MAT');
+            this.LOAD_PAGE('PLUSHIE', 'NOVA');
         });
     }
     /**

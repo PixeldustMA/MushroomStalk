@@ -22,8 +22,10 @@ export default class M_Templates {
                 USERS_FROGS: this.#EMPTY()
             },
             NOVA: {
-                POKEMON_PARTY: this.#POKEMON_PARTY(),
-                POKEMON_ELEMENT: this.#POKEMON_ELEMENTS(),
+                GAMES_POKEMON_PARTY: this.#POKEMON_PARTY(),
+                GAMES_POKEMON_ELEMENTS: this.#POKEMON_ELEMENTS(),
+                GAMES_POKEMON_DATABASE: this.#EMPTY(),
+                GAMES_DISNEY_WEEK: this.#DISNEY_WEEK(),
                 BOOKMARK: this.#BOOKMARK()
             },
             ROUTES:{
@@ -236,6 +238,15 @@ export default class M_Templates {
             "CHAPTER": 0,
             "LAST_READ": ""
         };
+    };
+    #DISNEY_WEEK(){
+        return {
+            VALLEY: {
+                PLAZA: {
+                    MINING: false
+                }
+            }
+        }
     };
 
     // ============ //

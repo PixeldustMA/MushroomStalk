@@ -88,18 +88,30 @@ export default class Myco_Nova extends MYCOLOGY_Main{
 
     //. UPDATE -- ADD NEW FILES HERE ALONG WITH ACCESS TO THEIR BASE TEMPLATE
 
+    // =================== //
     // << POKEMON FILES >> //
+    // =================== //
 
-    //? FULL LIST OF POKEMON
-    async POKEMON_DATABASE() {};
-    //? LIST OF POKEMON ELEMENTS
-    async POKEMON_ELEMENTS() {};
-    //? ACTIVE PARTY
-    async POKEMON_PARTY(){};
+    async POKEMON_DATABASE() {
+        // this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING POKEMON DATABASE JSON FILE';
+        // await this.INSTANCE_BEETLE.READ_MODE();
+        await this.EXISTANCE_FILE(this.PATH_FILES.POKEMON_DATABASE, this.DATA_TEMPLATES.GAMES_POKEMON_DATABASE);
+    };
+    async POKEMON_ELEMENTS() {
+        await this.EXISTANCE_FILE(this.PATH_FILES.POKEMON_ELEMENTS, this.DATA_TEMPLATES.GAMES_POKEMON_ELEMENTS);
+    };
+    async POKEMON_PARTY(){
+        await this.EXISTANCE_FILE(this.PATH_FILES.POKEMON_PARTY, this.DATA_TEMPLATES.GAMES_POKEMON_PARTY);        
+    };
 
+    // ============ //
     // << DISNEY >> //
+    // ============ //
+
     //? CURRENT WEEK TRACKER FOR DDV
-    async DISNEY_WEEK(){};
+    async DISNEY_WEEK(){
+        await this.EXISTANCE_FILE(this.PATH_FILES.DISNEY_WEEK, this.DATA_TEMPLATES.GAMES_DISNEY_WEEK);           
+    };
 
     // << MEDIA RELATED FILES >> //
     //? ACTIVE BOOK

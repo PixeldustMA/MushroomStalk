@@ -7,7 +7,11 @@ export default class M_Paths extends Renderer{
 
         this.MEMORY = {
             CUPBOARD: {},
-            ARCHIVE: {}
+            ARCHIVE: {},
+            NOVA: {},
+            EXPLORER: {},
+            FONTS: {},
+            SETTINGS: {},
         };
 
         // ====================== //
@@ -17,6 +21,12 @@ export default class M_Paths extends Renderer{
         this.AGGREGATION_CUPBOARD_PATHS = {FILES: {}};
         this.AGGREGATION_ARCHIVE_PATHS = {FILES: {}};
         this.AGGREGATION_NOVA_PATHS = {FILES: {}};
+        this.AGGREGATION_EXPLORER_PATHS = {FILES: {}};
+        this.AGGREGATION_FONTS_PATHS = {FILES: {}};
+        this.AGGREGATION_SETTINGS_PATHS = {FILES: {}};
+        this.AGGREGATION_TOADSTOOL_PATHS = {FILES: {}};
+        this.AGGREGATION_LANGUAGE_PATHS = {FILES: {}};
+        this.AGGREGATION_ROUTES_PATHS = {FILES: {}};
 
         // ===================== //
         // << TOP LEVEL PATHS >> //
@@ -26,14 +36,20 @@ export default class M_Paths extends Renderer{
             MUSHROOM: 'UNSET',
             CUPBOARD: 'UNSET',
             ARCHIVE: 'UNSET',
-            NOVA: 'UNSET'
+            NOVA: 'UNSET',
+            EXPLORER: 'UNSET',
+            FONTS: 'UNSET',
+            SETTINGS: 'UNSET',
+            TOADSTOOL: 'UNSET',
+            LANGUAGES: 'UNSET',
+            ROUTES: 'UNSET'
         };
 
         // ============== //
         // << SETTINGS >> //
         // ============== //
 
-        this.SETTINGS = {
+        this.MEMORY_SETTINGS = {
             USERNAME: 'UNSET'
         };
 
@@ -44,6 +60,12 @@ export default class M_Paths extends Renderer{
         this.CUPBOARD = {};
         this.ARCHIVE = {};
         this.NOVA = {};
+        this.EXPLORER = {};
+        this.FONTS = {};
+        this.SETTINGS = {};
+        this.TOADSTOOL = {};
+        this.LANGUAGES = {};
+        this.ROUTES = {};
     };
 
     // ======================== //
@@ -79,12 +101,23 @@ export default class M_Paths extends Renderer{
         await this.INITIALISE_CUPBOARD(this.#CUPBOARD_TEMPLATE());
         await this.INITIALISE_ARCHIVE(this.#ARCHIVE_TEMPLATE());
         await this.INITIALISE_NOVA(this.#NOVA_TEMPLATE());
+        await this.INITIALISE_EXPLORER(this.#EXPLORER_TEMPLATE());
+        await this.INITIALISE_FONTS(this.#FONT_TEMPLATE());
+        await this.INITIALISE_SETTINGS(this.#SETTINGS_TEMPLATE());
+        await this.INITIALISE_TOADSTOOL(this.#LANGUAGE_ROOT_TEMPLATE());
+        await this.INITIALISE_LANGUAGE(this.#LANGUAGE_USER_TEMPLATE());
+        await this.INITIALISE_ROUTES(this.#ROUTES_TEMPLATE());
 
         return {
             TOP: this.MAIN_PATHS,
             CUPBOARD: this.CUPBOARD,
             ARCHIVE: this.ARCHIVE,
-            NOVA: this.NOVA
+            NOVA: this.NOVA,
+            FONTS: this.FONTS,
+            SETTINGS: this.SETTINGS,
+            TOADSTOOL: this.TOADSTOOL,
+            LANGUAGES: this.LANGUAGES,
+            ROUTES: this.ROUTES
         };
     };
 
@@ -95,7 +128,13 @@ export default class M_Paths extends Renderer{
     async TOP_LEVEL() {
         this.MAIN_PATHS.CUPBOARD = `${this.MAIN_PATHS.MUSHROOM}/CUPBOARD`;
         this.MAIN_PATHS.ARCHIVE = `${this.MAIN_PATHS.MUSHROOM}/Username/ARCHIVE`;
-        this.MAIN_PATHS.NOVA = `${this.MAIN_PATHS.MUSHROOM}/NOVA`;
+        this.MAIN_PATHS.NOVA = `${this.MAIN_PATHS.MUSHROOM}/Username/NOVA`;
+        this.MAIN_PATHS.EXPLORER = `${this.MAIN_PATHS.MUSHROOM}/Username/EXPLORER`;
+        this.MAIN_PATHS.FONTS = `${this.MAIN_PATHS.MUSHROOM}/Username/FONTS`;
+        this.MAIN_PATHS.SETTINGS = `${this.MAIN_PATHS.MUSHROOM}/Username/SETTINGS`;
+        this.MAIN_PATHS.TOADSTOOL = `${this.MAIN_PATHS.MUSHROOM}/TOADSTOOL`;
+        this.MAIN_PATHS.LANGUAGES = `${this.MAIN_PATHS.MUSHROOM}/Username/LANGUAGES`;
+        this.MAIN_PATHS.ROUTES = `${this.MAIN_PATHS.MUSHROOM}/Username/ROUTES`;
     };
     async LEVEL_ONE(FOLDER_DATA, AGGREGATOR, PATH) {
         for (let index = 0; index < FOLDER_DATA.length; index++) {
@@ -152,7 +191,7 @@ export default class M_Paths extends Renderer{
     };
 
     // ============== //
-    // ## SEKTIONS ## //
+    // ## SECTIONS ## //
     // ============== //
 
     /**
@@ -181,6 +220,51 @@ export default class M_Paths extends Renderer{
         await this.FILES(DATA.FILES, this.AGGREGATION_ARCHIVE_PATHS.FILES, this.MAIN_PATHS.ARCHIVE);
         await this.SUB_FOLDERS(DATA, this.AGGREGATION_ARCHIVE_PATHS, this.MAIN_PATHS.ARCHIVE);
         this.ARCHIVE = this.AGGREGATION_ARCHIVE_PATHS;
+    };
+    /**
+     * ## INITIALISE PATHS FOR THE EXPLORER
+     */
+    async INITIALISE_EXPLORER(DATA) {
+        await this.LEVEL_ONE(DATA.FOLDERS, this.AGGREGATION_EXPLORER_PATHS, this.MAIN_PATHS.EXPLORER);
+        await this.FILES(DATA.FILES, this.AGGREGATION_EXPLORER_PATHS.FILES, this.MAIN_PATHS.EXPLORER);
+        await this.SUB_FOLDERS(DATA, this.AGGREGATION_EXPLORER_PATHS, this.MAIN_PATHS.EXPLORER);
+        this.EXPLORER = this.AGGREGATION_EXPLORER_PATHS;
+    };
+    /**
+     * ## INITIALISE PATHS FOR FONTS
+     */
+    async INITIALISE_FONTS(DATA) {
+
+    };
+    /**
+     * ## INITIALISE PATHS FOR THE SETTINGS FOLDER
+     */
+    async INITIALISE_SETTINGS(DATA) {
+        await this.FILES(DATA.FILES, this.AGGREGATION_SETTINGS_PATHS.FILES, this.MAIN_PATHS.SETTINGS);
+        this.SETTINGS = this.AGGREGATION_SETTINGS_PATHS;
+    };
+    /**
+     * ## LOAD LANGUAGE ROOT (TOADSTOOL) PATHS
+     */
+    async INITIALISE_TOADSTOOL(DATA) {
+        await this.LEVEL_ONE(DATA.FOLDERS, this.AGGREGATION_TOADSTOOL_PATHS, this.MAIN_PATHS.TOADSTOOL);
+        await this.FILES(DATA.FILES, this.AGGREGATION_TOADSTOOL_PATHS.FILES, this.MAIN_PATHS.TOADSTOOL);
+        await this.SUB_FOLDERS(DATA, this.AGGREGATION_TOADSTOOL_PATHS, this.MAIN_PATHS.TOADSTOOL);
+        this.TOADSTOOL = this.AGGREGATION_TOADSTOOL_PATHS;
+    };
+    /**
+     * ## INITIALISE PATHS FOR THE USER LANGUAGE FOLDER
+     */
+    async INITIALISE_LANGUAGE(DATA) {
+        await this.LEVEL_ONE(DATA.FOLDERS, this.AGGREGATION_LANGUAGE_PATHS, this.MAIN_PATHS.LANGUAGES);
+        this.LANGUAGES = this.AGGREGATION_LANGUAGE_PATHS;
+    };
+    /**
+     * ## INITIALISE PATHS FOR THE ROUTES FOLDER
+     */
+    async INITIALISE_ROUTES(DATA) {
+        await this.FILES(DATA.FILES, this.AGGREGATION_ROUTES_PATHS.FILES, this.MAIN_PATHS.ROUTES);
+        this.ROUTES = this.AGGREGATION_ROUTES_PATHS;
     };
 
     // ========== //
@@ -212,6 +296,9 @@ export default class M_Paths extends Renderer{
             }
         }
     };
+    /**
+     * ## ARCHIVE TEMPLATE
+     */
     #ARCHIVE_TEMPLATE() {
         return {
             "FOLDERS": ["MEMORY", "SQLITE"],
@@ -227,11 +314,95 @@ export default class M_Paths extends Renderer{
             "FOLDERS": ["GAMES"],
             "GAMES": ["POKEMON"],
             "FILES": {
-                "Pokemon_Party.json": "GAMES",
-                "Pokemon_Database.json": "GAMES",
-                "Pokemon_Elements.json": "GAMES"
+                "Pokemon_Party.json": "GAMES/POKEMON",
+                "Pokemon_Database.json": "GAMES/POKEMON",
+                "Pokemon_Elements.json": "GAMES/POKEMON"
+            },
+            "TEXT_FILES": {}
+        }
+    };
+    /**
+     * ## EXPLORER TEMPLATE
+     */
+    #EXPLORER_TEMPLATE(){
+        return {
+            "FOLDERS": ["DATABASE", "MEMORY"],
+            "DATABASE": ["KESSIKAYA"],
+            "FILES": {
+
+            },
+            "TEXT_FILES": {}
+        }
+    };
+    /**
+     * ## FONT TEMPLATES
+     */
+    #FONT_TEMPLATE() {
+
+    };
+    /**
+     * ## LANGUAGE ROOT TEMPLATE
+     */
+    #LANGUAGE_ROOT_TEMPLATE() {
+        return {
+            "FOLDERS": ["ENGLISH", "GRAMMAR", "MEMORY", "OPTIONS"],
+            "ENGLISH": ["STRUCTURE", "VOCAB"],
+            "FILES": {
+                "English_Adjex.js": "ENGLISH/STRUCTURE",
+                "English_Adverb.js": "ENGLISH/STRUCTURE",
+                "English_Nouns.js": "ENGLISH/STRUCTURE",
+                "English_Sentence.js": "ENGLISH/STRUCTURE",
+                "English_Verbs.js": "ENGLISH/STRUCTURE",
+                "Vocab_Adjex.json": "ENGLISH/VOCAB",
+                "Vocab_Adverb.json": "ENGLISH/VOCAB",
+                "Vocab_Nouns.json": "ENGLISH/VOCAB",
+                "Vocab_Pronouns.json": "ENGLISH/VOCAB",
+                "Vocab_Verbs.json": "ENGLISH/VOCAB",
+                "English.js": "GRAMMAR",
+                "Fragments.json": "MEMORY",
+                "Phrases.json": "MEMORY",
+                "LANGUAGES.json": "OPTIONS",
+                "MOOD.json": "OPTIONS",
+                "TENSE.json": "OPTIONS"
+            },
+            "TEXT_FILES": {}
+        }
+    };
+    /**
+     * ## LANGUAGE USER TEMPLATE
+     */
+    #LANGUAGE_USER_TEMPLATE(){
+        return {
+            "FOLDERS": ["GRAMMAR", "MEMORY", "OPTIONS"],
+            "FILES": {},
+            "TEXT_FILES": {}
+        }
+    };
+    /**
+     * ## ROUTE TEMPLATE
+     */
+    #ROUTES_TEMPLATE(){
+        return {
+            "FOLDERS": [],
+            "FILES": {
+                "Explorer.json": "",
+                "Fonts.json": "",
+                "Languages": ""
+            },
+            "TEXT_FILES": {}
+        };
+    };
+    /**
+     * ## SETTNGS TEMPLATE
+     */
+    #SETTINGS_TEMPLATE(){
+        return {
+            "FOLDERS": [],
+            "FILES": {
+                "Mushroom_Settings.json": ""
             },
             "TEXT_FILES": {}
         }
     };
 };
+

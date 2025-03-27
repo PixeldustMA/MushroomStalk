@@ -7,6 +7,14 @@ export default class Connector_Mycology {
         this.INSTANCE_MEMORY = SESSION;
         this.USERNAME = USERNAME
     };
+    /**
+     * ## VALIDATION AND BUILDING OF CUPBOARD
+     * --------------------------------------
+     * 
+     * - Activate the Mycology Cupboard Class
+     * - Run a validation check
+     * - Build any necessary files
+     */
     async MYCOLOGY_CUPBOARD() {
         let BUCKET_Folders = await this.FILL_BUCKET(this.INSTANCE_MEMORY.PATHS.CUPBOARD);
             await new Myco_Cupboard({
@@ -19,7 +27,7 @@ export default class Connector_Mycology {
     async MYCOLOGY_USERNAME() {
         // let BUCKET_Folders = await this.FILL_BUCKET(this.INSTANCE_MEMORY.PATHS.CUPBOARD);
             await new Myco_Profile({
-
+                PROFILE_CONFIG_USERNAME: this.USERNAME
         }).RUN();
     };
     async MYCOLOGY_ARCHIVE() {

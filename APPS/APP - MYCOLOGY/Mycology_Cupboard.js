@@ -47,7 +47,6 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         this.INSTANCE_BEETLE.DAISY_TEXT = 'RUN CUPBOARD VALIDATION';
         await this.INSTANCE_BEETLE.READ_MODE();
 
-        console.log(this.PATH_FILES)
         // ================= //
         // << MAIN FOLDER >> //
         // ================= //
@@ -73,6 +72,7 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         // await this.#BUTTON();
         // await this.#INPUT();
     };
+
     /**
      * ## VALIDATE CUPBOARD FOLDERS
      * ----------------------------
@@ -102,7 +102,6 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
 
         this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING FROG JSON FILE';
         await this.INSTANCE_BEETLE.READ_MODE();
-        console.log(this.DATA_TEMPLATES)
         await this.EXISTANCE_FILE(this.PATH_FILES.FROGS, this.DATA_TEMPLATES.USERS_FROGS);
     };
     /**
