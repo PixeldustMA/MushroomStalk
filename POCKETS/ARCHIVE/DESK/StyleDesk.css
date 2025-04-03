@@ -1,0 +1,45 @@
+@import "../../../STYLE/BASE/RootStyles.css";
+@import "../../../STYLE/BASE/ImageLoader.css";
+
+
+.TITLE_BOX {
+    height: 100px;
+    text-align: center;
+}
+.SUBMIT_BOX {
+    height: 70px;
+    position: relative;
+}
+.BUTTON_BOX {
+    height: 550px;
+    width: 300px;
+    position: relative;
+    left: 50px;
+    padding-top: 20px;
+}
+.FORM_BOX {
+    height: 520px;
+    left: 370px;
+    width: 500px;
+    position: absolute;
+    top: 270px;
+    overflow: auto;
+}
+
+.BUTTON_SUBMIT {
+    width: 600px;
+    border-radius: 0%;
+    margin-left: 130px;
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+}
+.BUTTON_SUBMIT:hover {
+    background-color: rgba(196, 0, 0, 0.459);
+    border-style: solid;
+    border-color: rgb(244, 73, 121);
+    font-family: 'LEMON MILK';
+}
+
+.FORM_SELECT{
+    display: block;
+}

@@ -1,6 +1,0 @@
-# BASE JSON FILE
----
-```
-"USERNAME": "ADMIN",
-"PASSWORD": "PASSWORD"
-```

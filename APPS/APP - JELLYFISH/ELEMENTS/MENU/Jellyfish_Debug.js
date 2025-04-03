@@ -156,6 +156,15 @@ class JELLYFISH_DebugMenu extends HTMLElement{
         this.shadowRoot.getElementById('BUTTON_Plushie').addEventListener('click', (event) => {
             this.LOAD_PAGE('PLUSHIE', 'NOVA');
         });
+        this.shadowRoot.getElementById('BUTTON_Nova-Menu').addEventListener('click', (event) => {
+            this.LOAD_PAGE('NOVA', 'MENU');
+        });
+        this.shadowRoot.getElementById('BUTTON_Archive').addEventListener('click', (event) => {
+            this.LOAD_PAGE('FOYER', 'ARCHIVE');
+        });
+        this.shadowRoot.getElementById('BUTTON_Onyx').addEventListener('click', (event) => {
+            this.LOAD_PAGE('ONYX', 'MEMBLIES');
+        });
     }
     /**
      * 
@@ -236,6 +245,12 @@ class JELLYFISH_DebugMenu extends HTMLElement{
                 <a id = "BUTTON_Onboarding">ONNBOARDING</a>
                 <a id = "BUTTON_PenPot">PENPOT</a>
                 <a id = "BUTTON_Plushie">PLUSHIE</a>
+                <h2> ARCHIVE </h2>
+                <a id = "BUTTON_Archive">FOYER</a>
+                <h2> BEANS </h2>
+                <a id = "BUTTON_Onyx">ONYX</a>
+                <h2> MENU LINKS </h2>
+                <a id = "BUTTON_Nova-Menu">NOVA</a>
             </div>
         </div>
         `
