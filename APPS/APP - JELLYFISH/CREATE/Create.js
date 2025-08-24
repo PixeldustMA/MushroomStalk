@@ -149,7 +149,7 @@ export default class Create{
         await this.#CREATE_DEBUG({PARAMETER_MESSAGE: 'INITIALISING JELLYFISH ELEMENT'});
 
         if (this.JELLYFISH_TYPE === 'input') {this.#INITIALISE_INPUT();}
-        else if (this.JELLYFISH_TYPE === 'SELECT') {this.#INITIALISE_SELECT();}
+        else if (this.JELLYFISH_TAG === 'select') {this.#INITIALISE_SELECT();}
         else {this.JELLYFISH = document.createElement(this.JELLYFISH_TAG);};
 
         return this.JELLYFISH;
@@ -242,7 +242,6 @@ export default class Create{
 	 */
     #SET_ID(){
         this.#CREATE_DEBUG({PARAMETER_MESSAGE: 'SETTING JELLYFISH ID'});
-        console.log(this.PERSONALITY_ID)
         if (this.PERSONALITY_ID === 0) {return this.GENERATE_ERROR('MISSING', 'ID')}
         else {this.JELLYFISH.id = this.PERSONALITY_ID;}
     };
@@ -444,6 +443,7 @@ export default class Create{
 	 */
     #SET_OPTIONS(){
 
+        console.log(this.JELLYFISH_OPTIONS)
         this.#CREATE_DEBUG({PARAMETER_MESSAGE: 'SETTING OPTIONS'});
 		let NUM_OPTIONS_LENGTH = this.JELLYFISH_OPTIONS.length;
 
@@ -550,13 +550,6 @@ export default class Create{
 	 * ## RETURN -->> {STRING} Option Text
 	 */
 	READ_OPTION_TEXT(PARAMETER_ELEMENT_SELECT) {
-        this.#CREATE_DEBUG({
-            PARAMETER_MESSAGE: 'READING ELEMENT OPTION', 
-            PARAMATER_PARAMS: {
-            ONE: {TYPE: 'ELEMENT', DATA: PARAMETER_ELEMENT_SELECT},
-            TWO: {TYPE: 'ARRAY', DATA:PARAMETER_ARRAY_OPTIONS}
-            }
-        });
 		return PARAMETER_ELEMENT_SELECT.options[PARAMETER_ELEMENT_SELECT.selectedIndex].text;
 	};
 }

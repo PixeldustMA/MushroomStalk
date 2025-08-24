@@ -21,6 +21,17 @@ module.exports = class STALK {
             }
         });
     };
+    async MARKDOWN(PAAMETER_DETAILS, PARAMETER_PATH, STATUS_TEST) {
+        return await fs.writeFile(PARAMETER_PATH, PAAMETER_DETAILS, 'utf8', err => {
+            if (err)
+                console.error(err);
+            else {
+                if (STATUS_TEST){
+                    console.log('Data Successfully Written to File');
+                };
+            }
+        });
+    };
     async COPY(PARAMETR_ORIGIN, PARAMETER_DESTINATION) {
         return await fs.copyFileSync(PARAMETR_ORIGIN, PARAMETER_DESTINATION, 2);
     };
@@ -29,6 +40,7 @@ module.exports = class STALK {
             if (err) {return console.error(err);}
             fs.unlink(PARAMETER_PATH, function(err){
                 if(err) return console.log(err);
+                console.log(`FILE AT PATH: ${PARAMETER_PATH} was deleted`);
             });  
     });
     };

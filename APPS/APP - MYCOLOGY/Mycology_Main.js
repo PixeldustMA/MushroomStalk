@@ -1,29 +1,8 @@
 import Branches from "../../CONSOLE/LUNGS/Branches.js";
-// import Myco_Cupboard from "./Mycology_Cupboard.js";
 
 export default class MYCOLOGY_Main extends Branches{
 
     constructor(){super()};
-
-    // ========= //
-    // ## RUN ## //
-    // ========= //
-
-    async RUN() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'RUN FILE VALIDATION CHECK';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
-        await this.REMEMBER();
-        console.log(this.SESSION)
-        // const INSTANCE_Cupboard = new Myco_Cupboard({
-        //     CUPBOARD_CONFIG_TEMPLATES: this.SESSION.TEMPLATES.MYCOLOGY,
-        //     CUPBOARD_CONFIG_FILES: this.SESSION.PATHS.CUPBOARD.FILES,
-        //     CUPBOARD_CONFIG_FOLDERS: this.SESSION.PATHS.CUPBOARD,
-        //     CUPBOARD_CONFIG_TOP: this.SESSION.PATHS.TOP.CUPBOARD
-        // });
-        // await INSTANCE_Cupboard.CUPBOARD_CHECK();
-    };
 
     // =============== //
     // ## EXISTANCE ## //
@@ -34,6 +13,7 @@ export default class MYCOLOGY_Main extends Branches{
      */
     async EXISTANCE_CHECK(PARAMETER_PATHWAY) {
         const STATUS = await this.FOLDER_EXISTANCE(PARAMETER_PATHWAY);
+        console.log(STATUS)
         if (!STATUS){
             this.RENDERER_PATH = PARAMETER_PATHWAY
             await this.CREATE_FOLDER();

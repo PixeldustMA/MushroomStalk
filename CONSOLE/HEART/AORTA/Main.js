@@ -5,8 +5,8 @@ const DISPLAY = require('../VALVES/MAIN_Note');
 const WINDOW = require('../VALVES/MAIN_Window');
 const STALK = require('../VALVES/MAIN_Stalk');
 const PATHWAYS = require('../VALVES/MAIN_Pathways');
-const MAIN_Archive = require('../VALVES/MAIN_Archive');
-const MAIN_Load = require('../VALVES/MAIN_Load');
+// const MAIN_Archive = require('../VALVES/MAIN_Archive');
+// const MAIN_Load = require('../VALVES/MAIN_Load');
 const path = require('path');
 
 // =================================================== //
@@ -35,9 +35,9 @@ let DEBUG_SETTINGS = new DEBUG();
 let NOTE = new DISPLAY();
 let VIEW = new WINDOW();
 let MUSHROOM_STALK = new STALK();
-let PATHS = new PATHWAYS();
-let ARCHIVE = new MAIN_Archive();
-let LOAD = new MAIN_Load();
+
+// let ARCHIVE = new MAIN_Archive();
+// let LOAD = new MAIN_Load();
 
 // ============= //
 // ## TESTING ## //
@@ -64,24 +64,17 @@ dialog.showErrorBox = function(title, content) {
 
 const PATH_Preload = 'Access.js';
 const PATH_AppMemory = app.getPath('userData');
+let DIR = __dirname;
+DIR = DIR.replace('\\CONSOLE', '');
+DIR = DIR.replace('\\AORTA', '');
+DIR = DIR.replace('\\HEART', '');
+console.log(DIR)
 
 // =========== //
 // << PAGES >> //
 // =========== //
 
 const PATH_Splash = './POCKETS/WELCOME/SPLASH/FrameworkSplash.html';
-
-// ===================== //
-// << DATABASE SET-UP >> //
-// ===================== //
-const DATA_Table = MAIN_PATHWAYS_RETRIEVE_PATH(Event, "../../BRAIN/SEQUAL/TABLES/TableNames.json").then((PATH_RESULT) => {
-    MAIN_STALK_READ(Event, PATH_RESULT, 'TABLE').then((RESULT) => {
-        return RESULT});
-    return PATH_RESULT});
-const DATA_Query = MAIN_PATHWAYS_RETRIEVE_PATH(Event, "../../BRAIN/SEQUAL/TABLES/QueryCodes.json").then((PATH_RESULT) => {
-    MAIN_STALK_READ(Event, PATH_RESULT, 'QUERIES').then((RESULT) => {
-        return RESULT})
-    return PATH_RESULT});
 
 // ========================== //
 // ## STRUCTURAL FUNCTIONS ## //
@@ -143,12 +136,14 @@ ipcMain.handle('handler_close', MAIN_WINDOW_QUIT);
 ipcMain.handle('handler_small', MAIN_WINDOW_MINIMISE);
 ipcMain.handle('handler_big', MAIN_WINDOW_MAXIMISE);
 ipcMain.handle('handler_debugging', MAIN_DEBUG_MODE);
+ipcMain.handle('handler_newwindow', MAIN_WINDOW_NEW);
 
 // =========== //
 // << FILES >> //
 // =========== //
 
 ipcMain.handle('handler_saveNote', MAIN_STALK_SAVE);
+ipcMain.handle('handler_saveMarkdown', MAIN_STALK_MARKDOWN);
 ipcMain.handle('handler_readNote', MAIN_STALK_READ);
 ipcMain.handle('handler_copyFile', MAIN_STALK_COPY);
 ipcMain.handle('handler_removeFile', MAIN_STALK_DELETE);
@@ -160,6 +155,7 @@ ipcMain.handle('handler_removeFile', MAIN_STALK_DELETE);
 ipcMain.handle('handler_getPath', MAIN_PATHWAYS_RETRIEVE_PATH);
 ipcMain.handle('handler_fetchRouteMemory', MAIN_PATHWAYS_ROUTE);
 ipcMain.handle('handler_readStatus', MAIN_PATHWAYS_STATUS);
+ipcMain.handle('handler_pathPocket', MAIN_PATHWAYS_POCKETS);
 
 // ============= //
 // << FOLDERS >> //
@@ -176,13 +172,6 @@ ipcMain.handle('dialog:openDirectory',  async () => {
     if (canceled) {return}
     else {return filePaths;};
 });
-
-// ============= //
-// << ARCHIVE >> //
-// ============= //
-
-ipcMain.handle('handler_accessArchive', MAIN_ARCHIVE_MODE);
-
 
 // =============== //
 // ## FUNCTIONS ## //
@@ -211,8 +200,7 @@ ipcMain.handle('handler_accessArchive', MAIN_ARCHIVE_MODE);
  */
 async function MAIN_WINDOW_QUIT(event) {
     await NOTE.ALERT_FUNCTION('WINDOW', 'QUITTING APPLICATION');
-    app.g
-    await VIEW.QUIT(mainWindow);
+    await VIEW.QUIT(BrowserWindow.getFocusedWindow());
 };
 /**
  * ## MAXIMISE THE WINDOW
@@ -252,6 +240,22 @@ async function MAIN_WINDOW_MINIMISE(event) {
     await NOTE.ALERT_FUNCTION('WINDOW', 'MINIMISING APPLICATION');
     await VIEW.MINIMISE(mainWindow);
 };
+async function MAIN_WINDOW_NEW(event, PARAMETER_PATH) {
+    const win = new BrowserWindow({
+        width: 1200,
+        height: 820,
+        frame: false,
+        titleBarStyle: 'hidden',
+        webPreferences: {
+            nodeIntegration: false,
+            contextIsolation: true,
+        preload: path.join(__dirname, PATH_Preload)
+        }
+    });
+    win.loadFile(PARAMETER_PATH);
+    win.webContents.openDevTools();
+};
+
 
 // ############### //
 // == DEBUGGING == //
@@ -318,6 +322,15 @@ async function MAIN_STALK_SAVE(event, PARAMETER_PATH, PARAMETER_DETAILS) {
     };
     return await MUSHROOM_STALK.WRITE(PARAMETER_DETAILS, PARAMETER_PATH, STATUS_TESTING);
 };
+async function MAIN_STALK_MARKDOWN(event, PARAMETER_PATH, PARAMETER_DETAILS) {
+    if (STATUS_TESTING){await NOTE.ALERT_FUNCTION('WRITE', {
+        TEXT_FUNCTION_NAME: 'WRITING TO FILE',
+        PARAMETER_PATH: PARAMETER_PATH,
+        PARAMETER_DETAILS: PARAMETER_DETAILS 
+        });
+    };
+    return await MUSHROOM_STALK.MARKDOWN(PARAMETER_DETAILS, PARAMETER_PATH, STATUS_TESTING);
+};
 /**
  * ## COPY A FILE
  * 
@@ -364,7 +377,7 @@ async function MAIN_STALK_DELETE(event, PARAMETER_PATH) {
         TEXT_FUNCTION_NAME: 'DELETING FILE',
         PARAMETER_PATH: PARAMETER_PATH
     })};
-    return await MUSHROOM_STALK.DELETE();
+    return await MUSHROOM_STALK.DELETE(PARAMETER_PATH);
 };
 /**
  * ## READ A FILE
@@ -508,11 +521,12 @@ async function MAIN_FOLDER_COPY(event, PARAMETER_ORIGIN, PATH_DESTINATION) {
  * -------------------
  * ## RETURNS -->> {STRING} Formatted Path
  */
-async function MAIN_PATHWAYS_RETRIEVE_PATH(event, PARAMETER_PATH) {
+async function MAIN_PATHWAYS_RETRIEVE_PATH(event, PARAMETER_PATH, PARAMETER_USERNAME) {
     if (STATUS_TESTING){await NOTE.ALERT_FUNCTION('PATHS', {
         TEXT_FUNCTION_NAME: 'CREATING A PATH...',
         PARAMETER_PATH: PARAMETER_PATH
     })};
+    let PATHS = new PATHWAYS({PATHWAY_CONFIG_USER: PARAMETER_USERNAME});
     return await PATHS.GENERATE_PATH(PARAMETER_PATH, STATUS_TESTING, PATH_AppMemory);
 };
 /**
@@ -538,6 +552,7 @@ async function MAIN_PATHWAYS_ROUTE(event, PARAMETER_ROUTE_TAG) {
         TEXT_FUNCTION_NAME: 'ACCESSING ROUTE MEMORY...',
         PARAMETER_PATH: `AT ROUTE TYPE: ${PARAMETER_ROUTE_TAG}`
     })};
+    let PATHS = new PATHWAYS({PATHWAY_CONFIG_USER: 'UNSET'});
     let y = await PATHS.ROUTE(STATUS_TESTING, PATH_AppMemory, PARAMETER_ROUTE_TAG);
     return y
 };
@@ -561,55 +576,59 @@ async function MAIN_PATHWAYS_STATUS(event, PARAMETER_PATH) {
         TEXT_FUNCTION_NAME: 'READING PATH STATUS...',
         PARAMETER_PATH: PARAMETER_PATH
     })};
+    let PATHS = new PATHWAYS({});
     return await PATHS.STATUS(PARAMETER_PATH);
 };
-
-// ############## //
-// == DATABASE == //
-// ############## //
-
-/**
- * ## ACCESS ARCHIVE FUNCTIONS
- * 
- * -----------------------------------
- * 
- * ### PARAMETERS
- * @param {*} event {Recieved from Access File}
- * @param {string} mode {Type of action to be taken on archive} 
- * @param {object} queryConfig {Settings for subsequent query}
- * 
- * ### DETAILS
- * 
- * Access archive queries based on mode
- * 
- * ### OPTIONS
- * 
- * INSERT --- Add data to archive
- * SELECT --- Fetch data from archive
- * DELETE --- Remove data from archive
- * UPDATE --- Alter data in archive
- * IMPORT --- Add outside data to the archive
- * -------------------------
- * ### RETURN -->> {ARCHIVE DATA ||| NONE}
- */
-async function MAIN_ARCHIVE_MODE(event, PARAMETER_MODE, PARAMETER_CONFIG) {
-
-    NOTE.ALERT_FUNCTION('ARCHIVE', {TEXT_FUNCTION_NAME: 'ACCESSING THE ARCHIVE', PARAMETER_DETAILS: PARAMETER_CONFIG})
-    let QUERY_DATA = MAIN_STALK_READ(event, PATH_Queries, 'ARCHIVE');
-    let TABLE_DATA = MAIN_STALK_READ(event, PATH_Table, 'ARCHIVE');
-
-    //TODO ADD PATH KEY
-    return await ARCHIVE.INITIALISE({
-        KEY_TABLE: PARAMETER_CONFIG.TABLE_NAME,
-        ARRAY_COLUMNS: PARAMETER_CONFIG.COLUMNS,
-        STATUS_RANGE: PARAMETER_CONFIG.RANGE,
-        SEARCH_CONSTRAINTS: PARAMETER_CONFIG.SEARCH_CONSTRAINTS,
-        SEARCH_VALUES: PARAMETER_CONFIG.SEARCH_VALUES,
-        MODE: PARAMETER_MODE,
-        QUERY_DATA: QUERY_DATA,
-        TABLE_DATA: TABLE_DATA
-    });
+async function MAIN_PATHWAYS_POCKETS(event, PARAMETER_PATH) {
+    return DIR + PARAMETER_PATH;
 };
+
+// // ############## //
+// // == DATABASE == //
+// // ############## //
+
+// /**
+//  * ## ACCESS ARCHIVE FUNCTIONS
+//  * 
+//  * -----------------------------------
+//  * 
+//  * ### PARAMETERS
+//  * @param {*} event {Recieved from Access File}
+//  * @param {string} mode {Type of action to be taken on archive} 
+//  * @param {object} queryConfig {Settings for subsequent query}
+//  * 
+//  * ### DETAILS
+//  * 
+//  * Access archive queries based on mode
+//  * 
+//  * ### OPTIONS
+//  * 
+//  * INSERT --- Add data to archive
+//  * SELECT --- Fetch data from archive
+//  * DELETE --- Remove data from archive
+//  * UPDATE --- Alter data in archive
+//  * IMPORT --- Add outside data to the archive
+//  * -------------------------
+//  * ### RETURN -->> {ARCHIVE DATA ||| NONE}
+//  */
+// async function MAIN_ARCHIVE_MODE(event, PARAMETER_MODE, PARAMETER_CONFIG) {
+
+//     NOTE.ALERT_FUNCTION('ARCHIVE', {TEXT_FUNCTION_NAME: 'ACCESSING THE ARCHIVE', PARAMETER_DETAILS: PARAMETER_CONFIG})
+//     let QUERY_DATA = MAIN_STALK_READ(event, PATH_Queries, 'ARCHIVE');
+//     let TABLE_DATA = MAIN_STALK_READ(event, PATH_Table, 'ARCHIVE');
+
+//     //TODO ADD PATH KEY
+//     return await ARCHIVE.INITIALISE({
+//         KEY_TABLE: PARAMETER_CONFIG.TABLE_NAME,
+//         ARRAY_COLUMNS: PARAMETER_CONFIG.COLUMNS,
+//         STATUS_RANGE: PARAMETER_CONFIG.RANGE,
+//         SEARCH_CONSTRAINTS: PARAMETER_CONFIG.SEARCH_CONSTRAINTS,
+//         SEARCH_VALUES: PARAMETER_CONFIG.SEARCH_VALUES,
+//         MODE: PARAMETER_MODE,
+//         QUERY_DATA: QUERY_DATA,
+//         TABLE_DATA: TABLE_DATA
+//     });
+// };
 
 
 

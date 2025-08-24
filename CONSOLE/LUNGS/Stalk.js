@@ -1,3 +1,4 @@
+import Connector_Mycology from "../ARTERIES/Connector_Mycology.js";
 import Mushroom_Cap from "./MushroomCap.js";
 
 export default class Stalk extends Mushroom_Cap {
@@ -26,40 +27,28 @@ export default class Stalk extends Mushroom_Cap {
      * #### --> RETURNS NEW PAGE {VALIDATION || NO PROFILE}
 	 */
     async VALIDATE(PARAMETER_USERNAME, PARAMETER_PASSWORD) {
-        // await this.REMEMBER();
-        // console.log(this.SESSION);
-        // console.log('VALIDATION CHECK')
+
         await this.REQUEST_SESSION_PATHS();
-        console.log(this.SESSION)
-        const NUMBER_Users = Object.keys(this.SESSION.PATHS.CUPBOARD.FILES.FROGS).length;
+        await this.REQUEST_SESSION_USERS();
+        const NUMBER_Users = Object.keys(this.SESSION.USERS.DATA.USERS);
         let valid = false;
 
         UserCheckLoop: for (let index = 0; index < NUMBER_Users.length; index++) {
 
 			let BLOCK_Frog = NUMBER_Users[index];
-
-			if (this.SESSION.USERS[BLOCK_Frog].NAME === PARAMETER_USERNAME && this.SESSION.USERS[BLOCK_Frog].PASSWORD === PARAMETER_PASSWORD) {
-
-                console.log('USERNAME AND PASSWoRD MATCH')
+            
+			if (this.SESSION.USERS.DATA.USERS[BLOCK_Frog].USERNAME === PARAMETER_USERNAME && this.SESSION.USERS.DATA.USERS[BLOCK_Frog].PASSWORD === PARAMETER_PASSWORD) {
+                let INSTANCE_MYCOLOGY = new Connector_Mycology(await this.REQUEST_SESSION_PATHS(), PARAMETER_USERNAME);
+                await INSTANCE_MYCOLOGY.MYCOLOGY_WAR();
 				valid = true;
-				// await this.INSTANCE_Mycology.RUN(false);
-				// await this.LOGIN();
-				// await this.LOAD("VALIDATION");
+				await this.LOAD("TITLE", 'WELCOME'); 
 				break;
 			};
 		};
-
 		if (!valid) {
-
-			// let invalid = await this.INSTANCE_MOULD.INVALID_ROUTE();
-			// invalid.classList.add('position');
-			// document.body.append(invalid);
-
 			setTimeout(() => {
-                console.log('ERROR')
 				window.location.reload();				
 			}, 2000);
-
 		};
     };
     /**
@@ -72,9 +61,7 @@ export default class Stalk extends Mushroom_Cap {
 	 * -------------------
      * #### --> RETURNS NEW PAGE {ONBOARDING}
 	 */
-    async ONBOARDING(){
-        await this.LOAD('ONBOARDING', 'PROFILE');
-    };
+    async ONBOARDING(){await this.LOAD('ONBOARDING', 'PROFILE');};
     /**
 	 * ## CHECK FOR FIRST TIME
 	 * 
@@ -87,9 +74,9 @@ export default class Stalk extends Mushroom_Cap {
      * #### --> RETURNS NEW PAGE {WIZARD}
 	 */
     async FIRST() {
-        await this.REMEMBER();
-        const NUMBER_Users = Object.keys(this.SESSION.USERS.USERS).length;
-		if (NUMBER_Users.length === 1) {await this.LOAD('WIZARD');};
+        await this.REQUEST_SESSION_APP_SETTINGS();
+        const COUNT_USERS = this.SESSION.SETTINGS.MUSHROOM.USER_COUNT;
+		if (COUNT_USERS.length === 1) {await this.LOAD('WIZARD');};
     };
     /**
      * ## CHECK LOGIN STATUS
@@ -112,27 +99,10 @@ export default class Stalk extends Mushroom_Cap {
      * ### RETURNS -->> {PROMISE} New screen
      */
     async CHECK_LOGIN() {
-
-        let STATUS_Logged = false;
-
-        // << GRAB USER LIST >> //
-
-        await this.REQUEST_SESSION_USERS();
-        console.log(this.SESSION)
-        const COUNT_USERS = Object.keys(this.SESSION.USERS.FROG_LIST).length;
-
-        // << CHECK THE USER LIST >> //
-        if (COUNT_USERS >= 1) {
-            // << IF THERE ARE USERS... >> //
-            // << CHECK LOGIN STATUS >> //
-
-            await this.LOAD('WELCOME', 'WELCOME');
-        }
-        else {
-            // << IF NO USERS >> //
-
-            await this.LOAD('WIZARD', 'PROFILE');
-        };
+        await this.REQUEST_SESSION_APP_SETTINGS();
+        const COUNT_USERS = this.SESSION.SETTINGS.MUSHROOM.USER_COUNT;
+        if (COUNT_USERS >= 1) {await this.LOAD('WELCOME', 'WELCOME');}
+        else {await this.LOAD('WIZARD', 'PROFILE');};
     };   
 
     // ===================== //
@@ -160,7 +130,8 @@ export default class Stalk extends Mushroom_Cap {
      */
     async LOAD(PARAMETER_PAGE_TAG, PARAMETER_PAGE_CATEGORY) {  
         await this.REQUEST_SESSION_ROUTES();
-        window.location.href = this.SESSION.ROUTES.MEMORY[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
+        this.RENDERER_PATH = this.SESSION.ROUTES.MEMORY[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
+        window.location.href = await this.PATH_POCKET();
     };
     
-}
+};

@@ -1,4 +1,3 @@
-import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Connector_Mycology from "../../../CONSOLE/ARTERIES/Connector_Mycology.js";
 import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 
@@ -19,26 +18,19 @@ import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 // ## INSTANCES ## //
 // =============== //
 
+// Set up Instances //
 const INSTANCE_Stalk = new Stalk();
+
+// Set up necessary memory session //
 await INSTANCE_Stalk.REQUEST_SESSION_PATHS();
 await INSTANCE_Stalk.REQUEST_SESSION_ROUTES();
 await INSTANCE_Stalk.REQUEST_SESSION_TEMPLATES();
-console.log(INSTANCE_Stalk.SESSION)
-const INSTANCE_Beetle = new Connector_Beetle({
-    BEETLE_CONFIG_MODE: 'DEBUG',
-    BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
-    BEETLE_CONFIG_TYPE: 'STANDARD',
-    BEETLE_CONFIG_CATEGORY: 'WELCOME',
-    BEETLE_CONFIG_LOCATION: 'DrawSplash.js',
-    BEETLE_CONFIG_SCRIPT: 'SPLASH',
-    BEETLE_CONFIG_TEXT: 'OPENING APP!'
-})
 
 // ============ //
 // ## SET UP ## //
 // ============ //
 
-await INSTANCE_Beetle.READ_MODE();
+// Hold the magic numbers here //
 const TIME_TWO = 2000;
 const TIME_Five = 5000;
 const TIME_Five_Eight = 5800;
@@ -47,33 +39,31 @@ const TIME_Five_Eight = 5800;
 // ## RUN SCRIPT ## //
 // ================ //
 
+// Animate the background of the screen //
 setTimeout(() => {
-
-    INSTANCE_Beetle.DAISY_MODE = 'TIME';
-    INSTANCE_Beetle.DAISY_TIME = TIME_TWO;
-    INSTANCE_Beetle.DAISY_TEXT = 'BEGINNING SPLASH BACKGROUND TRANSITION';
-    INSTANCE_Beetle.READ_MODE().then((BEETLE_RESULT) => {BEETLE_RESULT});
-
     document.body.classList.remove('SplashBackground');
     document.body.classList.add('SplashBackgroundTransition');
 }, TIME_TWO);
+
+// End the animation, run file validation and load the next screen //
 setTimeout(() => {
-
-    INSTANCE_Beetle.DAISY_MODE = 'TIME';
-    INSTANCE_Beetle.DAISY_TIME = TIME_Five_Eight;
-    INSTANCE_Beetle.DAISY_TEXT = 'ENDING SPLASH BACKGROUND TRANSITION';
-    INSTANCE_Beetle.READ_MODE().then((BEETLE_RESULT) => {BEETLE_RESULT});
-
+    // Change the background //
     document.body.classList.remove('SplashBackgroundTransition');
     document.body.classList.add('SplashBackgroundEnd');
+
+    //Change the page //
     setTimeout(() => {
-        INSTANCE_Beetle.DAISY_MODE = 'TIME';
-        INSTANCE_Beetle.DAISY_TIME = TIME_Five;
-        INSTANCE_Beetle.DAISY_TEXT = 'EMPTY INTERVAL';
-        INSTANCE_Beetle.READ_MODE().then((BEETLE_RESULT) => {BEETLE_RESULT});
-        const MYCO = new Connector_Mycology(INSTANCE_Stalk.SESSION);
-        MYCO.MYCOLOGY_CUPBOARD().then((RESULT)=> {return RESULT})
-        INSTANCE_Stalk.CHECK_LOGIN();
+        // Mycology app //
+        const INSTANCE_Mycology = new Connector_Mycology(INSTANCE_Stalk.SESSION);
+        INSTANCE_Mycology.MYCOLOGY_CUPBOARD().then((RESULT)=> {
+            
+            INSTANCE_Stalk.CHECK_LOGIN().then((RES) => {
+                return RES;
+            });
+            return RESULT})
+
+        // Load next page //
+        
     }, TIME_Five);
 }, TIME_Five_Eight);
 

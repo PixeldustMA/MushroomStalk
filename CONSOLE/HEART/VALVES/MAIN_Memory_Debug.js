@@ -23,7 +23,9 @@ module.exports = class DEBUG {
             RENDERER: false,
             IMPORT: false,
             REMEMBER: false,
-            USER: false
+            USER: false,
+            CAP_PATHS: false,
+            MUSHROOMCAP: false
         };
         this.WELCOME = {
             ONBOARDING: false,

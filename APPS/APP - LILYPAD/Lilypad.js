@@ -1,10 +1,7 @@
 import Branches from "../../CONSOLE/LUNGS/Branches.js";
-import Frog from "./MEMORY/Frog.js";
-import Frog_List from "./MEMORY/Frog_List.js";
-import Profiles from "./MEMORY/Profile.js";
-import Resident_Frog from "./MEMORY/Resident_Frog.js";
 
 export default class Lilypad extends Branches{
+
     /**
      * ## LILYPAD CONSTRUCTOR
      */
@@ -12,198 +9,141 @@ export default class Lilypad extends Branches{
         LILYPAD_CONFIG_USERNAME = 0,
         LILYPAD_CONFIG_PASSWORD = 0,
         LILYPAD_CONFIG_LOGIN = false,
-        LILYPAD_CONFIG_PATH_NEWS = 0
+        LILYPAD_CONFIG_PATH_OBSIDIAN = 0,
+        LILYPAD_CONFIG_LIST_USERS = 0,
+        LILYPAD_CONFIG_DATA_COUNT = 0,
+        LILYPAD_CONFIG_DATA_LILYPAD = 0
     }){
 
-        super();
+        super()
+        // ================ //
+        // ## PROPERTIES ## //
+        // ================ //
 
-        // =============== //
-        // ## USER DATA ## //
-        // =============== //
+        this.PROPERTY_PROFILE_USERNAME = LILYPAD_CONFIG_USERNAME;
+        this.PROPERTY_PROFILE_PASSWORD = LILYPAD_CONFIG_PASSWORD;
+        this.PROPERTY_PATH_OBSIDIAN = LILYPAD_CONFIG_PATH_OBSIDIAN;
 
-        this.USERNAME = LILYPAD_CONFIG_USERNAME;
-        this.PASSWORD = LILYPAD_CONFIG_PASSWORD;
-        this.STAUS_LOGIN = LILYPAD_CONFIG_LOGIN;
-        this.PATH_USER_NEWS = LILYPAD_CONFIG_PATH_NEWS;
+        // ========== //
+        // ## DATA ## //
+        // ========== //
 
-        // =============== //
-        // ## INSTANCES ## //
-        // =============== //
+        this.NUMBER_COUNT = LILYPAD_CONFIG_DATA_COUNT;
+        this.DATA_LILYPAD = LILYPAD_CONFIG_DATA_LILYPAD;
 
-        this.INSTANCE_FROG = 'UNSET';
-        this.INSTANCE_FROG_LIST = 'UNSET';
-        this.INSTANCE_RESIDENT = 'UNSET';
-    };
+        // ========== //
+        // ## LIST ## //
+        // ========== //
+
+        this.LIST_USERS = LILYPAD_CONFIG_LIST_USERS;
+
+    }
 
     // ========= //
     // ## RUN ## //
     // ========= //
 
-    async RUN_LILYPAD(PARAMETER_MODE) {
+    async RUN_LILYPAD(PARAMETER_REQUEST) {
+        await this.REQUEST_SESSION_PATHS();
+        await this.REQUEST_SESSION_APP_SETTINGS();
 
-        switch (PARAMETER_MODE) {
+        switch (PARAMETER_REQUEST) {
             case 'NEW':
-                return this.#ADD_NEW_FROG();
+                return await this.#NEW_FROG();
+            case 'RESIDENT':
+                return await this.#SET_RESIDENT();
             case 'UPDATE':
-                return this.#ADD_NEW_FROG();
+                return await this.#UPDATE_FROG();
             default:
                 break;
         }
+    }
+
+    // =========== //
+    // ## INPUT ## //
+    // =========== //
+
+    async #NEW_FROG() {
+
+        await this.#GENERATE_NEW_FROG_FILE();
+        await this.#UPDATE_USERNAME_LIST();
+        await this.#UPDATE_LILYPAD();
+        await this.#UPDATE_COUNT();
+        await this.#SET_RESIDENT();
     };
+
+    // ============ //
+    // ## UPDATE ## //
+    // ============ //
+
+    async #SET_RESIDENT() {
+        this.RENDERER_DATA = {
+            MESSAGEPATH: "BUNDLE",
+            BUNDLEPATH: "BUNDLE",
+            NEWSPATH: "NEWS",
+            SQUIRRELPATH: "SQUIRRELS",
+            SPIRITPATH: "SPIRITS",
+            DOODLEPATH: "DOODLES",
+            OBSIDIAN: this.PROPERTY_PATH_OBSIDIAN,
+            NAME: this.PROPERTY_PROFILE_USERNAME,
+            PASSWORD: this.PROPERTY_PROFILE_PASSWORD,
+            LOGGED: false
+        };
+        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.USERS.RESIDENT;
+        await this.SAVE();
+    };
+    async #UPDATE_FROG() {
+
+    };
+    async #UPDATE_USERNAME_LIST() {
+        this.LIST_USERS.push(this.PROPERTY_PROFILE_USERNAME);
+        this.RENDERER_DATA = this.LIST_USERS;
+        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.USERS.LIST;
+        await this.SAVE();
+    };
+    async #UPDATE_LILYPAD() {
+        const KEY = this.NUMBER_COUNT + 1;
+        this.DATA_LILYPAD[KEY] = {
+            USERNAME: this.PROPERTY_PROFILE_USERNAME,
+            PASSWORD: this.PROPERTY_PROFILE_PASSWORD
+        };
+        this.RENDERER_DATA = this.DATA_LILYPAD;
+        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.USERS.FROGS;
+        await this.SAVE();
+    };
+    async #UPDATE_COUNT() {
+        this.DATA_SETTINGS = this.SESSION.SETTINGS.MUSHROOM;
+        this.NUMBER_COUNT += 1;
+        this.DATA_SETTINGS.USER_COUNT = this.NUMBER_COUNT;
+        this.RENDERER_DATA = this.DATA_SETTINGS;
+        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.APP.SETTINGS;
+        await this.SAVE();
+    };
+
+    // ========== //
+    // ## LOAD ## //
+    // ========== //
+
 
     // ================ //
-    // ## OPERATIONS ## //
-    // ================//
+    // ## BASE FILES ## //
+    // ================ //
 
-    /**
-     * ## CREATE A NEW USER 
-     * 
-     * -------------------------
-     * 
-     * ### DETAILS
-     * 
-     * Add a new profile
-     * 
-     * ----------------------------------
-     * 
-     * ### RETUEN -->> {NEW FILE} NEW USER
-     */
-    async #ADD_NEW_FROG(){
-
-        await this.REQUEST_SESSION_PATHS();
-        await this.REQUEST_SESSION_ROUTES();
-        await this.REQUEST_SESSION_TEMPLATES();
-        await this.REQUEST_SESSION_USERS();
-
-        // << SET USER AS RESIDENT >> //
-        await this.LOAD_RESIDENT();
-        await this.INSTANCE_RESIDENT.INITIALISE_RESIDENT_FROG('UPDATE');
-
-        // << CREATE A NEW USER FILE FROM THE OBJECT >> //
-        await this.LOAD_FROG();
-        await this.INSTANCE_FROG.INITIALISE_FROG('ADD');
-
-        // << ADD USER TO THE LIST >> //
-        await new Profiles({
-            PROFILE_CONFIG_PATH:this.SESSION.PATHS.CUPBOARD.LILYPAD,
-            PROFILE_CONFIG_USERNAME: this.USERNAME,
-            PROFILE_CONFIG_DATA: {USERNAME: this.USERNAME, PASSWORD: this.PASSWORD}
-        }).ADD_PROFILE();
-
-    };
-    async #UPDATE_USER(){
-
-        // << SET USER AS RESIDENT >> //
-        await this.LOAD_RESIDENT();
-        await this.INSTANCE_RESIDENT.INITIALISE_RESIDENT('UPDATE');
-
-        // << CREATE A NEW USER FILE FROM THE OBJECT >> //
-        await this.LOAD_FROG();
-        await this.INSTANCE_FROG.INITIALISE_FROG('UPDATE');
-
-        // << ADD USER TO THE LIST >> //
-        await this.LOAD_FROG_LIST();
-        await this.INSTANCE_FROG_LIST.INITIALISE_FROG_LIST('UPDATE');
-
+    async #GENERATE_NEW_FROG_FILE() {
+        this.RENDERER_DATA = this.GENERATE_FROG();
+        this.RENDERER_PATH = `${this.SESSION.PATHS.CUPBOARD.USERS.LILYPAD}/${this.PROPERTY_PROFILE_USERNAME}.json`;
+        await this.SAVE();
     };
 
-    // =================== //
-    // ## MEMORY ACCESS ## //
-    // =================== //
+    // =============== //
+    // ## TEMPLATES ## //
+    // =============== //
 
-    async LOAD_RESIDENT() {
-
-        // << CREATE UPDATE OBJECT >> //
-        let DATA_UPDATE = {
-            USERNAME: this.USERNAME,
-            PASSWORD: this.PASSWORD
+    GENERATE_FROG() {
+        return {
+            USERNAME: this.PROPERTY_PROFILE_USERNAME,
+            PASSWORD: this.PROPERTY_PROFILE_PASSWORD,
+            OBSIDIAN: this.PROPERTY_PATH_OBSIDIAN
         }
-
-        // << GENERATE PROPERTIES >> //
-        if (this.PATH_USER_NEWS !== 0) {
-            DATA_UPDATE.NEWS = this.PATH_USER_NEWS;
-        };
-
-        // << LOAD MEMORY INSTANCE >> //
-        console.log(this.SESSION)
-        this.INSTANCE_RESIDENT = new Resident_Frog({
-            RESIDENT_CONFIG_DATA: this.SESSION.USERS.RESIDENT,
-            RESIDENT_CONFIG_PATH: this.SESSION.PATHS.CUPBOARD.FILES.RESIDENTFROG,
-            RESIDENT_CONFIG_UPDATES: DATA_UPDATE
-        });
-
-        // << RETURN >> //
-        return this.INSTANCE_RESIDENT;
-    };
-    async LOAD_FROG() {
-
-        // << CREATE UPDATE OBJECT >> //
-        let DATA_UPDATE = {
-            USERNAME: this.USERNAME,
-            PASSWORD: this.PASSWORD
-        };
-
-        // << GENERATE PROPERTIES >> //
-        if (this.PATH_USER_NEWS !== 0) {
-            DATA_UPDATE.NEWS = this.PATH_USER_NEWS;
-        };
-
-        // << LOAD MEMORY INSTANCE >> //
-        this.INSTANCE_FROG = new Frog({
-            FROG_CONFIG_DATA: this.SESSION.USERS.FROGS,
-            FROG_CONFIG_FILE_TAG: this.USERNAME,
-            FROG_CONFIG_PATH: this.SESSION.PATHS.CUPBOARD.FILES.FROGS,
-            FROG_CONFIG_UPDATES: DATA_UPDATE
-        });
-
-        // << RETURN >> //
-        return this.INSTANCE_FROG;
-    };
-    async LOAD_FROG_LIST(){
-        this.INSTANCE_FROG_LIST = new Frog_List({
-
-        });
-        return this.INSTANCE_FROG_LIST;
-    };
-
-    // =========== //
-    // ## FILES ## //
-    // =========== //
-
-    /**
-     * ## SET DATA FOR CURRENT RESIDENT
-     * -------------------------------
-     * 
-     * File data should contain all the specific user paths for various file types
-     * within the app, which do not necessarily have to go into the app memory in user files
-     */
-    async SET_RESIDENT(){
-        this.RENDERER_PATH = this.SESSION.PATH.RESIDENTFROG;
-        this.RENDERER_DATA = this.DATA_ACTIVE_RESIDENT;
-        return await this.SAVE();
-    };
-    /**
-     * ## SET DATA FOR USER PROFILES
-     * ----------------------------
-     * 
-     * Holds all data related to a specific user profile
-     */
-    async SET_FROG(){
-        this.RENDERER_PATH = this.SESSION.PATH.FROG;
-        this.RENDERER_DATA = '';
-
-        return await this.SAVE();
-    };
-    /**
-     * ## SET QUICK ACCESS USER DATA
-     * -----------------------------
-     * 
-     * Write data to the storage file for usernames and passwords
-     */
-    async SET_USER_LIST(){
-        this.RENDERER_PATH = this.SESSION.PATH.USERS;
-        this.RENDERER_DATA = '';
-
-        return await this.SAVE();
     };
 }

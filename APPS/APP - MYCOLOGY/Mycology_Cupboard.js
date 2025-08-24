@@ -1,4 +1,3 @@
-import Connector_Beetle from "../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import MYCOLOGY_Main from "./Mycology_Main.js";
 
 /**
@@ -7,29 +6,34 @@ import MYCOLOGY_Main from "./Mycology_Main.js";
  */
 export default class Myco_Cupboard extends MYCOLOGY_Main{
 
+    /**
+     * ## MYCOLOGY CUPBOARD CONSTRUCTOR
+     */
     constructor({
-        CUPBOARD_CONFIG_FOLDERS = 0,
+        CUPBOARD_CONFIG_PATHS_FOLDERS = 0,
         CUPBOARD_CONFIG_TOP = 0,
-        CUPBOARD_CONFIG_FILES = 0,
+        CUPBOARD_CONFIG_PATHS_USERS = 0,
+        CUPBOARD_CONFIG_PATHS_TEXT = 0,
+        CUPBOARD_CONFIG_PATHS_ROUTES= 0,
+        CUPBOARD_CONFIG_PATHS_PANTRY= 0,
+        CUPBOARD_CONFIG_PATHS_MEMORY= 0,
+        CUPBOARD_CONFIG_PATHS_SETTINGS = 0,
         CUPBOARD_CONFIG_TEMPLATES = 0
     }){
-
         super();
 
         // =========== //
         // << PATHS >> //
         // =========== //
+
         this.PATH_TOP = CUPBOARD_CONFIG_TOP;
-        this.PATH_FOLDERS = CUPBOARD_CONFIG_FOLDERS;
-        this.PATH_FILES = CUPBOARD_CONFIG_FILES;
-
-        // =============== //
-        // << INSTANCES >> //
-        // =============== //
-
-        this.INSTANCE_BEETLE = new Connector_Beetle({
-
-        });
+        this.PATH_FOLDERS = CUPBOARD_CONFIG_PATHS_FOLDERS;
+        this.PATH_USERS = CUPBOARD_CONFIG_PATHS_USERS;
+        this.PATH_TEXT = CUPBOARD_CONFIG_PATHS_TEXT;
+        this.PATH_ROUTES = CUPBOARD_CONFIG_PATHS_ROUTES;
+        this.PATH_PANTRY = CUPBOARD_CONFIG_PATHS_PANTRY;
+        this.PATH_MEMORY = CUPBOARD_CONFIG_PATHS_MEMORY;
+        this.PATH_SETTINGS = CUPBOARD_CONFIG_PATHS_SETTINGS;
 
         // ========== //
         // << DATA >> //
@@ -38,14 +42,15 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         this.DATA_TEMPLATES = CUPBOARD_CONFIG_TEMPLATES.CUPBOARD;
     };
 
+    // ========= //
+    // ## RUN ## //
+    // ========= //
+
     /**
      * ## RUN CUPBOARD VALIDATION
      * --------------------------
      */
     async RUN() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'RUN CUPBOARD VALIDATION';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
         // ================= //
         // << MAIN FOLDER >> //
@@ -55,38 +60,40 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         // ================= //
         // << SUB FOLDERS >> //
         // ================= //
-        await this.EXISTANCE_CHECK(this.PATH_TOP);
         await this.#FOLDERS();
 
         // ================ //
         // << JSON FILES >> //
         // ================ //
-
-        await this.#FROGS();
         await this.#RESIDENT();
+        await this.#FROGS();
         await this.#USER();
+        await this.#LIST();
+        await this.#SETTINGS();
 
+        console.log(this.PATH_USERS)
         // ================ //
         // << TEXT FILES >> //
         // ================ //
-        // await this.#BUTTON();
-        // await this.#INPUT();
     };
+
+    // ============= //
+    // ## UTILITY ## //
+    // ============= //
 
     /**
      * ## VALIDATE CUPBOARD FOLDERS
      * ----------------------------
+     * 
+     * Check existance of individual folders
      */
     async #FOLDERS() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING CUPBOARD FOLDERS';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
-        for (let INDEX_Folders = 0; INDEX_Folders < this.PATH_FOLDERS.length; INDEX_Folders++) {
-            const PATH_Folder = this.PATH_FOLDERS[INDEX_Folders];
-            console.log(PATH_Folder)
+        let KEYS = Object.keys(this.PATH_FOLDERS);
+        for (let INDEX_Folders = 0; INDEX_Folders < KEYS.length; INDEX_Folders++) {
+            const PATH_Folder = this.PATH_FOLDERS[KEYS[INDEX_Folders]];
             await this.EXISTANCE_CHECK(PATH_Folder);
         };
+        await this.EXISTANCE_CHECK(this.PATH_USERS.LILYPAD);
     };
 
     // ============================= //
@@ -98,46 +105,27 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
      * ## VALIDATE FROG FILE
      * ---------------------
      */
-    async #FROGS() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING FROG JSON FILE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-        await this.EXISTANCE_FILE(this.PATH_FILES.FROGS, this.DATA_TEMPLATES.USERS_FROGS);
-    };
+    async #FROGS() {await this.EXISTANCE_FILE(this.PATH_USERS.FROGS, this.DATA_TEMPLATES.USERS_FROGS);};
     /**
      * ## VALIDATE RESIDENT FILE
      * ---------------------
      */
-    async #RESIDENT() {
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING RESIDENT JSON FILE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-        await this.EXISTANCE_FILE(this.PATH_FILES.RESIDENTFROG, this.DATA_TEMPLATES.USERS_RESIDENT);
-    };
+    async #RESIDENT() {await this.EXISTANCE_FILE(this.PATH_USERS.RESIDENT, this.DATA_TEMPLATES.USERS_RESIDENT);};
     /**
      * ## VALIDATE USER FILE
      * ---------------------
      */
-    async #USER() {
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING USER JSON FILE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-        await this.EXISTANCE_FILE(this.PATH_FILES.USER, this.DATA_TEMPLATES.ROUTES_USER);
-    };
+    async #USER() {await this.EXISTANCE_FILE(this.PATH_ROUTES.USER, this.DATA_TEMPLATES.ROUTES_USER);};
+    async #SETTINGS() {await this.EXISTANCE_FILE(this.PATH_SETTINGS, this.DATA_TEMPLATES.SETTINGS);};
+    async #LIST() {await this.EXISTANCE_FILE(this.PATH_USERS.LIST, []);};
     /**
      * ## VALIDATE WELCOME BUTTON TEXT FILE
      * ---------------------
      */
-    async #BUTTON() {
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING BUTTON TEXT FILE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-        await this.EXISTANCE_FILE(this.PATH_FILES.WELCOME.BUTTON, {});
-    };
+    async #BUTTON() {await this.EXISTANCE_FILE(this.PATH_FILES.WELCOME.BUTTON, {});};
     /**
      * ## VALIDATE WELCOME INPUT TEXT FILE
      * ---------------------
      */
-    async #INPUT() {
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING INPUT FILE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-        await this.EXISTANCE_FILE(this.PATH_FILES.WELCOME.INPUT, {})
-    };
+    async #INPUT() {await this.EXISTANCE_FILE(this.PATH_FILES.WELCOME.INPUT, {})};
 };

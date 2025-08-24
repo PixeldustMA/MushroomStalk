@@ -2,7 +2,9 @@ const path  = require('path');
 const fs = require('fs');
 module.exports = class PATHWAYS {
 
-    constructor(){
+    constructor({PATHWAY_CONFIG_USER = 0}){
+
+        this.USERNAMEM = PATHWAY_CONFIG_USER;
 
         // ============ //
         // << ROUTES >> //
@@ -44,7 +46,6 @@ module.exports = class PATHWAYS {
 
         console.log('GNERATING PATH!!!!!!!')
         console.log(PARAMETER_PATH)
-        this.USERNAMEM = 'PIXEL';
         let ARRAY_Bucket = [];
         let PATH_Relative = PARAMETER_PATH;
         if (PARAMETER_PATH.includes('USERNAME')) {
@@ -108,6 +109,7 @@ module.exports = class PATHWAYS {
         try {
             return fs.existsSync(PARAMETER_PATH);            
         } catch (error) {
+            console.log(error)
             return false;
         }
         // if (stats.isFile()) {

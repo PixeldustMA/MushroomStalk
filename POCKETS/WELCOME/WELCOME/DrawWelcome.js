@@ -1,9 +1,7 @@
 
 import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
 import Pathways from "../../../APPS/APP - PATHWAYS/Pathways.js";
-import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
-import Connector_Mycology from "../../../CONSOLE/ARTERIES/Connector_Mycology.js";
 import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 
 // ================================================ //
@@ -17,7 +15,6 @@ import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 // ==                                            == //
 // ================================================ //
 // ================================================ //
-
 
 /**
  * ## DRAW WELCOME PAGE
@@ -44,25 +41,17 @@ class Page_Welcome extends Stalk {
 	constructor () {
 		super();
 
-        // =============== //
-		// << DEBUGGING >> //
-		// =============== /
-
-        this.INSTANCE_BEETLE = new Connector_Beetle({
-            BEETLE_CONFIG_MODE: 'DEBUG',
-            BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
-            BEETLE_CONFIG_TYPE: 'STANDARD',
-            BEETLE_CONFIG_CATEGORY: 'WELCOME',
-            BEETLE_CONFIG_LOCATION: 'DrawWelcome.js',
-            BEETLE_CONFIG_SCRIPT: 'WELCOME',
-            BEETLE_CONFIG_TEXT: 'LOADING WELCOME PAGE'
-        });
-
         // ============= //
 		// << SECTION >> //
 		// ============= //
 
 		this.SECTION_Form = document.getElementById('Welcome_Section_Form');
+
+        // ============== //
+        // << WRAPPERS >> //
+        // ============== //
+
+        this.WRAPPER_WELCOME = 'UNSET';
 
         // ============ //
         // << INPUTS >> //
@@ -110,14 +99,6 @@ class Page_Welcome extends Stalk {
 	 * Run this function to run the class
 	 */
     async DRAW_Page() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING WELCOME PAGE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
-        // await this.REMEMBER();
-        // const INSTANCE_MYCOLOGY = new Connector_Mycology(this.SESSION);
-        // await INSTANCE_MYCOLOGY.NO_USERNAME_MYCOLOGY()
-
         this.SECTION_Form.append(await this.PANEL_Welcome());	
     };
 
@@ -138,14 +119,11 @@ class Page_Welcome extends Stalk {
 	 */
 	PANEL_Welcome() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING WELCOME PANEL';
-        this.INSTANCE_BEETLE.READ_MODE().then((BEETLE_RESULT) => {return BEETLE_RESULT});
-
         // ============== //
 		// << WRAPPERS >> //
 		// ============== //
 
-        const WRAPPER_Page = new Connector_Jellyfish().INITIALISE_WRAPPER();
+        this.WRAPPER_WELCOME = new Connector_Jellyfish().INITIALISE_WRAPPER();
 
         // =============== //
 		// << LISTENERS >> //
@@ -158,14 +136,14 @@ class Page_Welcome extends Stalk {
 		// << ATTACHMENTS >> //
 		// ================= //
 
-		WRAPPER_Page.append(...[
+		this.WRAPPER_WELCOME.append(...[
 			this.INPUT_NAME,
 			this.INPUT_PASSWORD,
 			this.BUTTON_SUBMITTING,
 			this.BUTTON_NEW_USER,
 			this.IMAGE_EYES
 		]);
-		return WRAPPER_Page;
+		return this.WRAPPER_WELCOME;
     };
 
     // ============= //
@@ -177,9 +155,6 @@ class Page_Welcome extends Stalk {
      */
     ACTIVATE_BUTTON_NEW_USER(PARAMETER_BUTTON) {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'LOADING NEW USER BUTTON';
-        this.INSTANCE_BEETLE.READ_MODE().then((BEETLE_RESULT) => {return BEETLE_RESULT});
-
         PARAMETER_BUTTON.addEventListener('click', (event) => {			
             this.ONBOARDING();
 		});
@@ -188,10 +163,6 @@ class Page_Welcome extends Stalk {
      * ## ADDING SUBMIT BUTTON LISTENER
      */
     ACTIVATE_BUTTON_SUBMIT(PARAMETER_BUTTON){
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'LOADING SUBMIT BUTTON';
-        this.INSTANCE_BEETLE.READ_MODE().then((BEETLE_RESULT) => {return BEETLE_RESULT});
-
 		PARAMETER_BUTTON.addEventListener('click', (event) => {
 			this.VALIDATE(
                 document.getElementById('INPUT_Welcome-Name-Entry').value,
@@ -217,8 +188,18 @@ class Page_Welcome extends Stalk {
 	 */
     async INITIALISE() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING WELCOME PAGE';
-        this.INSTANCE_BEETLE.READ_MODE();
+        // ============== //
+        // << SESSIONS >> //
+        // ============== //
+
+        await this.REQUEST_SESSION_PATHS();
+        await this.REQUEST_SESSION_ROUTES();
+        await this.REQUEST_SESSION_TEMPLATES();
+        await this.REQUEST_SESSION_USERS();
+
+        // ============== //
+        // << ELEMENTS >> //
+        // ============== //
 
         await this.PATHS();
         await this.INPUTS();
@@ -227,11 +208,11 @@ class Page_Welcome extends Stalk {
     };
     /**
      * ## CREATE PAGE INPUTS
+     * ----------------------
+     * 
+     * Generate all input elements needed for the page
      */
     async INPUTS(){
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'GENERATING INPUTS';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
 		this.INPUT_NAME = await new Create({
             CREATE_CONFIG_ELEMENT_TYPE: 'input',
@@ -251,9 +232,6 @@ class Page_Welcome extends Stalk {
      */
     async BUTTONS() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'GENERATING BUTTONS';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         this.BUTTON_SUBMITTING = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'button',
             CREATE_CONFIG_PERSONALITY_ID: 'BUTTON_Welcome-User_Submit'
@@ -262,15 +240,14 @@ class Page_Welcome extends Stalk {
             CREATE_CONFIG_ELEMENT_TAG: 'button',
             CREATE_CONFIG_PERSONALITY_ID: 'BUTTON_Welcome-User-Create'
         }).INIT();
+
+        this.BUTTON_SUBMITTING.innerHTML = 'SUBMIT';
+        this.BUTTON_USER.innerHTML = 'CREATE NEW USER';
     };
     /**
      * ## CREATE PAGE IMAGES
      */
     async IMAGES() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'GENERATING IMAGES';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
 		this.IMAGE_EYES = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'img',
             CREATE_CONFIG_PERSONALITY_ID: 'IMAGE_Eyes-Animation',
@@ -284,9 +261,6 @@ class Page_Welcome extends Stalk {
      */
     async PATHS() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'GENERATING PATHS';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         const INSTANCE_PATHS = await new Pathways({
             PATHWAYS_CONFIG_MEMORY_SET: 'ASSETS',
             PATHWAYS_CONFIG_SECTION: 'ANIMATIONS',
@@ -295,7 +269,6 @@ class Page_Welcome extends Stalk {
         });
         await INSTANCE_PATHS.INIT();
         this.PATH_IMAGE_EYES = await INSTANCE_PATHS.ROUTE(); 
-
     };
 };
 

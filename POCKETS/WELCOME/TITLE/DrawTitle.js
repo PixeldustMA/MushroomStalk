@@ -1,7 +1,6 @@
 import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
 import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
-import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Pathways from "../../../APPS/APP - PATHWAYS/Pathways.js";
 
 // ================================================ //
@@ -32,20 +31,6 @@ class Page_Title extends Stalk {
     constructor () {
         super();
 
-        // =============== //
-        // << DEBUGGING >> //
-        // =============== /
-
-        this.INSTANCE_BEETLE = new Connector_Beetle({
-            BEETLE_CONFIG_MODE: 'DEBUG',
-            BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
-            BEETLE_CONFIG_TYPE: 'STANDARD',
-            BEETLE_CONFIG_CATEGORY: 'WELCOME',
-            BEETLE_CONFIG_LOCATION: 'DrawTitle.js',
-            BEETLE_CONFIG_SCRIPT: 'TITLE',
-            BEETLE_CONFIG_TEXT: 'LOADING TITLE PAGE'
-        });
-
         // ============= //
         // << SECTION >> //
         // ============= //
@@ -53,6 +38,14 @@ class Page_Title extends Stalk {
         this.SECTION_Title = document.getElementById('TITLE_Section-Title');
         this.SECTION_Belly = document.getElementById('TITLE_Section-Belly');
         this.SECTION_Feet = document.getElementById('TITLE_Section-Feet');
+
+        // ============== //
+        // << WRAPPERS >> //
+        // ============== //
+
+        this.WRAPPER_PAGE = 'UNSET';
+        this.WRAPPER_BELLY = 'UNSET';
+        this.WRAPPER_AVATAR = 'UNSET';
 
         // ========== //
         // << TEXT >> //
@@ -105,12 +98,6 @@ class Page_Title extends Stalk {
      * Run this function to run the class
      */
     async DRAW_PAGE() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING TITLE PAGE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
-        await this.REMEMBER();
-
         this.SECTION_Title.append(this.PANEL_Title());
         this.SECTION_Belly.append(this.PANEL_Belly());
     };
@@ -125,16 +112,16 @@ class Page_Title extends Stalk {
         // << CONTAINERS >> //
         // ================ //
 
-        const WRAPPER_Page = new Connector_Jellyfish().INITIALISE_WRAPPER();
+        this.WRAPPER_PAGE = new Connector_Jellyfish().INITIALISE_WRAPPER();
 
         // ================= //
         // << ATTACHMENTS >> //
         // ================= //
 
-        WRAPPER_Page.append(...[
+        this.WRAPPER_PAGE.append(...[
             this.HEADER_PAGE
         ]);
-        return WRAPPER_Page;
+        return this.WRAPPER_PAGE;
     };
     PANEL_Belly() {
 
@@ -142,50 +129,41 @@ class Page_Title extends Stalk {
         // << CONTAINERS >> //
         // ================ //
 
-        const WRAPPER_Belly = new Connector_Jellyfish().INITIALISE_WRAPPER();
-        const WRAPPER_Avatar = new Connector_Jellyfish().INITIALISE_WRAPPER();
-        WRAPPER_Avatar.classList.add('PICTURE_FRAME');    
+        this.WRAPPER_BELLY = new Connector_Jellyfish().INITIALISE_WRAPPER();
+        this.WRAPPER_AVATAR = new Connector_Jellyfish().INITIALISE_WRAPPER();
+        this.WRAPPER_AVATAR.classList.add('PICTURE_FRAME');    
 
         // =============== //
         // << LISTENERS >> //
         // =============== //
 
-        this.ACTIVATE_LOAD_PAGE_LISTENER(this.IMAGE_LOGIN_BUTTON, 'WELCOME');
-        this.ACTIVATE_LOAD_PAGE_LISTENER(this.IMAGE_MAP_BUTTON, 'MAP');
-        this.ACTIVATE_LOAD_PAGE_LISTENER(this.IMAGE_SETTINGS_BUTTON, 'SETTINGS');
+        this.ACTIVATE_LOAD_PAGE_LISTENER(this.IMAGE_LOGIN_BUTTON, 'WELCOME', 'WELCOME');
+        this.ACTIVATE_LOAD_PAGE_LISTENER(this.IMAGE_MAP_BUTTON, 'MAP', 'WELCOME');
+        this.ACTIVATE_LOAD_PAGE_LISTENER(this.IMAGE_SETTINGS_BUTTON, 'SETTINGS', 'WELCOME');
 
         // ================== //
         // ## ATTATCHMENTS ## //
         // ================== //
 
-        WRAPPER_Belly.append(...[
+        this.WRAPPER_BELLY.append(...[
             this.TEXT_LOGGEDIN_USER,
             this.IMAGE_LOGIN_BUTTON,
             this.IMAGE_MAP_BUTTON,
             this.IMAGE_SETTINGS_BUTTON,
             this.IMAGE_STALK_BUTTON,
-            WRAPPER_Avatar
+            this.WRAPPER_AVATAR
         ]);
-        return WRAPPER_Belly;
+        return this.WRAPPER_BELLY;
     };
 
     // =============== //
     // ## LISTENERS ## //
     // =============== //
 
-    ACTIVATE_LOAD_PAGE_LISTENER(PARAMETER_ELEMENT, PARAMETER_TAG) {
+    ACTIVATE_LOAD_PAGE_LISTENER(PARAMETER_ELEMENT, PARAMETER_TAG, PARAMETER_CATEGORY) {
         PARAMETER_ELEMENT.addEventListener('click', (EVENT_LOAD) => {
-            this.LOAD(PARAMETER_TAG).then((RESULT) => {return RESULT});
+            this.LOAD(PARAMETER_TAG, PARAMETER_CATEGORY).then((RESULT) => {return RESULT});
         });
-    };
-
-    // ============= //
-    // ## ACTIONS ## //
-    // ============= //
-
-    LOAD_USERS() {
-
-        // << LOAD RESIDENT FROG DATA >> //
     };
 
     // ============ //
@@ -205,8 +183,15 @@ class Page_Title extends Stalk {
      */
     async INITIALISE() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING WELCOME PAGE';
-        this.INSTANCE_BEETLE.READ_MODE();
+        // ============= //
+        // << SESSION >> //
+        // ============= //
+
+        await this.REQUEST_SESSION_PATHS()
+
+        // ============== //
+        // << ELEMENTS >> //
+        // ============== //
 
         await this.PATHS();
         await this.TEXT();
@@ -226,10 +211,6 @@ class Page_Title extends Stalk {
      * ## CREATE PAGE IMAGES
      */
     async IMAGES() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'GENERATING IMAGES';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         this.IMAGE_SETTINGS_BUTTON = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'img',
             CREATE_CONFIG_PERSONALITY_ID: 'IMAGE_Title-Settings-Button',
@@ -260,10 +241,6 @@ class Page_Title extends Stalk {
      * ## CREATE PAGE PATHS
      */
     async PATHS() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'GENERATING PATHS';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         const PATH_SETTINGS = await new Pathways({
             PATHWAYS_CONFIG_MEMORY_SET: 'ASSETS',
             PATHWAYS_CONFIG_SECTION: 'IMAGES',
@@ -308,16 +285,5 @@ class Page_Title extends Stalk {
     };
 };
 const titlePage = new Page_Title();
-await titlePage.LOAD_USERS();
 await titlePage.INITIALISE();
 titlePage.DRAW_PAGE();
-// setTimeout(() => {
-//     if (titlePage.ACTIVE_USER !== "USERNAME") {
-
-        // << CHANGE THE USER SETTINGS ON THE PAGE >> //
-        // let y = document.getElementById('BUTTON_Title-ChangeUser').innerHTML;
-        // document.getElementById('BUTTON_Title-ChangeUser').innerHTML = 'CHANGE USER';
-        // document.getElementById('LABEL_Title-UserName').innerHTML = `HELLO ${titlePage.ACTIVE}`;
-        // document.getElementById('IMAGE_Title-Login-Button').src = titlePage.changeUserButtonPath;
-//     };
-// }, 1000)

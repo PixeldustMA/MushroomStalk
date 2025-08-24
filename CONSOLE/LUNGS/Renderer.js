@@ -37,7 +37,8 @@ class Renderer{
         PARAMETER_PATH = "", 
         PARAMETER_DATA = {}, 
         PARAMETER_ORIGIN = "", 
-        PARAMETER_DESTINATION = ""
+        PARAMETER_DESTINATION = "",
+        PARAMETER_USERNAME = 'UNSET'
     ) 
     {
         // =============== //
@@ -55,7 +56,8 @@ class Renderer{
         this.RENDERER_PATH = PARAMETER_PATH;
         this.RENDERER_DATA = PARAMETER_DATA;
         this.RENDERER_PATH_ORIGIN = PARAMETER_ORIGIN;
-        this.RENDERER_PATH_DESTINATION = PARAMETER_DESTINATION
+        this.RENDERER_PATH_DESTINATION = PARAMETER_DESTINATION;
+        this.RENDERER_USERNAME = PARAMETER_USERNAME;
     };
 
     // =============== //
@@ -81,7 +83,17 @@ class Renderer{
      * ## RETURNS --> BOOL
      */
     async DEBUG(PARAMETER_KATEGORY, PARAMETER_SKRIPT) {
-        return await window.ipcRender.ACCESS_WINDOW_Debug(PARAMETER_KATEGORY, PARAMETER_SKRIPT);
+        // return await window.ipcRender.ACCESS_WINDOW_Debug(PARAMETER_KATEGORY, PARAMETER_SKRIPT);
+    };
+
+    // ============= //
+    // ## WINDOWS ## //
+    // ============= //
+
+    async SUBWINDOW(PARAMETER_PAGE_TAG, PARAMETER_PAGE_CATEGORY) {
+        await this.REQUEST_SESSION_ROUTES();
+        this.RENDERER_PATH = this.SESSION.ROUTES.MEMORY[PARAMETER_PAGE_CATEGORY][PARAMETER_PAGE_TAG];
+        await window.ipcRender.ACCESS_WINDOW_New(await this.PATH_POCKET());
     };
 
     // ================== //
@@ -112,6 +124,15 @@ class Renderer{
             console.log('--------||| SAVING TO FILE |||--------');
         };
         return await window.ipcRender.ACCESS_STALK_Save(this.RENDERER_PATH, this.RENDERER_DATA);
+    };
+    async MARKDOWN() {
+        if(await this.DEBUG(this.DEBUG_CATEGORY, this.DEBUG_SCRIPT)) {
+            console.log('--------||| SAVING TO FILE |||--------');
+            console.log(`The Path being saved to is ${this.RENDERER_PATH}`);
+            console.log(`The data being saved is ${this.data}`);
+            console.log('--------||| SAVING TO FILE |||--------');
+        };
+        return await window.ipcRender.ACCESS_STALK_Markdown(this.RENDERER_PATH, this.RENDERER_DATA);
     };
     /**
      * ## READ THE FILE AT THE SET FILE PATH
@@ -186,6 +207,8 @@ class Renderer{
             console.log(`A file is being deleted at ${this.RENDERER_PATH}`);
             console.log('--------||| REMOVING A FILE |||--------');
         };
+        console.log(this.RENDERER_PATH);
+        console.log('RENDDER')
         return await window.ipcRender.ACCESS_STALK_RemoveFile(this.RENDERER_PATH);
 
     };
@@ -213,16 +236,16 @@ class Renderer{
             console.log('--------||| LOADING -- CHECKING EXISTANCE |||--------');
         };
 
-        return await window.ipcRender.ACCESS_LOAD({
+        return await window.ipcRender.ACCESS_PATH_Status({
             PARAMETER_MODE: 'CHECK',
             PARAMETER_PATH: this.RENDERER_PATH
         });
     };
-    
+
     // =========== //
     // ## PATHS ## //
     // =========== //
-    
+
     /**
      * ## FORMAT A RELATIVE PATH
      * 
@@ -254,7 +277,7 @@ class Renderer{
             console.log(`${this.RENDERER_PATH} is being turned into a formatted version`);
             console.log('--------||| FORMATTING PATH |||--------');
         };
-        return await window.ipcRender.ACCESS_PATH_Retrieve(this.RENDERER_PATH);
+        return await window.ipcRender.ACCESS_PATH_Retrieve(this.RENDERER_PATH, this.RENDERER_USERNAME);
     };
     /**
      * ## FETCH A ROUTE FILE
@@ -301,6 +324,10 @@ class Renderer{
     async PATH_STATUS() {
         return await window.ipcRender.ACCESS_PATH_Status(this.RENDERER_PATH);
     };
+    async PATH_POCKET() {
+        return await window.ipcRender.ACCESS_PATH_Pockets(this.RENDERER_PATH);
+    };
+
     // ============= //
     // ## FOLDERS ## //
     // ============= //
