@@ -1,5 +1,4 @@
 import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
-import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
 import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 
@@ -8,20 +7,6 @@ export default class Page_Wizard extends Stalk{
     constructor(){
 
         super()
-
-        // =============== //
-        // << DEBUGGING >> //
-        // =============== /
-        
-        this.INSTANCE_BEETLE = new Connector_Beetle({
-            BEETLE_CONFIG_MODE: 'DEBUG',
-            BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
-            BEETLE_CONFIG_TYPE: 'STANDARD',
-            BEETLE_CONFIG_CATEGORY: 'WELCOME',
-            BEETLE_CONFIG_LOCATION: 'DrawTitle.js',
-            BEETLE_CONFIG_SCRIPT: 'TITLE',
-            BEETLE_CONFIG_TEXT: 'LOADING TITLE PAGE'
-        });
 
         // ============== //
         // ## SECTIONS ## //
@@ -63,9 +48,6 @@ export default class Page_Wizard extends Stalk{
      * Run this function to run the class
      */
     async DRAW_PAGE() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING WIZARD PAGE';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
         await this.REQUEST_SESSION_ROUTES();
 
@@ -146,9 +128,6 @@ export default class Page_Wizard extends Stalk{
      * #### --> RETURNS PROMISE {Formatted paths}
      */
     async INITIALISE() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING WIZARD PAGE';
-        this.INSTANCE_BEETLE.READ_MODE();
 
         await this.PATHS();
         await this.TEXT();

@@ -1,7 +1,7 @@
 import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
 import Lilypad from "../../../APPS/APP - LILYPAD/Lilypad.js";
-import Connector_Beetle from "../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
+import Connector_Mycology from "../../../CONSOLE/ARTERIES/Connector_Mycology.js";
 import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
 
 // ================================================ //
@@ -36,19 +36,12 @@ export default class Page_Onboarding extends Stalk{
 
         super();
 
-        // =============== //
-        // << DEBUGGING >> //
-        // =============== /
+        // ============== //
+        // << WRAPPERS >> //
+        // ============== //
 
-        this.INSTANCE_BEETLE = new Connector_Beetle({
-            BEETLE_CONFIG_MODE: 'DEBUG',
-            BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
-            BEETLE_CONFIG_TYPE: 'STANDARD',
-            BEETLE_CONFIG_CATEGORY: 'WELCOME',
-            BEETLE_CONFIG_LOCATION: 'DrawTitle.js',
-            BEETLE_CONFIG_SCRIPT: 'TITLE',
-            BEETLE_CONFIG_TEXT: 'LOADING TITLE PAGE'
-        });
+        this.WRAPPER_TITLE = 'UNSET';
+        this.WRAPPER_FORM = 'UNSET';
 
         // ============= //
         // << SECTION >> //
@@ -57,14 +50,19 @@ export default class Page_Onboarding extends Stalk{
         this.SECTION_Title = document.getElementById('SECTION_Onboarding-Section-Title');
         this.SECTION_Form =  document.getElementById('SECTION_Onboarding-Section-Details');
 
-        // ========== //
-        // << TEXT >> //
-        // ========== //
+        // ============= //
+        // << HEADERS >> //
+        // ============= //
 
         this.HEADER_PAGE = 'UNSET';
+
+        // ============ //
+        // << LABELS >> //
+        // ============ //
+
         this.LABEL_USERNAME = 'UNSET';
         this.LABEL_PASSWORD = 'UNSET';
-        this.LABEL_NEWS = 'UNSET';
+        this.LABEL_OBSIDIAN = 'UNSET';
 
         // =========== //
         // << INPUT >> //
@@ -79,7 +77,13 @@ export default class Page_Onboarding extends Stalk{
 
         this.BUTTON_APPLY = 'UNSET';
         this.BUTTON_BACK = 'UNSET';
-        this.BUTTON_NEWS = 'UNSET';
+        this.BUTTON_OBSIDIAN = 'UNSET';
+
+        // =============== //
+        // << INSTANCES >> //
+        // =============== //
+
+        this.INSTANCE_JELLYFISH = new Connector_Jellyfish();
     };
 
     // =========== //
@@ -100,12 +104,6 @@ export default class Page_Onboarding extends Stalk{
      * Run this function to run the class
      */
     async DRAW_PAGE() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING ONBOARDING PAGE';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
-        // await this.REMEMBER();
-
         this.SECTION_Title.append(this.PANEL_TITLE());
 		this.SECTION_Form.append(this.PANEL_FORM());
     };
@@ -131,16 +129,16 @@ export default class Page_Onboarding extends Stalk{
         // << CONTAINERS >> //
         // ================ //
         
-        const WRAPPER_Page = new Connector_Jellyfish().INITIALISE_WRAPPER();
+        this.WRAPPER_TITLE = new Connector_Jellyfish().INITIALISE_WRAPPER();
 
         // ================= //
         // << ATTACHMENTS >> //
         // ================= //
 
-        WRAPPER_Page.append(...[
+        this.WRAPPER_TITLE.append(...[
             this.HEADER_PAGE
         ]);
-        return WRAPPER_Page;
+        return this.WRAPPER_TITLE;
     };
     /**
 	 * ## DRAW THE FORM PANEL
@@ -155,79 +153,86 @@ export default class Page_Onboarding extends Stalk{
 	 */
 	PANEL_FORM() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'DRAWING ONBOARDING FORM PANEL';
-        this.INSTANCE_BEETLE.READ_MODE();
-
         // ================ //
         // << CONTAINERS >> //
         // ================ //
         
-        const WRAPPER_Form = new Connector_Jellyfish().INITIALISE_WRAPPER();
+        this.WRAPPER_FORM = new Connector_Jellyfish().INITIALISE_WRAPPER();
 
         // =============== //
         // << LISTENERS >> //
         // =============== //
 
-        this.ACTIVATE_LISTENER_APPLY(this.BUTTON_APPLY);
+        this.ACTIVATE_SAVE_PROFILE();
+        this.ACTIVATE_OBSIDIAN();
 
         // ================= //
         // << ATTACHMENTS >> //
         // ================= //
 
-        WRAPPER_Form.append(...[
+        this.WRAPPER_FORM.append(...[
             this.LABEL_USERNAME,
 			this.INPUT_USERNAME,
 
 			this.LABEL_PASSWORD,
 			this.INPUT_PASSWORD,
 
-			this.BUTTON_NEWS,
-			this.LABEL_NEWS,
+			this.BUTTON_OBSIDIAN,
+			this.LABEL_OBSIDIAN,
+            this.LABEL_DISPLAY_OBSIDIAN,
 
 			this.BUTTON_APPLY,
 			this.BUTTON_BACK
         ]);
-        return WRAPPER_Form;
+        return this.WRAPPER_FORM;
     };
 
     // =============== //
     // ## LISTENERS ## //
     // =============== //
 
-    ACTIVATE_LISTENER_APPLY(PARAMETER_BUTTON) {
-        PARAMETER_BUTTON.addEventListener('click', (event) => {
-            new Lilypad({
-                LILYPAD_CONFIG_USERNAME: this.INPUT_USERNAME.value,
-                LILYPAD_CONFIG_PASSWORD: this.INPUT_PASSWORD.value
-            }).RUN_LILYPAD('NEW').then((RESULT) => {
+    ACTIVATE_SAVE_PROFILE() {
+        this.BUTTON_APPLY.addEventListener('click', (event) => {
 
-                //TODO HERE NEEDS TO BE THE REST OF THE MEMORY BUILDING 
-                //? NO BUILD FULL MEMORY
-                //? RUN CHECKS ON ENTERING NEW AREA?
-                //? NEED TO BUILD MYSELF A LITTLE SYSTEM FOR THIS WITHOUT HAVING TO MAKE A WHOLE THING
+            // =========== //
+            // << NAMES >> //
+            // =========== //
 
-                // TODO CREATE A FULL SESSION AND SAVE
+            let ACTIVE_USERNAME = this.INPUT_USERNAME.value;
+            let ACTIVE_PASSWORD = this.INPUT_PASSWORD.value;
 
-                this.CREATE_SESSION_FILE().then((RESULT) => {return RESULT});
+            // =========== //
+            // << PATHS >> //
+            // =========== //
 
-                // << BASIC SESSION >> //
-                this.REQUEST_SESSION_PATHS().then((RESULT) => {return RESULT});
-                this.REQUEST_SESSION_ROUTES().then((RESULT) => {return RESULT});
-                this.REQUEST_SESSION_TEMPLATES().then((RESULT) => {return RESULT});
-                this.REQUEST_SESSION_USERS().then((RESULT) => {return RESULT});
+            let ACTIVE_OBSIDIAN = this.LABEL_DISPLAY_OBSIDIAN.innerHTML;
+            const INSTANCE_MYCOLOGY = new Connector_Mycology(this.SESSION, ACTIVE_USERNAME);
 
+            INSTANCE_MYCOLOGY.MYCOLOGY_WAR().then((MYCO_RESULT) => {
 
-                // << CREATE USERNAME FOLDER AND IMPORTANT SUBFOLDERS >> //
-                //? This will need to activate mycology and run various sections
+                const INSTANCE_LILYPAD = new Lilypad({
+                    LILYPAD_CONFIG_USERNAME: ACTIVE_USERNAME,
+                    LILYPAD_CONFIG_PASSWORD: ACTIVE_PASSWORD,
+                    LILYPAD_CONFIG_PATH_OBSIDIAN: ACTIVE_OBSIDIAN,
+                    LILYPAD_CONFIG_LIST_USERS: this.SESSION.USERS.LIST.USERLIST,
+                    LILYPAD_CONFIG_DATA_COUNT: this.SESSION.SETTINGS.MUSHROOM.USER_COUNT,
+                    LILYPAD_CONFIG_DATA_LILYPAD: this.SESSION.USERS.DATA.LILYPAD
+                }).RUN_LILYPAD('NEW').then((LILY_RES) => {return LILY_RES});
+                return MYCO_RESULT;
+            })
 
-                // << SAVE THE SESSION >> //
 
                 // << CHANGE THE PAGE >> //
                 this.LOAD('TITLE', 'WELCOME')
-                return RESULT
-            })
+
+            });
+    };
+    ACTIVATE_OBSIDIAN() {
+        this.BUTTON_OBSIDIAN.addEventListener('click', (event) => {
+            this.INSTANCE_JELLYFISH.FOLDER_PICKER(this.LABEL_DISPLAY_OBSIDIAN);
         });
     };
+
     // ============ //
     // ## SET UP ## //
     // ============ //
@@ -245,19 +250,30 @@ export default class Page_Onboarding extends Stalk{
      */
     async INITIALISE() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'INITIALISING ONBOARDING PAGE';
-        this.INSTANCE_BEETLE.READ_MODE();
+        await this.REQUEST_SESSION_PATHS();
+        await this.REQUEST_SESSION_USERS();
+        await this.REQUEST_SESSION_APP_SETTINGS();
+        console.log(this.SESSION)
 
-        await this.TEXT();
+        await this.#HEADERS();
+        await this.#LABELS();
         await this.INPUTS();
         await this.BUTTONS();
-
     };
-    async TEXT () {
+
+    // ============== //
+    // ## ELEMENTS ## //
+    // ============== //
+
+    async #HEADERS () {
         this.HEADER_PAGE = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'h1',
             CREATE_CONFIG_PERSONALITY_ID: 'HEADER_Onboarding-Title-Present',
         }).INIT();
+        this.HEADER_PAGE.innerHTML = 'NEW FROG';
+    };
+    async #LABELS() {
+
         this.LABEL_USERNAME = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'label',
             CREATE_CONFIG_PERSONALITY_ID: 'LABEL_Onboarding-Username-Label',
@@ -270,14 +286,20 @@ export default class Page_Onboarding extends Stalk{
             CREATE_CONFIG_TAGGING_BOXNAME: 'passwordBox',
             CREATE_CONFIG_PERSONALITY_CLASSES: ['TEXT-Layout']
         }).INIT();
-        this.LABEL_NEWS = await new Create({
+        this.LABEL_OBSIDIAN = await new Create({
+            CREATE_CONFIG_ELEMENT_TAG: 'p',
+            CREATE_CONFIG_PERSONALITY_ID: 'LABEL_Onboarding-News-Label',
+            CREATE_CONFIG_PERSONALITY_CLASSES: ["TEXT_DisplayPaths"]
+        }).INIT();
+        this.LABEL_DISPLAY_OBSIDIAN = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'p',
             CREATE_CONFIG_PERSONALITY_ID: 'LABEL_Onboarding-News-Label',
             CREATE_CONFIG_PERSONALITY_CLASSES: ["TEXT_DisplayPaths"]
         }).INIT();
         this.LABEL_USERNAME.innerHTML = 'USERNAME';
         this.LABEL_PASSWORD.innerHTML = 'PASSWORD';
-        this.LABEL_NEWS.innerHTML = 'NEWS';
+        this.LABEL_OBSIDIAN.innerHTML = 'Select Obsidian Vault';
+        this.LABEL_DISPLAY_OBSIDIAN.innerHTML = '';
     };
     async INPUTS () {
         this.INPUT_USERNAME = await new Create({
@@ -294,7 +316,7 @@ export default class Page_Onboarding extends Stalk{
         }).INIT();
     };
     async BUTTONS() {
-        this.BUTTON_NEWS = await new Create({
+        this.BUTTON_OBSIDIAN = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'button',
             CREATE_CONFIG_PERSONALITY_ID: 'BUTTON_Onboarding-News-Path',
             CREATE_CONFIG_PERSONALITY_CLASSES: ['BUTTON-FilePath']
@@ -310,13 +332,13 @@ export default class Page_Onboarding extends Stalk{
             CREATE_CONFIG_PERSONALITY_CLASSES: ['BUTTON-Back']
         }).INIT();
 
-        this.BUTTON_NEWS.innerHTML = 'NEWS';
+        this.BUTTON_OBSIDIAN.innerHTML = 'OBSIDIAN';
         this.BUTTON_APPLY.innerHTML = 'APPLY';
         this.BUTTON_BACK.innerHTML = 'BACK';
     };
 
 };
 
-const onboardingPage = new Page_Onboarding();
-await onboardingPage.INITIALISE();
-await onboardingPage.DRAW_PAGE();
+const PAGE_Onboarding = new Page_Onboarding();
+await PAGE_Onboarding.INITIALISE();
+await PAGE_Onboarding.DRAW_PAGE();
