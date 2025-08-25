@@ -52,6 +52,7 @@ export default class Cap_Templates {
             },
             SETTINGS: {
                 SETTINGS: this.#MUSHROOM_SETTINGS(),
+                STATUS: this.#STATUS()
             },
             LANGUAGE: {
                 VOCAB_ADJECTIVES: this.#VOCAB_ADJECTIVES(),
@@ -219,6 +220,19 @@ export default class Cap_Templates {
             USER_COUNT: 0
         }
     }
+
+    // ============== //
+    // << SETTINGS >> //
+    // ============== //
+
+    #STATUS(){
+        return {
+            ARCHIVE: "ACTIVE",
+            ELEMENT_CATEGORY: "UNSET",
+            ELEMENT_ELEMENT: "UNSET"
+        };
+    };
+
     // ========== //
     // << NOVA >> //
     // ========== //

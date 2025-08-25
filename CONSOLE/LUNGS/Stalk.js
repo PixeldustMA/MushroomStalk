@@ -40,6 +40,7 @@ export default class Stalk extends Mushroom_Cap {
 			if (this.SESSION.USERS.DATA.USERS[BLOCK_Frog].USERNAME === PARAMETER_USERNAME && this.SESSION.USERS.DATA.USERS[BLOCK_Frog].PASSWORD === PARAMETER_PASSWORD) {
                 let INSTANCE_MYCOLOGY = new Connector_Mycology(await this.REQUEST_SESSION_PATHS(), PARAMETER_USERNAME);
                 await INSTANCE_MYCOLOGY.MYCOLOGY_WAR();
+                await INSTANCE_MYCOLOGY.MYCOLOGY_SETTINGS();
 				valid = true;
 				await this.LOAD("TITLE", 'WELCOME'); 
 				break;

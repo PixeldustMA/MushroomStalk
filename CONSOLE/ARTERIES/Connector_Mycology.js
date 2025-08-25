@@ -4,6 +4,7 @@ import EL_Mycology from "../../APPS/APP - ELEMENTS/CONNECTORS/EL_Mycology.js";
 import EV_Mycology from "../../APPS/APP - EVENTS/CONNECTORS/EV_Mycology.js";
 import EX_Mycology from "../../APPS/APP - EXPLORER/CONNECTORS/EX_Mycology.js";
 import Myco_Cupboard from "../../APPS/APP - MYCOLOGY/Mycology_Cupboard.js";
+import ST_Mycology from "../../APPS/APP - MYCOLOGY/Mycology_Settings.js";
 import NM_Mycology from "../../APPS/APP - NAMES/CONNECTORS/NM_Mycology.js";
 import SF_Mycology from "../../APPS/APP - SUNFLOWER/CONNECTORS/SF_Mycology.js";
 import TB_Mycology from "../../APPS/APP - TOOLBOX/CONNECTORS/TB_Mycology.js";
@@ -47,7 +48,7 @@ export default class Connector_Mycology extends Mushroom_Cap{
 
         await this.REQUEST_SESSION_PATHS();
         await this.REQUEST_SESSION_TEMPLATES();
-        console.log(this.SESSION)
+
         let BUCKET_Folders = this.SESSION.PATHS.CUPBOARD;
 
         await new Myco_Cupboard({
@@ -136,5 +137,12 @@ export default class Connector_Mycology extends Mushroom_Cap{
 
         await INSTANCE_NAMES.INITIALISE_NAMES();
         console.log('NAMES COMPLETE');
+    };
+    async MYCOLOGY_SETTINGS() {
+        let SESSION_PATHS = await this.INSTANCE_M_PATHS.INITIALISE_USERNAME('PIXEL');
+        let INSTANCE_SETTINGS = new ST_Mycology({
+            SETTINGS_CONFIG_PATHS: SESSION_PATHS
+        });
+        await INSTANCE_SETTINGS.RUN();
     };
 }

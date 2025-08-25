@@ -13,7 +13,6 @@ export default class MYCOLOGY_Main extends Branches{
      */
     async EXISTANCE_CHECK(PARAMETER_PATHWAY) {
         const STATUS = await this.FOLDER_EXISTANCE(PARAMETER_PATHWAY);
-        console.log(STATUS)
         if (!STATUS){
             this.RENDERER_PATH = PARAMETER_PATHWAY
             await this.CREATE_FOLDER();

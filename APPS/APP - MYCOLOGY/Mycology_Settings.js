@@ -1,92 +1,89 @@
-import Connector_Beetle from "../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import MYCOLOGY_Main from "./Mycology_Main.js";
 
 /**
- * ## CUPBOARD VALIDATION
+ * ## SETTINGS VALIDATION
  * ----------------------
  */
-export default class Myco_Explorer extends MYCOLOGY_Main{
-
+export default class ST_Mycology extends MYCOLOGY_Main{
+    /**
+     * ## MYCOLOGY SETTINGS CONSTRUCTOR
+     */
     constructor({
-        EXPLORER_CONFIG_FOLDERS = 0,
-        EXPLORER_CONFIG_TOP = 0,
-        EXPLORER_CONFIG_FILES = 0,
-        EXPLORER_CONFIG_TEMPLATES = 0
+        SETTINGS_CONFIG_PATHS = 0
     }){
-
         super();
+
+        this.SESSION_PATH = SETTINGS_CONFIG_PATHS;
 
         // =========== //
         // << PATHS >> //
         // =========== //
-        this.PATH_TOP = CUPBOARD_CONFIG_TOP;
-        this.PATH_FOLDERS = CUPBOARD_CONFIG_FOLDERS;
-        this.PATH_FILES = CUPBOARD_CONFIG_FILES;
 
-        // =============== //
-        // << INSTANCES >> //
-        // =============== //
-
-        this.INSTANCE_BEETLE = new Connector_Beetle({
-
-        });
+        this.PATH_CHARACTER = 'UNSET';
+        this.PATH_APP_STATUS = 'UNSET';
+        this.PATH_TOP = 'UNSET';
 
         // ========== //
         // << DATA >> //
         // ========== //
 
-        this.DATA_TEMPLATES = CUPBOARD_CONFIG_TEMPLATES;
     };
+    // ========= //
+    // ## RUN ## //
+    // ========= //
 
+    async INITIALISE(){
+        await this.#GET_SESSIONS();
+        await this.#LOAD_PATHS();
+    };
     /**
      * ## RUN CUPBOARD VALIDATION
      * --------------------------
      */
     async RUN() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'RUN EXPLORER VALIDATION';
-        await this.INSTANCE_BEETLE.READ_MODE();
+        await this.INITIALISE();
 
         // ================= //
         // << MAIN FOLDER >> //
         // ================= //
-        await this.EXISTANCE_CHECK(this.PATH_TOP);
 
-        // ================= //
-        // << SUB FOLDERS >> //
-        // ================= //
         await this.EXISTANCE_CHECK(this.PATH_TOP);
-        await this.#FOLDERS();
 
         // ================ //
         // << JSON FILES >> //
         // ================ //
 
-        // ================ //
-        // << TEXT FILES >> //
-        // ================ //
-
+        await this.#CHARACTER();
+        await this.#STATUS();
     };
+    // ============= //
+    // ## UTILITY ## //
+    // ============= //
+
     /**
-     * ## VALIDATE CUPBOARD FOLDERS
+     * ## VALIDATE SETTING FOLDERS
      * ----------------------------
+     * 
+     * Check existance of individual folders
      */
     async #FOLDERS() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING EXPLORER FOLDERS';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
-        for (let INDEX_Folders = 0; INDEX_Folders < this.PATH_FOLDERS.length; INDEX_Folders++) {
-            const PATH_Folder = this.PATH_FOLDERS[INDEX_Folders];
-            await this.EXISTANCE_CHECK(PATH_Folder);
-        };
+    };
+    async #GET_SESSIONS() {
+        await this.REQUEST_SESSION_TEMPLATES();
+    };
+    async #LOAD_PATHS() {
+        this.PATH_CHARACTER = this.SESSION_PATH.SETTINGS.CHARACTER;
+        this.PATH_APP_STATUS = this.SESSION_PATH.SETTINGS.STATUS;
+        this.PATH_TOP = this.SESSION_PATH.TOP.SETTINGS;
     };
 
     // ============================= //
-    // ## CUPBOARD SPECIFIC FILES ## //
+    // ## SETTINGS SPECIFIC FILES ## //
     // ============================= //
 
     //. UPDATE -- ADD NEW FILES HERE ALONG WITH ACCESS TO THEIR BASE TEMPLATE
-
-    //? LOAD A BASIC SETTINGS FILE
+    async #CHARACTER() {await this.EXISTANCE_FILE(this.PATH_CHARACTER, {});};
+    async #STATUS() {await this.EXISTANCE_FILE(this.PATH_APP_STATUS, this.SESSION.TEMPLATES.MYCOLOGY.SETTINGS.STATUS);};
 }
