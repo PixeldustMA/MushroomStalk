@@ -88,6 +88,7 @@ export default class Draw_Menu extends Stalk{
         this.ACTIVATE_UPDATE();
         this.ACTIVATE_UPDATE_CATEGORY();
         this.ACTIVATE_SEARCH_CATEGORY();
+        this.ACTIVATE_SEARCH_ELEMENT()
 
         // ================= //
         // << ATTACHMENTS >> //
@@ -99,6 +100,7 @@ export default class Draw_Menu extends Stalk{
             this.BUTTON_CATEGORY,
             this.BUTTON_UPDATE_CATEGORY,
             this.BUTTON_SEARCH_CATEGORY,
+            this.BUTTON_SEARCH_ELEMENT,
             this.BUTTON_BACK
         ]);
         return WRAPPER_Page;
@@ -131,6 +133,11 @@ export default class Draw_Menu extends Stalk{
     ACTIVATE_SEARCH_CATEGORY() {
         this.BUTTON_SEARCH_CATEGORY.addEventListener('click', (event) => {
             this.LOAD('CATEGORY_SEARCH', 'ELEMENTS');
+        });
+    };
+    ACTIVATE_SEARCH_ELEMENT() {
+        this.BUTTON_SEARCH_ELEMENT.addEventListener('click', (event) => {
+            this.LOAD('SEARCH', 'ELEMENTS');
         });
     };
     ACTIVATE_BACK() {
@@ -184,6 +191,10 @@ export default class Draw_Menu extends Stalk{
             CREATE_CONFIG_ELEMENT_TAG: 'button',
             CREATE_CONFIG_PERSONALITY_ID: 'BUTTON_Menu-SEARCH'
         }).INIT();
+        this.BUTTON_SEARCH_ELEMENT = await new Create({
+            CREATE_CONFIG_ELEMENT_TAG: 'button',
+            CREATE_CONFIG_PERSONALITY_ID: 'BUTTON_Menu-SEARCH'
+        }).INIT();
         this.BUTTON_BACK = await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'button',
             CREATE_CONFIG_PERSONALITY_ID: 'BUTTON_Menu-Back'
@@ -194,6 +205,7 @@ export default class Draw_Menu extends Stalk{
         this.BUTTON_CATEGORY.innerHTML = 'ADD CATEGORY';
         this.BUTTON_UPDATE_CATEGORY.innerHTML = 'UPDATE CATEGORY';
         this.BUTTON_SEARCH_CATEGORY.innerHTML = 'SEARCH CATEGORY';
+        this.BUTTON_SEARCH_ELEMENT.innerHTML = 'SEARCH ELEMENT';
         this.BUTTON_BACK.innerHTML = '<<';
     }
 };

@@ -108,13 +108,14 @@ export default class DRAW_Category_New extends Stalk{
             this.PROPERTY_DESCRIPTION_TEXT = this.BLOCK_DESCRIPTION.GET_DESCRIPTION();
             this.PROPERTY_DESCRIPTION_CODE = this.BLOCK_DESCRIPTION.GET_CODE();
 
-            console.log(this.PROPERTY_DESCRIPTION_TEXT)
             let BLOCK_MANAGER = new EL_Manager({
                 ELEMENT_CONFIG_PROPERTY_TAXONOMY_CATEGORY: this.PROPERTY_NAME,
                 ELEMENT_CONFIG_PROPERTY_TAXONOMY_TYPE: this.PROPERTY_TYPE,
                 ELEMENT_CONFIG_PROPERTY_DESCRIPTION_TEXT: this.PROPERTY_DESCRIPTION_TEXT,
                 ELEMENT_CONFIG_PROPERTY_DESCRIPTION_CODE: this.PROPERTY_DESCRIPTION_CODE
-            }).INSERT_CATEGORY().then((RESULT) => {return RESULT});
+            }).INSERT_CATEGORY().then((RESULT) => {
+                window.location.reload();
+                return RESULT});
         });
     };
 

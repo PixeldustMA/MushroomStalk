@@ -249,8 +249,7 @@ export default class DRAW_View_Category extends Stalk{
                     LABEL_RESULT.innerHTML = ELEMENT;
                     WRAPPER.append(LABEL_RESULT)
                     return LABEL_RESULT
-                })
-                console.log(WRAPPER)
+                });
                 this.WRAPPER_LIST.append(WRAPPER);
             }
             

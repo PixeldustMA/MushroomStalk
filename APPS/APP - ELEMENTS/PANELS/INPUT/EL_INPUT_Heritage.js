@@ -16,7 +16,7 @@ export default class EL_INPUT_Heritage {
         // ============== //
 
         this.WRAPPER_HERITAGE = 'UNSET';
-
+ 
         // ============= //
         // ## HEADERS ## //
         // ============= //

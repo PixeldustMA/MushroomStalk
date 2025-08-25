@@ -61,7 +61,6 @@ export default class DRAW_Update_Category extends Stalk{
         this.SECTION_Title.append(this.PANEL_TITLE());
         this.SECTION_Choose.append(this.PANEL_CHOOSE());
         this.SECTION_Form.append(this.PANEL_FORM());
-        // this.SECTION_Details.append(this.PANEL_DRAW_BASIC_DATA());
     };
 
     // ============ //
@@ -191,7 +190,6 @@ export default class DRAW_Update_Category extends Stalk{
         this.BLOCK_SEARCH.SELECT_ELEMENT_CATEGORY.addEventListener('change', (event) => {
 
             this.PROPERTY_ACTIVE_CATEGORY = this.BLOCK_SEARCH.GET_CATEGORY();
-            console.log(`ACTIVE CATEGORY IS SET AS:: ${this.PROPERTY_ACTIVE_CATEGORY}`);
 
             // ========== //
             // << DATA >> //
@@ -250,7 +248,7 @@ export default class DRAW_Update_Category extends Stalk{
             });
 
         MANAGER.UPDATE_CATEGORY().then((RESULT) => {
-            // window.location.reload()
+            window.location.reload()
             return RESULT});
         }); 
     };

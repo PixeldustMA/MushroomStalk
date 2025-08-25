@@ -63,6 +63,7 @@ export default class Draw_Element extends Stalk{
         this.BLOCK_HISTORY = new EL_INPUT_History();
         this.BLOCK_HERITAGE = new EL_INPUT_Heritage();
         this.BLOCK_PHYSICAL = new EL_INPUT_Physical();
+
     };
 
     // =========== //
@@ -267,17 +268,22 @@ export default class Draw_Element extends Stalk{
             const TAG_COLOUR = this.BLOCK_PHYSICAL.GET_COLOUR();
             const TAG_USE = this.BLOCK_PHYSICAL.GET_USE();
 
-            // ? ADD SAVE BUTTON TO PANELS
-            // ? FINISH CONNECTING TO MANAGER
-            // ? SECTION AT A TIME, FEED DUMMY DATA FOR THE NON USED ONES
-
             const MANAGER = new EL_Manager({
                 ELEMENT_CONFIG_PROPERTY_TAXONOMY_CATEGORY: TAG_CATEGORY,
                 ELEMENT_CONFIG_PROPERTY_TAXONOMY_TYPE: TAG_TYPE,
-                ELEMENT_CONFIG_PROPERTY_TAXONOMY_ELEMENT: TAG_NAME 
+                ELEMENT_CONFIG_PROPERTY_TAXONOMY_ELEMENT: TAG_NAME,
+                ELEMENT_CONFIG_PROPERTY_DESCRIPTION_CODE: TAG_DESCRIPTION_CODE,
+                ELEMENT_CONFIG_PROPERTY_DESCRIPTION_TEXT: TAG_DESCRIPTION_TEXT,
+                ELEMENT_CONFIG_PROPERTY_HISTORY_AGE: TAG_AGE,
+                ELEMENT_CONFIG_PROPERTY_HISTORY_SPACE: TAG_SPACE,
+                ELEMENT_CONFIG_PROPERTY_HISTORY_SECTOR: TAG_SECTOR,
+                ELEMENT_CONFIG_PROPERTY_HISTORY_SYSTEM: TAG_SYSTEM,
+                ELEMENT_CONFIG_PROPERTY_HISTORY_PLANET: TAG_PLANET,
+                ELEMENT_CONFIG_PROPERTY_HERITAGE_SURNAME: TAG_SURNAME,
+                ELEMENT_CONFIG_PROPERTY_PHYSICAL_COLOUR: TAG_COLOUR
             });
             MANAGER.INSERT_ELEMENT().then((RESULT) => {
-                // window.location.reload();
+                window.location.reload();
                 return RESULT;
             });
         });
