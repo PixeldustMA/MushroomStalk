@@ -14,7 +14,8 @@ export default  class EL_Markdown extends MANAGER_Markdown{
         ELEMENT_CONFIG_DESCRIPTION_TEXT = 0,
         ELEMENT_CONFIG_PHYSICAL_COLOUR = 0,
         ELEMENT_CONFIG_HERITAGE_SURNAME = 0,
-        ELEMENT_CONFIG_PATH_DATABASE = 0
+        ELEMENT_CONFIG_PATH_DATABASE = 0,
+        ELEMENT_CONFIG_ACTIVE = 0
     }){
 
         super();
@@ -24,7 +25,8 @@ export default  class EL_Markdown extends MANAGER_Markdown{
         // ================ //
 
         this.PATH_MARKDOWN = ELEMENT_CONFIG_PATH_DATABASE;
-        // 'C:\\Stitchy\\THE ORB\\Goblin Swamp/'
+        this.ACTIVE_VALUE = ELEMENT_CONFIG_ACTIVE;
+
         // ============== //
         // << TAXONOMY >> //
         // ============== //
@@ -264,14 +266,14 @@ ${this.SET_HEADER_LEVEL_TWO('USES')}`
     // ## UPDATES ## //
     // ============= //
 
-    async UPDATE_MARKDOWN_PROPERTY_CATEGORY() {
+    async UPDATE_MARKDOWN_PROPERTY_CATEGORY(PARAMETER_OLD) {
 
         // ================ //
         // << FETCH DATA >> //
         // ================ //
 
-        this.ACTIVE_PATH = `${this.PATH_MARKDOWN}/WORLD/ELEMENTS/${this.PROPERTY_TAXONOMY_TYPE}/${this.PROPERTY_TAXONOMY_CATEGORY_OLD}/${this.PROPERTY_TAXONOMY_NAME}.md`;
-        this.RENDERER_PATH = this.ACTIVE_PATH
+        this.ACTIVE_PATH = `${this.PATH_MARKDOWN}/WORLD/ELEMENTS/${this.PROPERTY_TAXONOMY_TYPE}/${PARAMETER_OLD}/${this.PROPERTY_TAXONOMY_NAME}.md`;
+        this.RENDERER_PATH = this.ACTIVE_PATH;
         let MARKDOWN_ELEMENT = await this.READ();
 
         // ============ //
@@ -285,10 +287,10 @@ ${this.SET_HEADER_LEVEL_TWO('USES')}`
         // << RECOMBINE >> //
         // =============== //
 
-        this.ACTIVE_DATA = `${CATEGORY_SPLIT.PRE_CATEGORY} 
+        this.ACTIVE_DATA = `${CATEGORY_SPLIT.PRE_CATEGORY}
 CATEGORY:: ${this.ACTIVE_VALUE}
 TYPE:: ${TYPE_SPLIT.POST_TYPE}`;
-        this.ACTIVE_PATH = `${this.PATH_MARKDOWN}/WORLD/ELEMENTS/${this.PROPERTY_TAXONOMY_TYPE}/${this.PROPERTY_TAXONOMY_CATEGORY}/${this.PROPERTY_TAXONOMY_NAME}.md`
+        this.ACTIVE_PATH = `${this.PATH_MARKDOWN}/WORLD/ELEMENTS/${this.PROPERTY_TAXONOMY_TYPE}/${PARAMETER_OLD}/${this.PROPERTY_TAXONOMY_NAME}.md`
         await this.#SAVE_UPDATE();
     };
     async UPDATE_MARKDOWN_PROPERTY_TYPE() {
@@ -298,7 +300,6 @@ TYPE:: ${TYPE_SPLIT.POST_TYPE}`;
         // ================ //
 
         this.ACTIVE_PATH = `${this.PATH_MARKDOWN}/WORLD/ELEMENTS/${this.PROPERTY_TAXONOMY_TYPE}/${this.PROPERTY_TAXONOMY_CATEGORY}/${this.PROPERTY_TAXONOMY_NAME}.md`;
-        console.log(this.ACTIVE_PATH)
         this.RENDERER_PATH = this.ACTIVE_PATH
         let MARKDOWN_ELEMENT = await this.READ();
 
@@ -384,6 +385,37 @@ ${USES_SPLIT.POST_USES}`;
         console.log('SAVING MARKDOWN')
         await this.#SAVE_UPDATE();
     };
+    async UPDATE_MARKDOWN_PROPERTY_SISTERS() {
+
+        // ================ //
+        // << FETCH DATA >> //
+        // ================ //
+
+        this.ACTIVE_PATH = `${this.PATH_MARKDOWN}/WORLD/ELEMENTS/${this.PROPERTY_TAXONOMY_TYPE}/${this.PROPERTY_TAXONOMY_CATEGORY}/${this.PROPERTY_TAXONOMY_NAME}.md`;
+        this.RENDERER_PATH = this.ACTIVE_PATH
+        let MARKDOWN_ELEMENT = await this.READ();
+
+        // ============ //
+        // << SPLITS >> //
+        // ============ //
+
+        let CONNEXIONS_SPLIT = await this.SEARCH_MARKDOWN_HEADER_CONNEX(MARKDOWN_ELEMENT);
+        let HALEX_SPLIT = await this.SEARCH_MARKDOWN_HEADER_HALEX(CONNEXIONS_SPLIT.POST_CONNEX);
+
+        // =============== //
+        // << RECOMBINE >> //
+        // =============== //
+
+        this.ACTIVE_DATA = `${CONNEXIONS_SPLIT.PRE_CONNEX} 
+# CONNECTIONS
+${HALEX_SPLIT.PRE_HALEX}
+${this.ACTIVE_VALUE}
+# HALEX
+${HALEX_SPLIT.POST_HALEX}`;
+
+        this.ACTIVE_PATH = `${this.PATH_MARKDOWN}/WORLD/ELEMENTS/${this.PROPERTY_TAXONOMY_TYPE}/${this.PROPERTY_TAXONOMY_CATEGORY}/${this.PROPERTY_TAXONOMY_NAME}.md`
+        await this.#SAVE_UPDATE();
+    };
 
     // ============ //
     // ## SEARCH ## //
@@ -457,6 +489,20 @@ ${USES_SPLIT.POST_USES}`;
         return {
             PRE_SURNAME: MD_BROKEN[0],
             POST_SURNAME: MD_BROKEN[1]
+        }
+    };
+    async SEARCH_MARKDOWN_HEADER_CONNEX(PARAMETER_MARKDOWN){
+        let MD_BROKEN = PARAMETER_MARKDOWN.split('# CONNECTIONS');
+        return {
+            PRE_CONNEX: MD_BROKEN[0],
+            POST_CONNEX: MD_BROKEN[1]
+        }
+    };
+    async SEARCH_MARKDOWN_HEADER_HALEX(PARAMETER_MARKDOWN){
+        let MD_BROKEN = PARAMETER_MARKDOWN.split('# HALEX');
+        return {
+            PRE_HALEX: MD_BROKEN[0],
+            POST_HALEX: MD_BROKEN[1]
         }
     };
 

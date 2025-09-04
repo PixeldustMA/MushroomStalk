@@ -283,7 +283,7 @@ export default class Draw_Element extends Stalk{
                 ELEMENT_CONFIG_PROPERTY_PHYSICAL_COLOUR: TAG_COLOUR
             });
             MANAGER.INSERT_ELEMENT().then((RESULT) => {
-                window.location.reload();
+                // window.location.reload();
                 return RESULT;
             });
         });

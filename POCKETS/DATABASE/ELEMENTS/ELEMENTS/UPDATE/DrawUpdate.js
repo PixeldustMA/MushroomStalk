@@ -263,7 +263,7 @@ export default class Draw_View extends Stalk{
 
             this.ACTIVE_TAXONOMY_ELEMENT = this.BLOCK_FORM.GET_ELEMENT();
             this.ACTIVE_TAXONOMY_CATEGORY = this.BLOCK_FORM.GET_CATEGORY();
-            this.ACTIVE_TAXONOMY_TYPE = this.SESSION.ELEMENTS.DATA.CATEGORY[this.ACTIVE_TAXONOMY_CATEGORY].TAXONOMY.TYPE;
+            this.ACTIVE_TAXONOMY_TYPE = this.BLOCK_FORM.GET_TYPE();
 
             // ================= //
             // << DESCRIPTION >> //
