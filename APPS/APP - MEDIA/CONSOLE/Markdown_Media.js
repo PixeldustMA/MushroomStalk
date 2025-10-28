@@ -1,0 +1,174 @@
+import MANAGER_Markdown from "../../APP - DATABASE/MANAGERS/Markdown_Manager.js";
+
+export default class Markdown_Media extends MANAGER_Markdown {
+
+    constructor({
+        MARKDOWN_CONFIG_PROPERTY_NAME = 0,
+        MARKDOWN_CONFIG_PROPERTY_AUTHOR = 0,
+        MARKDOWN_CONFIG_PROPERTY_GENRE = 0,
+        MARKDOWN_CONFIG_PROPERTY_SUBGENRE = 0,
+        MARKDOWN_CONFIG_PROPERTY_LASTREAD_DAY = 0,
+        MARKDOWN_CONFIG_PROPERTY_LASTREAD_MONTH = 0,
+        MARKDOWN_CONFIG_PROPERTY_LASTREAD_YEAR = 0,
+        MARKDOWN_CONFIG_PROPERTY_PAGECOUNT = 0,
+        MARKDOWN_CONFIG_PROPERTY_PAGE = 0,
+        MARKDOWN_CONFIG_PROPERTY_CHAPTER = 0,
+        MARKDOWN_CONFIG_PROPERTY_SERIESNAME = 0,
+        MARKDOWN_CONFIG_PROPERTY_POSITION = 0,
+        MARKDOWN_CONFIG_PROPERTY_STARS = 0,
+        MARKDOWN_CONFIG_PATH = 0,
+        MARKDOWN_CONFIG_LANGUAGE = 0,
+        MARKDOWN_CONFIG_LOCATION = 0,
+        MARKDOWN_CONFIG_TBR = 0
+    }){
+
+        super();
+
+        this.PROPERTY_NAME = MARKDOWN_CONFIG_PROPERTY_NAME;
+        this.PROPERTY_AUTHOR = MARKDOWN_CONFIG_PROPERTY_AUTHOR;
+        this.PROPERTY_GENRE = MARKDOWN_CONFIG_PROPERTY_GENRE;
+        this.PROPERTY_SUBGENRE = MARKDOWN_CONFIG_PROPERTY_SUBGENRE;
+        this.PROPERTY_DAY = MARKDOWN_CONFIG_PROPERTY_LASTREAD_DAY;
+        this.PROPERTY_MONTH = MARKDOWN_CONFIG_PROPERTY_LASTREAD_MONTH;
+        this.PROPERTY_YEAR = MARKDOWN_CONFIG_PROPERTY_LASTREAD_YEAR;
+        this.PROPERTY_PAGECOUNT = MARKDOWN_CONFIG_PROPERTY_PAGECOUNT;
+        this.PROPERTY_PAGECURRENT = MARKDOWN_CONFIG_PROPERTY_PAGE;
+        this.PROPERTY_CHAPTERCURRENT = MARKDOWN_CONFIG_PROPERTY_CHAPTER;
+        this.PROPERTY_SERIES_NAME = MARKDOWN_CONFIG_PROPERTY_SERIESNAME;
+        this.PROPERTY_SERIES_POSITION = MARKDOWN_CONFIG_PROPERTY_POSITION;
+        this.PROPERTY_STARS = MARKDOWN_CONFIG_PROPERTY_STARS;
+        this.PATH_OBSIDIAN = MARKDOWN_CONFIG_PATH;
+        this.PROPERTY_LANGUAGE = MARKDOWN_CONFIG_LANGUAGE;
+        this.PROPERTY_STORAGE_LOCATION = MARKDOWN_CONFIG_LOCATION;
+        this.PROPERTY_TBR = MARKDOWN_CONFIG_TBR;
+    };
+
+    // PREPARE_MONTH() {
+    //     if(this.PROPERTY_MONTH === 'JANUARY') {this.PROPERTY_MONTH = '1'};
+    //     if(this.PROPERTY_MONTH === 'FEBRUARY') {this.PROPERTY_MONTH = '2'};
+    //     if(this.PROPERTY_MONTH === 'MARCH') {this.PROPERTY_MONTH = '3'};
+    //     if(this.PROPERTY_MONTH === 'APRIL') {this.PROPERTY_MONTH = '4'};
+    //     if(this.PROPERTY_MONTH === 'MAY') {this.PROPERTY_MONTH = '5'};
+    //     if(this.PROPERTY_MONTH === 'JUNE') {this.PROPERTY_MONTH = '6'};
+
+    //     if(this.PROPERTY_MONTH === 'JULY') {this.PROPERTY_MONTH = '7'};
+    //     if(this.PROPERTY_MONTH === 'AUGUST') {this.PROPERTY_MONTH = '8'};
+    //     if(this.PROPERTY_MONTH === 'SEPTEMBER') {this.PROPERTY_MONTH = '9'};
+    //     if(this.PROPERTY_MONTH === 'OCTOBER') {this.PROPERTY_MONTH = '10'};
+    //     if(this.PROPERTY_MONTH === 'NOVEMBER') {this.PROPERTY_MONTH = '11'};
+    //     if(this.PROPERTY_MONTH === 'DECEMBER') {this.PROPERTY_MONTH = '12'};
+    // }
+//     CREATE_BOOK_FILE() {
+//         this.PREPARE_MONTH();
+//         return `---
+// NAME: ${this.PROPERTY_NAME}
+// AUTHOR: ${this.PROPERTY_AUTHOR}
+// MAIN_GENRE: ${this.PROPERTY_GENRE}
+// SUBGENRE: ${this.PROPERTY_SUBGENRE}
+// LAST READ: ${this.PROPERTY_YEAR}/${this.PROPERTY_MONTH}/${this.PROPERTY_DAY}
+// PAGE_COUNT: ${this.PROPERTY_PAGECOUNT}
+// PAGE_CURRENT: ${this.PROPERTY_PAGECURRENT}
+// CHAPTER: ${this.PROPERTY_CHAPTERCURRENT}
+// SERIES: ${this.PROPERTY_SERIES_NAME}
+// POSITION: ${this.PROPERTY_SERIES_POSITION}
+// STARS: ${this.PROPERTY_STARS}
+// LOCATION: ${this.PROPERTY_STORAGE_LOCATION}
+// LANGUAGE: ${this.PROPERTY_LANGUAGE}
+// TBR: ${this.PROPERTY_TBR}
+// ---`
+//     };
+    // async SAVE_BOOK(){
+    //     this.RENDERER_PATH = `${this.PATH_OBSIDIAN}/${this.PROPERTY_NAME[0]}/${this.PROPERTY_NAME}.md`;
+    //     this.RENDERER_DATA = this.CREATE_BOOK_FILE();
+    //     await this.MARKDOWN();
+    // };
+
+    async SEARCH_HEADER_NAME() {
+        let ARRAY = this.DATA_MARKDOWN.split('NAME');
+        return {
+            PRE_NAME: ARRAY[0],
+            POST_NAME: ARRAY[1]
+        };
+    };
+    async SEARCH_HEADER_AUTHOR(PARAMETER_MARKDOWN) {
+        let ARRAY = PARAMETER_MARKDOWN.split('AUTHOR:');
+        return {
+            PRE_AUTHOR: ARRAY[0],
+            POST_AUTHOR: ARRAY[1]
+        };
+    };
+    async SEARCH_HEADER_GENRE(PARAMETER_MARKDOWN) {
+        let ARRAY = PARAMETER_MARKDOWN.split('MAIN_GENRE');
+        return {
+            PRE_GENRE: ARRAY[0],
+            POST_GENRE: ARRAY[1]
+        };
+    };
+    async SEARCH_HEADER_PAGE_COUNT(PARAMETER_MARKDOWN) {
+        let ARRAY = PARAMETER_MARKDOWN.split('PAGE_COUNT');
+        return {
+            PRE_PAGECOUNT: ARRAY[0],
+            POST_PAGECOUNT: ARRAY[1]
+        };
+    };
+    async SEARCH_HEADER_PAGE(PARAMETER_MARKDOWN) {
+        let ARRAY = PARAMETER_MARKDOWN.split('PAGE_CURRENT');
+        return {
+            PRE_PAGECURRENT: ARRAY[0],
+            POST_PAGECURRENT: ARRAY[1]
+        };
+    };
+    async SEARCH_HEADER_CHAPTER(PARAMETER_MARKDOWN) {
+        let ARRAY = PARAMETER_MARKDOWN.split('CHAPTER');
+        return {
+            PRE_CHAPTER: ARRAY[0],
+            POST_CHAPTER: ARRAY[1]
+        };
+    };
+    async SEARCH_HEADER_SERIES(PARAMETER_MARKDOWN) {
+        let ARRAY = PARAMETER_MARKDOWN.split('SERIES');
+        return {
+            PRE_SERIES: ARRAY[0],
+            POST_SERIES: ARRAY[1]
+        };
+    };
+
+    async UPDATE_AUTHOR() {
+        this.RENDERER_PATH =  `${this.PATH_OBSIDIAN}/${this.PROPERTY_NAME[0]}/${this.PROPERTY_NAME}.md`;
+        this.DATA_MARKDOWN = await this.READ();
+        let OBJ_AUTHOR = await this.SEARCH_HEADER_AUTHOR(this.DATA_MARKDOWN);
+        let OBJ_GENRE = await this.SEARCH_HEADER_GENRE(OBJ_AUTHOR.POST_AUTHOR);
+        this.RENDERER_DATA = `${OBJ_AUTHOR.PRE_AUTHOR}AUTHOR: ${this.PROPERTY_AUTHOR}
+MAIN_GENRE ${OBJ_GENRE.POST_GENRE}`;
+        this.RENDERER_PATH = `${this.PATH_OBSIDIAN}/${this.PROPERTY_NAME[0]}/${this.PROPERTY_NAME}.md`;
+        await this.MARKDOWN();
+    };
+    async UPDATE_PAGE_COUNT() {
+        this.RENDERER_PATH =  `${this.PATH_OBSIDIAN}/${this.PROPERTY_NAME[0]}/${this.PROPERTY_NAME}.md`;
+        this.DATA_MARKDOWN = await this.READ();
+        let OBJ_COUNT = await this.SEARCH_HEADER_PAGE_COUNT(this.DATA_MARKDOWN);
+        let OBJ_PAGE = await this.SEARCH_HEADER_PAGE(OBJ_COUNT.POST_PAGECOUNT);
+        this.RENDERER_DATA = `${OBJ_COUNT.PRE_PAGECOUNT}PAGE_COUNT: ${this.PROPERTY_PAGECURRENT}
+PAGE_CURRENT ${OBJ_PAGE.POST_PAGECURRENT.trim()}`;
+        await this.MARKDOWN();
+    };
+    async UPDATE_PAGE_CURRENT() {
+        this.RENDERER_PATH =  `${this.PATH_OBSIDIAN}/${this.PROPERTY_NAME[0]}/${this.PROPERTY_NAME}.md`;
+        this.DATA_MARKDOWN = await this.READ();
+        let OBJ_CURRENT = await this.SEARCH_HEADER_PAGE(this.DATA_MARKDOWN);
+        let OBJ_CHAPTER = await this.SEARCH_HEADER_CHAPTER(OBJ_CURRENT.POST_PAGECURRENT);
+        this.RENDERER_DATA = `${OBJ_CURRENT.PRE_PAGECURRENT}PAGE_CURRENT: ${this.PROPERTY_PAGECURRENT}
+CHAPTER ${OBJ_CHAPTER.POST_CHAPTER.trim()}`;
+        await this.MARKDOWN();
+    };
+    async UPDATE_CHAPTER(){
+        this.RENDERER_PATH =  `${this.PATH_OBSIDIAN}/${this.PROPERTY_NAME[0]}/${this.PROPERTY_NAME}.md`;
+        this.DATA_MARKDOWN = await this.READ();
+        let OBJ_CHAPTER = await this.SEARCH_HEADER_CHAPTER(this.DATA_MARKDOWN);
+        let OBJ_SERIES = await this.SEARCH_HEADER_SERIES(OBJ_CHAPTER.POST_CHAPTER);
+        this.RENDERER_DATA = `${OBJ_CHAPTER.PRE_CHAPTER}CHAPTER: ${this.PROPERTY_CHAPTERCURRENT}
+SERIES ${OBJ_SERIES.POST_SERIES.trim()}`;
+        await this.MARKDOWN();
+    };
+
+}

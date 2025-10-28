@@ -1,0 +1,19 @@
+@import "../../../../STYLE/BASE/RootStyles.css";
+@import "../../../../STYLE/BASE/ImageLoader.css";  
+h1 {
+    font-size: 24px;
+    display: block;
+}
+h2 {
+    font-size: 20px;
+    display: block;
+}
+label {
+    font-size: 14px;
+    font-style: italic;
+    display: block;
+}
+select {
+    background-color: rgb(211, 201, 220);
+    display: block;
+}
