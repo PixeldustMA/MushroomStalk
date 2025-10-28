@@ -1,6 +1,6 @@
-import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
-import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
-import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
+import Create from "../../../../APPS/APP - JELLYFISH/CREATE/Create.js";
+import Connector_Jellyfish from "../../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
+import Stalk from "../../../../CONSOLE/LUNGS/Stalk.js";
 
 export default class Page_Wizard extends Stalk{
 

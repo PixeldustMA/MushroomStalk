@@ -1,7 +1,7 @@
-import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create";
-import Lilypad from "../../../APPS/APP - LILYPAD/Lilypad";
-import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish";
-import Stalk from "../../../CONSOLE/LUNGS/Stalk";
+import Create from "../../../../APPS/APP - JELLYFISH/CREATE/Create.js";
+import Lilypad from "../../../../APPS/APP - LILYPAD/Lilypad.js";
+import Connector_Jellyfish from "../../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
+import Stalk from "../../../../CONSOLE/LUNGS/Stalk.js";
 
 export default class DRAW_Update extends Stalk {
 

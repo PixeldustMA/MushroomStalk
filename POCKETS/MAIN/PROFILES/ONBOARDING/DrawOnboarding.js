@@ -1,8 +1,8 @@
-import Create from "../../../APPS/APP - JELLYFISH/CREATE/Create.js";
-import Lilypad from "../../../APPS/APP - LILYPAD/Lilypad.js";
-import Connector_Jellyfish from "../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
-import Connector_Mycology from "../../../CONSOLE/ARTERIES/Connector_Mycology.js";
-import Stalk from "../../../CONSOLE/LUNGS/Stalk.js";
+import Create from "../../../../APPS/APP - JELLYFISH/CREATE/Create.js";
+import Lilypad from "../../../../APPS/APP - LILYPAD/Lilypad.js";
+import Connector_Jellyfish from "../../../../CONSOLE/ARTERIES/Connector_Jellyfish.js";
+import Connector_Mycology from "../../../../CONSOLE/ARTERIES/Connector_Mycology.js";
+import Stalk from "../../../../CONSOLE/LUNGS/Stalk.js";
 
 // ================================================ //
 // ================================================ //
@@ -207,24 +207,36 @@ export default class Page_Onboarding extends Stalk{
 
             let ACTIVE_OBSIDIAN = this.LABEL_DISPLAY_OBSIDIAN.innerHTML;
             const INSTANCE_MYCOLOGY = new Connector_Mycology(this.SESSION, ACTIVE_USERNAME);
-
-            INSTANCE_MYCOLOGY.MYCOLOGY_WAR().then((MYCO_RESULT) => {
-
-                const INSTANCE_LILYPAD = new Lilypad({
-                    LILYPAD_CONFIG_USERNAME: ACTIVE_USERNAME,
-                    LILYPAD_CONFIG_PASSWORD: ACTIVE_PASSWORD,
-                    LILYPAD_CONFIG_PATH_OBSIDIAN: ACTIVE_OBSIDIAN,
-                    LILYPAD_CONFIG_LIST_USERS: this.SESSION.USERS.LIST.USERLIST,
-                    LILYPAD_CONFIG_DATA_COUNT: this.SESSION.SETTINGS.MUSHROOM.USER_COUNT,
-                    LILYPAD_CONFIG_DATA_LILYPAD: this.SESSION.USERS.DATA.LILYPAD
-                }).RUN_LILYPAD('NEW').then((LILY_RES) => {return LILY_RES});
-                return MYCO_RESULT;
-            })
-
-
-                // << CHANGE THE PAGE >> //
-                this.LOAD('TITLE', 'WELCOME')
-
+            const INSTANCE_LILYPAD = new Lilypad({
+                LILYPAD_CONFIG_USERNAME: ACTIVE_USERNAME,
+                LILYPAD_CONFIG_PASSWORD: ACTIVE_PASSWORD,
+                LILYPAD_CONFIG_PATH_OBSIDIAN: ACTIVE_OBSIDIAN,
+                LILYPAD_CONFIG_LIST_USERS: this.SESSION.USERS.USERS.LIST.USERS,
+                LILYPAD_CONFIG_DATA_COUNT: this.SESSION.SETTINGS.MUSHROOM.USER_COUNT,
+                LILYPAD_CONFIG_DATA_LILYPAD: this.SESSION.USERS.USERS.DATA.USERS
+            }).RUN_LILYPAD('NEW').then((RESULT) => {
+                this.REQUEST_SESSION_PATHS().then((PATHS) => {
+                    let INSTANCE_MYCOLOGY = new Connector_Mycology({
+                        MYCOLOGY_CONFIG_SESSION: PATHS
+                    });
+                    INSTANCE_MYCOLOGY.MYCOLOGY_ROOTS().then((ROOT) => {
+                        INSTANCE_MYCOLOGY.MYCOLOGY_MEDIA().then((MDA) => {
+                            INSTANCE_MYCOLOGY.MYCOLOGY_POKEMON().then((POKEMON) => {
+                                this.LOAD('TITLE', 'WELCOME')
+                                return POKEMON;
+                            })
+                            return MDA
+                        });
+                        return ROOT;
+                    });
+                    // await INSTANCE_MYCOLOGY.MYCOLOGY_WAR();
+                    // await INSTANCE_MYCOLOGY.MYCOLOGY_SETTINGS();
+                    // await INSTANCE_MYCOLOGY.MYCOLOGY_NOVA();
+                    
+                    
+                    
+                    return RESULT});
+                })
             });
     };
     ACTIVATE_OBSIDIAN() {
@@ -252,7 +264,7 @@ export default class Page_Onboarding extends Stalk{
 
         await this.REQUEST_SESSION_PATHS();
         await this.REQUEST_SESSION_USERS();
-        await this.REQUEST_SESSION_APP_SETTINGS();
+        await this.REQUEST_SESSION_SETTINGS();
         console.log(this.SESSION)
 
         await this.#HEADERS();
