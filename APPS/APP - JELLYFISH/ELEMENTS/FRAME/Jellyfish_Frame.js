@@ -1,4 +1,3 @@
-import Connector_Beetle from "../../../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import Branches from "../../../../CONSOLE/LUNGS/Branches.js";
 import Create from "../../CREATE/Create.js";
 
@@ -29,20 +28,6 @@ class JELLYFISH_Frame extends HTMLElement{
      */
     constructor() {
 		super ();
-
-        // =========== //
-        // ## DEBUG ## //
-        // =========== //
-
-        this.INSTANCE_BEETLE = new Connector_Beetle({
-            BEETLE_CONFIG_MODE: 'DEBUG',
-            BEETLE_CONFIG_DAISY_MODE: 'FUNCTION',
-            BEETLE_CONFIG_TYPE: 'STANDARD',
-            BEETLE_CONFIG_CATEGORY: 'CREATE',
-            BEETLE_CONFIG_LOCATION: 'JELLYFISH_Frame.js',
-            BEETLE_CONFIG_SCRIPT: 'FRAME',
-            BEETLE_CONFIG_TEXT: 'INITIALISING FUNCTIONALITY FOR JELLYFISH FRAME'
-        });
 
         // =============== //
         // ## INSTANCES ## //
@@ -86,10 +71,6 @@ class JELLYFISH_Frame extends HTMLElement{
 
         customElements.whenDefined('jellyfish-frame').then(() => {
 
-            this.INSTANCE_BEETLE.DAISY_TEXT = 'FRAME IS DEFINED';
-            this.INSTANCE_BEETLE.READ_MODE().then((RESULT) => {return RESULT});
-
-            this.INSTANCE_BEETLE.READ_MODE().then((RESULT) => {return RESULT});
             this.#FRAME_PRESSED_PATHS().then((RESULT) => {return RESULT});
             this.#FRAME_UNPRESSED_PATHS().then((RESULT) => {return RESULT});
             setTimeout(() => {             
@@ -118,9 +99,6 @@ class JELLYFISH_Frame extends HTMLElement{
      * 
      */
     async #FRAME_PRESSED_PATHS() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'FETCHING PRESSED BUTTON PATHS';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
         this.PATH_PRESSED = {
             FEET: await this.INSTANCE_BRANCH.READ_MODE({
@@ -171,8 +149,6 @@ class JELLYFISH_Frame extends HTMLElement{
      * 
      */
     async #FRAME_UNPRESSED_PATHS() {
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'FETCHING UNPRESSED BUTTON PATHS';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
         this.PATH_UNPRESSED = {
             FEET: await this.INSTANCE_BRANCH.READ_MODE({
@@ -229,9 +205,6 @@ class JELLYFISH_Frame extends HTMLElement{
      */
     async #IMAGE_FEET() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR FEET BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         return await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'img',
             CREATE_CONFIG_PERSONALITY_SOURCE: this.PATH_UNPRESSED.FEET,
@@ -247,9 +220,6 @@ class JELLYFISH_Frame extends HTMLElement{
      * 
      */
     async #IMAGE_MINIMISE() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR MINIMISE BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
         return await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'img',
@@ -267,9 +237,6 @@ class JELLYFISH_Frame extends HTMLElement{
      */
     async #IMAGE_QUIT() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR QUIT BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         return await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'img',
             CREATE_CONFIG_PERSONALITY_SOURCE: this.PATH_UNPRESSED.QUIT,
@@ -285,9 +252,6 @@ class JELLYFISH_Frame extends HTMLElement{
      * 
      */
     async #IMAGE_MENU() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR MENU BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
         return await new Create({
             CREATE_CONFIG_ELEMENT_TAG: 'img',
@@ -310,9 +274,6 @@ class JELLYFISH_Frame extends HTMLElement{
      */
     async #GENERATE_FEET() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR FEET BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         const IMAGE_Feet = await this.#IMAGE_FEET();
         let PRESSED = this.PATH_PRESSED;
         let UNPRESSED = this.PATH_UNPRESSED;
@@ -333,9 +294,6 @@ class JELLYFISH_Frame extends HTMLElement{
      * 
      */
     async #GENERATE_MINIMISE() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR MINIMISE BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
 
         const IMAGE_Minimise = await this.#IMAGE_MINIMISE();
         let PRESSED = this.PATH_PRESSED;
@@ -358,9 +316,6 @@ class JELLYFISH_Frame extends HTMLElement{
      */
     async #GENERATE_QUIT() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR QUIT BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         const IMAGE_Quit = await this.#IMAGE_QUIT();
         let PRESSED = this.PATH_PRESSED;
         let UNPRESSED = this.PATH_UNPRESSED;
@@ -382,14 +337,10 @@ class JELLYFISH_Frame extends HTMLElement{
      */
     async #GENERATE_MENU() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'CREATING IMAGE ELEMENT FOR MENU BUTTON';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         const IMAGE_Menu = await this.#IMAGE_MENU();
         let PRESSED = this.PATH_PRESSED;
         let UNPRESSED = this.PATH_UNPRESSED;
 
-        console.log(PRESSED)
         IMAGE_Menu.addEventListener('click', (event) => {this.MENU().then((RESULT) => {return RESULT})});
         IMAGE_Menu.onmouseenter = function() {IMAGE_Menu.src = PRESSED.MENU;};
         IMAGE_Menu.onmouseleave = function() {IMAGE_Menu.src = UNPRESSED.MENU;};
@@ -412,9 +363,6 @@ class JELLYFISH_Frame extends HTMLElement{
      */
     async #LOAD() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'ADDING LOAD BUTTON FUNCTIONALITY';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         return await this.INSTANCE_BRANCH.READ_MODE({
             PARAMETER_TAG_POCKET: 'WELCOME',
             PARAMTER_BRANCH_MODE: 'WINDOW',
@@ -430,9 +378,6 @@ class JELLYFISH_Frame extends HTMLElement{
      * 
      */
     async #SMALL() {
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'ADDING MINIMISE BUTTON FUNCTIONALITY';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         return await this.INSTANCE_BRANCH.SMALL();
     };
     /**
@@ -444,9 +389,6 @@ class JELLYFISH_Frame extends HTMLElement{
      * 
      */
     async #CLOSING() {
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'ADDING CLOSE BUTTON FUNCTIONALITY';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
         setTimeout(() => {
             this.INSTANCE_BRANCH.RENDERER_PATH = this.INSTANCE_BRANCH.SESSION.PATHS.CUPBOARD.FILES.SESSIONMEMORY;
             this.INSTANCE_BRANCH.RENDERER_DATA = {};

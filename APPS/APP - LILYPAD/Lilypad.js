@@ -45,7 +45,7 @@ export default class Lilypad extends Branches{
 
     async RUN_LILYPAD(PARAMETER_REQUEST) {
         await this.REQUEST_SESSION_PATHS();
-        await this.REQUEST_SESSION_APP_SETTINGS();
+        await this.REQUEST_SESSION_SETTINGS();
 
         switch (PARAMETER_REQUEST) {
             case 'NEW':
@@ -76,6 +76,18 @@ export default class Lilypad extends Branches{
     // ## UPDATE ## //
     // ============ //
 
+    async SWITCH_USER() {
+
+        await this.REQUEST_SESSION_USERS();
+        console.log(this.SESSION)
+        let ACTIVE_USER = this.SESSION.USERS.USERS.DATA.USERS[this.PROPERTY_PROFILE_USERNAME];
+
+        console.log(ACTIVE_USER);
+
+        this.RENDERER_DATA = ACTIVE_USER;
+        this.RENDERER_PATH = this.SESSION.PATHS.PROFILES.USERS.FILES.RESIDENT;
+        await this.SAVE();
+    };
     async #SET_RESIDENT() {
         this.RENDERER_DATA = {
             MESSAGEPATH: "BUNDLE",
@@ -89,7 +101,7 @@ export default class Lilypad extends Branches{
             PASSWORD: this.PROPERTY_PROFILE_PASSWORD,
             LOGGED: false
         };
-        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.USERS.RESIDENT;
+        this.RENDERER_PATH = this.SESSION.PATHS.PROFILES.USERS.FILES.RESIDENT;
         await this.SAVE();
     };
     async #UPDATE_FROG() {
@@ -98,7 +110,7 @@ export default class Lilypad extends Branches{
     async #UPDATE_USERNAME_LIST() {
         this.LIST_USERS.push(this.PROPERTY_PROFILE_USERNAME);
         this.RENDERER_DATA = this.LIST_USERS;
-        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.USERS.LIST;
+        this.RENDERER_PATH = this.SESSION.PATHS.PROFILES.USERS.LISTS.USER;
         await this.SAVE();
     };
     async #UPDATE_LILYPAD() {
@@ -108,15 +120,17 @@ export default class Lilypad extends Branches{
             PASSWORD: this.PROPERTY_PROFILE_PASSWORD
         };
         this.RENDERER_DATA = this.DATA_LILYPAD;
-        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.USERS.FROGS;
+        this.RENDERER_PATH = this.SESSION.PATHS.PROFILES.USERS.FILES.FROG;
         await this.SAVE();
     };
     async #UPDATE_COUNT() {
+        console.log('COUNT SETTINGS');
+        console.log(this.SESSION)
         this.DATA_SETTINGS = this.SESSION.SETTINGS.MUSHROOM;
         this.NUMBER_COUNT += 1;
         this.DATA_SETTINGS.USER_COUNT = this.NUMBER_COUNT;
         this.RENDERER_DATA = this.DATA_SETTINGS;
-        this.RENDERER_PATH = this.SESSION.PATHS.CUPBOARD.APP.SETTINGS;
+        this.RENDERER_PATH = this.SESSION.PATHS.SETTINGS.SETTINGS.FILES.MUSHROOM;
         await this.SAVE();
     };
 
@@ -130,8 +144,10 @@ export default class Lilypad extends Branches{
     // ================ //
 
     async #GENERATE_NEW_FROG_FILE() {
+
         this.RENDERER_DATA = this.GENERATE_FROG();
-        this.RENDERER_PATH = `${this.SESSION.PATHS.CUPBOARD.USERS.LILYPAD}/${this.PROPERTY_PROFILE_USERNAME}.json`;
+        this.RENDERER_PATH = `${this.SESSION.PATHS.PROFILES.USERS.FOLDERS.LILYPAD}/${this.PROPERTY_PROFILE_USERNAME}.json`;
+                console.log(this.RENDERER_PATH)
         await this.SAVE();
     };
 

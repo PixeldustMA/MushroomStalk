@@ -3,13 +3,12 @@
         "CRYSTALLARIUM": "/POCKETS/DOORWAYS/CRYSTALLARIUM/FrameworkCrystallarium.html",
         "NOVA": "/POCKETS/DOORWAYS/NOVA/FrameworkNova.html",
         "OBSERVATORY": "/POCKETS/DOORWAYS/OBSERVATORY/FrameworkObservatory.html",
-        "WAR": "/POCKETS/DOORWAYS/WAR/FrameworkWar.html",
+        "DATABASE": "/POCKETS/DOORWAYS/DATABASE/FrameworkDatabase.html",
         "SHOPPING": "/POCKETS/DOORWAYS/SHOPPING/FrameworkShopping.html",
         "LAVA_LAMPS": "/POCKETS/DOORWAYS/LAVA_LAMPS/FrameworkLava_Lamps.html",
         "TANGIBLES": "/POCKETS/DOORWAYS/TANGIBLES/FrameworkTangibles.html"
     },
     "WAR": {
-        "DATABASE": "/POCKETS/DATABASE/DATABASE/FrameworkDatabase.html",
         "SUNFLOWER": "/POCKETS/SUNFLOWER/FrameworkSunflower.html",
         "REPLACER": "/POCKETS/DATABASE/REPLACER/FrameworkReplacer.html"
     },
@@ -19,7 +18,8 @@
         "NEW": "/POCKETS/DATABASE/ARCHIVE/NEW/FrameworkNew.html"
     },
     "ELEMENTS": {
-        "MENU": "/POCKETS/DATABASE/ELEMENTS/MENU/FrameworkMenu.html", 
+        "MAIN_MENU": "/POCKETS/DATABASE/ELEMENTS/MENU/FrameworkMenu.html", 
+        "ELEMENT_MENU": "/POCKETS/DATABASE/ELEMENTS/ELEMENTS/MENU/FrameworkMenu.html", 
         "NEW": "/POCKETS/DATABASE/ELEMENTS/ELEMENTS/NEW/FrameworkNew.html",
         "UPDATE": "/POCKETS/DATABASE/ELEMENTS/ELEMENTS/UPDATE/FrameworkUpdate.html",
         "VIEW": "/POCKETS/DATABASE/ELEMENTS/ELEMENTS/VIEW/FrameworkView.html",
@@ -27,7 +27,8 @@
         "CATEGORY": "/POCKETS/DATABASE/ELEMENTS/CATEGORIES/NEW/FrameworkNewCategory.html",
         "CATEGORY_UPDATE": "/POCKETS/DATABASE/ELEMENTS/CATEGORIES/UPDATE/FrameworkUpdate.html",
         "CATEGORY_SEARCH": "/POCKETS/DATABASE/ELEMENTS/CATEGORIES/SEARCH/FrameworkSearch.html",
-        "CATEGORY_VIEW": "/POCKETS/DATABASE/ELEMENTS/CATEGORIES/VIEW/FrameworkView.html"
+        "CATEGORY_VIEW": "/POCKETS/DATABASE/ELEMENTS/CATEGORIES/VIEW/FrameworkView.html",
+        "CATEGORY_MENU": "/POCKETS/DATABASE/ELEMENTS/CATEGORIES/MENU/FrameworkMenu.html"
     },
     "EXPLORER": {
         "MENU": "/POCKETS/DATABASE/EXPLORER/MENU/FrameworkMenu.html", 
@@ -49,21 +50,15 @@
         "SAPPHIRE": "/POCKETS/CRYSTALLARIUM/SAPPHIRE/FrameworkSapphire.html",
         "LAPIS": "/POCKETS/CRYSTALLARIUM/LAPIS/FrameworkLapis.html"
     },
-    "WELCOME": {
-        "SPLASH": "/POCKETS/WELCOME/SPLASH/FrameworkSplash.html",
-        "WELCOME": "/POCKETS/WELCOME/WELCOME/FrameworkWelcome.html",
-        "MAP": "/POCKETS/WELCOME/MAP/FrameworkMap.html",
-        "TITLE": "/POCKETS/WELCOME/TITLE/FrameworkTitle.html"
-    },
-    "PROFILE": {
-        "ONBOARDING": "/POCKETS/PROFILES/ONBOARDING/FrameworkOnboarding.html",
-        "WIZARD": "/POCKETS/PROFILES/WIZARD/FrameworkWizard.html",
-        "UPDATE": "/POCKETS/PROFILES/UPDATE/FrameworkUpdate.html"
-    },
+
     "NOVA": {
         "PENPOT": "/POCKETS/NOVA/PEN POTS/FrameworkPenPots.html",
         "PLUSHIE": "/POCKETS/NOVA/PLUSHIES/FrameworkPlushies.html",
-        "CHANGELOG": "/POCKETS/CRYSTALLARIUM/OBSIDIAN/FrameworkObsidian.html"
+        "CHANGELOG": "/POCKETS/CRYSTALLARIUM/OBSIDIAN/FrameworkObsidian.html",
+        "HEADERS": "/POCKETS/NOVA/HEADERS/FrameworkHeader.html",
+        "SUBTITLE": "/POCKETS/NOVA/SUBTITLES/FrameworkSubtitle.html",
+        "CHART": "/POCKETS/NOVA/CHART/FrameworkChart.html",
+        "CHART_SETTINGS": "/POCKETS/NOVA/CHART_SETTINGS/FrameworkChartSettings.html"
     },
     "MEMBLIES": {
         "ONYX": "/POCKETS/MEMBLIES/ONYX/FrameworkOnyx.html"        
@@ -71,7 +66,18 @@
     "SHOPPING": {
         "ARCADE": "/POCKETS/MEDIA/ARCADE/FrameworkArcade.html",
         "BOOKSHOP": "/POCKETS/MEDIA/BOOKSHOP/FrameworkBookshop.html",
-        "THEATRE": "/POCKETS/MEDIA/CINEMA/FrameworkCinema.html"
+        "THEATRE": "/POCKETS/MEDIA/CINEMA/FrameworkCinema.html",
+        "AUTHOR": "/POCKETS/MEDIA/AUTHOR/FrameworkAuthor.html",
+        "GENRE": "/POCKETS/MEDIA/GENRE/MENU/FrameworkMenu.html",
+        "STATS": "/POCKETS/MEDIA/BOOKSTATS/FrameworkBookStats.html",
+        "SONG": "/POCKETS/MEDIA/SONG/MENU/FrameworkMenu.html",
+        "ARTISTS": "/POCKETS/MEDIA/ARTIST/MENU/FrameworkMenu.html",
+        "AUTHORS": "/POCKETS/MEDIA/AUTHOR/MENU/FrameworkMenu.html",
+        "STYLE": "/POCKETS/MEDIA/STYLE/MENU/FrameworkMenu.html",
+        "PLAYLIST": "/POCKETS/MEDIA/PLAYLIST/MENU/FrameworkMenu.html",
+        "ALBUM": "/POCKETS/MEDIA/ALBUM/MENU/FrameworkMenu.html",
+        "TV": "/POCKETS/MEDIA/TV/MENU/FrameworkMenu.html",
+        "SERIES": "/POCKETS/MEDIA/SERIES/MENU/FrameworkMenu.html"
     },
     "TANGIBLES": {
         "BUDGET": "/POCKETS/TANGIBLES/BUDGET/FrameworkBudget.html",
@@ -80,12 +86,80 @@
     "LAVA_LAMPS": {
         "DISNEY": "/POCKETS/LAVALAMPS/DISNEY/FrameworkDisney.html",
         "STORYBOOK": "/POCKETS/LAVALAMPS/STORYBOOK/FrameworkStorybook.html",
-        "NIGHTINGALE": "/POCKETS/LAVALAMPS/NIGHTINGALE/FrameworkNightingale.html"
+        "NIGHTINGALE": "/POCKETS/LAVALAMPS/NIGHTINGALE/FrameworkNightingale.html",
+        "POKEMON": "/POCKETS/LAVALAMPS/POKEMON/MENU/FrameworkMenu.html"
     },
     "NAMES": {
         "CATEGORY_NEW": "/POCKETS/DATABASE/NAMES/CATEGORY/NEW/FrameworkCategoryNew.html",
         "SUBCATEGORY_NEW": "/POCKETS/DATABASE/NAMES/SUBCATEGORY/NEW/FrameworkSubCategoryNew.html",
         "NAMES_NEW": "/POCKETS/DATABASE/NAMES/NAMES/NEW/FrameworkNameNew.html",
         "MENU": "/POCKETS/DATABASE/NAMES/MENU/FrameworkMenu.html"
+    },
+    "MEDIA": {
+        "MENU_BOOK": "/POCKETS/MEDIA/BOOKS/MENU/FrameworkMenu.html",
+        "BOOK_NEW": "/POCKETS/MEDIA/BOOKS/NEW/FrameworkNew.html",
+        "BOOK_UPDATE": "/POCKETS/MEDIA/BOOKS/UPDATE/FrameworkUpdate.html",
+        "BOOK_SEARCH": "/POCKETS/MEDIA/BOOKS/SEARCH/FrameworkSearch.html",
+        "BOOK_VIEW": "/POCKETS/MEDIA/BOOKS/VIEW/FrameworkView.html",
+        "BOOK_UPDATE_AUTHOR": "/POCKETS/MEDIA/BOOKS/UPDATE_AUTHOR/FrameworkUpdateAuthor.html",
+        "BOOK_UPDATE_STATS": "/POCKETS/MEDIA/BOOKS/UPDATE_STATS/FrameworkUpdateStats.html",
+        "BOOK_UPDATE_GENRE": "/POCKETS/MEDIA/BOOKS/UPDATE_GENRE/FrameworkUpdateGenre.html",
+        "BOOK_NEW_AUTHOR": "/POCKETS/MEDIA/BOOKS/NEW_AUTHOR/FrameworkAuthor.html",
+        "ARTIST_NEW": "/POCKETS/MEDIA/ARTIST/NEW/FrameworkNew.html",
+        "AUTHOR_NEW": "/POCKETS/MEDIA/AUTHOR/NEW/FrameworkNew.html",
+        "GENRE_NEW": "/POCKETS/MEDIA/GENRE/NEW/FrameworkGenre.html",
+        "STYLE_NEW": "/POCKETS/MEDIA/STYLE/NEW/FrameworkStyle.html"
+    },
+
+    "POKEMON": {
+        "BOXES": "/POCKETS/LAVALAMPS/POKEMON/BOX_NEW/FrameworkBoxes.html",
+        "BOX_MENU": "/POCKETS/LAVALAMPS/POKEMON/BOX_MENU/FrameworkMenu.html",
+        "CATCH": "/POCKETS/LAVALAMPS/POKEMON/CATCH/FrameworkCatch.html",
+        "TEAM": "/POCKETS/LAVALAMPS/POKEMON/TEAM/FrameworkTeam.html",
+        "MENU": "/POCKETS/LAVALAMPS/POKEMON/MENU/FrameworkMenu.html"
+    },
+
+    "SETTINGS": {
+        "MENU": "/POCKETS/MAIN/SETTINGS/MENU/FrameworkMenu.html"
+    },
+    "PROFILE": {
+        "ONBOARDING": "/POCKETS/MAIN/PROFILES/ONBOARDING/FrameworkOnboarding.html",
+        "WIZARD": "/POCKETS/MAIN/PROFILES/WIZARD/FrameworkWizard.html",
+        "UPDATE": "/POCKETS/MAIN/PROFILES/UPDATE/FrameworkUpdate.html",
+        "SWITCH": "/POCKETS/MAIN/PROFILES/SWITCH/FrameworkSwitch.html",
+        "VALIDATION": "/POCKETS/MAIN/PROFILES/VALIDATION/FrameworkValidation.html"
+    },
+    "WELCOME": {
+        "SPLASH": "/POCKETS/MAIN/WELCOME/SPLASH/FrameworkSplash.html",
+        "WELCOME": "/POCKETS/MAIN/WELCOME/WELCOME/FrameworkWelcome.html",
+        "MAP": "/POCKETS/MAIN/WELCOME/MAP/FrameworkMap.html",
+        "TITLE": "/POCKETS/MAIN/WELCOME/TITLE/FrameworkTitle.html"
+    },
+
+    "THE_SYSTEM": {
+        "MENU": "/POCKETS/NOVA/SYSTEM/MENU/FrameworkMenu.html"
+    },
+    "BLUEPRINTS": {
+        "NEW": "/POCKETS/NOVA/BLUEPRINTS/NEW/FrameworkNew.html",
+        "MENU": "/POCKETS/NOVA/BLUEPRINTS/MENU/FrameworkMenu.html"
+    },
+
+    "AUTHORS": {
+        "MENU": "/POCKETS/MEDIA/AUTHOR/MENU/FrameworkMenu.html",
+        "NEW": "/POCKETS/MEDIA/AUTHOR/NEW/FrameworkNew.html"
+    },
+    "DIRECTOR": {
+        "MENU": "/POCKETS/MEDIA/DIRECTOR/MENU/FrameworkDirector.html"
+    },
+
+    "STALK": {
+        "MENU": "/POCKETS/MAIN/STALK/MENU/FrameworkStalk.html"
+    },
+
+    "BOOKS": {
+        "MENU": "/POCKETS/MEDIA/BOOKS/STATS/FrameworkUpdateStats.html"
+    },
+    "SERIES": {
+        "NEW": "/POCKETS/MEDIA/SERIES/NEW/FrameworkNew.html"
     }
 }

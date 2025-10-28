@@ -28,6 +28,7 @@ input {
 	display: block;
 	height: 30px;
 	-webkit-app-region: no-drag;
+	color: #fffecf;
 }
 body {
 	background-color: black;

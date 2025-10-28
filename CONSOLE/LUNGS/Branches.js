@@ -47,7 +47,7 @@ export default class Branches extends Mushroom_Cap {
             PARAMETER_SETTINGS_ROUTE = 'UNSET',
             PARAMETER_CATEGORY_POCKET = 'UNSET'
         }){
-    
+
         await this.REQUEST_SESSION_ROUTES();
 
         switch (PARAMTER_BRANCH_MODE) {

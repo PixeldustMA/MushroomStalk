@@ -1,136 +1,102 @@
-import Connector_Beetle from "../../CONSOLE/ARTERIES/Connector_Beetle.js";
 import MYCOLOGY_Main from "./Mycology_Main.js";
 
 /**
- * ## CUPBOARD VALIDATION
+ * ## SETTINGS VALIDATION
  * ----------------------
  */
-export default class Myco_Nova extends MYCOLOGY_Main{
-
+export default class NV_Mycology extends MYCOLOGY_Main{
+    /**
+     * ## MYCOLOGY NOVA CONSTRUCTOR
+     */
     constructor({
-        NOVA_CONFIG_FOLDERS = 0,
-        NOVA_CONFIG_TOP = 0,
-        NOVA_CONFIG_FILES = 0,
-        NOVA_CONFIG_TEMPLATES = 0
+        NOVA_CONFIG_PATHS = 0
     }){
-
         super();
 
+        this.SESSION_PATH = NOVA_CONFIG_PATHS;
+
         // =========== //
-        // << PATHS >> //
+        // ## PATHS ## //
         // =========== //
-        this.PATH_TOP = CUPBOARD_CONFIG_TOP;
-        this.PATH_FOLDERS = CUPBOARD_CONFIG_FOLDERS;
-        this.PATH_FILES = CUPBOARD_CONFIG_FILES;
 
-        // =============== //
-        // << INSTANCES >> //
-        // =============== //
+        // ============= //
+        // << GENERAL >> //
+        // ============= //
 
-        this.INSTANCE_BEETLE = new Connector_Beetle({
+        this.PATH_TOP = 'UNSET';
 
-        });
+        // ============ //
+        // << FOLDERS >> //
+        // ============ //
 
-        // ========== //
-        // << DATA >> //
-        // ========== //
 
-        this.DATA_TEMPLATES = NOVA_CONFIG_TEMPLATES;
+
+        // =========== //
+        // << LISTS >> //
+        // =========== //
+
     };
 
+    // ========= //
+    // ## RUN ## //
+    // ========= //
+
     /**
-     * ## RUN CUPBOARD VALIDATION
+     * ## RUN NOVA VALIDATION
      * --------------------------
      */
     async RUN() {
 
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'RUN NOVA VALIDATION';
-        await this.INSTANCE_BEETLE.READ_MODE();
+        await this.#LOAD_PATHS();
 
         // ================= //
         // << MAIN FOLDER >> //
         // ================= //
+
+        console.log(this.PATH_TOP)
         await this.EXISTANCE_CHECK(this.PATH_TOP);
 
-        // ================= //
-        // << SUB FOLDERS >> //
-        // ================= //
-        await this.EXISTANCE_CHECK(this.PATH_TOP);
         await this.#FOLDERS();
 
         // ================ //
         // << JSON FILES >> //
         // ================ //
 
-        // ================ //
-        // << TEXT FILES >> //
-        // ================ //
-
+        await this.EXISTANCE_FILE(this.PATH_LIST_BLUEPRINTS, []);
     };
+
+    // ============= //
+    // ## UTILITY ## //
+    // ============= //
+
     /**
-     * ## VALIDATE NOVA FOLDERS
+     * ## VALIDATE SETTING FOLDERS
      * ----------------------------
+     * 
+     * Check existance of individual folders
      */
     async #FOLDERS() {
-
-        this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING NOVA FOLDERS';
-        await this.INSTANCE_BEETLE.READ_MODE();
-
-        for (let INDEX_Folders = 0; INDEX_Folders < this.PATH_FOLDERS.length; INDEX_Folders++) {
-            const PATH_Folder = this.PATH_FOLDERS[INDEX_Folders];
-            await this.EXISTANCE_CHECK(PATH_Folder);
-        };
+        await this.EXISTANCE_CHECK(this.PATH_BLUEPRINTS_ROOT);
+        await this.EXISTANCE_CHECK(this.PATH_BLUEPRINTS_CONSOLE);
+        await this.EXISTANCE_CHECK(this.PATH_BLUEPRINTS_BLUEPRINTS);
+    };
+    async #LOAD_PATHS() {
+        await this.#LOAD_FOLDER_PATHS();
+        await this.#LOAD_LIST_PATHS();
+    };
+    async #LOAD_FOLDER_PATHS() {
+        this.PATH_TOP = this.SESSION_PATH.ROOT.NOVA.MAIN
+        this.PATH_BLUEPRINTS_ROOT = `${this.PATH_TOP}/BLUEPRINTS`;
+        this.PATH_BLUEPRINTS_CONSOLE = `${this.PATH_TOP}/BLUEPRINTS/CONSOLE`;
+        this.PATH_BLUEPRINTS_BLUEPRINTS = `${this.PATH_TOP}/BLUEPRINTS/BLUEPRINTS`;
+    };
+    async #LOAD_LIST_PATHS() {
+        this.PATH_LIST_BLUEPRINTS = `${this.PATH_TOP}/BLUEPRINTS/CONSOLE/BlueprintList.json`;
     };
 
-    // ============================= //
-    // ## NOVA SPECIFIC FILES ## //
-    // ============================= //
+    // ========================== //
+    // ## MEDIA SPECIFIC FILES ## //
+    // ========================== //
 
     //. UPDATE -- ADD NEW FILES HERE ALONG WITH ACCESS TO THEIR BASE TEMPLATE
-
-    // =================== //
-    // << POKEMON FILES >> //
-    // =================== //
-
-    async POKEMON_DATABASE() {
-        // this.INSTANCE_BEETLE.DAISY_TEXT = 'VALIDATING POKEMON DATABASE JSON FILE';
-        // await this.INSTANCE_BEETLE.READ_MODE();
-        await this.EXISTANCE_FILE(this.PATH_FILES.POKEMON_DATABASE, this.DATA_TEMPLATES.GAMES_POKEMON_DATABASE);
-    };
-    async POKEMON_ELEMENTS() {
-        await this.EXISTANCE_FILE(this.PATH_FILES.POKEMON_ELEMENTS, this.DATA_TEMPLATES.GAMES_POKEMON_ELEMENTS);
-    };
-    async POKEMON_PARTY(){
-        await this.EXISTANCE_FILE(this.PATH_FILES.POKEMON_PARTY, this.DATA_TEMPLATES.GAMES_POKEMON_PARTY);        
-    };
-
-    // ============ //
-    // << DISNEY >> //
-    // ============ //
-
-    //? CURRENT WEEK TRACKER FOR DDV
-    async DISNEY_WEEK(){
-        await this.EXISTANCE_FILE(this.PATH_FILES.DISNEY_WEEK, this.DATA_TEMPLATES.GAMES_DISNEY_WEEK);           
-    };
-
-    // << MEDIA RELATED FILES >> //
-    //? ACTIVE BOOK
-    async BOOKMARK(){};
-    //? DATABASE OF BOOKS
-    async BOOK_DATABASE(){};
-    //? DATABASE OF FILMS
-    async FILM_DATABASE(){};
-    //? DATABASE OF TV PROGRAMS
-    async TV_DATABASE(){};
-    //? ACTIVE TELEVISION PROGRAMS
-    async TV_NOW(){};
-
-    // << SYSTEM >> //
-    //? PRESETS FOR TRACKERS LIKE DAYS OR PANIC MODE SETS OR W/E
-    async NOVA_STAR_PRESETS(){};
-    //? INFORMATION AND FACT SHEETS ON EACH NOVA STAR
-    async STAR_DATABASE(){};
-    //? CHANGELOG FILES FOR THE CURRENT WEEK
-    async STAR_CHANGELOG(){};
-
-}
+};

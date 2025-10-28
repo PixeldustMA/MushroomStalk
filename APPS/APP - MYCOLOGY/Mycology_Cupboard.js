@@ -18,7 +18,9 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         CUPBOARD_CONFIG_PATHS_PANTRY= 0,
         CUPBOARD_CONFIG_PATHS_MEMORY= 0,
         CUPBOARD_CONFIG_PATHS_SETTINGS = 0,
-        CUPBOARD_CONFIG_TEMPLATES = 0
+        CUPBOARD_CONFIG_PATHS_LILYPAD = 0,
+        CUPBOARD_CONFIG_PATHS_ROUTE_FILES = 0,
+        CUPBOARD_CONFIG_PATHS_SETTINGS_FILES = 0
     }){
         super();
 
@@ -34,12 +36,15 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         this.PATH_PANTRY = CUPBOARD_CONFIG_PATHS_PANTRY;
         this.PATH_MEMORY = CUPBOARD_CONFIG_PATHS_MEMORY;
         this.PATH_SETTINGS = CUPBOARD_CONFIG_PATHS_SETTINGS;
+        this.PATH_LILYPAD = CUPBOARD_CONFIG_PATHS_LILYPAD;
+        this.PATH_ROUTE_FILES = CUPBOARD_CONFIG_PATHS_ROUTE_FILES;
+        this.PATH_SETTINGS_FILES = CUPBOARD_CONFIG_PATHS_SETTINGS_FILES
 
         // ========== //
         // << DATA >> //
         // ========== //
 
-        this.DATA_TEMPLATES = CUPBOARD_CONFIG_TEMPLATES.CUPBOARD;
+        // this.DATA_TEMPLATES = CUPBOARD_CONFIG_TEMPLATES.CUPBOARD;
     };
 
     // ========= //
@@ -65,13 +70,13 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
         // ================ //
         // << JSON FILES >> //
         // ================ //
+
         await this.#RESIDENT();
         await this.#FROGS();
         await this.#USER();
         await this.#LIST();
         await this.#SETTINGS();
 
-        console.log(this.PATH_USERS)
         // ================ //
         // << TEXT FILES >> //
         // ================ //
@@ -89,11 +94,13 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
      */
     async #FOLDERS() {
         let KEYS = Object.keys(this.PATH_FOLDERS);
+        console.log([this.PATH_LILYPAD])
         for (let INDEX_Folders = 0; INDEX_Folders < KEYS.length; INDEX_Folders++) {
             const PATH_Folder = this.PATH_FOLDERS[KEYS[INDEX_Folders]];
             await this.EXISTANCE_CHECK(PATH_Folder);
         };
-        await this.EXISTANCE_CHECK(this.PATH_USERS.LILYPAD);
+        console.log(this.PATH_LILYPAD)
+        await this.EXISTANCE_CHECK(this.PATH_LILYPAD.FOLDERS.LILYPAD);
     };
 
     // ============================= //
@@ -105,19 +112,19 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
      * ## VALIDATE FROG FILE
      * ---------------------
      */
-    async #FROGS() {await this.EXISTANCE_FILE(this.PATH_USERS.FROGS, this.DATA_TEMPLATES.USERS_FROGS);};
+    async #FROGS() {await this.EXISTANCE_FILE(this.PATH_LILYPAD.FILES.FROG, {});};
     /**
      * ## VALIDATE RESIDENT FILE
      * ---------------------
      */
-    async #RESIDENT() {await this.EXISTANCE_FILE(this.PATH_USERS.RESIDENT, this.DATA_TEMPLATES.USERS_RESIDENT);};
+    async #RESIDENT() {await this.EXISTANCE_FILE(this.PATH_LILYPAD.FILES.RESIDENT, this.#TEMPLATE_RESIDENT());};
     /**
      * ## VALIDATE USER FILE
      * ---------------------
      */
-    async #USER() {await this.EXISTANCE_FILE(this.PATH_ROUTES.USER, this.DATA_TEMPLATES.ROUTES_USER);};
-    async #SETTINGS() {await this.EXISTANCE_FILE(this.PATH_SETTINGS, this.DATA_TEMPLATES.SETTINGS);};
-    async #LIST() {await this.EXISTANCE_FILE(this.PATH_USERS.LIST, []);};
+    async #USER() {await this.EXISTANCE_FILE(this.PATH_ROUTE_FILES.FILES.USERS, {});};
+    async #SETTINGS() {await this.EXISTANCE_FILE(this.PATH_SETTINGS_FILES.FILES.MUSHROOM, this.#TEMPLATE_MUSHROOM());};
+    async #LIST() {await this.EXISTANCE_FILE(this.PATH_LILYPAD.LISTS.USER, []);};
     /**
      * ## VALIDATE WELCOME BUTTON TEXT FILE
      * ---------------------
@@ -128,4 +135,24 @@ export default class Myco_Cupboard extends MYCOLOGY_Main{
      * ---------------------
      */
     async #INPUT() {await this.EXISTANCE_FILE(this.PATH_FILES.WELCOME.INPUT, {})};
+
+    #TEMPLATE_RESIDENT(){
+        return {
+            "MESSAGEPATH": "BUNDLE",
+            "BUNDLEPATH": "BUNDLE",
+            "NEWSPATH": "NEWS",
+            "SQUIRRELPATH": "SQUIRRELS",
+            "SPIRITPATH": "SPIRITS",
+            "DOODLEPATH": "DOODLES",
+            "NAME": "TESTING",
+            "PASSWORD": "debugging",
+            "OBSIDIAN": "OBSIDIAN",
+            "LOGGED": false
+        }
+    };
+    #TEMPLATE_MUSHROOM(){
+        return {
+            USER_COUNT: 0
+        }
+    }
 };

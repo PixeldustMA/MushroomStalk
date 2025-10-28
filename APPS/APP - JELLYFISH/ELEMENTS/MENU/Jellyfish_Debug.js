@@ -131,6 +131,7 @@ class JELLYFISH_DebugMenu extends HTMLElement{
     LOAD_PAGE(PARAMETER_POCKET_TAG, PARAMETER_POCKET_CATEGORY){
         return this.INSTANCE_BRANCH.LOAD(PARAMETER_POCKET_TAG, PARAMETER_POCKET_CATEGORY).then((RESULT) => {return RESULT});
     };
+    //. ADD NEW PAGE HERE
     BUTTONS() {
         this.shadowRoot.getElementById('BUTTON_Splash').addEventListener('click', (event) => {
             this.LOAD_PAGE('SPLASH', 'WELCOME');
@@ -155,6 +156,24 @@ class JELLYFISH_DebugMenu extends HTMLElement{
         });
         this.shadowRoot.getElementById('BUTTON_Plushie').addEventListener('click', (event) => {
             this.LOAD_PAGE('PLUSHIE', 'NOVA');
+        });
+        this.shadowRoot.getElementById('BUTTON_Nova-Menu').addEventListener('click', (event) => {
+            this.LOAD_PAGE('NOVA', 'MENU');
+        });
+        this.shadowRoot.getElementById('BUTTON_Archive').addEventListener('click', (event) => {
+            this.LOAD_PAGE('FOYER', 'ARCHIVE');
+        });
+        this.shadowRoot.getElementById('BUTTON_Archive-Desk').addEventListener('click', (event) => {
+            this.LOAD_PAGE('DESK', 'ARCHIVE');
+        });
+        this.shadowRoot.getElementById('BUTTON_Onyx').addEventListener('click', (event) => {
+            this.LOAD_PAGE('ONYX', 'MEMBLIES');
+        });
+        this.shadowRoot.getElementById('BUTTON_Crystallarium').addEventListener('click', (event) => {
+            this.LOAD_PAGE('CRYSTALLARIUM', 'MENU');
+        });
+        this.shadowRoot.getElementById('BUTTON_Topaz').addEventListener('click', (event) => {
+            this.LOAD_PAGE('TOPAZ', 'CRYSTALLARIUM');
         });
     }
     /**
@@ -236,6 +255,16 @@ class JELLYFISH_DebugMenu extends HTMLElement{
                 <a id = "BUTTON_Onboarding">ONNBOARDING</a>
                 <a id = "BUTTON_PenPot">PENPOT</a>
                 <a id = "BUTTON_Plushie">PLUSHIE</a>
+                <h2> ARCHIVE </h2>
+                <a id = "BUTTON_Archive">FOYER</a>
+                <a id = "BUTTON_Archive-Desk">DESK</a>
+                <h2> CRYSTALLARIUM <h2>
+                <a id = "BUTTON_Topaz">DESK</a>
+                <h2> BEANS </h2>
+                <a id = "BUTTON_Onyx">ONYX</a>
+                <h2> MENU LINKS </h2>
+                                <a id = "BUTTON_Crystallarium">CRYSTALLARIUM</a>
+                <a id = "BUTTON_Nova-Menu">NOVA</a>
             </div>
         </div>
         `

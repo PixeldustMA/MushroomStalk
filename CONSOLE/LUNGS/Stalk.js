@@ -28,21 +28,33 @@ export default class Stalk extends Mushroom_Cap {
 	 */
     async VALIDATE(PARAMETER_USERNAME, PARAMETER_PASSWORD) {
 
-        await this.REQUEST_SESSION_PATHS();
+        console.log('VALIDATING');
+        console.log(`USERNAME GIVEN IS ${PARAMETER_USERNAME}`)
+
+        await this.REQUEST_SESSION_PATHS_USERNAME(PARAMETER_USERNAME);
         await this.REQUEST_SESSION_USERS();
-        const NUMBER_Users = Object.keys(this.SESSION.USERS.DATA.USERS);
+        const NUMBER_Users = Object.keys(this.SESSION.USERS.USERS.DATA.USERS);
         let valid = false;
 
         UserCheckLoop: for (let index = 0; index < NUMBER_Users.length; index++) {
 
 			let BLOCK_Frog = NUMBER_Users[index];
             
-			if (this.SESSION.USERS.DATA.USERS[BLOCK_Frog].USERNAME === PARAMETER_USERNAME && this.SESSION.USERS.DATA.USERS[BLOCK_Frog].PASSWORD === PARAMETER_PASSWORD) {
-                let INSTANCE_MYCOLOGY = new Connector_Mycology(await this.REQUEST_SESSION_PATHS(), PARAMETER_USERNAME);
-                await INSTANCE_MYCOLOGY.MYCOLOGY_WAR();
+			if (this.SESSION.USERS.USERS.DATA.USERS[BLOCK_Frog].USERNAME === PARAMETER_USERNAME && this.SESSION.USERS.USERS.DATA.USERS[BLOCK_Frog].PASSWORD === PARAMETER_PASSWORD) {
+                let INSTANCE_MYCOLOGY = new Connector_Mycology({
+                    MYCOLOGY_CONFIG_SESSION: await this.REQUEST_SESSION_PATHS(),
+                    MYCOLOGY_CONFIG_USERNAME: PARAMETER_USERNAME
+                });
+                // await INSTANCE_MYCOLOGY.MYCOLOGY_WAR();
+                // await INSTANCE_MYCOLOGY.MYCOLOGY_SETTINGS();
+                // await INSTANCE_MYCOLOGY.MYCOLOGY_NOVA();
+                await INSTANCE_MYCOLOGY.MYCOLOGY_ROOTS();
+                await INSTANCE_MYCOLOGY.MYCOLOGY_MEDIA();
+                await INSTANCE_MYCOLOGY.MYCOLOGY_POKEMON();
+                await INSTANCE_MYCOLOGY.MYCOLOGY_NOVA();
+                await INSTANCE_MYCOLOGY.MYCOLOGY_DATABASE();
                 await INSTANCE_MYCOLOGY.MYCOLOGY_SETTINGS();
 				valid = true;
-				await this.LOAD("TITLE", 'WELCOME'); 
 				break;
 			};
 		};
@@ -100,7 +112,7 @@ export default class Stalk extends Mushroom_Cap {
      * ### RETURNS -->> {PROMISE} New screen
      */
     async CHECK_LOGIN() {
-        await this.REQUEST_SESSION_APP_SETTINGS();
+        await this.REQUEST_SESSION_SETTINGS();
         const COUNT_USERS = this.SESSION.SETTINGS.MUSHROOM.USER_COUNT;
         if (COUNT_USERS >= 1) {await this.LOAD('WELCOME', 'WELCOME');}
         else {await this.LOAD('WIZARD', 'PROFILE');};

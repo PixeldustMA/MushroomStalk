@@ -48,35 +48,25 @@ export default class ST_Mycology extends MYCOLOGY_Main{
         // << MAIN FOLDER >> //
         // ================= //
 
-        await this.EXISTANCE_CHECK(this.PATH_TOP);
+        // await this.EXISTANCE_CHECK(this.PATH_TOP);
 
         // ================ //
         // << JSON FILES >> //
         // ================ //
 
-        await this.#CHARACTER();
-        await this.#STATUS();
+        await this.#MEDIA();
+        await this.#LAVALAMPS();
     };
     // ============= //
     // ## UTILITY ## //
     // ============= //
 
-    /**
-     * ## VALIDATE SETTING FOLDERS
-     * ----------------------------
-     * 
-     * Check existance of individual folders
-     */
-    async #FOLDERS() {
-
-    };
     async #GET_SESSIONS() {
-        await this.REQUEST_SESSION_TEMPLATES();
+        await this.REQUEST_SESSION_PATHS_USERNAME();
     };
     async #LOAD_PATHS() {
-        this.PATH_CHARACTER = this.SESSION_PATH.SETTINGS.CHARACTER;
-        this.PATH_APP_STATUS = this.SESSION_PATH.SETTINGS.STATUS;
-        this.PATH_TOP = this.SESSION_PATH.TOP.SETTINGS;
+        this.PATH_MEDIA = this.SESSION.PATHS.SETTINGS.SETTINGS.FILES.MEDIA;
+        this.PATH_LAVALAMP = this.SESSION.PATHS.SETTINGS.SETTINGS.FILES.LAVALAMPS;
     };
 
     // ============================= //
@@ -84,6 +74,29 @@ export default class ST_Mycology extends MYCOLOGY_Main{
     // ============================= //
 
     //. UPDATE -- ADD NEW FILES HERE ALONG WITH ACCESS TO THEIR BASE TEMPLATE
-    async #CHARACTER() {await this.EXISTANCE_FILE(this.PATH_CHARACTER, {});};
-    async #STATUS() {await this.EXISTANCE_FILE(this.PATH_APP_STATUS, this.SESSION.TEMPLATES.MYCOLOGY.SETTINGS.STATUS);};
+
+    async #MEDIA() {await this.EXISTANCE_FILE(this.PATH_MEDIA, this.TEMPLATE_MEDIA())};
+    async #LAVALAMPS() {await this.EXISTANCE_FILE(this.PATH_LAVALAMP, this.TEMPLATE_LAVALAMPS())};
+
+    // =============== //
+    // ## TEMPLATES ## //
+    // =============== //
+
+    TEMPLATE_MEDIA() {
+        return {
+            BOOKS: []
+        }
+    };
+    TEMPLATE_LAVALAMPS() {
+        return {
+            POKEMON: {
+                ONE: {},
+                TWO: {},
+                THREE: {},
+                FOUR: {},
+                FIVE: {},
+                SIX: {}
+            }
+        }
+    };
 }

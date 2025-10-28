@@ -1,22 +1,4 @@
 
-.MapBackground {
-    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Map.png");
-}
-.SplashBackground {
-    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Splash\ Screen.png");
-    background-repeat: no-repeat;
-    background-size: 1250px 900px;
-}
-.SplashBackgroundEnd {
-    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Splash\ Screen\ Final.png");
-    background-repeat: no-repeat;
-    background-size: 1250px 900px;
-}
-.SplashBackgroundTransition {
-    background: url("../../ASSETS/ANIMATIONS/MushroomTitle.gif");
-    background-repeat: no-repeat;
-    background-size: 1250px 900px;
-}
 .WizardBackground {
     background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Wizard.png");
     background-repeat: no-repeat;
@@ -25,21 +7,11 @@
 .OnboardingBackground {
 	background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Onboarding.gif");
 }
-.ValidationBackground {
-    background: url("../../ASSETS/ANIMATIONS/Validating.gif");
-}
+
 .StartScreenBackground {
     background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Mushroom.png");
 }
-.welcomeBackground {
-    background:  url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Welcome.png");
-}
-.TitleBackground {
-    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Title\ Screen.png");
-}
-.SettingsBackground {
-    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Settings.png");
-}
+
 .DisplayBackground {
     background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Settings Display.png");
 }
@@ -113,4 +85,104 @@
 }
 .ChalkboardBody {
     background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Chalkboard.png");
+}
+
+/* AUTHORS */
+
+.AuthorMenuBody {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Author\ -\ Menu.png");
+}
+.AuthorNewBody {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Author\ -\ New.png");
+}
+
+/* POKEMON */
+
+.BoxesBody {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Pokemon\ -\ Boxes.png");
+}
+
+/* ELEMENTS */
+
+.CatMenuBody {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Element\ -\ CatMenu.png");
+}
+.CatNewBody {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Element\ -\ CatNew.png");
+}
+.MainStalkBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/Background\ -\ Main\ -\ MainStalk.png");
+}
+
+/* MAIN */
+/* WELCOME */
+
+.MainWelcomeMap_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/WELCOME/Background\ -\ Map.png");
+}
+.SplashBackground {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/WELCOME/Background\ -\ Splash\ Screen.png");
+    background-repeat: no-repeat;
+    background-size: 1250px 900px;
+}
+.SplashBackgroundEnd {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/WELCOME/Background\ -\ Splash\ Screen\ Final.png");
+    background-repeat: no-repeat;
+    background-size: 1250px 900px;
+}
+.SplashBackgroundTransition {
+    background: url("../../ASSETS/ANIMATIONS/MushroomTitle.gif");
+    background-repeat: no-repeat;
+    background-size: 1250px 900px;
+}
+.MainWelcomeTitle_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/WELCOME/Background\ -\ Title\ Screen.png");
+}
+.MainWelcomeWelcome_Background {
+    background:  url("../../ASSETS/IMAGES/BACKGROUNDS/WELCOME/Background\ -\ Welcome.png");
+}
+
+/* SETTINGS */
+
+.MainSettingsMenu_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/SETTINGS/Background\ -\ Settings\ -\ Menu.png");
+}
+
+/* PROFILES */
+
+.MainProfileSwitch_Background{
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/PROFILES/Background\ -\ Profile\ -\ Switch.png");
+}
+.MainProfileValidation_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/PROFILES/Background\ -\ Profile\ -\ Validation.png");
+}
+
+/* DOORWAYS */
+
+.MainMedia_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/DOORWAYS/Background\ -\ Media\ -\ Menu.png");
+}
+
+/* BOOKS */
+
+.MediaBookMenu_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/BOOKS/Background\ -\ Book\ -\ Menu.png");
+}
+.MediaBookNew_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/BOOKS/Background\ -\ Book\ -\ New.png");
+}
+.MediaBookSearch_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/BOOKS/Background\ -\ Book\ -\ Search.png");
+}
+.MediaBookView_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/BOOKS/Background\ -\ Book\ -\ View.png");
+}
+
+/* GENRE */
+
+.MediaGenreMenu_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/GENRE/Background\ -\ Genre\ -\ Menu.png");
+}
+.MediaGenreNew_Background {
+    background: url("../../ASSETS/IMAGES/BACKGROUNDS/GENRE/Background\ -\ Genre\ -\ New.png");
 }

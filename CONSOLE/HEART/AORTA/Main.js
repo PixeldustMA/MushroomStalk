@@ -74,7 +74,7 @@ console.log(DIR)
 // << PAGES >> //
 // =========== //
 
-const PATH_Splash = './POCKETS/WELCOME/SPLASH/FrameworkSplash.html';
+const PATH_Splash = './POCKETS/MAIN/WELCOME/SPLASH/FrameworkSplash.html';
 
 // ========================== //
 // ## STRUCTURAL FUNCTIONS ## //

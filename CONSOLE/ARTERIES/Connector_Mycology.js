@@ -4,6 +4,11 @@ import EL_Mycology from "../../APPS/APP - ELEMENTS/CONNECTORS/EL_Mycology.js";
 import EV_Mycology from "../../APPS/APP - EVENTS/CONNECTORS/EV_Mycology.js";
 import EX_Mycology from "../../APPS/APP - EXPLORER/CONNECTORS/EX_Mycology.js";
 import Myco_Cupboard from "../../APPS/APP - MYCOLOGY/Mycology_Cupboard.js";
+import DB_Mycology from "../../APPS/APP - MYCOLOGY/Mycology_Database.js";
+import MD_Mycology from "../../APPS/APP - MYCOLOGY/Mycology_Media.js";
+import NV_Mycology from "../../APPS/APP - MYCOLOGY/Mycology_Nova.js";
+import MYCOLOGY_Pokemon from "../../APPS/APP - MYCOLOGY/Mycology_Pokemon.js";
+import MYCOLOGY_Roots from "../../APPS/APP - MYCOLOGY/Mycology_Roots.js";
 import ST_Mycology from "../../APPS/APP - MYCOLOGY/Mycology_Settings.js";
 import NM_Mycology from "../../APPS/APP - NAMES/CONNECTORS/NM_Mycology.js";
 import SF_Mycology from "../../APPS/APP - SUNFLOWER/CONNECTORS/SF_Mycology.js";
@@ -15,7 +20,10 @@ export default class Connector_Mycology extends Mushroom_Cap{
     /**
      * ## MYCOLOGY CONSTRUCTOR
      */
-    constructor(SESSION, USERNAME = 0) {
+    constructor({
+        MYCOLOGY_CONFIG_SESSION = 0,
+        MYCOLOGY_CONFIG_USERNAME = 0
+    }) {
 
         super();
 
@@ -23,48 +31,66 @@ export default class Connector_Mycology extends Mushroom_Cap{
         // ## INSTANCES ## //
         // =============== //
 
-        this.INSTANCE_MEMORY = SESSION;
+        this.INSTANCE_MEMORY = MYCOLOGY_CONFIG_SESSION;
 
         // =============== //
         // ## USER DATA ## //
         // =============== //
 
-        this.USERNAME = USERNAME
+        this.USERNAME = MYCOLOGY_CONFIG_USERNAME
     };
 
     // ============== //
     // ## SEGMENTS ## //
     // ============== //
 
-    /**
-     * ## VALIDATION AND BUILDING OF CUPBOARD
-     * --------------------------------------
-     * 
-     * - Activate the Mycology Cupboard Class
-     * - Run a validation check
-     * - Build any necessary files
-     */
     async MYCOLOGY_CUPBOARD() {
 
         await this.REQUEST_SESSION_PATHS();
-        await this.REQUEST_SESSION_TEMPLATES();
 
-        let BUCKET_Folders = this.SESSION.PATHS.CUPBOARD;
+        let BUCKET_Folders = this.SESSION.PATHS.ROOT.CUPBOARD;
 
         await new Myco_Cupboard({
-            CUPBOARD_CONFIG_TOP: this.SESSION.PATHS.TOP.CUPBOARD,
-            CUPBOARD_CONFIG_PATHS_FOLDERS: BUCKET_Folders.TOP,
+            CUPBOARD_CONFIG_TOP: BUCKET_Folders.CUPBOARD,
+            CUPBOARD_CONFIG_PATHS_FOLDERS: BUCKET_Folders,
             CUPBOARD_CONFIG_PATHS_USERS: BUCKET_Folders.USERS,
             CUPBOARD_CONFIG_PATHS_TEXT: BUCKET_Folders.TEXT,
             CUPBOARD_CONFIG_PATHS_ROUTES: BUCKET_Folders.ROUTES,
             CUPBOARD_CONFIG_PATHS_PANTRY: BUCKET_Folders.PANTRY,
             CUPBOARD_CONFIG_PATHS_MEMORY: BUCKET_Folders.MEMORY,
-            CUPBOARD_CONFIG_PATHS_SETTINGS: BUCKET_Folders.APP.SETTINGS,
-            CUPBOARD_CONFIG_TEMPLATES: this.SESSION.TEMPLATES.MYCOLOGY
+            CUPBOARD_CONFIG_PATHS_SETTINGS: BUCKET_Folders.SETTINGS,
+            CUPBOARD_CONFIG_PATHS_LILYPAD: this.SESSION.PATHS.PROFILES.USERS,
+            CUPBOARD_CONFIG_PATHS_ROUTE_FILES: this.SESSION.PATHS.ROUTES,
+            CUPBOARD_CONFIG_PATHS_SETTINGS_FILES: this.SESSION.PATHS.SETTINGS.SETTINGS
         }).RUN();
     };
+    async MYCOLOGY_ROOTS() {
+
+        console.log('CREATING ROOT FOLDERS')
+        await this.REQUEST_SESSION_PATHS_USERNAME(this.USERNAME);
+        console.log(this.SESSION)
+        await new MYCOLOGY_Roots({
+            ROOT_CONFIG_PATHS: this.SESSION.PATHS.ROOT
+        }).RUN();
+    };
+    async MYCOLOGY_MEDIA() {
+        await this.REQUEST_SESSION_PATHS_USERNAME();
+        let INSTANCE_MEDIA = new MD_Mycology({
+            MEDIA_CONFIG_PATHS: this.SESSION.PATHS
+        });
+        await INSTANCE_MEDIA.RUN();
+    };
+    async MYCOLOGY_POKEMON() {
+        await this.REQUEST_SESSION_PATHS_USERNAME();
+        let INSTANCE_POKEMON = new MYCOLOGY_Pokemon ({
+            POKE_CONFIG_REFERENCE: this.SESSION.PATHS.LAVALAMPS.POKEMON.POKEDEX.FOLDER.ROOT,
+            POKE_CONFIG_PATHS: this.SESSION.PATHS.LAVALAMPS.POKEMON,
+            POKE_CONFIG_ROOT: this.SESSION.PATHS.ROOT.LAVALAMPS.POKEMON
+        });
+        await INSTANCE_POKEMON.RUN();
+    };
     async MYCOLOGY_WAR() {
-        let SESSION_PATHS = await this.INSTANCE_M_PATHS.INITIALISE_USERNAME('PIXEL');
+        let SESSION_PATHS = await this.REQUEST_SESSION_PATHS_USERNAME('PIXEL');
 
         let INSTANCE_ELEMENTS = new EL_Mycology({
             MYCOLOGY_CONFIG_PATH_CATEGORY: SESSION_PATHS.WAR.ELEMENTS.CATEGORIES,
@@ -120,11 +146,11 @@ export default class Connector_Mycology extends Mushroom_Cap{
 
         console.log('SUNFLOWER COMPLETE');
 
-        let INSTANCE_TOOLBOX = new TB_Mycology({
-            MYCOLOGY_CONFIG_PATH_TRACKER: SESSION_PATHS.TOOLBOX.TOP.TRACKER,
-            MYCOLOGY_CONFIG_PATH_WASHI: SESSION_PATHS.TOOLBOX.TOP.WASHI
-        });
-        await INSTANCE_TOOLBOX.INITIALISE_TOOLBOX();
+        // let INSTANCE_TOOLBOX = new TB_Mycology({
+        //     MYCOLOGY_CONFIG_PATH_TRACKER: SESSION_PATHS.TOOLBOX.TOP.TRACKER,
+        //     MYCOLOGY_CONFIG_PATH_WASHI: SESSION_PATHS.TOOLBOX.TOP.WASHI
+        // });
+        // await INSTANCE_TOOLBOX.INITIALISE_TOOLBOX();
 
         console.log('TOOLBOX COMPLETE');
 
@@ -139,10 +165,25 @@ export default class Connector_Mycology extends Mushroom_Cap{
         console.log('NAMES COMPLETE');
     };
     async MYCOLOGY_SETTINGS() {
-        let SESSION_PATHS = await this.INSTANCE_M_PATHS.INITIALISE_USERNAME('PIXEL');
+        await this.REQUEST_SESSION_PATHS_USERNAME();
         let INSTANCE_SETTINGS = new ST_Mycology({
-            SETTINGS_CONFIG_PATHS: SESSION_PATHS
+            SETTINGS_CONFIG_PATHS: this.SESSION.PATHS
         });
         await INSTANCE_SETTINGS.RUN();
     };
-}
+    async MYCOLOGY_NOVA() {
+        await this.REQUEST_SESSION_PATHS_USERNAME();
+        let INSTANCE_NOVA = new NV_Mycology({
+            NOVA_CONFIG_PATHS: this.SESSION.PATHS
+        })
+        await INSTANCE_NOVA.RUN();
+    };
+    async MYCOLOGY_DATABASE() {
+        await this.REQUEST_SESSION_PATHS_USERNAME();
+        let INSTANCE_DATABASE = new DB_Mycology({
+            DATABASE_CONFIG_PATHS: this.SESSION.PATHS
+        })
+        await INSTANCE_DATABASE.RUN();
+    };
+
+};
